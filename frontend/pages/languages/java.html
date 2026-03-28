@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>503 - Under Construction | Studypy</title>
     <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../compiler.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
     <style>
@@ -294,8 +295,56 @@
 
             </div>
         </div>
+        <section>
+            <div class="sp-compiler" id="compiler-java">
+                <div class="sp-compiler__header">
+                    <div class="sp-compiler__lang-badge">
+                    <span class="dot"></span>
+                    Java — OpenJDK 25
+                    </div>
+                    <div class="sp-compiler__actions">
+                    <button class="sp-btn-clear">Clear</button>
+                    <button class="sp-btn-run">
+                        <svg viewBox="0 0 16 16"><path d="M3 2l10 6-10 6V2z"/></svg>
+                        Run
+                    </button>
+                    </div>
+                </div>
+                
+                <div class="sp-compiler__editor-wrap">
+                    <textarea class="sp-compiler__textarea" spellcheck="false"></textarea>
+                </div>
+                
+                <div class="sp-compiler__stdin-wrap">
+                    <div class="sp-compiler__stdin-label">stdin (optional input)</div>
+                    <textarea class="sp-compiler__stdin" placeholder="e.g. Alice" rows="2"></textarea>
+                </div>
+                
+                <div class="sp-compiler__output-wrap">
+                    <div class="sp-compiler__output-header">
+                    <div class="sp-compiler__output-label">
+                        <span class="sp-output-dot"></span>
+                        Output
+                    </div>
+                    <div class="sp-compiler__stats">
+                        <span class="sp-stat-time"></span>
+                        <span class="sp-stat-mem"></span>
+                    </div>
+                    </div>
+                    <pre class="sp-compiler__output is-empty">Output will appear here...</pre>
+                </div>
+            </div>
+        </section>
     </main>
-
+    <script src="../../compiler.js"></script>
     <script src="../../script.js"></script>
+    <script>
+        initCompiler({
+            containerId: 'compiler-java',
+            language: 'openjdk-25',
+            label:       'Java',
+            placeholder: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello from StudyPY!");\n    }\n}',
+        });
+    </script>
 </body>
 </html>

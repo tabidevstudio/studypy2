@@ -1,0 +1,291 @@
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ── Root tokens matching style palette w/ additions── */
+:root {
+  --sp-bg:        #0f172a;
+  --sp-surface:   #1e293b;
+  --sp-surface2:  #162032;
+  --sp-border:    #2d3f55;
+  --sp-cyan:      #38bdf8;
+  --sp-cyan-dim:  #0ea5e9;
+  --sp-cyan-glow: rgba(56, 189, 248, 0.15);
+  --sp-text:      #e2e8f0;
+  --sp-muted:     #94a3b8;
+  --sp-error:     #f87171;
+  --sp-success:   #34d399;
+  --sp-warning:   #fbbf24;
+  --sp-radius:    12px;
+  --sp-mono:      'JetBrains Mono', 'Fira Code', monospace;
+  --sp-sans:      'Inter', sans-serif;
+}
+
+/* ── Compiler wrapper ── */
+.sp-compiler {
+  font-family: var(--sp-sans);
+  background: var(--sp-surface);
+  border: 1px solid var(--sp-border);
+  border-radius: var(--sp-radius);
+  overflow: hidden;
+  margin: 2rem 0;
+  box-shadow: 0 0 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(56,189,248,0.05);
+}
+
+/* ── Header bar ── */
+.sp-compiler__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  background: var(--sp-bg);
+  border-bottom: 1px solid var(--sp-border);
+  gap: 1rem;
+}
+
+.sp-compiler__lang-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sp-cyan);
+}
+
+.sp-compiler__lang-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sp-cyan);
+  box-shadow: 0 0 6px var(--sp-cyan);
+  animation: sp-pulse 2s ease-in-out infinite;
+}
+
+@keyframes sp-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--sp-cyan); }
+  50%       { opacity: 0.5; box-shadow: 0 0 2px var(--sp-cyan); }
+}
+
+.sp-compiler__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* ── Run button ── */
+.sp-btn-run {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1.1rem;
+  background: var(--sp-cyan);
+  color: #0f172a;
+  font-family: var(--sp-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  letter-spacing: 0.03em;
+}
+
+.sp-btn-run:hover:not(:disabled) {
+  background: #7dd3fc;
+  box-shadow: 0 0 16px var(--sp-cyan-glow);
+  transform: translateY(-1px);
+}
+
+.sp-btn-run:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.sp-btn-run:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sp-btn-run svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+}
+
+/* ── Clear button ── */
+.sp-btn-clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  background: transparent;
+  color: var(--sp-muted);
+  font-family: var(--sp-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  border: 1px solid var(--sp-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.sp-btn-clear:hover {
+  color: var(--sp-text);
+  border-color: var(--sp-muted);
+}
+
+/* ── Editor area ── */
+.sp-compiler__editor-wrap {
+  position: relative;
+  border-bottom: 1px solid var(--sp-border);
+}
+
+.sp-compiler__textarea {
+  width: 100%;
+  min-height: 220px;
+  padding: 1.1rem 1.25rem;
+  background: var(--sp-surface2);
+  color: var(--sp-text);
+  font-family: var(--sp-mono);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  border: none;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+  tab-size: 4;
+  caret-color: var(--sp-cyan);
+}
+
+.sp-compiler__textarea::placeholder {
+  color: var(--sp-border);
+}
+
+.sp-compiler__textarea:focus {
+  background: #111e30;
+}
+
+/* ── stdin section ── */
+.sp-compiler__stdin-wrap {
+  border-bottom: 1px solid var(--sp-border);
+  background: var(--sp-bg);
+}
+
+.sp-compiler__stdin-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.25rem 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--sp-muted);
+}
+
+.sp-compiler__stdin {
+  width: 100%;
+  padding: 0.5rem 1.25rem 0.75rem;
+  background: transparent;
+  color: var(--sp-text);
+  font-family: var(--sp-mono);
+  font-size: 0.83rem;
+  border: none;
+  outline: none;
+  resize: none;
+  box-sizing: border-box;
+  min-height: 56px;
+}
+
+.sp-compiler__stdin::placeholder {
+  color: var(--sp-border);
+}
+
+/* ── Output panel ── */
+.sp-compiler__output-wrap {
+  background: var(--sp-bg);
+}
+
+.sp-compiler__output-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1.25rem;
+  border-bottom: 1px solid var(--sp-border);
+}
+
+.sp-compiler__output-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--sp-muted);
+}
+
+.sp-compiler__stats {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.72rem;
+  color: var(--sp-muted);
+  font-family: var(--sp-mono);
+}
+
+.sp-compiler__stats span { display: none; }
+.sp-compiler__stats span.visible { display: inline; }
+
+.sp-compiler__output {
+  padding: 1rem 1.25rem;
+  font-family: var(--sp-mono);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--sp-text);
+  min-height: 90px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.sp-compiler__output.is-empty {
+  color: var(--sp-border);
+  font-style: italic;
+}
+
+.sp-compiler__output.is-error {
+  color: var(--sp-error);
+}
+
+.sp-compiler__output.is-success {
+  color: var(--sp-text);
+}
+
+/* ── Loading spinner ── */
+.sp-compiler__output.is-loading::after {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-left: 8px;
+  border: 2px solid var(--sp-border);
+  border-top-color: var(--sp-cyan);
+  border-radius: 50%;
+  animation: sp-spin 0.7s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes sp-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Status indicator dot ── */
+.sp-output-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--sp-border);
+  transition: background 0.3s;
+}
+.sp-output-dot.success { background: var(--sp-success); }
+.sp-output-dot.error   { background: var(--sp-error); }
+.sp-output-dot.loading { background: var(--sp-cyan); animation: sp-pulse 1s infinite; }

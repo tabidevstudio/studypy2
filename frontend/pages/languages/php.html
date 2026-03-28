@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>503 - Under Construction | Studypy</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../compiler.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+    <style>
+        .uc-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+            background: #16171B;
+        }
+
+        .uc-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 15% 40%, rgba(12, 78, 139, 0.45) 0%, transparent 50%),
+                radial-gradient(circle at 85% 60%, rgba(35, 76, 114, 0.35) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(14, 73, 100, 0.2) 0%, transparent 50%);
+            animation: bgPulse 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .uc-card {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 580px;
+            width: 100%;
+        }
+
+        .uc-code {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(7rem, 20vw, 11rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -4px;
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(145, 218, 235, 0.25);
+            position: relative;
+            user-select: none;
+        }
+
+        .uc-code::after {
+            content: '503';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgb(145, 218, 235) 0%, #46a8f3 50%, rgba(145, 218, 235, 0.4) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: flicker 4s ease-in-out infinite;
+        }
+
+        @keyframes flicker {
+            0%, 90%, 100% { opacity: 1; }
+            92% { opacity: 0.6; }
+            94% { opacity: 1; }
+            96% { opacity: 0.7; }
+        }
+
+        .uc-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgb(145, 218, 235), transparent);
+            margin: 4px auto 28px;
+            border-radius: 999px;
+        }
+
+        .uc-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            border-radius: 999px;
+            background: rgba(14, 73, 100, 0.4);
+            border: 1px solid rgba(145, 218, 235, 0.2);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgb(145, 218, 235);
+            margin-bottom: 22px;
+        }
+
+        .uc-badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgb(145, 218, 235);
+            animation: blink 1.4s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.7); }
+        }
+
+        .uc-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .uc-title span {
+            color: rgb(145, 218, 235);
+        }
+
+        .uc-sub {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .uc-thanks {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: rgba(145, 218, 235, 0.85);
+            margin-bottom: 36px;
+            letter-spacing: 0.5px;
+        }
+
+        .uc-progress-wrap {
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto 36px;
+        }
+
+        .uc-progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .uc-progress-track {
+            height: 4px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .uc-progress-bar {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgb(14, 73, 100), rgb(145, 218, 235));
+            animation: progressAnim 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes progressAnim {
+            0%   { width: 20%; }
+            100% { width: 75%; }
+        }
+
+        .uc-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.9rem 2.6rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #fff;
+            background: rgba(14, 73, 100, 0.5);
+            border: 1px solid rgba(145, 218, 235, 0.35);
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .uc-btn:hover {
+            transform: translateY(-4px);
+            background: rgba(14, 73, 100, 0.8);
+            border-color: rgba(145, 218, 235, 0.7);
+            box-shadow: 0 8px 28px rgba(145, 218, 235, 0.15);
+            color: #fff;
+        }
+
+        .uc-btn i {
+            font-size: 18px;
+            transition: transform 0.2s ease;
+        }
+
+        .uc-btn:hover i {
+            transform: translateX(-4px);
+        }
+
+        .uc-gear {
+            position: fixed;
+            color: rgba(145, 218, 235, 0.05);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .uc-gear-1 {
+            top: 6%;
+            right: 4%;
+            font-size: 160px;
+            animation: spinSlow 18s linear infinite;
+        }
+
+        .uc-gear-2 {
+            bottom: 8%;
+            left: 3%;
+            font-size: 110px;
+            animation: spinSlow 12s linear infinite reverse;
+        }
+
+        .uc-gear-3 {
+            top: 48%;
+            left: 1%;
+            font-size: 65px;
+            animation: spinSlow 9s linear infinite;
+        }
+
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="main">
+        <div class="uc-wrapper">
+
+            <i class='bx bx-cog uc-gear uc-gear-1'></i>
+            <i class='bx bx-cog uc-gear uc-gear-2'></i>
+            <i class='bx bx-cog uc-gear uc-gear-3'></i>
+
+            <div class="uc-card">
+
+                <div class="uc-badge">
+                    <span class="uc-badge-dot"></span>
+                    Service Unavailable
+                </div>
+
+                <div class="uc-code">503</div>
+                <div class="uc-divider"></div>
+
+                <h1 class="uc-title">Under <span>Construction</span></h1>
+
+                <p class="uc-sub">This page is still being built. We're working hard to bring it to life — check back soon!</p>
+                <p class="uc-thanks">Thank you for your Support &#9825;</p>
+
+                <div class="uc-progress-wrap">
+                    <div class="uc-progress-label">
+                        <span>In Progress</span>
+                        <span>Coming Soon</span>
+                    </div>
+                    <div class="uc-progress-track">
+                        <div class="uc-progress-bar"></div>
+                    </div>
+                </div>
+
+                <a href="/frontend/index.html" class="uc-btn">
+                    <i class='bx bx-arrow-back'></i>
+                    Go Back
+                </a>
+
+            </div>
+        </div>
+        <section>
+            <div class="sp-compiler" id="compiler-php">
+                <div class="sp-compiler__header">
+                    <div class="sp-compiler__lang-badge">
+                    <span class="dot"></span>
+                    PHP 8.5
+                    </div>
+                    <div class="sp-compiler__actions">
+                    <button class="sp-btn-clear">Clear</button>
+                    <button class="sp-btn-run">
+                        <svg viewBox="0 0 16 16"><path d="M3 2l10 6-10 6V2z"/></svg>
+                        Run
+                    </button>
+                    </div>
+                </div>
+                
+                <div class="sp-compiler__editor-wrap">
+                    <textarea class="sp-compiler__textarea" spellcheck="false"></textarea>
+                </div>
+                
+                <div class="sp-compiler__stdin-wrap">
+                    <div class="sp-compiler__stdin-label">stdin (optional input)</div>
+                    <textarea class="sp-compiler__stdin" placeholder="optional" rows="2"></textarea>
+                </div>
+                
+                <div class="sp-compiler__output-wrap">
+                    <div class="sp-compiler__output-header">
+                    <div class="sp-compiler__output-label">
+                        <span class="sp-output-dot"></span>
+                        Output
+                    </div>
+                    <div class="sp-compiler__stats">
+                        <span class="sp-stat-time"></span>
+                        <span class="sp-stat-mem"></span>
+                    </div>
+                    </div>
+                    <pre class="sp-compiler__output is-empty">Output will appear here...</pre>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="../../compiler.js"></script>
+    <script src="../../script.js"></script>
+    <script>
+        initCompiler({
+            containerId: 'compiler-php',
+            language: 'php-8.5',
+            label:       'PHP 8.5',
+            placeholder: '<?php\n$name = "Student";\necho "Hello, $name! Welcome to StudyPY.\\n";\n?>',
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "studypy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+"scripts": {
+  "dev": "concurrently \"cd backend && node server.js\" \"http-server frontend -p 5500 -o\""
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrianC0des/Studypy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/BrianC0des/Studypy/issues"
+  },
+  "homepage": "https://github.com/BrianC0des/Studypy#readme",
+  "dependencies": {
+    "concurrently": "^9.2.1",
+    "http-server": "^14.1.1"
+  }
+}
