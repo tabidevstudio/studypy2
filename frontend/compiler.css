@@ -1,11 +1,9 @@
-
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');
 
-/* ── Root tokens matching style palette w/ additions── */
 :root {
   --sp-bg:        #0f172a;
   --sp-surface:   #1e293b;
-  --sp-surface2:  #162032;
+  --sp-surface2:  #0d1826;
   --sp-border:    #2d3f55;
   --sp-cyan:      #38bdf8;
   --sp-cyan-dim:  #0ea5e9;
@@ -14,7 +12,6 @@
   --sp-muted:     #94a3b8;
   --sp-error:     #f87171;
   --sp-success:   #34d399;
-  --sp-warning:   #fbbf24;
   --sp-radius:    12px;
   --sp-mono:      'JetBrains Mono', 'Fira Code', monospace;
   --sp-sans:      'Inter', sans-serif;
@@ -97,20 +94,9 @@
   transform: translateY(-1px);
 }
 
-.sp-btn-run:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.sp-btn-run:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.sp-btn-run svg {
-  width: 13px;
-  height: 13px;
-  fill: currentColor;
-}
+.sp-btn-run:active:not(:disabled) { transform: translateY(0); }
+.sp-btn-run:disabled { opacity: 0.5; cursor: not-allowed; }
+.sp-btn-run svg { width: 13px; height: 13px; fill: currentColor; }
 
 /* ── Clear button ── */
 .sp-btn-clear {
@@ -134,12 +120,41 @@
   border-color: var(--sp-muted);
 }
 
-/* ── Editor area ── */
+/* ── CodeMirror editor wrap ── */
 .sp-compiler__editor-wrap {
-  position: relative;
   border-bottom: 1px solid var(--sp-border);
+  background: var(--sp-surface2);
+  position: relative;
 }
 
+/* CodeMirror 6 container */
+.sp-compiler__editor-wrap .cm-editor {
+  height: 100%;
+}
+
+.sp-compiler__editor-wrap .cm-editor.cm-focused {
+  outline: none;
+}
+
+.sp-compiler__editor-wrap .cm-scroller {
+  min-height: 200px;
+  max-height: 400px;
+  overflow: auto;
+  font-family: var(--sp-mono) !important;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+/* Loading state while CodeMirror initializes */
+.sp-compiler__editor-wrap .cm-editor-loading {
+  padding: 1rem 1.25rem;
+  color: var(--sp-border);
+  font-family: var(--sp-mono);
+  font-size: 0.88rem;
+  font-style: italic;
+}
+
+/* Fallback textarea (if CodeMirror fails) */
 .sp-compiler__textarea {
   width: 100%;
   min-height: 220px;
@@ -155,14 +170,6 @@
   box-sizing: border-box;
   tab-size: 4;
   caret-color: var(--sp-cyan);
-}
-
-.sp-compiler__textarea::placeholder {
-  color: var(--sp-border);
-}
-
-.sp-compiler__textarea:focus {
-  background: #111e30;
 }
 
 /* ── stdin section ── */
@@ -197,14 +204,10 @@
   min-height: 56px;
 }
 
-.sp-compiler__stdin::placeholder {
-  color: var(--sp-border);
-}
+.sp-compiler__stdin::placeholder { color: var(--sp-border); }
 
 /* ── Output panel ── */
-.sp-compiler__output-wrap {
-  background: var(--sp-bg);
-}
+.sp-compiler__output-wrap { background: var(--sp-bg); }
 
 .sp-compiler__output-header {
   display: flex;
@@ -247,20 +250,10 @@
   word-break: break-word;
 }
 
-.sp-compiler__output.is-empty {
-  color: var(--sp-border);
-  font-style: italic;
-}
+.sp-compiler__output.is-empty  { color: var(--sp-border); font-style: italic; }
+.sp-compiler__output.is-error  { color: var(--sp-error); }
+.sp-compiler__output.is-success { color: var(--sp-text); }
 
-.sp-compiler__output.is-error {
-  color: var(--sp-error);
-}
-
-.sp-compiler__output.is-success {
-  color: var(--sp-text);
-}
-
-/* ── Loading spinner ── */
 .sp-compiler__output.is-loading::after {
   content: '';
   display: inline-block;
@@ -274,11 +267,9 @@
   vertical-align: middle;
 }
 
-@keyframes sp-spin {
-  to { transform: rotate(360deg); }
-}
+@keyframes sp-spin { to { transform: rotate(360deg); } }
 
-/* ── Status indicator dot ── */
+/* ── Status dot ── */
 .sp-output-dot {
   width: 7px;
   height: 7px;
