@@ -1,58 +1,61 @@
 # StudyPY 👨🏻‍💻
 
-A centralized learning platform for IT/CS students.
+A centralized learning platform for IT/CS students – providing a code editor, learning resources, and study tools in one place.
 
-## Requirements
+## 📖 About The Project
 
-Before running this project, make sure you have:
-- [Node.js](https://nodejs.org/) installed (v18 or higher)
-- An API key from [OnlineCompiler.io](https://onlinecompiler.io) (free)
+**StudyPY** was built as a collaborative project to help IT/CS students access learning materials and practice coding without juggling multiple tools. It features an online Python compiler, organized video tutorials, and a code examples library – all in a clean, student-friendly interface.
 
-## Setup
+### What It Does
 
-### 1. Clone the repo
-```bash
-git clone https://github.com/BrianC0des/Studypy.git
-cd Studypy
-```
+- **Online Compiler** – Write and run code directly in the browser (powered by OnlineCompiler.io API)
+- **Learning Videos** – Curated video tutorials organized by topic
+- **Code Examples Library** – Ready-to-run code snippets for common algorithms and concepts
+- **Clean Dashboard** – Central hub for all learning resources
 
-### 2. Install root dependencies
-```bash
-npm install
-```
+### Tech Stack
 
-### 3. Install backend dependencies
-```bash
-cd backend
-npm install
-cd ..
-```
+| Layer    | Technology                    | Hosting          |
+|----------|-------------------------------|------------------|
+| Frontend | HTML, CSS, Vanilla JavaScript | Vercel           |
+| Backend  | Node.js + Express             | Render           |
+| API      | OnlineCompiler.io             | External service |
 
-### 4. Create your .env file
-Create a file called `.env` inside the `backend/` folder:
-```
-API_KEY=your_onlinecompiler_api_key_here
-```
-Get your free API key at https://onlinecompiler.io
+### Architecture
 
-### 5. Run the project
-```bash
-npm run dev
-```
+Frontend (Vercel) → Backend API (Render) → OnlineCompiler.io
+↓ ↓ ↓
+Static pages Proxies API requests Executes code
+(hides API key)
 
-This starts both the frontend and backend at the same time:
-- Frontend: http://localhost:5500
-- Backend: http://localhost:3000
+The frontend never directly calls the third-party API – all compilation requests go through our backend, which adds the API key securely.
 
-## Project Structure
-```
-Studypy/
-├── frontend/          # HTML, CSS, JS files
-│   ├── index.html
-│   ├── compiler.js    # Shared compiler logic
-│   ├── compiler.css   # Compiler styles
-│   └── pages/         # All site pages
-└── backend/           # Node.js API server
-    ├── server.js
-    └── .env           # Your API key (never shared)
-```
+## 👥 Contributors
+
+This project was developed by:
+
+- Bryan P. Saavedra 
+- Nur-Mohammad Zaarr L. Iraji
+- Carl Marcel O. Mapa
+- Landis Angelo J. Tarro
+
+## 🎯 Purpose
+
+This repository is part of a learning exercise in:
+- Full-stack JavaScript development
+- API integration and security (keeping keys safe)
+- Deploying separate frontend and backend services
+- Collaborative Git workflows
+
+## 🔒 Private Repository
+
+**Note:** This repository is for internal/educational purposes within the tabidevstudio team. It is not configured for public deployment or external contribution. Setup instructions are intentionally omitted as the project is maintained by its original contributors.
+
+## 🚀 Live Deployment
+
+- Frontend: [studypy.vercel.app](https://studypy.vercel.app)
+- Backend: Hosted on Render (private endpoint)
+
+---
+
+*Built with ☕ by CCS students, for CCS students.*
