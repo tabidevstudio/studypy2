@@ -1,4 +1,4 @@
-# StudyPY 📚
+# StudyPY 👨🏻‍💻
 
 A centralized learning platform for IT/CS students.
 
