@@ -1,5 +1,5 @@
 
-const SOCKET_URL = 'wss://api.onlinecompiler.io';
+const SOCKET_URL = 'https://api.onlinecompiler.io';
 const WS_API_KEY = 'cd22da454b84af78a75a9975b3e4ff52';
 
 function initCompiler(config) {
