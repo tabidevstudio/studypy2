@@ -1404,12 +1404,36 @@ h4 {
 /* ── Communities Style (Discord Servers) ───────────────── */
 
 .MainDiscordServers{
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-margin: 130px 0px 0px 110px;
+  margin: 130px 0px 0px 110px;
 }
 
 .MainDiscordServers h1 strong{
 color: #149CEA;
+}
+
+.MainDiscordServers #AddDiscordBtn{
+  background-color: #131333;
+  font-weight: bolder;
+  font-size: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.506);
+  border-radius: 30px;
+  width: 200px;
+  padding: 20px;
+  color: #8dd2fa;
+  transition: all 0.2s ease-out;
+}
+
+.MainDiscordServers #AddDiscordBtn:hover{
+  box-shadow: 0px 0px 15px 5px rgba(131, 210, 255, 0.172);
+  border: 2px solid rgba(131, 255, 255, 0.506);
+  background-color: #223370a5;
+  color: #eef9ff;
 }
 
 .TabDiscordServers{
