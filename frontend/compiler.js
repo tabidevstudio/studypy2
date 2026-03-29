@@ -87,6 +87,7 @@ function initCompiler(config) {
     loadSocketIO(() => {
       if (socket) socket.disconnect();
 
+
       socket = io(SOCKET_URL, {
         auth: { token: WS_API_KEY },
         transports: ['websocket'],
