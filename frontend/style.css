@@ -1579,7 +1579,7 @@ color: #149CEA;
   color: #97d9ff;
 }
 
-.TabServers button{
+.tabservers-button{
   font-size: 15px;
   margin: 50px 0px 0px 0px;
   font-weight: bolder;
@@ -1593,7 +1593,7 @@ color: #149CEA;
   transition: all 0.2s ease-in-out; 
 }
 
-.TabServers button:hover{
+.tabservers-button:hover{
   background-color: #0088ff31;
 }
 
