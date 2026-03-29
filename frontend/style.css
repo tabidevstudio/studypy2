@@ -1426,7 +1426,7 @@ h4 {
 
 .ide-page {
   min-height: 100vh;
-  padding: 5rem 2.5rem 4rem;  
+  padding: 10rem 2.5rem 4rem;  
   background-color: var(--color-bg);
   background-image:
     linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
