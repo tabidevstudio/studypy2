@@ -76,9 +76,9 @@
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Dev Tools</a></li>
-                <li><a href="/pages/Dev Tools/IDES.html">IDEs &amp; Editors</a></li>
-                        <li><a href="/pages/Dev Tools/version-control.html">Version Control</a></li>
-                <li><a href="/pages/Dev Tools/debugging-tools.html">Debugging Tools</a></li>
+                <li><a href="/frontend/pages/Dev Tools/IDES.html">IDEs &amp; Editors</a></li>
+                <li><a href="/frontend/pages/Dev Tools/debugging-tools.html">Debugging Tools</a></li>
+                <li><a href="/frontend/pages/Dev Tools/fun-tools.html">Fun Tools</a></li>
             </ul>
         </li>
         <li>
