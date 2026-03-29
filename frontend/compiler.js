@@ -198,6 +198,10 @@ function initCompiler(config) {
       parent: editorWrap,
     });
 
+    // Expose globally so examples.js can load code into this editor
+    if (!window.__cmViews) window.__cmViews = {};
+    window.__cmViews[containerId] = editorView;
+
   }).catch((err) => {
     // Fallback to plain textarea if CodeMirror fails
     console.warn('CodeMirror failed to load, falling back to textarea:', err);
