@@ -4,298 +4,359 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>503 - Under Construction | Studypy</title>
+    <title>IDEs & Editors | StudyPY</title>
     <link rel="stylesheet" href="../../style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
-    <style>
-        .uc-wrapper {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-            position: relative;
-            overflow: hidden;
-            background: #16171B;
-        }
-
-        .uc-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at 15% 40%, rgba(12, 78, 139, 0.45) 0%, transparent 50%),
-                radial-gradient(circle at 85% 60%, rgba(35, 76, 114, 0.35) 0%, transparent 50%),
-                radial-gradient(circle at 50% 80%, rgba(14, 73, 100, 0.2) 0%, transparent 50%);
-            animation: bgPulse 8s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes bgPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        .uc-card {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 580px;
-            width: 100%;
-        }
-
-        .uc-code {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(7rem, 20vw, 11rem);
-            font-weight: 700;
-            line-height: 1;
-            letter-spacing: -4px;
-            color: transparent;
-            -webkit-text-stroke: 2px rgba(145, 218, 235, 0.25);
-            position: relative;
-            user-select: none;
-        }
-
-        .uc-code::after {
-            content: '503';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgb(145, 218, 235) 0%, #46a8f3 50%, rgba(145, 218, 235, 0.4) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: flicker 4s ease-in-out infinite;
-        }
-
-        @keyframes flicker {
-            0%, 90%, 100% { opacity: 1; }
-            92% { opacity: 0.6; }
-            94% { opacity: 1; }
-            96% { opacity: 0.7; }
-        }
-
-        .uc-divider {
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgb(145, 218, 235), transparent);
-            margin: 4px auto 28px;
-            border-radius: 999px;
-        }
-
-        .uc-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 18px;
-            border-radius: 999px;
-            background: rgba(14, 73, 100, 0.4);
-            border: 1px solid rgba(145, 218, 235, 0.2);
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: rgb(145, 218, 235);
-            margin-bottom: 22px;
-        }
-
-        .uc-badge-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: rgb(145, 218, 235);
-            animation: blink 1.4s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(0.7); }
-        }
-
-        .uc-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(1.4rem, 4vw, 2rem);
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-        }
-
-        .uc-title span {
-            color: rgb(145, 218, 235);
-        }
-
-        .uc-sub {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            color: rgba(255,255,255,0.65);
-            line-height: 1.7;
-            margin-bottom: 10px;
-        }
-
-        .uc-thanks {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: rgba(145, 218, 235, 0.85);
-            margin-bottom: 36px;
-            letter-spacing: 0.5px;
-        }
-
-        .uc-progress-wrap {
-            width: 100%;
-            max-width: 360px;
-            margin: 0 auto 36px;
-        }
-
-        .uc-progress-label {
-            display: flex;
-            justify-content: space-between;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.72rem;
-            color: rgba(255,255,255,0.4);
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .uc-progress-track {
-            height: 4px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 999px;
-            overflow: hidden;
-        }
-
-        .uc-progress-bar {
-            height: 100%;
-            border-radius: 999px;
-            background: linear-gradient(90deg, rgb(14, 73, 100), rgb(145, 218, 235));
-            animation: progressAnim 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes progressAnim {
-            0%   { width: 20%; }
-            100% { width: 75%; }
-        }
-
-        .uc-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0.9rem 2.6rem;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #fff;
-            background: rgba(14, 73, 100, 0.5);
-            border: 1px solid rgba(145, 218, 235, 0.35);
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .uc-btn:hover {
-            transform: translateY(-4px);
-            background: rgba(14, 73, 100, 0.8);
-            border-color: rgba(145, 218, 235, 0.7);
-            box-shadow: 0 8px 28px rgba(145, 218, 235, 0.15);
-            color: #fff;
-        }
-
-        .uc-btn i {
-            font-size: 18px;
-            transition: transform 0.2s ease;
-        }
-
-        .uc-btn:hover i {
-            transform: translateX(-4px);
-        }
-
-        .uc-gear {
-            position: fixed;
-            color: rgba(145, 218, 235, 0.05);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .uc-gear-1 {
-            top: 6%;
-            right: 4%;
-            font-size: 160px;
-            animation: spinSlow 18s linear infinite;
-        }
-
-        .uc-gear-2 {
-            bottom: 8%;
-            left: 3%;
-            font-size: 110px;
-            animation: spinSlow 12s linear infinite reverse;
-        }
-
-        .uc-gear-3 {
-            top: 48%;
-            left: 1%;
-            font-size: 65px;
-            animation: spinSlow 9s linear infinite;
-        }
-
-        @keyframes spinSlow {
-            from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
-        }
-    </style>
 </head>
 <body>
 
     <div id="navbar-placeholder"></div>
 
     <main class="main">
-        <div class="uc-wrapper">
+        <div class="ide-page">
 
-            <i class='bx bx-cog uc-gear uc-gear-1'></i>
-            <i class='bx bx-cog uc-gear uc-gear-2'></i>
-            <i class='bx bx-cog uc-gear uc-gear-3'></i>
-
-            <div class="uc-card">
-
-                <div class="uc-badge">
-                    <span class="uc-badge-dot"></span>
-                    Service Unavailable
-                </div>
-
-                <div class="uc-code">503</div>
-                <div class="uc-divider"></div>
-
-                <h1 class="uc-title">Under <span>Construction</span></h1>
-
-                <p class="uc-sub">This page is still being built. We're working hard to bring it to life — check back soon!</p>
-                <p class="uc-thanks">Thank you for your Support &#9825;</p>
-
-                <div class="uc-progress-wrap">
-                    <div class="uc-progress-label">
-                        <span>In Progress</span>
-                        <span>Coming Soon</span>
-                    </div>
-                    <div class="uc-progress-track">
-                        <div class="uc-progress-bar"></div>
-                    </div>
-                </div>
-
-                <a href="/index.html" class="uc-btn">
-                    <i class='bx bx-arrow-back'></i>
-                    Go Back
-                </a>
-
+            <!-- Header -->
+            <div class="ide-badge">
+                <i class='bx bx-check-circle'></i>
+                Curated Developer Ecosystem
             </div>
+            <h1 class="ide-title">IDEs & Editors</h1>
+            <p class="ide-subtitle">
+                The ultimate directory for modern development environments.
+                From lightweight text editors to heavy-duty integrated platforms.
+            </p>
+
+            <!-- Filter buttons -->
+            <div class="ide-filters">
+                <button class="ide-filter-btn active" data-filter="all">All</button>
+                <button class="ide-filter-btn" data-filter="free">Free</button>
+                <button class="ide-filter-btn" data-filter="web">Web</button>
+                <button class="ide-filter-btn" data-filter="python">Python</button>
+                <button class="ide-filter-btn" data-filter="java">Java</button>
+                <button class="ide-filter-btn" data-filter="cpp">C/C++</button>
+                <button class="ide-filter-btn" data-filter="mobile">Mobile</button>
+            </div>
+
+            <!-- Table -->
+            <div class="ide-table-wrap">
+                <table class="ide-table">
+                    <thead>
+                        <tr>
+                            <th>IDE Name</th>
+                            <th>Primary Use Case</th>
+                            <th>Description</th>
+                            <th>Acquisition</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ide-tbody">
+
+                        <!-- VS Code -->
+                        <tr data-tags="free web python java cpp mobile">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">VS Code</div>
+                                        <div class="ide-maker">Microsoft</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag cyan">Web & Cloud</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">A lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux.</p>
+                            </td>
+                            <td>
+                                <a href="https://code.visualstudio.com/download" target="_blank" class="ide-btn download">
+                                    <i class='bx bx-download'></i> Download
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- IntelliJ IDEA -->
+                        <tr data-tags="java">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="IntelliJ">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">IntelliJ IDEA</div>
+                                        <div class="ide-maker">JetBrains</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag purple">Enterprise</span>
+                                    <span class="ide-tag purple">Java</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">The premier IDE for Java, Kotlin, and more. Features deep intelligence and ergonomic design for high-productivity development.</p>
+                            </td>
+                            <td>
+                                <a href="https://www.jetbrains.com/idea/download/" target="_blank" class="ide-btn license">
+                                    <i class='bx bx-cart'></i> Get License
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- PyCharm -->
+                        <tr data-tags="python free">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pycharm/pycharm-original.svg" alt="PyCharm">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">PyCharm</div>
+                                        <div class="ide-maker">JetBrains</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag green">Data Science</span>
+                                    <span class="ide-tag green">Python</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">Dedicated IDE for Python development, providing a wide range of essential tools for Python developers including smart code navigation.</p>
+                            </td>
+                            <td>
+                                <a href="https://www.jetbrains.com/pycharm/download/" target="_blank" class="ide-btn download">
+                                    <i class='bx bx-download'></i> Download
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Apache NetBeans -->
+                        <tr data-tags="free java cpp">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" alt="NetBeans">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Apache NetBeans</div>
+                                        <div class="ide-maker">Apache Foundation</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag gray">Java / PHP / C++</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">A popular open-source IDE that provides editors, wizards, and templates to help you create applications in Java, PHP, and more.</p>
+                            </td>
+                            <td>
+                                <a href="https://netbeans.apache.org/front/main/download/" target="_blank" class="ide-btn mirror">
+                                    <i class='bx bx-link-external'></i> Mirror Link
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Eclipse -->
+                        <tr data-tags="free java cpp">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eclipse/eclipse-original.svg" alt="Eclipse">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Eclipse</div>
+                                        <div class="ide-maker">Eclipse Foundation</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag amber">Java / C++</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">A widely-used open-source IDE primarily for Java development, with powerful plugin support for many other languages.</p>
+                            </td>
+                            <td>
+                                <a href="https://www.eclipse.org/downloads/" target="_blank" class="ide-btn download">
+                                    <i class='bx bx-download'></i> Download
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Code::Blocks -->
+                        <tr data-tags="free cpp">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo" style="font-size:1.4rem;">⚙️</div>
+                                    <div>
+                                        <div class="ide-name">Code::Blocks</div>
+                                        <div class="ide-maker">The Code::Blocks Team</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag coral">C / C++</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">A free, open-source, cross-platform IDE for C, C++ and Fortran. Simple to use and highly configurable for beginners.</p>
+                            </td>
+                            <td>
+                                <a href="https://www.codeblocks.org/downloads/" target="_blank" class="ide-btn download">
+                                    <i class='bx bx-download'></i> Download
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Sublime Text -->
+                        <tr data-tags="web python cpp">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sublimetext/sublimetext-original.svg" alt="Sublime">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Sublime Text</div>
+                                        <div class="ide-maker">Sublime HQ</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag cyan">Multi-language</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">A sophisticated text editor for code, markup, and prose with a slick interface and extraordinary performance.</p>
+                            </td>
+                            <td>
+                                <a href="https://www.sublimetext.com/download" target="_blank" class="ide-btn mirror">
+                                    <i class='bx bx-link-external'></i> Visit Site
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Android Studio -->
+                        <tr data-tags="mobile java free">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" alt="Android Studio">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Android Studio</div>
+                                        <div class="ide-maker">Google</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag green">Mobile</span>
+                                    <span class="ide-tag green">Android</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">The official IDE for Android app development, built on IntelliJ IDEA with tools for building apps on every type of Android device.</p>
+                            </td>
+                            <td>
+                                <a href="https://developer.android.com/studio" target="_blank" class="ide-btn download">
+                                    <i class='bx bx-download'></i> Download
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Vim -->
+                        <tr data-tags="free web python cpp">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg" alt="Vim">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Vim</div>
+                                        <div class="ide-maker">Bram Moolenaar</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag gray">Terminal / CLI</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">A highly configurable text editor built to enable efficient text editing. A must-learn for any serious developer working in terminals.</p>
+                            </td>
+                            <td>
+                                <a href="https://www.vim.org/download.php" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-download'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Xcode -->
+                        <tr data-tags="mobile">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo" style="font-size:1.4rem;">🔨</div>
+                                    <div>
+                                        <div class="ide-name">Xcode</div>
+                                        <div class="ide-maker">Apple</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag purple">Mobile</span>
+                                    <span class="ide-tag purple">iOS / macOS</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">Apple's official IDE for developing software for macOS, iOS, iPadOS, watchOS, and tvOS using Swift and Objective-C.</p>
+                            </td>
+                            <td>
+                                <a href="https://developer.apple.com/xcode/" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-link-external'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </main>
 
     <script src="../../script.js"></script>
+    <script>
+        // Filter functionality
+        document.querySelectorAll('.ide-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.ide-filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                document.querySelectorAll('#ide-tbody tr').forEach(row => {
+                    if (filter === 'all') {
+                        row.style.display = '';
+                    } else {
+                        const tags = row.dataset.tags || '';
+                        row.style.display = tags.includes(filter) ? '' : 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

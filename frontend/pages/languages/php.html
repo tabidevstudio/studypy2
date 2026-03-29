@@ -296,6 +296,7 @@
             </div>
         </div>
         <section>
+            <div id="examples-panel"></div>
             <div class="sp-compiler" id="compiler-php">
                 <div class="sp-compiler__header">
                     <div class="sp-compiler__lang-badge">
@@ -338,6 +339,7 @@
     </main>
     <script src="../../compiler.js"></script>
     <script src="../../script.js"></script>
+    <script src="../../examples.js"></script>
     <script>
         initCompiler({
             containerId: 'compiler-php',
@@ -345,6 +347,8 @@
             label:       'PHP 8.5',
             placeholder: '<?php\n$name = "Student";\necho "Hello, $name! Welcome to StudyPY.\\n";\n?>',
         });
+
+        initExamples('examples-panel', 'php');
     </script>
 
 </body>
