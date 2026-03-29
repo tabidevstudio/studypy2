@@ -32,4 +32,17 @@ app.post("/run", async (req, res) => {
   }
 });
 
+const fs = require("fs");
+const path = require("path");
+
+app.get("/links", (req, res) => {
+  try {
+    const filePath = path.join(__dirname, "data/data.json");
+    const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: "Something went wrong: " + err.message });
+  }
+});
+
 app.listen(3000, () => console.log("Backend running on http://localhost:3000"));
