@@ -4,298 +4,302 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>503 - Under Construction | Studypy</title>
+    <title>Version Control | StudyPY</title>
     <link rel="stylesheet" href="../../style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
-    <style>
-        .uc-wrapper {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-            position: relative;
-            overflow: hidden;
-            background: #16171B;
-        }
-
-        .uc-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at 15% 40%, rgba(12, 78, 139, 0.45) 0%, transparent 50%),
-                radial-gradient(circle at 85% 60%, rgba(35, 76, 114, 0.35) 0%, transparent 50%),
-                radial-gradient(circle at 50% 80%, rgba(14, 73, 100, 0.2) 0%, transparent 50%);
-            animation: bgPulse 8s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes bgPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        .uc-card {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 580px;
-            width: 100%;
-        }
-
-        .uc-code {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(7rem, 20vw, 11rem);
-            font-weight: 700;
-            line-height: 1;
-            letter-spacing: -4px;
-            color: transparent;
-            -webkit-text-stroke: 2px rgba(145, 218, 235, 0.25);
-            position: relative;
-            user-select: none;
-        }
-
-        .uc-code::after {
-            content: '503';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgb(145, 218, 235) 0%, #46a8f3 50%, rgba(145, 218, 235, 0.4) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: flicker 4s ease-in-out infinite;
-        }
-
-        @keyframes flicker {
-            0%, 90%, 100% { opacity: 1; }
-            92% { opacity: 0.6; }
-            94% { opacity: 1; }
-            96% { opacity: 0.7; }
-        }
-
-        .uc-divider {
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgb(145, 218, 235), transparent);
-            margin: 4px auto 28px;
-            border-radius: 999px;
-        }
-
-        .uc-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 18px;
-            border-radius: 999px;
-            background: rgba(14, 73, 100, 0.4);
-            border: 1px solid rgba(145, 218, 235, 0.2);
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: rgb(145, 218, 235);
-            margin-bottom: 22px;
-        }
-
-        .uc-badge-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: rgb(145, 218, 235);
-            animation: blink 1.4s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(0.7); }
-        }
-
-        .uc-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(1.4rem, 4vw, 2rem);
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-        }
-
-        .uc-title span {
-            color: rgb(145, 218, 235);
-        }
-
-        .uc-sub {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            color: rgba(255,255,255,0.65);
-            line-height: 1.7;
-            margin-bottom: 10px;
-        }
-
-        .uc-thanks {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: rgba(145, 218, 235, 0.85);
-            margin-bottom: 36px;
-            letter-spacing: 0.5px;
-        }
-
-        .uc-progress-wrap {
-            width: 100%;
-            max-width: 360px;
-            margin: 0 auto 36px;
-        }
-
-        .uc-progress-label {
-            display: flex;
-            justify-content: space-between;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.72rem;
-            color: rgba(255,255,255,0.4);
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .uc-progress-track {
-            height: 4px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 999px;
-            overflow: hidden;
-        }
-
-        .uc-progress-bar {
-            height: 100%;
-            border-radius: 999px;
-            background: linear-gradient(90deg, rgb(14, 73, 100), rgb(145, 218, 235));
-            animation: progressAnim 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes progressAnim {
-            0%   { width: 20%; }
-            100% { width: 75%; }
-        }
-
-        .uc-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0.9rem 2.6rem;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #fff;
-            background: rgba(14, 73, 100, 0.5);
-            border: 1px solid rgba(145, 218, 235, 0.35);
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .uc-btn:hover {
-            transform: translateY(-4px);
-            background: rgba(14, 73, 100, 0.8);
-            border-color: rgba(145, 218, 235, 0.7);
-            box-shadow: 0 8px 28px rgba(145, 218, 235, 0.15);
-            color: #fff;
-        }
-
-        .uc-btn i {
-            font-size: 18px;
-            transition: transform 0.2s ease;
-        }
-
-        .uc-btn:hover i {
-            transform: translateX(-4px);
-        }
-
-        .uc-gear {
-            position: fixed;
-            color: rgba(145, 218, 235, 0.05);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .uc-gear-1 {
-            top: 6%;
-            right: 4%;
-            font-size: 160px;
-            animation: spinSlow 18s linear infinite;
-        }
-
-        .uc-gear-2 {
-            bottom: 8%;
-            left: 3%;
-            font-size: 110px;
-            animation: spinSlow 12s linear infinite reverse;
-        }
-
-        .uc-gear-3 {
-            top: 48%;
-            left: 1%;
-            font-size: 65px;
-            animation: spinSlow 9s linear infinite;
-        }
-
-        @keyframes spinSlow {
-            from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
-        }
-    </style>
 </head>
 <body>
 
     <div id="navbar-placeholder"></div>
 
     <main class="main">
-        <div class="uc-wrapper">
+        <div class="ide-page">
 
-            <i class='bx bx-cog uc-gear uc-gear-1'></i>
-            <i class='bx bx-cog uc-gear uc-gear-2'></i>
-            <i class='bx bx-cog uc-gear uc-gear-3'></i>
-
-            <div class="uc-card">
-
-                <div class="uc-badge">
-                    <span class="uc-badge-dot"></span>
-                    Service Unavailable
-                </div>
-
-                <div class="uc-code">503</div>
-                <div class="uc-divider"></div>
-
-                <h1 class="uc-title">Under <span>Construction</span></h1>
-
-                <p class="uc-sub">This page is still being built. We're working hard to bring it to life — check back soon!</p>
-                <p class="uc-thanks">Thank you for your Support &#9825;</p>
-
-                <div class="uc-progress-wrap">
-                    <div class="uc-progress-label">
-                        <span>In Progress</span>
-                        <span>Coming Soon</span>
-                    </div>
-                    <div class="uc-progress-track">
-                        <div class="uc-progress-bar"></div>
-                    </div>
-                </div>
-
-                <a href="/index.html" class="uc-btn">
-                    <i class='bx bx-arrow-back'></i>
-                    Go Back
-                </a>
-
+            <!-- Header -->
+            <div class="ide-badge">
+                <i class='bx bx-git-branch'></i>
+                Source Control & Collaboration
             </div>
+            <h1 class="ide-title">Version Control</h1>
+            <p class="ide-subtitle">
+                Essential tools for tracking changes, collaborating with teams,
+                and managing your codebase like a professional developer.
+            </p>
+
+            <!-- Filter buttons -->
+            <div class="ide-filters">
+                <button class="ide-filter-btn active" data-filter="all">All</button>
+                <button class="ide-filter-btn" data-filter="free">Free</button>
+                <button class="ide-filter-btn" data-filter="git">Git-based</button>
+                <button class="ide-filter-btn" data-filter="cloud">Cloud</button>
+                <button class="ide-filter-btn" data-filter="desktop">Desktop Client</button>
+                <button class="ide-filter-btn" data-filter="enterprise">Enterprise</button>
+            </div>
+
+            <!-- Table -->
+            <div class="ide-table-wrap">
+                <table class="ide-table">
+                    <thead>
+                        <tr>
+                            <th>Tool</th>
+                            <th>Type</th>
+                            <th>Best For</th>
+                            <th>Description</th>
+                            <th>Access</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vc-tbody">
+
+                        <!-- Git -->
+                        <tr data-tags="free git">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Git</div>
+                                        <div class="ide-maker">Linus Torvalds</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag coral">Distributed VCS</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag gray">All Developers</span></div></td>
+                            <td><p class="ide-desc">The industry-standard version control system. Tracks changes in source code during software development. Essential for every developer.</p></td>
+                            <td>
+                                <a href="https://git-scm.com/downloads" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-download'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- GitHub -->
+                        <tr data-tags="free git cloud">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter: invert(1);">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">GitHub</div>
+                                        <div class="ide-maker">Microsoft</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag cyan">Git Hosting</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag cyan">Open Source</span></div></td>
+                            <td><p class="ide-desc">The world's largest code hosting platform. Offers repositories, pull requests, Actions CI/CD, and project management tools for free.</p></td>
+                            <td>
+                                <a href="https://github.com" target="_blank" class="ide-btn download">
+                                    <i class='bx bx-link-external'></i> Visit
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- GitLab -->
+                        <tr data-tags="free git cloud enterprise">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" alt="GitLab">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">GitLab</div>
+                                        <div class="ide-maker">GitLab Inc.</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag amber">DevOps Platform</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag amber">Teams & CI/CD</span></div></td>
+                            <td><p class="ide-desc">A complete DevOps platform with built-in CI/CD, security scanning, and project management. Can be self-hosted for full control.</p></td>
+                            <td>
+                                <a href="https://gitlab.com" target="_blank" class="ide-btn download">
+                                    <i class='bx bx-link-external'></i> Visit
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Bitbucket -->
+                        <tr data-tags="git cloud enterprise">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bitbucket/bitbucket-original.svg" alt="Bitbucket">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Bitbucket</div>
+                                        <div class="ide-maker">Atlassian</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag cyan">Git Hosting</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag purple">Jira Teams</span></div></td>
+                            <td><p class="ide-desc">Git solution built for professional teams. Integrates seamlessly with Jira and Trello. Free for small teams up to 5 users.</p></td>
+                            <td>
+                                <a href="https://bitbucket.org" target="_blank" class="ide-btn download">
+                                    <i class='bx bx-link-external'></i> Visit
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- GitHub Desktop -->
+                        <tr data-tags="free git desktop">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub Desktop" style="filter: invert(1);">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">GitHub Desktop</div>
+                                        <div class="ide-maker">Microsoft</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag green">GUI Client</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag green">Beginners</span></div></td>
+                            <td><p class="ide-desc">A free, visual Git client that simplifies your development workflow. Perfect for students learning Git without the command line.</p></td>
+                            <td>
+                                <a href="https://desktop.github.com" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-download'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- GitKraken -->
+                        <tr data-tags="git desktop enterprise">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo" style="font-size:1.3rem;">🐙</div>
+                                    <div>
+                                        <div class="ide-name">GitKraken</div>
+                                        <div class="ide-maker">Axosoft</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag green">GUI Client</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag amber">Power Users</span></div></td>
+                            <td><p class="ide-desc">A powerful, cross-platform Git GUI with an intuitive commit graph, merge conflict editor, and built-in code review tools.</p></td>
+                            <td>
+                                <a href="https://www.gitkraken.com/download" target="_blank" class="ide-btn mirror">
+                                    <i class='bx bx-link-external'></i> Visit Site
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- SourceTree -->
+                        <tr data-tags="free git desktop">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo" style="font-size:1.3rem;">🌳</div>
+                                    <div>
+                                        <div class="ide-name">Sourcetree</div>
+                                        <div class="ide-maker">Atlassian</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag green">GUI Client</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag gray">Beginners</span></div></td>
+                            <td><p class="ide-desc">A free desktop Git client for Windows and Mac. Simplifies how you interact with your repositories so you can focus on coding.</p></td>
+                            <td>
+                                <a href="https://www.sourcetreeapp.com" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-download'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- SVN -->
+                        <tr data-tags="free enterprise">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/subversion/subversion-original.svg" alt="SVN">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Apache SVN</div>
+                                        <div class="ide-maker">Apache Foundation</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag coral">Centralized VCS</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag gray">Legacy Projects</span></div></td>
+                            <td><p class="ide-desc">A centralized version control system still widely used in enterprise environments. Good to know for legacy codebases.</p></td>
+                            <td>
+                                <a href="https://subversion.apache.org/packages.html" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-download'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Azure DevOps -->
+                        <tr data-tags="git cloud enterprise">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure DevOps">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Azure DevOps</div>
+                                        <div class="ide-maker">Microsoft</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag purple">DevOps Platform</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag purple">Enterprise</span></div></td>
+                            <td><p class="ide-desc">Microsoft's all-in-one DevOps solution with Git repos, pipelines, boards, and test plans. Free for up to 5 users.</p></td>
+                            <td>
+                                <a href="https://azure.microsoft.com/en-us/products/devops" target="_blank" class="ide-btn mirror">
+                                    <i class='bx bx-link-external'></i> Visit Site
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Mercurial -->
+                        <tr data-tags="free git">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo" style="font-size:1.3rem;">☿</div>
+                                    <div>
+                                        <div class="ide-name">Mercurial</div>
+                                        <div class="ide-maker">Matt Mackall</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag coral">Distributed VCS</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag gray">Alternative to Git</span></div></td>
+                            <td><p class="ide-desc">A free, distributed source control management tool. Known for being simpler than Git while still being powerful and scalable.</p></td>
+                            <td>
+                                <a href="https://www.mercurial-scm.org/downloads" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-download'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </main>
 
     <script src="../../script.js"></script>
+    <script>
+        document.querySelectorAll('.ide-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.ide-filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                document.querySelectorAll('#vc-tbody tr').forEach(row => {
+                    if (filter === 'all') {
+                        row.style.display = '';
+                    } else {
+                        const tags = row.dataset.tags || '';
+                        row.style.display = tags.includes(filter) ? '' : 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
