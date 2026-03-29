@@ -295,6 +295,7 @@
             </div>
         </div>
         <section>
+            <div id="examples-panel"></div>
             <div class="sp-compiler" id="compiler-cpp">
                 <div class="sp-compiler__header">
                     <div class="sp-compiler__lang-badge">
@@ -337,6 +338,7 @@
     </main>
     <script src="../../compiler.js"></script>
     <script src="../../script.js"></script>
+    <script src="../../examples.js"></script>
     <script>
         initCompiler({
         containerId: 'compiler-cpp',
@@ -345,6 +347,7 @@
         placeholder: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello from StudyPY!" << endl;\n    return 0;\n}',
         });
 
+        initExamples('examples-panel', 'cpp');
     </script>
 </body>
 </html>
