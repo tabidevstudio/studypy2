@@ -288,7 +288,7 @@
                     </div>
                 </div>
 
-                <a href="/frontend/index.html" class="uc-btn">
+                <a href="/index.html" class="uc-btn">
                     <i class='bx bx-arrow-back'></i>
                     Go Back
                 </a>
@@ -296,6 +296,7 @@
             </div>
         </div>
         <section>
+            <div id="examples-panel"></div>
             <div class="sp-compiler" id="compiler-java">
                 <div class="sp-compiler__header">
                     <div class="sp-compiler__lang-badge">
@@ -338,6 +339,7 @@
     </main>
     <script src="../../compiler.js"></script>
     <script src="../../script.js"></script>
+    <script src="../../examples.js"></script>
     <script>
         initCompiler({
             containerId: 'compiler-java',
@@ -345,6 +347,8 @@
             label:       'Java',
             placeholder: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello from StudyPY!");\n    }\n}',
         });
+
+        initExamples('examples-panel', 'java');
     </script>
 </body>
 </html>

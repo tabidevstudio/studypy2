@@ -5,7 +5,7 @@
     <div class="container">
         <div>
             <a href="/index.html" class="logo container">
-                <img src="/assets/images/LUGU.png" alt="StudyPy" class="logo-image">
+                <img src="/assets/images/lugu-bg.png" alt="StudyPy" class="logo-image">
                 <div class="LogoText">StudyPy</div>
             </a>
         </div>
@@ -46,9 +46,9 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Learning</a></li>
                 <li><a href="/pages/Learning/online-courses.html">Online Courses</a></li>
-                <li><a href="/pages/Learning/Interactive Coding.html">Interactive Coding</a></li>
-                <li><a href="/pages/Learning/Video Tutorials.html">Video Tutorials</a></li>
-                <li><a href="/pages/Learning/Book and eBooks.html">Books &amp; eBooks</a></li>
+                <li><a href="/pages/Learning/interactive-coding.html">Interactive Coding</a></li>
+                <li><a href="/pages/Learning/video-tutorials.html">Video Tutorials</a></li>
+                <li><a href="/pages/Learning/book-and-ebooks.html">Books &amp; eBooks</a></li>
             </ul>
         </li>
         <li>
@@ -77,9 +77,8 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Dev Tools</a></li>
                 <li><a href="/pages/Dev Tools/IDES.html">IDEs &amp; Editors</a></li>
-                <li><a href="/pages/Dev Tools/Versionctrl.html">Version Control</a></li>
+                        <li><a href="/pages/Dev Tools/version-control.html">Version Control</a></li>
                 <li><a href="/pages/Dev Tools/debugging-tools.html">Debugging Tools</a></li>
-                <li><a href="/pages/Dev Tools/fun-tools.html">Fun Tools</a></li>
             </ul>
         </li>
         <li>
@@ -105,7 +104,7 @@
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Challenges</a></li>
-                <li><a href="/pages/Challenges/Coding-problems.html">Coding Problems</a></li>
+                <li><a href="/pages/Challenges/coding-problems.html">Coding Problems</a></li>
                 <li><a href="/pages/Challenges/projectideas.html">Project Ideas</a></li>
                 <li><a href="/pages/Challenges/competition.html">Competitions</a></li>
             </ul>
@@ -119,9 +118,9 @@
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Communities</a></li>
-                <li><a href="/pages/Communities/Forums.html">Forums</a></li>
-                <li><a href="/pages/Communities/Dsicord-Servers.html">Discord Servers</a></li>
-                <li><a href="/pages/Communities/Study-groups.html">Study Groups</a></li>
+                <li><a href="/pages/Communities/forums.html">Forums</a></li>
+                <li><a href="/pages/Communities/discord-servers.html">Discord Servers</a></li>
+                <li><a href="/pages/Communities/study-groups.html">Study Groups</a></li>
             </ul>
         </li>
         <li>
@@ -156,12 +155,9 @@
     placeholder.innerHTML = NAV_HTML;
   }
 
-  /* ─── Sidebar toggle ─── */
-  const sidebar = document.querySelector(".sidebar");
-  if (!sidebar) return;
-
-  if (window.__studypySidebarInit) return;
-  window.__studypySidebarInit = true;
+    /* ─── Sidebar toggle ─── */
+    const sidebar = document.querySelector(".sidebar");
+    window.__studypySidebarInit = true;
 
   const syncSidebarState = () => {
     document.body.classList.toggle(

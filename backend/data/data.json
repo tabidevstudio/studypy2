@@ -1,0 +1,49 @@
+{
+    "categories" : [
+        {
+            "name": "learning",
+            "path": "pages/Learning",
+            "pages": [
+                {
+                    "name": "interactive-coding",
+                    "path": "pages/Learning/interactive-coding.html",
+                    "links": [
+
+                        {
+                            "title" : "Zuitt BoothCamp",
+                            "description":"Join the Coding Revolution: Transform Your Future with Zuitt's Tech Career Program.",
+                            "url": "https://zuitt.com"
+                        },
+                        {
+                            "title" : "freeCodeCamp",
+                            "description":"Learn to code for free with interactive tutorials and build real projects.",
+                            "url": "https://www.freecodecamp.org/"
+                        },
+                        {
+                            "title" : "Code Cademy",
+                            "description":"Grow in your career and unlock new opportunities by learning in-demand skills in AI, data, coding, cybersecurity, and more.",
+                            "url": "https://www.codecademy.com/"
+                        },
+                        {
+                            "title" : "The Odin Project",
+                            "description":" Free full stack curriculum with projects and active community support.",
+                            "url": "https://www.theodinproject.com/"
+                        },
+                        {
+                            "title" : "Codedex",
+                            "description":"Upgrade your learning in a unique way, learning through the form of a game.",
+                            "url": "https://www.codedex.io/"
+                        },
+                        {
+                            "title" : "Scrimba",
+                            "description":" Your journey into coding starts here, accompanied with loads of tutorials and guides into programming.",
+                            "url": "https://scrimba.com/"
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ]
+
+}
