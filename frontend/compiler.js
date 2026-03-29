@@ -1,11 +1,13 @@
 
+const SOCKET_URL = 'wss://api.onlinecompiler.io';
+const WS_API_KEY = 'cd22da454b84af78a75a9975b3e4ff52';
 
 function initCompiler(config) {
   const {
-    language,        
-    containerId,     
-    placeholder,    
-    label,          
+    language,
+    containerId,
+    placeholder,
+    label,
   } = config;
 
   const container  = document.getElementById(containerId);
@@ -20,12 +22,15 @@ function initCompiler(config) {
   const statMem    = container.querySelector('.sp-stat-mem');
   const outputDot  = container.querySelector('.sp-output-dot');
 
+  let socket   = null;
+  let isRunning = false;
+
   // Set placeholder starter code
   if (placeholder && textarea) {
     textarea.value = placeholder;
   }
 
-  // Tab key inserts spaces instead of leaving the field
+  // Tab key inserts spaces
   textarea.addEventListener('keydown', (e) => {
     if (e.key === 'Tab') {
       e.preventDefault();
@@ -36,22 +41,35 @@ function initCompiler(config) {
     }
   });
 
-  // Clear button
-  clearBtn.addEventListener('click', () => {
-    textarea.value  = placeholder || '';
-    if (stdinEl) stdinEl.value = '';
-    setOutput('idle');
-  });
-
-  // Run button
-  runBtn.addEventListener('click', () => runCode());
-
-  // Ctrl+Enter / Cmd+Enter shortcut
+  // Ctrl+Enter shortcut
   textarea.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') runCode();
   });
 
-  async function runCode() {
+  // Clear button
+  clearBtn.addEventListener('click', () => {
+    textarea.value = placeholder || '';
+    if (stdinEl) stdinEl.value = '';
+    setOutput('idle');
+    if (statTime) statTime.classList.remove('visible');
+    if (statMem)  statMem.classList.remove('visible');
+  });
+
+  // Run button — toggles between Run and Stop
+  runBtn.addEventListener('click', () => {
+    if (isRunning) stopCode();
+    else runCode();
+  });
+
+  function loadSocketIO(callback) {
+    if (window.io) { callback(); return; }
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js';
+    s.onload = callback;
+    document.head.appendChild(s);
+  }
+
+  function runCode() {
     const code  = textarea.value.trim();
     const input = stdinEl ? stdinEl.value : '';
 
@@ -61,52 +79,96 @@ function initCompiler(config) {
     }
 
     setOutput('loading');
-    runBtn.disabled = true;
+    setRunBtn('stop');
+    isRunning = true;
+    if (statTime) statTime.classList.remove('visible');
+    if (statMem)  statMem.classList.remove('visible');
 
-    try {
-      const res = await fetch('https://studypy-backend.onrender.com/run', {
+    loadSocketIO(() => {
+      if (socket) socket.disconnect();
 
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ language, code, input }),
+
+      socket = io(SOCKET_URL, {
+        auth: { token: WS_API_KEY },
+        transports: ['websocket'],
       });
 
-      if (!res.ok) throw new Error(`Server error: ${res.status}`);
+      const startTime = Date.now();
 
-      const data = await res.json();
+      socket.on('connect', () => {
+        socket.emit('runcode', {
+          api_key:  WS_API_KEY,
+          compiler: language,
+          code:     code,
+          input:    input,
+        });
+        outputEl.classList.remove('is-loading');
+        outputEl.textContent = '';
+        outputDot.classList.remove('loading');
+        outputDot.classList.add('running');
+      });
 
-      // Show stats
-      if (statTime) {
-        statTime.textContent = `⏱ ${parseFloat(data.time || 0).toFixed(3)}s`;
-        statTime.classList.add('visible');
-      }
-      if (statMem) {
-        const kb = parseInt(data.memory || 0);
-        statMem.textContent = `💾 ${kb >= 1024 ? (kb/1024).toFixed(1) + ' MB' : kb + ' KB'}`;
-        statMem.classList.add('visible');
-      }
+      socket.on('codeoutput', (result) => {
+        const elapsed = ((Date.now() - startTime) / 1000).toFixed(3);
 
-      if (data.error && data.error.trim()) {
-        setOutput('error', data.error.trim());
-      } else if (data.output !== undefined) {
-        setOutput('success', data.output || '(no output)');
-      } else {
-        setOutput('error', JSON.stringify(data));
-      }
+        if (result.error && result.error.trim()) {
+          setOutput('error', result.error.trim());
+        } else {
+          setOutput('success', result.output || '(no output)');
+        }
 
-    } catch (err) {
-      setOutput('error', `❌ Could not reach the compiler server.\n\nMake sure your backend is running:\n  cd backend\n  node server.js\n\n(${err.message})`);
-    } finally {
-      runBtn.disabled = false;
+        if (statTime) {
+          statTime.textContent = `⏱ ${result.time || elapsed}s`;
+          statTime.classList.add('visible');
+        }
+        if (statMem && result.memory) {
+          const kb = parseInt(result.memory);
+          statMem.textContent = `💾 ${kb >= 1024 ? (kb / 1024).toFixed(1) + ' MB' : kb + ' KB'}`;
+          statMem.classList.add('visible');
+        }
+
+        setRunBtn('run');
+        isRunning = false;
+        socket.disconnect();
+      });
+
+      socket.on('connect_error', (err) => {
+        setOutput('error', `❌ Could not connect to compiler.\n\n${err.message}`);
+        setRunBtn('run');
+        isRunning = false;
+      });
+
+      socket.on('disconnect', () => {
+        if (isRunning) {
+          setRunBtn('run');
+          isRunning = false;
+        }
+      });
+    });
+  }
+
+  function stopCode() {
+    if (socket) socket.disconnect();
+    setOutput('error', '⛔ Execution stopped.');
+    setRunBtn('run');
+    isRunning = false;
+  }
+
+  function setRunBtn(state) {
+    if (state === 'stop') {
+      runBtn.innerHTML = `<svg viewBox="0 0 16 16"><rect x="3" y="3" width="10" height="10" rx="1"/></svg> Stop`;
+      runBtn.style.background = '#f87171';
+      runBtn.style.color = '#fff';
+    } else {
+      runBtn.innerHTML = `<svg viewBox="0 0 16 16"><path d="M3 2l10 6-10 6V2z"/></svg> Run`;
+      runBtn.style.background = '';
+      runBtn.style.color = '';
     }
   }
 
   function setOutput(state, text) {
     outputEl.classList.remove('is-empty', 'is-error', 'is-success', 'is-loading');
-    outputDot.classList.remove('success', 'error', 'loading');
-
-    if (statTime) statTime.classList.remove('visible');
-    if (statMem)  statMem.classList.remove('visible');
+    outputDot.classList.remove('success', 'error', 'loading', 'running');
 
     switch (state) {
       case 'idle':
@@ -115,7 +177,7 @@ function initCompiler(config) {
         break;
       case 'loading':
         outputEl.classList.add('is-loading');
-        outputEl.textContent = 'Running';
+        outputEl.textContent = 'Connecting';
         outputDot.classList.add('loading');
         break;
       case 'success':
