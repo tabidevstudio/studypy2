@@ -373,7 +373,6 @@ body:not(.sidebar-collapsed) .main {
   }
 }
 
-
 /* ── Navigation Bar ─────────────────────────────────────── */
 nav {
     position: fixed;
@@ -1401,6 +1400,149 @@ h4 {
   font-size: 16px;
   text-align: center;
 }
+
+/* ── Communities Style (Discord Servers) ───────────────── */
+
+.MainDiscordServers{
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 130px 0px 0px 110px;
+}
+
+.MainDiscordServers h1 strong{
+color: #149CEA;
+}
+
+.MainDiscordServers #AddDiscordBtn{
+  background-color: #131333;
+  font-weight: bolder;
+  font-size: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.506);
+  border-radius: 30px;
+  width: 200px;
+  padding: 20px;
+  color: #8dd2fa;
+  transition: all 0.2s ease-out;
+}
+
+.MainDiscordServers #AddDiscordBtn:hover{
+  box-shadow: 0px 0px 15px 5px rgba(131, 210, 255, 0.172);
+  border: 2px solid rgba(131, 255, 255, 0.506);
+  background-color: #223370a5;
+  color: #eef9ff;
+}
+
+.TabDiscordServers{
+  text-align: left;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  display: flex;
+  margin: 20px;
+}
+
+.TabServers{
+  justify-content: space-between;
+  flex-direction: column;
+  display: flex;
+  border: 1px solid rgba(255, 255, 255, 0.549);
+  width: 250px;
+  border-radius: 20px;
+  margin-top: 20px;
+  padding: 20px;
+  background-image: linear-gradient(rgba(0, 113, 179, 0.302),rgba(7, 7, 57, 0.591));
+  background-color: rgba(27, 52, 92, 0.638);
+  transition: all .3s ease-out;
+  width: 250px;
+  height: 298.5px;
+}
+
+.TabServers h3{
+  font-size: 40px;
+  color: #97d9ff;
+}
+
+.TabServers p{
+  font-size: 15px;
+  color: #97d9ff;
+}
+
+.TabServers button{
+  font-size: 15px;
+  margin: 50px 0px 0px 0px;
+  font-weight: bolder;
+  color: rgb(139, 251, 255);
+  border-radius: 20px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border: 2px solid rgba(139, 251, 255, 0.419);
+  background:none;
+  transition: all 0.2s ease-in-out; 
+}
+
+.TabServers button:hover{
+  background-color: #0088ff31;
+}
+
+.TabServers:hover .Cover{
+  z-index: -1;
+  opacity: 0;
+}
+
+.TabServers:hover{
+  box-shadow: 0px 0px 15px 2px rgba(0, 242, 255, 0.172);
+  border: 1px solid rgb(129, 242, 255);
+  scale: 1.02;
+  animation: float 3.2s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%{
+    transform: translateY(0px);
+  }
+  50%{
+    transform: translateY(-7px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
+}
+
+.Cover{
+  background-image: linear-gradient(rgba(56, 83, 254, 0.191),rgba(11, 5, 60, 0.591));
+  border-bottom: 2px solid rgba(17, 115, 189, 0.996);
+  border-right: 2px solid rgba(17, 115, 189, 0.996);
+  border-left: 2px solid rgba(171, 218, 255, 0.996);
+  border-top: 2px solid rgba(171, 218, 255, 0.996);
+  background-color: #192531;
+  flex-wrap: wrap;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 250px;
+  height: 298.5px;
+  border-radius: 20px;
+  margin: -21px -21px -21px -21px;
+  padding: 50px;
+  transition: all .6s ease-in-out;
+}
+
+.Cover h1{
+ color: #5f8ef2;
+}
+
+.Cover img{
+  border-radius: 50%;
+  border: 1px solid rgb(93, 160, 253);
+  height: 100px;
+}
+
 
 /* ── Responsive (Video Tutorials additions) ───────────────── */
 @media (max-width: 768px) {
