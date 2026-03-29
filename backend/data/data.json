@@ -1,49 +1,852 @@
 {
-    "categories" : [
+    "categories": [
         {
-            "name": "learning",
+            "name": "Career",
+            "path": "pages/Career",
+            "pages": [
+                {
+                    "name": "interview-prep",
+                    "path": "pages/Career/Interview-prep.html",
+                    "links": [
+                        {
+                            "title": "LeetCode",
+                            "description": "Practice coding interview questions with thousands of problems ranked by difficulty.",
+                            "url": "https://leetcode.com"
+                        },
+                        {
+                            "title": "HackerRank",
+                            "description": "Prepare for technical interviews with coding challenges and interview kits.",
+                            "url": "https://www.hackerrank.com"
+                        },
+                        {
+                            "title": "interviewing.io",
+                            "description": "Practice mock technical interviews anonymously with engineers from top companies.",
+                            "url": "https://interviewing.io"
+                        },
+                        {
+                            "title": "Pramp",
+                            "description": "Free peer-to-peer mock interviews for software engineers.",
+                            "url": "https://www.pramp.com"
+                        },
+                        {
+                            "title": "Blind 75",
+                            "description": "The classic list of 75 must-know coding problems for technical interview prep.",
+                            "url": "https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU"
+                        },
+                        {
+                            "title": "Neetcode.io",
+                            "description": "Structured roadmap of 150 LeetCode problems with detailed video explanations for each solution.",
+                            "url": "https://neetcode.io"
+                        }
+                    ]
+                },
+                {
+                    "name": "job-boards",
+                    "path": "pages/Career/job-boards.html",
+                    "links": [
+                        {
+                            "title": "LinkedIn Jobs",
+                            "description": "The largest professional network with millions of job listings worldwide.",
+                            "url": "https://www.linkedin.com/jobs"
+                        },
+                        {
+                            "title": "Indeed",
+                            "description": "Search millions of jobs from thousands of job boards and company career pages.",
+                            "url": "https://www.indeed.com"
+                        },
+                        {
+                            "title": "Glassdoor",
+                            "description": "Find jobs with salary info, company reviews, and interview insights.",
+                            "url": "https://www.glassdoor.com"
+                        },
+                        {
+                            "title": "We Work Remotely",
+                            "description": "The largest remote work community with jobs in design, programming, and more.",
+                            "url": "https://weworkremotely.com"
+                        },
+                        {
+                            "title": "Y Combinator Jobs",
+                            "description": "Jobs at YC-backed startups — great for developers wanting startup experience.",
+                            "url": "https://www.ycombinator.com/jobs"
+                        },
+                        {
+                            "title": "Simplify.jobs",
+                            "description": "Auto-fills job applications and highlights entry-level roles with high response rates for students.",
+                            "url": "https://simplify.jobs"
+                        },
+                        {
+                            "title": "RippleMatch",
+                            "description": "AI-driven platform matching students with entry-level jobs and internships at top companies.",
+                            "url": "https://ripplematch.com"
+                        }
+                    ]
+                },
+                {
+                    "name": "resume-building",
+                    "path": "pages/Career/resume-building.html",
+                    "links": [
+                        {
+                            "title": "Resumake",
+                            "description": "A free, open-source tool to generate a clean developer resume from a simple form.",
+                            "url": "https://resumake.io"
+                        },
+                        {
+                            "title": "FlowCV",
+                            "description": "Build a professional resume with customizable templates for free.",
+                            "url": "https://flowcv.com"
+                        },
+                        {
+                            "title": "Canva Resume Builder",
+                            "description": "Design a standout resume with hundreds of free customizable templates.",
+                            "url": "https://www.canva.com/resumes"
+                        },
+                        {
+                            "title": "Resume Worded",
+                            "description": "Get instant AI-powered feedback on your resume and LinkedIn profile.",
+                            "url": "https://resumeworded.com"
+                        },
+                        {
+                            "title": "JSONResume",
+                            "description": "An open standard for developer resumes — write it in JSON, export anywhere.",
+                            "url": "https://jsonresume.org"
+                        },
+                        {
+                            "title": "Overleaf",
+                            "description": "Create professionally formatted technical resumes using LaTeX — standard for CS and engineering students.",
+                            "url": "https://www.overleaf.com"
+                        },
+                        {
+                            "title": "Novoresume",
+                            "description": "Modern ATS-friendly resume templates to get past automated screening systems.",
+                            "url": "https://novoresume.com"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Challenges",
+            "path": "pages/Challenges",
+            "pages": [
+                {
+                    "name": "coding-problems",
+                    "path": "pages/Challenges/coding-problems.html",
+                    "links": [
+                        {
+                            "title": "LeetCode",
+                            "description": "Thousands of coding problems categorized by topic and difficulty level.",
+                            "url": "https://leetcode.com"
+                        },
+                        {
+                            "title": "HackerRank",
+                            "description": "Solve challenges in algorithms, data structures, math, and more.",
+                            "url": "https://www.hackerrank.com"
+                        },
+                        {
+                            "title": "Codewars",
+                            "description": "Train on coding kata ranked by difficulty and earn honor points.",
+                            "url": "https://www.codewars.com"
+                        },
+                        {
+                            "title": "Exercism",
+                            "description": "Solve exercises in 60+ languages and get mentored by experienced developers.",
+                            "url": "https://exercism.org"
+                        },
+                        {
+                            "title": "Project Euler",
+                            "description": "Challenging mathematical and computational problems that require creative solutions.",
+                            "url": "https://projecteuler.net"
+                        },
+                        {
+                            "title": "Advent of Code",
+                            "description": "Annual December coding puzzle calendar — great for practicing problem-solving in any language.",
+                            "url": "https://adventofcode.com"
+                        }
+                    ]
+                },
+                {
+                    "name": "competition",
+                    "path": "pages/Challenges/competition.html",
+                    "links": [
+                        {
+                            "title": "Codeforces",
+                            "description": "Competitive programming platform with regular contests and a large community.",
+                            "url": "https://codeforces.com"
+                        },
+                        {
+                            "title": "AtCoder",
+                            "description": "Japanese competitive programming platform with high-quality algorithm contests.",
+                            "url": "https://atcoder.jp"
+                        },
+                        {
+                            "title": "Kaggle",
+                            "description": "Data science competitions with real datasets and cash prizes.",
+                            "url": "https://www.kaggle.com/competitions"
+                        },
+                        {
+                            "title": "Google Code Jam",
+                            "description": "Google's annual coding competition open to developers worldwide.",
+                            "url": "https://codingcompetitions.withgoogle.com/codejam"
+                        },
+                        {
+                            "title": "ICPC",
+                            "description": "The International Collegiate Programming Contest — the oldest and most prestigious for students.",
+                            "url": "https://icpc.global"
+                        }
+                    ]
+                },
+                {
+                    "name": "projectideas",
+                    "path": "pages/Challenges/projectideas.html",
+                    "links": [
+                        {
+                            "title": "frontendmentor.io",
+                            "description": "Real-world frontend challenges with professional designs to build and compare.",
+                            "url": "https://www.frontendmentor.io"
+                        },
+                        {
+                            "title": "App Ideas Collection",
+                            "description": "A GitHub repo with hundreds of app ideas categorized by difficulty level.",
+                            "url": "https://github.com/florinpop17/app-ideas"
+                        },
+                        {
+                            "title": "DevProjects",
+                            "description": "Free real-world projects with briefs to build your portfolio.",
+                            "url": "https://www.codementor.io/projects"
+                        },
+                        {
+                            "title": "Buildspace",
+                            "description": "Build real projects in Web3, AI, and more with guided weekend sprints.",
+                            "url": "https://buildspace.so"
+                        },
+                        {
+                            "title": "JavaScript30",
+                            "description": "30 day vanilla JS coding challenge — build 30 things in 30 days.",
+                            "url": "https://javascript30.com"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Communities",
+            "path": "pages/Communities",
+            "pages": [
+                {
+                    "name": "discord-servers",
+                    "path": "pages/Communities/discord-servers.html",
+                    "links": [
+                        {
+                            "title": "Reactiflux",
+                            "description": "The largest React developer community on Discord with help channels and jobs.",
+                            "url": "https://www.reactiflux.com"
+                        },
+                        {
+                            "title": "The Programmer's Hangout",
+                            "description": "A large general programming Discord community for all skill levels.",
+                            "url": "https://discord.gg/programming"
+                        },
+                        {
+                            "title": "Python Discord",
+                            "description": "One of the largest Python communities with learning resources and help channels.",
+                            "url": "https://pythondiscord.com"
+                        },
+                        {
+                            "title": "freeCodeCamp Discord",
+                            "description": "Official freeCodeCamp community for learners to collaborate and get help.",
+                            "url": "https://discord.gg/freecodecamp-org-official-fi-fo-692816967895220344"
+                        },
+                        {
+                            "title": "Devcord",
+                            "description": "A community Discord for web developers to share, learn, and grow.",
+                            "url": "https://devcord.com"
+                        }
+                    ]
+                },
+                {
+                    "name": "forums",
+                    "path": "pages/Communities/forums.html",
+                    "links": [
+                        {
+                            "title": "Stack Overflow",
+                            "description": "The go-to Q&A site for programmers — search before you ask, answers for everything.",
+                            "url": "https://stackoverflow.com"
+                        },
+                        {
+                            "title": "Reddit r/learnprogramming",
+                            "description": "A subreddit dedicated to helping beginners learn to code.",
+                            "url": "https://www.reddit.com/r/learnprogramming"
+                        },
+                        {
+                            "title": "Dev.to",
+                            "description": "A community of developers sharing articles, tutorials, and discussions.",
+                            "url": "https://dev.to"
+                        },
+                        {
+                            "title": "Hashnode",
+                            "description": "A blogging platform and community for developers to share knowledge.",
+                            "url": "https://hashnode.com"
+                        },
+                        {
+                            "title": "SitePoint Forums",
+                            "description": "Web development forums covering HTML, CSS, JavaScript, PHP, and more.",
+                            "url": "https://www.sitepoint.com/community"
+                        }
+                    ]
+                },
+                {
+                    "name": "study-groups",
+                    "path": "pages/Communities/study-groups.html",
+                    "links": [
+                        {
+                            "title": "Study Together Discord",
+                            "description": "A large Discord community with virtual study rooms and accountability partners.",
+                            "url": "https://discord.gg/studytogether"
+                        },
+                        {
+                            "title": "Meetup - Tech Groups",
+                            "description": "Find local and online tech study groups and developer meetups near you.",
+                            "url": "https://www.meetup.com/topics/technology"
+                        },
+                        {
+                            "title": "The Odin Project Community",
+                            "description": "Study alongside other learners in the official Odin Project Discord.",
+                            "url": "https://discord.gg/theodinproject"
+                        },
+                        {
+                            "title": "Chingu",
+                            "description": "Join a remote team of developers to build real projects and grow together.",
+                            "url": "https://www.chingu.io"
+                        },
+                        {
+                            "title": "100Devs Community",
+                            "description": "Leon Noel's free bootcamp community focused on getting jobs in tech.",
+                            "url": "https://leonnoel.com/100devs"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Dev Tools",
+            "path": "pages/Dev Tools",
+            "pages": [
+                {
+                    "name": "debugging-tools",
+                    "path": "pages/Dev Tools/debugging-tools.html",
+                    "links": [
+                        {
+                            "title": "Chrome DevTools",
+                            "description": "Built-in browser tools for debugging JavaScript, inspecting the DOM, and profiling performance.",
+                            "url": "https://developer.chrome.com/docs/devtools"
+                        },
+                        {
+                            "title": "Postman",
+                            "description": "Test and debug APIs with a powerful GUI — essential for backend development.",
+                            "url": "https://www.postman.com"
+                        },
+                        {
+                            "title": "Sentry",
+                            "description": "Real-time error tracking and performance monitoring for your applications.",
+                            "url": "https://sentry.io"
+                        },
+                        {
+                            "title": "React Developer Tools",
+                            "description": "Browser extension for inspecting React component trees and state.",
+                            "url": "https://react.dev/learn/react-developer-tools"
+                        },
+                        {
+                            "title": "JSONLint",
+                            "description": "Quickly validate and format JSON to catch syntax errors.",
+                            "url": "https://jsonlint.com"
+                        }
+                    ]
+                },
+                {
+                    "name": "fun-tools",
+                    "path": "pages/Dev Tools/fun-tools.html",
+                    "links": [
+                        {
+                            "title": "CodePen",
+                            "description": "A social development environment to write and share HTML, CSS, and JS snippets.",
+                            "url": "https://codepen.io"
+                        },
+                        {
+                            "title": "Excalidraw",
+                            "description": "A virtual whiteboard for sketching diagrams and system designs collaboratively.",
+                            "url": "https://excalidraw.com"
+                        },
+                        {
+                            "title": "Ray.so",
+                            "description": "Turn your code snippets into beautiful shareable images.",
+                            "url": "https://ray.so"
+                        },
+                        {
+                            "title": "Hoppscotch",
+                            "description": "A lightweight, open-source alternative to Postman for API testing in the browser.",
+                            "url": "https://hoppscotch.io"
+                        },
+                        {
+                            "title": "Readme.so",
+                            "description": "The easiest way to create a README for your GitHub projects.",
+                            "url": "https://readme.so"
+                        }
+                    ]
+                },
+                {
+                    "name": "IDES",
+                    "path": "pages/Dev Tools/IDES.html",
+                    "links": [
+                        {
+                            "title": "Visual Studio Code",
+                            "description": "The most popular free code editor with extensions for every language and framework.",
+                            "url": "https://code.visualstudio.com"
+                        },
+                        {
+                            "title": "JetBrains IDEs",
+                            "description": "Professional IDEs for Java, Python, JavaScript, and more — free for students.",
+                            "url": "https://www.jetbrains.com/student"
+                        },
+                        {
+                            "title": "Replit",
+                            "description": "A browser-based IDE that lets you code, run, and share projects instantly.",
+                            "url": "https://replit.com"
+                        },
+                        {
+                            "title": "Neovim",
+                            "description": "A highly configurable terminal-based editor loved by experienced developers.",
+                            "url": "https://neovim.io"
+                        },
+                        {
+                            "title": "StackBlitz",
+                            "description": "An online IDE for web development that runs Node.js in the browser.",
+                            "url": "https://stackblitz.com"
+                        }
+                    ]
+                },
+                {
+                    "name": "version-control",
+                    "path": "pages/Dev Tools/version-control.html",
+                    "links": [
+                        {
+                            "title": "GitHub",
+                            "description": "The world's largest code hosting platform with collaboration tools and free student perks.",
+                            "url": "https://github.com"
+                        },
+                        {
+                            "title": "GitLab",
+                            "description": "A complete DevOps platform with built-in CI/CD and free private repositories.",
+                            "url": "https://gitlab.com"
+                        },
+                        {
+                            "title": "Git - Official Docs",
+                            "description": "The official reference for Git commands — bookmark this.",
+                            "url": "https://git-scm.com/doc"
+                        },
+                        {
+                            "title": "Learn Git Branching",
+                            "description": "An interactive visual tool to learn Git branching and commands step by step.",
+                            "url": "https://learngitbranching.js.org"
+                        },
+                        {
+                            "title": "GitHub Student Developer Pack",
+                            "description": "Free access to 100+ developer tools for verified students.",
+                            "url": "https://education.github.com/pack"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Docs",
+            "path": "pages/Docs",
+            "pages": [
+                {
+                    "name": "api-references",
+                    "path": "pages/Docs/api-references.html",
+                    "links": [
+                        {
+                            "title": "MDN Web Docs",
+                            "description": "The definitive reference for HTML, CSS, and JavaScript APIs by Mozilla.",
+                            "url": "https://developer.mozilla.org"
+                        },
+                        {
+                            "title": "DevDocs",
+                            "description": "Fast, searchable API documentation for hundreds of languages and frameworks in one place.",
+                            "url": "https://devdocs.io"
+                        },
+                        {
+                            "title": "Public APIs",
+                            "description": "A curated list of free public APIs for use in student and side projects.",
+                            "url": "https://publicapis.dev"
+                        },
+                        {
+                            "title": "Swagger UI",
+                            "description": "Visualize and interact with REST APIs directly in the browser.",
+                            "url": "https://swagger.io/tools/swagger-ui"
+                        },
+                        {
+                            "title": "RapidAPI",
+                            "description": "Discover and connect to thousands of APIs from one marketplace.",
+                            "url": "https://rapidapi.com"
+                        }
+                    ]
+                },
+                {
+                    "name": "cheat-sheets",
+                    "path": "pages/Docs/cheat-sheets.html",
+                    "links": [
+                        {
+                            "title": "OverAPI",
+                            "description": "A massive collection of cheat sheets for almost every programming language and tool.",
+                            "url": "https://overapi.com"
+                        },
+                        {
+                            "title": "Cheatography",
+                            "description": "Thousands of community-made cheat sheets for developers, students, and more.",
+                            "url": "https://cheatography.com"
+                        },
+                        {
+                            "title": "Git Cheat Sheet",
+                            "description": "GitHub's official one-page Git command reference.",
+                            "url": "https://education.github.com/git-cheat-sheet-education.pdf"
+                        },
+                        {
+                            "title": "CSS Tricks Almanac",
+                            "description": "A complete reference for CSS properties and selectors with examples.",
+                            "url": "https://css-tricks.com/almanac"
+                        },
+                        {
+                            "title": "HTML Reference",
+                            "description": "A free visual guide to all HTML elements and attributes.",
+                            "url": "https://htmlreference.io"
+                        }
+                    ]
+                },
+                {
+                    "name": "official-docs",
+                    "path": "pages/Docs/official-docs.html",
+                    "links": [
+                        {
+                            "title": "React Docs",
+                            "description": "The official React documentation with interactive examples and guides.",
+                            "url": "https://react.dev"
+                        },
+                        {
+                            "title": "Python Docs",
+                            "description": "Official Python language reference and standard library documentation.",
+                            "url": "https://docs.python.org/3"
+                        },
+                        {
+                            "title": "Node.js Docs",
+                            "description": "Official Node.js API reference and guides for server-side JavaScript.",
+                            "url": "https://nodejs.org/en/docs"
+                        },
+                        {
+                            "title": "MDN Web Docs",
+                            "description": "The most complete reference for web platform technologies — HTML, CSS, JS.",
+                            "url": "https://developer.mozilla.org"
+                        },
+                        {
+                            "title": "W3Schools",
+                            "description": "Beginner-friendly tutorials and references for web development technologies.",
+                            "url": "https://www.w3schools.com"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "languages",
+            "path": "pages/languages",
+            "pages": [
+                {
+                    "name": "c-cpp",
+                    "path": "pages/languages/c-cpp.html",
+                    "links": [
+                        {
+                            "title": "cppreference.com",
+                            "description": "The most complete and accurate reference for C and C++ standard libraries.",
+                            "url": "https://en.cppreference.com"
+                        },
+                        {
+                            "title": "LearnCpp.com",
+                            "description": "A free, comprehensive tutorial site dedicated to teaching C++ from scratch.",
+                            "url": "https://www.learncpp.com"
+                        },
+                        {
+                            "title": "CS50x",
+                            "description": "Harvard's introduction to computer science — heavily uses C in the first half.",
+                            "url": "https://cs50.harvard.edu/x"
+                        },
+                        {
+                            "title": "Competitive Programmer's Handbook",
+                            "description": "A free book covering algorithms and data structures in C++ for competitive programming.",
+                            "url": "https://cses.fi/book/book.pdf"
+                        },
+                        {
+                            "title": "Compiler Explorer",
+                            "description": "See what your C/C++ code compiles to in real time — great for learning low-level concepts.",
+                            "url": "https://godbolt.org"
+                        }
+                    ]
+                },
+                {
+                    "name": "java",
+                    "path": "pages/languages/java.html",
+                    "links": [
+                        {
+                            "title": "Oracle Java Docs",
+                            "description": "The official Java SE documentation and API reference from Oracle.",
+                            "url": "https://docs.oracle.com/en/java"
+                        },
+                        {
+                            "title": "Baeldung",
+                            "description": "In-depth Java and Spring tutorials written for developers at all levels.",
+                            "url": "https://www.baeldung.com"
+                        },
+                        {
+                            "title": "JetBrains Academy - Java",
+                            "description": "Project-based Java learning path from the makers of IntelliJ IDEA.",
+                            "url": "https://www.jetbrains.com/academy"
+                        },
+                        {
+                            "title": "MOOC.fi Java Programming",
+                            "description": "A free, project-based Java course from the University of Helsinki.",
+                            "url": "https://java-programming.mooc.fi"
+                        },
+                        {
+                            "title": "Coding with John (YouTube)",
+                            "description": "Clear, beginner-friendly Java tutorials on YouTube covering core concepts.",
+                            "url": "https://www.youtube.com/@CodingWithJohn"
+                        }
+                    ]
+                },
+                {
+                    "name": "javascript",
+                    "path": "pages/languages/javascript.html",
+                    "links": [
+                        {
+                            "title": "javascript.info",
+                            "description": "The best free JavaScript tutorial — covers everything from basics to advanced topics.",
+                            "url": "https://javascript.info"
+                        },
+                        {
+                            "title": "MDN JavaScript Guide",
+                            "description": "Mozilla's comprehensive JavaScript guide and API reference.",
+                            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+                        },
+                        {
+                            "title": "Eloquent JavaScript",
+                            "description": "A free, highly regarded book on JavaScript and programming fundamentals.",
+                            "url": "https://eloquentjavascript.net"
+                        },
+                        {
+                            "title": "You Don't Know JS",
+                            "description": "A free book series diving deep into the core mechanisms of JavaScript.",
+                            "url": "https://github.com/getify/You-Dont-Know-JS"
+                        },
+                        {
+                            "title": "Node.js",
+                            "description": "The official Node.js site — run JavaScript on the server side.",
+                            "url": "https://nodejs.org"
+                        }
+                    ]
+                },
+                {
+                    "name": "php",
+                    "path": "pages/languages/php.html",
+                    "links": [
+                        {
+                            "title": "PHP.net",
+                            "description": "The official PHP documentation with a complete function reference and examples.",
+                            "url": "https://www.php.net/docs.php"
+                        },
+                        {
+                            "title": "Laravel Docs",
+                            "description": "Official documentation for Laravel, the most popular PHP web framework.",
+                            "url": "https://laravel.com/docs"
+                        },
+                        {
+                            "title": "PHP The Right Way",
+                            "description": "A quick reference to PHP best practices, coding standards, and helpful tutorials.",
+                            "url": "https://phptherightway.com"
+                        },
+                        {
+                            "title": "Laracasts",
+                            "description": "High-quality PHP and Laravel screencasts — the Netflix of PHP learning.",
+                            "url": "https://laracasts.com"
+                        },
+                        {
+                            "title": "W3Schools PHP",
+                            "description": "Beginner-friendly PHP tutorials with interactive examples.",
+                            "url": "https://www.w3schools.com/php"
+                        }
+                    ]
+                },
+                {
+                    "name": "python",
+                    "path": "pages/languages/python.html",
+                    "links": [
+                        {
+                            "title": "Python.org Docs",
+                            "description": "The official Python documentation — tutorials, library reference, and language guide.",
+                            "url": "https://docs.python.org/3"
+                        },
+                        {
+                            "title": "Real Python",
+                            "description": "High-quality Python tutorials and articles for all skill levels.",
+                            "url": "https://realpython.com"
+                        },
+                        {
+                            "title": "Automate the Boring Stuff",
+                            "description": "A free book teaching practical Python by automating everyday tasks.",
+                            "url": "https://automatetheboringstuff.com"
+                        },
+                        {
+                            "title": "PyPI",
+                            "description": "The Python Package Index — find and install third-party Python libraries.",
+                            "url": "https://pypi.org"
+                        },
+                        {
+                            "title": "Kaggle Python Course",
+                            "description": "A free, hands-on Python course designed for data science beginners.",
+                            "url": "https://www.kaggle.com/learn/python"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Learning",
             "path": "pages/Learning",
             "pages": [
+                {
+                    "name": "book-and-ebooks",
+                    "path": "pages/Learning/book-and-ebooks.html",
+                    "links": [
+                        {
+                            "title": "Open Library",
+                            "description": "Borrow and read millions of free ebooks online from the Internet Archive.",
+                            "url": "https://openlibrary.org"
+                        },
+                        {
+                            "title": "Project Gutenberg",
+                            "description": "Over 70,000 free ebooks including classic computer science texts.",
+                            "url": "https://www.gutenberg.org"
+                        },
+                        {
+                            "title": "GoalKicker",
+                            "description": "Free programming books for developers compiled from Stack Overflow documentation.",
+                            "url": "https://goalkicker.com"
+                        },
+                        {
+                            "title": "Free Programming Books (GitHub)",
+                            "description": "A massive curated list of free programming books in dozens of languages.",
+                            "url": "https://github.com/EbookFoundation/free-programming-books"
+                        },
+                        {
+                            "title": "O'Reilly Free Trials",
+                            "description": "Access thousands of tech books and videos — check if your school has free access.",
+                            "url": "https://www.oreilly.com"
+                        }
+                    ]
+                },
                 {
                     "name": "interactive-coding",
                     "path": "pages/Learning/interactive-coding.html",
                     "links": [
-
                         {
-                            "title" : "Zuitt BoothCamp",
-                            "description":"Join the Coding Revolution: Transform Your Future with Zuitt's Tech Career Program.",
+                            "title": "Zuitt BootCamp",
+                            "description": "Join the Coding Revolution: Transform Your Future with Zuitt's Tech Career Program.",
                             "url": "https://zuitt.com"
                         },
                         {
-                            "title" : "freeCodeCamp",
-                            "description":"Learn to code for free with interactive tutorials and build real projects.",
-                            "url": "https://www.freecodecamp.org/"
+                            "title": "freeCodeCamp",
+                            "description": "Learn to code for free with interactive tutorials and build real projects.",
+                            "url": "https://www.freecodecamp.org"
                         },
                         {
-                            "title" : "Code Cademy",
-                            "description":"Grow in your career and unlock new opportunities by learning in-demand skills in AI, data, coding, cybersecurity, and more.",
-                            "url": "https://www.codecademy.com/"
+                            "title": "Codecademy",
+                            "description": "Grow in your career and unlock new opportunities by learning in-demand skills in AI, data, coding, cybersecurity, and more.",
+                            "url": "https://www.codecademy.com"
                         },
                         {
-                            "title" : "The Odin Project",
-                            "description":" Free full stack curriculum with projects and active community support.",
-                            "url": "https://www.theodinproject.com/"
+                            "title": "The Odin Project",
+                            "description": "Free full stack curriculum with projects and active community support.",
+                            "url": "https://www.theodinproject.com"
                         },
                         {
-                            "title" : "Codedex",
-                            "description":"Upgrade your learning in a unique way, learning through the form of a game.",
-                            "url": "https://www.codedex.io/"
+                            "title": "Codedex",
+                            "description": "Upgrade your learning in a unique way, learning through the form of a game.",
+                            "url": "https://www.codedex.io"
                         },
                         {
-                            "title" : "Scrimba",
-                            "description":" Your journey into coding starts here, accompanied with loads of tutorials and guides into programming.",
-                            "url": "https://scrimba.com/"
+                            "title": "Scrimba",
+                            "description": "Your journey into coding starts here, accompanied with loads of tutorials and guides into programming.",
+                            "url": "https://scrimba.com"
+                        }
+                    ]
+                },
+                {
+                    "name": "online-courses",
+                    "path": "pages/Learning/online-courses.html",
+                    "links": [
+                        {
+                            "title": "Coursera",
+                            "description": "University-level courses from top institutions — many free to audit.",
+                            "url": "https://www.coursera.org"
+                        },
+                        {
+                            "title": "edX",
+                            "description": "Free online courses from MIT, Harvard, and other leading universities.",
+                            "url": "https://www.edx.org"
+                        },
+                        {
+                            "title": "MIT OpenCourseWare",
+                            "description": "Free course materials from MIT — including legendary CS courses like 6.001.",
+                            "url": "https://ocw.mit.edu"
+                        },
+                        {
+                            "title": "Udemy",
+                            "description": "Affordable courses on every tech topic — watch for frequent sales.",
+                            "url": "https://www.udemy.com"
+                        }
+                        
+                    ]
+                },
+                {
+                    "name": "video-tutorials",
+                    "path": "pages/Learning/video-tutorials.html",
+                    "links": [
+                        {
+                            "title": "Traversy Media",
+                            "description": "Brad Traversy's YouTube channel — one of the best free web dev tutorial sources.",
+                            "url": "https://www.youtube.com/@TraversyMedia"
+                        },
+                        {
+                            "title": "Fireship",
+                            "description": "Fast, high-quality explainers on modern web development and programming concepts.",
+                            "url": "https://www.youtube.com/@Fireship"
+                        },
+                        {
+                            "title": "CS Dojo",
+                            "description": "Clear tutorials on algorithms, data structures, and Python for beginners.",
+                            "url": "https://www.youtube.com/@CSDojo"
+                        },
+                        {
+                            "title": "freeCodeCamp YouTube",
+                            "description": "Full-length free courses on dozens of topics — from Python to machine learning.",
+                            "url": "https://www.youtube.com/@freecodecamp"
+                        },
+                        {
+                            "title": "The Net Ninja",
+                            "description": "Short, focused tutorial series on JavaScript, React, Vue, Node, and more.",
+                            "url": "https://www.youtube.com/@NetNinja"
                         }
                     ]
                 }
             ]
         }
-
     ]
-
 }
