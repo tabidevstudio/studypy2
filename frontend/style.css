@@ -1504,8 +1504,11 @@ color: #149CEA;
 /* ── Communities Style (Discord Servers) ───────────────── */
 .mainlanguages{
   margin: 130px 0px 0px 110px;
+}
 
+.DocumentationLanguages{
 
+  
 }
 
 @keyframes float{
