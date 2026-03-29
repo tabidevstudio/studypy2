@@ -1501,6 +1501,13 @@ color: #149CEA;
   animation: float 3.2s ease-in-out infinite;
 }
 
+/* ── Communities Style (Discord Servers) ───────────────── */
+.mainlanguages{
+  margin: 130px 0px 0px 110px;
+
+
+}
+
 @keyframes float{
   0%{
     transform: translateY(0px);
