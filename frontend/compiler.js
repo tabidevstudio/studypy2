@@ -1,7 +1,3 @@
-/* ============================================
-   StudyPY Compiler — compiler.js (WebSocket)
-   Real-time streaming output via Socket.IO
-   ============================================ */
 
 const SOCKET_URL = 'wss://api.onlinecompiler.io';
 const WS_API_KEY = 'cd22da454b84af78a75a9975b3e4ff52';
