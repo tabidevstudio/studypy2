@@ -1,19 +1,3 @@
-/* ============================================
-   StudyPY — examples.js
-   Code examples library for language pages
-   
-   HOW TO USE:
-   1. Copy this file to frontend/examples.js
-   2. Add this to each language page before </body>:
-      <script src="../../examples.js"></script>
-   3. Add this div where you want the examples to appear
-      (right below your language page title, above the compiler):
-      <div id="examples-panel" data-language="python"></div>
-   
-   data-language options:
-     python | java | cpp | javascript | php
-   ============================================ */
-
 const EXAMPLES = {
   python: [
     {
