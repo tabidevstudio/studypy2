@@ -17,14 +17,31 @@
     <main class="mainlanguages">
 
         <section class="DocumentationLanguages">
-            <div>
+            <div class="InfoForLang">
+                <div class="ImgAndTitle">
+                <img src="../../assets/images/ISO_C++_Logo.svg.png" alt="">
                 <h1>C++</h1>
-                <p></p>
+                </div>
+                <p>C++ is a powerful and versatile programming language created by Bjarne Stroustrup. 
+                It combines speed and efficiency with advanced features like object-oriented programming, making it ideal for software, games, and high-performance applications. 
+                C++ gives developers control over memory and system resources, allowing them to build fast and complex programs.
+                </p>
+                <button>Click For More Info</button>
             </div>
+            <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/ZzaPdXTrSb8" 
+                title="YouTube Video" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>
         </section>
 
 
         <section>
+            <div id="examples-panel"></div>
             <div class="sp-compiler" id="compiler-cpp">
                 <div class="sp-compiler__header">
                     <div class="sp-compiler__lang-badge">
@@ -67,6 +84,7 @@
     </main>
     <script src="../../compiler.js"></script>
     <script src="../../script.js"></script>
+    <script src="../../examples.js"></script>
     <script>
         initCompiler({
         containerId: 'compiler-cpp',
@@ -75,6 +93,7 @@
         placeholder: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello from StudyPY!" << endl;\n    return 0;\n}',
         });
 
+        initExamples('examples-panel', 'cpp');
     </script>
 </body>
 </html>
