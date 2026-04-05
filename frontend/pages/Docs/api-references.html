@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>503 - Under Construction | Studypy</title>
+    <title>Api-References | Studypy</title>
     <link rel="stylesheet" href="../../style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
@@ -14,294 +14,389 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="StudyPY" />
     <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
-    <style>
-        .uc-wrapper {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-            position: relative;
-            overflow: hidden;
-            background: #16171B;
-        }
-
-        .uc-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at 15% 40%, rgba(12, 78, 139, 0.45) 0%, transparent 50%),
-                radial-gradient(circle at 85% 60%, rgba(35, 76, 114, 0.35) 0%, transparent 50%),
-                radial-gradient(circle at 50% 80%, rgba(14, 73, 100, 0.2) 0%, transparent 50%);
-            animation: bgPulse 8s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes bgPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        .uc-card {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 580px;
-            width: 100%;
-        }
-
-        .uc-code {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(7rem, 20vw, 11rem);
-            font-weight: 700;
-            line-height: 1;
-            letter-spacing: -4px;
-            color: transparent;
-            -webkit-text-stroke: 2px rgba(145, 218, 235, 0.25);
-            position: relative;
-            user-select: none;
-        }
-
-        .uc-code::after {
-            content: '503';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgb(145, 218, 235) 0%, #46a8f3 50%, rgba(145, 218, 235, 0.4) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: flicker 4s ease-in-out infinite;
-        }
-
-        @keyframes flicker {
-            0%, 90%, 100% { opacity: 1; }
-            92% { opacity: 0.6; }
-            94% { opacity: 1; }
-            96% { opacity: 0.7; }
-        }
-
-        .uc-divider {
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgb(145, 218, 235), transparent);
-            margin: 4px auto 28px;
-            border-radius: 999px;
-        }
-
-        .uc-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 18px;
-            border-radius: 999px;
-            background: rgba(14, 73, 100, 0.4);
-            border: 1px solid rgba(145, 218, 235, 0.2);
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: rgb(145, 218, 235);
-            margin-bottom: 22px;
-        }
-
-        .uc-badge-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: rgb(145, 218, 235);
-            animation: blink 1.4s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(0.7); }
-        }
-
-        .uc-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(1.4rem, 4vw, 2rem);
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-        }
-
-        .uc-title span {
-            color: rgb(145, 218, 235);
-        }
-
-        .uc-sub {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            color: rgba(255,255,255,0.65);
-            line-height: 1.7;
-            margin-bottom: 10px;
-        }
-
-        .uc-thanks {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: rgba(145, 218, 235, 0.85);
-            margin-bottom: 36px;
-            letter-spacing: 0.5px;
-        }
-
-        .uc-progress-wrap {
-            width: 100%;
-            max-width: 360px;
-            margin: 0 auto 36px;
-        }
-
-        .uc-progress-label {
-            display: flex;
-            justify-content: space-between;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.72rem;
-            color: rgba(255,255,255,0.4);
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .uc-progress-track {
-            height: 4px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 999px;
-            overflow: hidden;
-        }
-
-        .uc-progress-bar {
-            height: 100%;
-            border-radius: 999px;
-            background: linear-gradient(90deg, rgb(14, 73, 100), rgb(145, 218, 235));
-            animation: progressAnim 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes progressAnim {
-            0%   { width: 20%; }
-            100% { width: 75%; }
-        }
-
-        .uc-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0.9rem 2.6rem;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #fff;
-            background: rgba(14, 73, 100, 0.5);
-            border: 1px solid rgba(145, 218, 235, 0.35);
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .uc-btn:hover {
-            transform: translateY(-4px);
-            background: rgba(14, 73, 100, 0.8);
-            border-color: rgba(145, 218, 235, 0.7);
-            box-shadow: 0 8px 28px rgba(145, 218, 235, 0.15);
-            color: #fff;
-        }
-
-        .uc-btn i {
-            font-size: 18px;
-            transition: transform 0.2s ease;
-        }
-
-        .uc-btn:hover i {
-            transform: translateX(-4px);
-        }
-
-        .uc-gear {
-            position: fixed;
-            color: rgba(145, 218, 235, 0.05);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .uc-gear-1 {
-            top: 6%;
-            right: 4%;
-            font-size: 160px;
-            animation: spinSlow 18s linear infinite;
-        }
-
-        .uc-gear-2 {
-            bottom: 8%;
-            left: 3%;
-            font-size: 110px;
-            animation: spinSlow 12s linear infinite reverse;
-        }
-
-        .uc-gear-3 {
-            top: 48%;
-            left: 1%;
-            font-size: 65px;
-            animation: spinSlow 9s linear infinite;
-        }
-
-        @keyframes spinSlow {
-            from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
-        }
-    </style>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <div id="navbar-placeholder"></div>
 
     <main class="main">
-        <div class="uc-wrapper">
+        <br> <br> <br>
+        <div class="api-page">
 
-            <i class='bx bx-cog uc-gear uc-gear-1'></i>
-            <i class='bx bx-cog uc-gear uc-gear-2'></i>
-            <i class='bx bx-cog uc-gear uc-gear-3'></i>
+            <!-- Header -->
+            <div class="api-badge"><i class='bx bx-book-open'></i> Public Directory</div>
+            <h1 class="api-title">API References</h1>
+            <p class="api-subtitle">A curated directory of free APIs for CS/IT students. Each card includes a live "Try It" panel with a real code example you can run directly in your browser.</p>
 
-            <div class="uc-card">
+            <!-- Tabs -->
+            <div class="api-tabs">
+                <button class="api-tab active" data-filter="all"><i class='bx bx-infinite'></i> All</button>
+                <button class="api-tab" data-filter="weather"><i class='bx bx-cloud'></i> Weather</button>
+                <button class="api-tab" data-filter="news"><i class='bx bx-news'></i> News</button>
+                <button class="api-tab" data-filter="dev"><i class='bx bx-code-alt'></i> Dev Tools</button>
+                <button class="api-tab" data-filter="ai"><i class='bx bx-bot'></i> AI</button>
+                <button class="api-tab" data-filter="space"><i class='bx bx-planet'></i> Space</button>
+            </div>
 
-                <div class="uc-badge">
-                    <span class="uc-badge-dot"></span>
-                    Service Unavailable
+            <!-- Cards -->
+            <div class="api-grid">
+                <div class="api-card" data-cat="dev">
+                    <div class="api-card-body">
+                        <div class="api-card-top">
+                            <div class="api-card-icon" style="background:#161b22;"><i class='bx bxl-github' style="color:#f1f5f9; font-size:1.6rem;"></i></div>
+                            <span class="api-status dev">No Key Needed</span>
+                        </div>
+                        <div class="api-card-name">GitHub API</div>
+                        <div class="api-card-desc">Search repositories, view user profiles, list commits, and explore open source projects. No API key required for public endpoints — perfect for learning.</div>
+                    </div>
+                    <div class="api-card-footer">
+                        <a href="https://docs.github.com/en/rest" target="_blank" class="api-btn-docs">Docs</a>
+                        <a href="https://github.com" target="_blank" class="api-btn-key">Visit</a>
+                        <button class="api-btn-try" onclick="toggleTry(this)"><i class='bx bx-play'></i> Try It</button>
+                    </div>
+                    <div class="api-try-panel">
+                        <div>
+                            <div class="api-try-label">Search a GitHub user — no key needed</div>
+                            <div class="api-key-row">
+                                <input class="api-key-input" placeholder="Enter a GitHub username (e.g. torvalds)" id="gh-input">
+                                <button class="api-run-btn" onclick="runGithub()">Run</button>
+                            </div>
+                        </div>
+                        <div class="api-code-wrap"><span class="kw">const</span> username = <span class="str">"torvalds"</span>;
+<span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">`https://api.github.com/users/${username}`</span>);
+<span class="kw">const</span> data = <span class="kw">await</span> res.<span class="fn">json</span>();
+console.<span class="fn">log</span>(data.name, data.public_repos);</div>
+                        <div class="api-response" id="gh-response"></div>
+                    </div>
+                </div>
+                <div class="api-card" data-cat="space">
+                    <div class="api-card-body">
+                        <div class="api-card-top">
+                            <div class="api-card-icon" style="background:#0d0a1a;"><i class='bx bx-planet' style="color:#a78bfa; font-size:1.5rem;"></i></div>
+                            <span class="api-status gov">Free Demo Key</span>
+                        </div>
+                        <div class="api-card-name">NASA APOD</div>
+                        <div class="api-card-desc">Astronomy Picture of the Day. Get stunning space imagery with explanations written by professional astronomers. NASA provides a free demo key — no signup needed.</div>
+                    </div>
+                    <div class="api-card-footer">
+                        <a href="https://api.nasa.gov" target="_blank" class="api-btn-docs">Docs</a>
+                        <a href="https://api.nasa.gov/#signUp" target="_blank" class="api-btn-key">Get Key</a>
+                        <button class="api-btn-try" onclick="toggleTry(this)"><i class='bx bx-play'></i> Try It</button>
+                    </div>
+                    <div class="api-try-panel">
+                        <div>
+                            <div class="api-try-label">Today's Astronomy Picture — uses NASA's free DEMO_KEY</div>
+                            <div class="api-key-row">
+                                <button class="api-run-btn" style="width:100%" onclick="runNasa()">Fetch Today's Space Photo</button>
+                            </div>
+                        </div>
+                        <div class="api-code-wrap"><span class="kw">const</span> KEY = <span class="str">"DEMO_KEY"</span>; <span class="cmt">// NASA's free key — no signup</span>
+<span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(
+  <span class="str">`https://api.nasa.gov/planetary/apod?api_key=${KEY}`</span>
+);
+<span class="kw">const</span> data = <span class="kw">await</span> res.<span class="fn">json</span>();
+console.<span class="fn">log</span>(data.title, data.url);</div>
+                        <div class="api-response" id="nasa-response"></div>
+                    </div>
+                </div>
+                <div class="api-card" data-cat="weather">
+                    <div class="api-card-body">
+                        <div class="api-card-top">
+                            <div class="api-card-icon" style="background:#0d1a1a;"><i class='bx bx-cloud' style="color:#38bdf8; font-size:1.5rem;"></i></div>
+                            <span class="api-status stable">Stable</span>
+                        </div>
+                        <div class="api-card-name">OpenWeatherMap</div>
+                        <div class="api-card-desc">Access global weather data including current conditions, forecasts, and historical maps via simple JSON endpoints. Free tier allows 60 calls/minute — more than enough for projects.</div>
+                    </div>
+                    <div class="api-card-footer">
+                        <a href="https://openweathermap.org/api" target="_blank" class="api-btn-docs">Docs</a>
+                        <a href="https://openweathermap.org/api" target="_blank" class="api-btn-key">Get Key</a>
+                        <button class="api-btn-try" onclick="toggleTry(this)"><i class='bx bx-play'></i> Try It</button>
+                    </div>
+                    <div class="api-try-panel">
+                        <div>
+                            <div class="api-try-label">Paste your free API key from openweathermap.org</div>
+                            <div class="api-key-row">
+                                <input class="api-key-input" placeholder="Your OpenWeatherMap API key" id="owm-key">
+                            </div>
+                            <div style="margin-top:0.5rem;" class="api-key-row">
+                                <input class="api-key-input" placeholder="City name (e.g. Manila)" id="owm-city" style="flex:2">
+                                <button class="api-run-btn" onclick="runWeather()">Run</button>
+                            </div>
+                        </div>
+                        <div class="api-code-wrap"><span class="kw">const</span> KEY  = <span class="str">"YOUR_API_KEY"</span>;
+<span class="kw">const</span> city = <span class="str">"Manila"</span>;
+<span class="kw">const</span> res  = <span class="kw">await</span> <span class="fn">fetch</span>(
+  <span class="str">`https://api.openweathermap.org/data/2.5/weather`</span>
+  + <span class="str">`?q=${city}&appid=${KEY}&units=metric`</span>
+);
+<span class="kw">const</span> data = <span class="kw">await</span> res.<span class="fn">json</span>();
+console.<span class="fn">log</span>(data.main.temp, data.weather[0].description);</div>
+                        <div class="api-response" id="owm-response"></div>
+                    </div>
+                </div>
+                <div class="api-card" data-cat="news">
+                    <div class="api-card-body">
+                        <div class="api-card-top">
+                            <div class="api-card-icon" style="background:#1a0d0a;"><i class='bx bx-news' style="color:#fb923c; font-size:1.5rem;"></i></div>
+                            <span class="api-status popular">Popular</span>
+                        </div>
+                        <div class="api-card-name">NewsAPI</div>
+                        <div class="api-card-desc">Search and retrieve live articles from over 80,000 news sources and blogs worldwide. Free developer tier for personal and learning projects. Great for building news aggregators.</div>
+                    </div>
+                    <div class="api-card-footer">
+                        <a href="https://newsapi.org/docs" target="_blank" class="api-btn-docs">Docs</a>
+                        <a href="https://newsapi.org/register" target="_blank" class="api-btn-key">Get Key</a>
+                        <button class="api-btn-try" onclick="toggleTry(this)"><i class='bx bx-play'></i> Try It</button>
+                    </div>
+                    <div class="api-try-panel">
+                        <div>
+                            <div class="api-try-label">Paste your free API key from newsapi.org</div>
+                            <div class="api-key-row">
+                                <input class="api-key-input" placeholder="Your NewsAPI key" id="news-key">
+                            </div>
+                            <div style="margin-top:0.5rem;" class="api-key-row">
+                                <input class="api-key-input" placeholder="Topic (e.g. technology)" id="news-topic" style="flex:2">
+                                <button class="api-run-btn" onclick="runNews()">Run</button>
+                            </div>
+                        </div>
+                        <div class="api-code-wrap"><span class="kw">const</span> KEY   = <span class="str">"YOUR_API_KEY"</span>;
+<span class="kw">const</span> topic = <span class="str">"technology"</span>;
+<span class="kw">const</span> res   = <span class="kw">await</span> <span class="fn">fetch</span>(
+  <span class="str">`https://newsapi.org/v2/everything`</span>
+  + <span class="str">`?q=${topic}&apiKey=${KEY}&pageSize=3`</span>
+);
+<span class="kw">const</span> data  = <span class="kw">await</span> res.<span class="fn">json</span>();
+data.articles.<span class="fn">forEach</span>(a => console.<span class="fn">log</span>(a.title));</div>
+                        <div class="api-response" id="news-response"></div>
+                    </div>
+                </div>
+                <div class="api-card" data-cat="ai">
+                    <div class="api-card-body">
+                        <div class="api-card-top">
+                            <div class="api-card-icon" style="background:#0d1a0d;"><i class='bx bx-bot' style="color:#4ade80; font-size:1.5rem;"></i></div>
+                            <span class="api-status ai">AI / LLM</span>
+                        </div>
+                        <div class="api-card-name">OpenAI API</div>
+                        <div class="api-card-desc">Access GPT-4o, DALL-E, Whisper, and Embeddings models. New accounts get free credits — enough for hundreds of test requests. The most widely used AI API in student projects.</div>
+                    </div>
+                    <div class="api-card-footer">
+                        <a href="https://platform.openai.com/docs" target="_blank" class="api-btn-docs">Docs</a>
+                        <a href="https://platform.openai.com/api-keys" target="_blank" class="api-btn-key">Get Key</a>
+                        <button class="api-btn-try" onclick="toggleTry(this)"><i class='bx bx-play'></i> Try It</button>
+                    </div>
+                    <div class="api-try-panel">
+                        <div>
+                            <div class="api-try-label">Paste your OpenAI API key (starts with sk-)</div>
+                            <div class="api-key-row">
+                                <input class="api-key-input" placeholder="sk-..." id="oai-key" type="password">
+                            </div>
+                            <div style="margin-top:0.5rem;" class="api-key-row">
+                                <input class="api-key-input" placeholder="Ask anything..." id="oai-prompt" style="flex:2">
+                                <button class="api-run-btn" onclick="runOpenAI()">Run</button>
+                            </div>
+                        </div>
+                        <div class="api-code-wrap"><span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">"https://api.openai.com/v1/chat/completions"</span>, {
+  method: <span class="str">"POST"</span>,
+  headers: {
+    <span class="key">"Authorization"</span>: <span class="str">`Bearer YOUR_KEY`</span>,
+    <span class="key">"Content-Type"</span>: <span class="str">"application/json"</span>
+  },
+  body: <span class="fn">JSON.stringify</span>({
+    model: <span class="str">"gpt-4o-mini"</span>,
+    messages: [{ role: <span class="str">"user"</span>, content: <span class="str">"Hello!"</span> }]
+  })
+});
+<span class="kw">const</span> data = <span class="kw">await</span> res.<span class="fn">json</span>();
+console.<span class="fn">log</span>(data.choices[0].message.content);</div>
+                        <div class="api-response" id="oai-response"></div>
+                    </div>
+                </div>
+                <div class="api-card" data-cat="weather">
+                    <div class="api-card-body">
+                        <div class="api-card-top">
+                            <div class="api-card-icon" style="background:#0a1a10;"><i class='bx bx-world' style="color:#34d399; font-size:1.5rem;"></i></div>
+                            <span class="api-status free">No Key Needed</span>
+                        </div>
+                        <div class="api-card-name">REST Countries</div>
+                        <div class="api-card-desc">Get data about any country — population, capital, currencies, languages, flags, and borders. Completely free with no authentication required. Great for geography projects.</div>
+                    </div>
+                    <div class="api-card-footer">
+                        <a href="https://restcountries.com" target="_blank" class="api-btn-docs">Docs</a>
+                        <a href="https://restcountries.com" target="_blank" class="api-btn-key">Visit</a>
+                        <button class="api-btn-try" onclick="toggleTry(this)"><i class='bx bx-play'></i> Try It</button>
+                    </div>
+                    <div class="api-try-panel">
+                        <div>
+                            <div class="api-try-label">Search any country — no key needed</div>
+                            <div class="api-key-row">
+                                <input class="api-key-input" placeholder="Country name (e.g. Philippines)" id="rc-input">
+                                <button class="api-run-btn" onclick="runCountry()">Run</button>
+                            </div>
+                        </div>
+                        <div class="api-code-wrap"><span class="kw">const</span> country = <span class="str">"Philippines"</span>;
+<span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(
+  <span class="str">`https://restcountries.com/v3.1/name/${country}`</span>
+);
+<span class="kw">const</span> [data] = <span class="kw">await</span> res.<span class="fn">json</span>();
+console.<span class="fn">log</span>(data.name.common, data.population);</div>
+                        <div class="api-response" id="rc-response"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="api-curated">
+                <h2 class="api-curated-title">More APIs to Explore</h2>
+                <p class="api-curated-sub">A curated directory of APIs worth knowing — from free no-key options to professional premium services used in production.</p>
+
+    
+                <div class="api-curated-section">
+                    <div class="api-curated-section-title"><i class='bx bx-lock-open' style="color:#4ade80;"></i> Free — No Key Required</div>
+                    <div class="api-list-grid">
+                        <a href="https://pokeapi.co" target="_blank" class="api-list-item">
+                            <div class="api-list-name">PokéAPI</div>
+                            <div class="api-list-desc">All Pokémon data — moves, abilities, types. Great for learning REST.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free</span><span class="api-list-tag cat">Games</span></div>
+                        </a>
+                        <a href="https://jsonplaceholder.typicode.com" target="_blank" class="api-list-item">
+                            <div class="api-list-name">JSONPlaceholder</div>
+                            <div class="api-list-desc">Fake REST API for testing. Posts, users, comments, todos — perfect for practicing fetch calls.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free</span><span class="api-list-tag cat">Dev Tools</span></div>
+                        </a>
+                        <a href="https://open.fda.gov/apis/" target="_blank" class="api-list-item">
+                            <div class="api-list-name">Open FDA</div>
+                            <div class="api-list-desc">Drug recalls, adverse events, and food safety data from the US FDA.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free</span><span class="api-list-tag cat">Health</span></div>
+                        </a>
+                        <a href="https://api.quotable.io" target="_blank" class="api-list-item">
+                            <div class="api-list-name">Quotable</div>
+                            <div class="api-list-desc">Random inspirational quotes with author and tags. Simple JSON, great for beginners.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free</span><span class="api-list-tag cat">Content</span></div>
+                        </a>
+                        <a href="https://www.thecocktaildb.com/api.php" target="_blank" class="api-list-item">
+                            <div class="api-list-name">TheCocktailDB</div>
+                            <div class="api-list-desc">Cocktail recipes, ingredients, and images. Great for building CRUD apps.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free</span><span class="api-list-tag cat">Food</span></div>
+                        </a>
+                        <a href="https://api.ipify.org" target="_blank" class="api-list-item">
+                            <div class="api-list-name">IPify</div>
+                            <div class="api-list-desc">Returns your public IP address in plain text or JSON. Simplest API imaginable.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free</span><span class="api-list-tag cat">Network</span></div>
+                        </a>
+                        <a href="https://www.themealdb.com/api.php" target="_blank" class="api-list-item">
+                            <div class="api-list-name">TheMealDB</div>
+                            <div class="api-list-desc">Recipes from around the world with ingredients and YouTube tutorials.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free</span><span class="api-list-tag cat">Food</span></div>
+                        </a>
+                        <a href="https://dog.ceo/dog-api/" target="_blank" class="api-list-item">
+                            <div class="api-list-name">Dog CEO API</div>
+                            <div class="api-list-desc">Random dog images by breed. The most fun API for first-timers.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free</span><span class="api-list-tag cat">Fun</span></div>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="uc-code">503</div>
-                <div class="uc-divider"></div>
-
-                <h1 class="uc-title">Under <span>Construction</span></h1>
-
-                <p class="uc-sub">This page is still being built. We're working hard to bring it to life — check back soon!</p>
-                <p class="uc-thanks">Thank you for your Support &#9825;</p>
-
-                <div class="uc-progress-wrap">
-                    <div class="uc-progress-label">
-                        <span>In Progress</span>
-                        <span>Coming Soon</span>
-                    </div>
-                    <div class="uc-progress-track">
-                        <div class="uc-progress-bar"></div>
+                <!-- Free with key -->
+                <div class="api-curated-section">
+                    <div class="api-curated-section-title"><i class='bx bx-key' style="color:rgb(145,218,235);"></i> Free — API Key Required</div>
+                    <div class="api-list-grid">
+                        <a href="https://openweathermap.org/api" target="_blank" class="api-list-item">
+                            <div class="api-list-name">OpenWeatherMap</div>
+                            <div class="api-list-desc">Current weather and forecasts. 60 calls/min free tier.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free Tier</span><span class="api-list-tag cat">Weather</span></div>
+                        </a>
+                        <a href="https://newsapi.org" target="_blank" class="api-list-item">
+                            <div class="api-list-name">NewsAPI</div>
+                            <div class="api-list-desc">Live headlines from 80k+ sources. Dev plan is free.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free Tier</span><span class="api-list-tag cat">News</span></div>
+                        </a>
+                        <a href="https://api.nasa.gov" target="_blank" class="api-list-item">
+                            <div class="api-list-name">NASA APIs</div>
+                            <div class="api-list-desc">APOD, Mars rover photos, near-Earth objects. DEMO_KEY works without signup.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free</span><span class="api-list-tag cat">Space</span></div>
+                        </a>
+                        <a href="https://www.exchangerate-api.com" target="_blank" class="api-list-item">
+                            <div class="api-list-name">ExchangeRate-API</div>
+                            <div class="api-list-desc">Real-time and historical currency exchange rates. 1,500 free requests/month.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free Tier</span><span class="api-list-tag cat">Finance</span></div>
+                        </a>
+                        <a href="https://developer.spotify.com/documentation/web-api" target="_blank" class="api-list-item">
+                            <div class="api-list-name">Spotify Web API</div>
+                            <div class="api-list-desc">Search songs, albums, playlists, and artist data. Free with OAuth.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free</span><span class="api-list-tag cat">Music</span></div>
+                        </a>
+                        <a href="https://www.themoviedb.org/documentation/api" target="_blank" class="api-list-item">
+                            <div class="api-list-name">TMDB</div>
+                            <div class="api-list-desc">Movie and TV show data, posters, ratings, and cast information.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free</span><span class="api-list-tag cat">Entertainment</span></div>
+                        </a>
+                        <a href="https://developers.google.com/maps" target="_blank" class="api-list-item">
+                            <div class="api-list-name">Google Maps</div>
+                            <div class="api-list-desc">Maps, geocoding, directions, and Places data. $200 free monthly credit.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free Credit</span><span class="api-list-tag cat">Maps</span></div>
+                        </a>
+                        <a href="https://huggingface.co/docs/api-inference" target="_blank" class="api-list-item">
+                            <div class="api-list-name">HuggingFace Inference</div>
+                            <div class="api-list-desc">Run ML models for text, image, and audio. Free tier available.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free Tier</span><span class="api-list-tag cat">AI/ML</span></div>
+                        </a>
                     </div>
                 </div>
 
-                <a href="/index.html" class="uc-btn">
-                    <i class='bx bx-arrow-back'></i>
-                    Go Back
-                </a>
+                <!-- Premium -->
+                <div class="api-curated-section">
+                    <div class="api-curated-section-title"><i class='bx bx-crown' style="color:#fbbf24;"></i> Premium — Professional APIs</div>
+                    <div class="api-list-grid">
+                        <a href="https://platform.openai.com" target="_blank" class="api-list-item">
+                            <div class="api-list-name">OpenAI</div>
+                            <div class="api-list-desc">GPT-4o, DALL-E 3, Whisper, Embeddings. Pay per token with free trial credits.</div>
+                            <div class="api-list-tags"><span class="api-list-tag premium">Premium</span><span class="api-list-tag cat">AI</span></div>
+                        </a>
+                        <a href="https://stripe.com/docs/api" target="_blank" class="api-list-item">
+                            <div class="api-list-name">Stripe</div>
+                            <div class="api-list-desc">The gold standard for payment processing. Test mode is completely free.</div>
+                            <div class="api-list-tags"><span class="api-list-tag premium">Premium</span><span class="api-list-tag cat">Payments</span></div>
+                        </a>
+                        <a href="https://sendgrid.com/en-us/solutions/email-api" target="_blank" class="api-list-item">
+                            <div class="api-list-name">SendGrid</div>
+                            <div class="api-list-desc">Transactional email delivery. 100 emails/day free — great for notifications.</div>
+                            <div class="api-list-tags"><span class="api-list-tag premium">Premium</span><span class="api-list-tag cat">Email</span></div>
+                        </a>
+                        <a href="https://twilio.com/docs/usage/api" target="_blank" class="api-list-item">
+                            <div class="api-list-name">Twilio</div>
+                            <div class="api-list-desc">SMS, voice calls, and WhatsApp messages. Trial account includes free credits.</div>
+                            <div class="api-list-tags"><span class="api-list-tag premium">Premium</span><span class="api-list-tag cat">Messaging</span></div>
+                        </a>
+                        <a href="https://aws.amazon.com/rekognition/" target="_blank" class="api-list-item">
+                            <div class="api-list-name">AWS Rekognition</div>
+                            <div class="api-list-desc">Image and video analysis — object detection, face recognition, text in images.</div>
+                            <div class="api-list-tags"><span class="api-list-tag premium">Premium</span><span class="api-list-tag cat">AI Vision</span></div>
+                        </a>
+                        <a href="https://cloud.google.com/vision" target="_blank" class="api-list-item">
+                            <div class="api-list-name">Google Vision API</div>
+                            <div class="api-list-desc">Detect objects, faces, text, and landmarks in images. 1,000 free units/month.</div>
+                            <div class="api-list-tags"><span class="api-list-tag premium">Premium</span><span class="api-list-tag cat">AI Vision</span></div>
+                        </a>
+                        <a href="https://firebase.google.com" target="_blank" class="api-list-item">
+                            <div class="api-list-name">Firebase</div>
+                            <div class="api-list-desc">Real-time database, authentication, and hosting. Generous free Spark plan.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free Tier</span><span class="api-list-tag cat">Backend</span></div>
+                        </a>
+                        <a href="https://www.mapbox.com/developers" target="_blank" class="api-list-item">
+                            <div class="api-list-name">Mapbox</div>
+                            <div class="api-list-desc">Custom maps, navigation, and geocoding. 50,000 free map loads/month.</div>
+                            <div class="api-list-tags"><span class="api-list-tag free">Free Tier</span><span class="api-list-tag cat">Maps</span></div>
+                        </a>
+                    </div>
+                </div>
 
             </div>
         </div>
     </main>
 
     <script src="../../script.js"></script>
+    <script src="../../api-references.js"></script>
 </body>
 </html>
+</body>
+</html> 
