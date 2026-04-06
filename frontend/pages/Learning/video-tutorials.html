@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../../style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
     <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
     <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
@@ -22,7 +21,6 @@
     <main class="main">
         <br> <br> <br>
         <div class="learning-page">
-
             <div class="learning-badge"><i class='bx bx-play-circle'></i> Video Learning</div>
             <h1 class="learning-title">Video Tutorials</h1>
             <p class="learning-subtitle">Learn from expert-created video tutorials on YouTube and other platforms. From quick tips to full-length courses, visual learning at your pace.</p>
@@ -32,79 +30,12 @@
                 <input type="search" id="search-input" placeholder="Search for tutorials, channels, or topics..." aria-label="Search tutorials">
             </div>
 
-            <div class="learning-grid" id="learningGrid">
-                <div class="learning-card">
-                    <div class="learning-card-body">
-                        <div class="learning-card-icon" style="background:rgba(239, 68, 68, 0.15);"><i class='bx bxl-youtube' style="color:#ef4444;"></i></div>
-                        <div class="learning-card-name">YouTube Programming</div>
-                        <div class="learning-card-desc">Channels like Traversy Media, WebDev Simplified, and Fireship offer free video tutorials.</div>
-                    </div>
-                    <div class="learning-card-footer">
-                        <a href="https://www.youtube.com/results?search_query=programming+tutorial" target="_blank" class="learning-btn-visit">Visit</a>
-                    </div>
-                </div>
-
-                <div class="learning-card">
-                    <div class="learning-card-body">
-                        <div class="learning-card-icon" style="background:rgba(250, 204, 21, 0.15);"><i class='bx bx-play' style="color:#fac516;"></i></div>
-                        <div class="learning-card-name">Traversy Media</div>
-                        <div class="learning-card-desc">Comprehensive video tutorials on web development, full-stack, and modern frameworks.</div>
-                    </div>
-                    <div class="learning-card-footer">
-                        <a href="https://www.youtube.com/@TraversyMedia" target="_blank" class="learning-btn-visit">Visit</a>
-                    </div>
-                </div>
-
-                <div class="learning-card">
-                    <div class="learning-card-body">
-                        <div class="learning-card-icon" style="background:rgba(34, 197, 94, 0.15);"><i class='bx bx-code-block' style="color:#22c55e;"></i></div>
-                        <div class="learning-card-name">WebDev Simplified</div>
-                        <div class="learning-card-desc">Clear, concise tutorials on JavaScript, React, and web development concepts.</div>
-                    </div>
-                    <div class="learning-card-footer">
-                        <a href="https://www.youtube.com/@WebDevSimplified" target="_blank" class="learning-btn-visit">Visit</a>
-                    </div>
-                </div>
-
-                <div class="learning-card">
-                    <div class="learning-card-body">
-                        <div class="learning-card-icon" style="background:rgba(59, 130, 246, 0.15);"><i class='bx bx-rocket' style="color:#3b82f6;"></i></div>
-                        <div class="learning-card-name">Fireship</div>
-                        <div class="learning-card-desc">Fast-paced, visually engaging explainer videos on programming concepts and tools.</div>
-                    </div>
-                    <div class="learning-card-footer">
-                        <a href="https://www.youtube.com/@Fireship" target="_blank" class="learning-btn-visit">Visit</a>
-                    </div>
-                </div>
-
-                <div class="learning-card">
-                    <div class="learning-card-body">
-                        <div class="learning-card-icon" style="background:rgba(168, 85, 247, 0.15);"><i class='bx bx-user' style="color:#a855f7;"></i></div>
-                        <div class="learning-card-name">Programming with Mosh</div>
-                        <div class="learning-card-desc">Complete coding courses covering full-stack development and programming fundamentals.</div>
-                    </div>
-                    <div class="learning-card-footer">
-                        <a href="https://www.youtube.com/@programmingwithmosh" target="_blank" class="learning-btn-visit">Visit</a>
-                    </div>
-                </div>
-
-                <div class="learning-card">
-                    <div class="learning-card-body">
-                        <div class="learning-card-icon" style="background:rgba(14, 165, 233, 0.15);"><i class='bx bxl-python' style="color:#0ea5e9;"></i></div>
-                        <div class="learning-card-name">Tech With Tim</div>
-                        <div class="learning-card-desc">Python, web development, and machine learning tutorials for beginners to intermediate.</div>
-                    </div>
-                    <div class="learning-card-footer">
-                        <a href="https://www.youtube.com/@TechWithTim" target="_blank" class="learning-btn-visit">Visit</a>
-                    </div>
-                </div>
-            </div>
+            <div id="tools-container" data-page="video-tutorials"></div>
         </div>
     </main>
 
     <script src="../../script.js"></script>
     <script src="../../search.js"></script>
     <script src="../../links.js"></script>
-    <script>
 </body>
 </html>

@@ -117,34 +117,114 @@
           "path": "frontend/pages/Learning/video-tutorials.html",
           "links": [
             {
-              "title": "YouTube Programming Channels",
-              "description": "Channels like Traversy Media, WebDev Simplified, and Fireship offer free video tutorials.",
-              "url": "https://www.youtube.com/results?search_query=programming+tutorial"
+              "title": "HTML Crash Course",
+              "description": "Learn HTML from scratch with semantic markup and best practices for modern web development.",
+              "url": "https://www.youtube.com/embed/qz0aGYrrlhU"
             },
             {
-              "title": "Traversy Media",
-              "description": "Comprehensive video tutorials on web development, full-stack, and modern frameworks.",
-              "url": "https://www.youtube.com/@TraversyMedia"
+              "title": "HTML Forms & Validation",
+              "description": "Master HTML5 forms, input types, and client-side validation techniques.",
+              "url": "https://www.youtube.com/embed/fNcJuPF6cSc"
             },
             {
-              "title": "WebDev Simplified",
-              "description": "Clear, concise tutorials on JavaScript, React, and web development concepts.",
-              "url": "https://www.youtube.com/@WebDevSimplified"
+              "title": "CSS Flexbox Tutorial",
+              "description": "Master CSS Flexbox layout with practical examples and common use cases.",
+              "url": "https://www.youtube.com/embed/JJSoEo8JSnc"
             },
             {
-              "title": "Fireship",
-              "description": "Fast-paced, visually engaging explainer videos on programming concepts and tools.",
-              "url": "https://www.youtube.com/@Fireship"
+              "title": "Flexbox Examples",
+              "description": "Examples showing Flexbox solving common layout problems.",
+              "url": "https://www.youtube.com/embed/fgOO9YUFlGI"
             },
             {
-              "title": "Programming with Mosh",
-              "description": "Complete coding courses covering full-stack development and programming fundamentals.",
-              "url": "https://www.youtube.com/@programmingwithmosh"
+              "title": "CSS Grid Mastery",
+              "description": "Learn CSS Grid for creating complex responsive layouts.",
+              "url": "https://www.youtube.com/embed/jV8B24rSMMw"
             },
             {
-              "title": "Tech With Tim",
-              "description": "Python, web development, and machine learning tutorials for beginners to intermediate.",
-              "url": "https://www.youtube.com/@TechWithTim"
+              "title": "Responsive Design Basics",
+              "description": "Build responsive websites that work on all screen sizes.",
+              "url": "https://www.youtube.com/embed/srvUrASNj0s"
+            },
+            {
+              "title": "JavaScript Basics",
+              "description": "Complete JavaScript beginner course covering variables, functions, and DOM manipulation.",
+              "url": "https://www.youtube.com/embed/W6NZfCO5tTE"
+            },
+            {
+              "title": "JavaScript ES6 Features",
+              "description": "Learn modern JavaScript with arrow functions, classes, and destructuring.",
+              "url": "https://www.youtube.com/embed/nZ1DMMsqVsM"
+            },
+            {
+              "title": "DOM Manipulation",
+              "description": "Master DOM selection, manipulation, and event handling.",
+              "url": "https://www.youtube.com/embed/y17RuWkWdn8"
+            },
+            {
+              "title": "Async JavaScript",
+              "description": "Understanding promises, async/await, and fetching data from APIs.",
+              "url": "https://www.youtube.com/embed/W6NZfCO5tTE"
+            },
+            {
+              "title": "React Fundamentals",
+              "description": "Learn React hooks, components, and state management for building interactive UIs.",
+              "url": "https://www.youtube.com/embed/E_-rqAXVn80"
+            },
+            {
+              "title": "React Hooks Deep Dive",
+              "description": "Master useState, useEffect, useContext, and custom hooks.",
+              "url": "https://www.youtube.com/embed/O6P86uwfdR0"
+            },
+            {
+              "title": "Node.js & Express",
+              "description": "Build backend APIs with Node.js and Express framework from scratch.",
+              "url": "https://www.youtube.com/embed/fZkHkza2IVs"
+            },
+            {
+              "title": "REST API Design",
+              "description": "Learn REST principles and design scalable APIs.",
+              "url": "https://www.youtube.com/embed/pY0LnUL8_ps"
+            },
+            {
+              "title": "Database Design with SQL",
+              "description": "Learn SQL queries, database design patterns, and optimization techniques.",
+              "url": "https://www.youtube.com/embed/4Ic1AY27DPU"
+            },
+            {
+              "title": "MongoDB Basics",
+              "description": "NoSQL database fundamentals with MongoDB and Mongoose.",
+              "url": "https://www.youtube.com/embed/ofme2o29ngU"
+            },
+            {
+              "title": "Git & GitHub Workflow",
+              "description": "Master version control with Git branches, commits, and pull requests.",
+              "url": "https://www.youtube.com/embed/RGOj5yH7evk"
+            },
+            {
+              "title": "Web Performance Optimization",
+              "description": "Techniques for improving website speed and performance.",
+              "url": "https://www.youtube.com/embed/7gtS6oVeEKg"
+            },
+            {
+              "title": "Web Security Basics",
+              "description": "Learn CORS, HTTPS, authentication, and protecting against common attacks.",
+              "url": "https://www.youtube.com/embed/X5zMbT_yS6s"
+            },
+            {
+              "title": "Testing in JavaScript",
+              "description": "Unit testing with Jest and integration testing best practices.",
+              "url": "https://www.youtube.com/embed/7r4xVzOrS4E"
+            },
+            {
+              "title": "Advanced CSS Selectors",
+              "description": "Understanding complex selector combinations and specificity.",
+              "url": "https://www.youtube.com/embed/dcCCOiQ1ZuM"
+            },
+            {
+              "title": "CSS Animations & Transitions",
+              "description": "Create smooth animations and transitions for better UX.",
+              "url": "https://www.youtube.com/embed/Nq6qAqN8Ajg"
             }
           ]
         }
