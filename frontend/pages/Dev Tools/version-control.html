@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Version Control | StudyPY</title>
+    <title>Version Control | Studypy</title>
     <link rel="stylesheet" href="../../style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
@@ -16,296 +16,88 @@
     <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
 </head>
 <body>
-
     <div id="navbar-placeholder"></div>
 
     <main class="main">
-        <div class="ide-page">
+        <br> <br> <br>
+        <div class="tools-page">
 
-            <!-- Header -->
-            <div class="ide-badge">
-                <i class='bx bx-git-branch'></i>
-                Source Control & Collaboration
+            <div class="tools-badge"><i class='bx bx-git-branch'></i> Source Control</div>
+            <h1 class="tools-title">Version Control</h1>
+            <p class="tools-subtitle">Master Git and other version control systems. Learn branching strategies, collaboration workflows, and deployment pipelines.</p>
+
+            <div class="tools-grid">
+                <div class="tools-card">
+                    <div class="tools-card-body">
+                        <div class="tools-card-icon" style="background:rgba(239, 68, 68, 0.15);"><i class='bx bxl-github' style="color:#ef4444;"></i></div>
+                        <div class="tools-card-name">GitHub</div>
+                        <div class="tools-card-desc">World's leading platform for version control and collaborative development.</div>
+                    </div>
+                    <div class="tools-card-footer">
+                        <a href="https://github.com/" target="_blank" class="tools-btn-visit">Visit</a>
+                    </div>
+                </div>
+
+                <div class="tools-card">
+                    <div class="tools-card-body">
+                        <div class="tools-card-icon" style="background:rgba(244, 114, 182, 0.15);"><i class='bx bx-git-branch' style="color:#f472b6;"></i></div>
+                        <div class="tools-card-name">Git Documentation</div>
+                        <div class="tools-card-desc">Official Git documentation and learning resources.</div>
+                    </div>
+                    <div class="tools-card-footer">
+                        <a href="https://git-scm.com/" target="_blank" class="tools-btn-visit">Visit</a>
+                    </div>
+                </div>
+
+                <div class="tools-card">
+                    <div class="tools-card-body">
+                        <div class="tools-card-icon" style="background:rgba(34, 197, 94, 0.15);"><i class='bx bx-git-repo-forked' style="color:#22c55e;"></i></div>
+                        <div class="tools-card-name">GitLab</div>
+                        <div class="tools-card-desc">Complete DevOps platform with version control, CI/CD, and collaboration features.</div>
+                    </div>
+                    <div class="tools-card-footer">
+                        <a href="https://about.gitlab.com/" target="_blank" class="tools-btn-visit">Visit</a>
+                    </div>
+                </div>
+
+                <div class="tools-card">
+                    <div class="tools-card-body">
+                        <div class="tools-card-icon" style="background:rgba(59, 130, 246, 0.15);"><i class='bx bxl-bitbucket' style="color:#3b82f6;"></i></div>
+                        <div class="tools-card-name">Bitbucket</div>
+                        <div class="tools-card-desc">Git repository hosting service from Atlassian with team collaboration tools.</div>
+                    </div>
+                    <div class="tools-card-footer">
+                        <a href="https://bitbucket.org/" target="_blank" class="tools-btn-visit">Visit</a>
+                    </div>
+                </div>
+
+                <div class="tools-card">
+                    <div class="tools-card-body">
+                        <div class="tools-card-icon" style="background:rgba(168, 85, 247, 0.15);"><i class='bx bx-book' style="color:#a855f7;"></i></div>
+                        <div class="tools-card-name">GitHub Learning Lab</div>
+                        <div class="tools-card-desc">Interactive courses teaching Git and GitHub workflows.</div>
+                    </div>
+                    <div class="tools-card-footer">
+                        <a href="https://github.skills/" target="_blank" class="tools-btn-visit">Visit</a>
+                    </div>
+                </div>
+
+                <div class="tools-card">
+                    <div class="tools-card-body">
+                        <div class="tools-card-icon" style="background:rgba(14, 165, 233, 0.15);"><i class='bx bx-git' style="color:#0ea5e9;"></i></div>
+                        <div class="tools-card-name">Gitflow Workflow</div>
+                        <div class="tools-card-desc">Popular branching model for managing releases and features in team projects.</div>
+                    </div>
+                    <div class="tools-card-footer">
+                        <a href="https://nvie.com/posts/a-successful-git-branching-model/" target="_blank" class="tools-btn-visit">Visit</a>
+                    </div>
+                </div>
             </div>
-            <h1 class="ide-title">Version Control</h1>
-            <p class="ide-subtitle">
-                Essential tools for tracking changes, collaborating with teams,
-                and managing your codebase like a professional developer.
-            </p>
-
-            <!-- Filter buttons -->
-            <div class="ide-filters">
-                <button class="ide-filter-btn active" data-filter="all">All</button>
-                <button class="ide-filter-btn" data-filter="free">Free</button>
-                <button class="ide-filter-btn" data-filter="git">Git-based</button>
-                <button class="ide-filter-btn" data-filter="cloud">Cloud</button>
-                <button class="ide-filter-btn" data-filter="desktop">Desktop Client</button>
-                <button class="ide-filter-btn" data-filter="enterprise">Enterprise</button>
-            </div>
-
-            <!-- Table -->
-            <div class="ide-table-wrap">
-                <table class="ide-table">
-                    <thead>
-                        <tr>
-                            <th>Tool</th>
-                            <th>Type</th>
-                            <th>Best For</th>
-                            <th>Description</th>
-                            <th>Access</th>
-                        </tr>
-                    </thead>
-                    <tbody id="vc-tbody">
-
-                        <!-- Git -->
-                        <tr data-tags="free git">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo">
-                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
-                                    </div>
-                                    <div>
-                                        <div class="ide-name">Git</div>
-                                        <div class="ide-maker">Linus Torvalds</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><div class="ide-tags"><span class="ide-tag coral">Distributed VCS</span></div></td>
-                            <td><div class="ide-tags"><span class="ide-tag gray">All Developers</span></div></td>
-                            <td><p class="ide-desc">The industry-standard version control system. Tracks changes in source code during software development. Essential for every developer.</p></td>
-                            <td>
-                                <a href="https://git-scm.com/downloads" target="_blank" class="ide-btn free">
-                                    <i class='bx bx-download'></i> Free
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- GitHub -->
-                        <tr data-tags="free git cloud">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo">
-                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter: invert(1);">
-                                    </div>
-                                    <div>
-                                        <div class="ide-name">GitHub</div>
-                                        <div class="ide-maker">Microsoft</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><div class="ide-tags"><span class="ide-tag cyan">Git Hosting</span></div></td>
-                            <td><div class="ide-tags"><span class="ide-tag cyan">Open Source</span></div></td>
-                            <td><p class="ide-desc">The world's largest code hosting platform. Offers repositories, pull requests, Actions CI/CD, and project management tools for free.</p></td>
-                            <td>
-                                <a href="https://github.com" target="_blank" class="ide-btn download">
-                                    <i class='bx bx-link-external'></i> Visit
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- GitLab -->
-                        <tr data-tags="free git cloud enterprise">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo">
-                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" alt="GitLab">
-                                    </div>
-                                    <div>
-                                        <div class="ide-name">GitLab</div>
-                                        <div class="ide-maker">GitLab Inc.</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><div class="ide-tags"><span class="ide-tag amber">DevOps Platform</span></div></td>
-                            <td><div class="ide-tags"><span class="ide-tag amber">Teams & CI/CD</span></div></td>
-                            <td><p class="ide-desc">A complete DevOps platform with built-in CI/CD, security scanning, and project management. Can be self-hosted for full control.</p></td>
-                            <td>
-                                <a href="https://gitlab.com" target="_blank" class="ide-btn download">
-                                    <i class='bx bx-link-external'></i> Visit
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- Bitbucket -->
-                        <tr data-tags="git cloud enterprise">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo">
-                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bitbucket/bitbucket-original.svg" alt="Bitbucket">
-                                    </div>
-                                    <div>
-                                        <div class="ide-name">Bitbucket</div>
-                                        <div class="ide-maker">Atlassian</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><div class="ide-tags"><span class="ide-tag cyan">Git Hosting</span></div></td>
-                            <td><div class="ide-tags"><span class="ide-tag purple">Jira Teams</span></div></td>
-                            <td><p class="ide-desc">Git solution built for professional teams. Integrates seamlessly with Jira and Trello. Free for small teams up to 5 users.</p></td>
-                            <td>
-                                <a href="https://bitbucket.org" target="_blank" class="ide-btn download">
-                                    <i class='bx bx-link-external'></i> Visit
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- GitHub Desktop -->
-                        <tr data-tags="free git desktop">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo">
-                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub Desktop" style="filter: invert(1);">
-                                    </div>
-                                    <div>
-                                        <div class="ide-name">GitHub Desktop</div>
-                                        <div class="ide-maker">Microsoft</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><div class="ide-tags"><span class="ide-tag green">GUI Client</span></div></td>
-                            <td><div class="ide-tags"><span class="ide-tag green">Beginners</span></div></td>
-                            <td><p class="ide-desc">A free, visual Git client that simplifies your development workflow. Perfect for students learning Git without the command line.</p></td>
-                            <td>
-                                <a href="https://desktop.github.com" target="_blank" class="ide-btn free">
-                                    <i class='bx bx-download'></i> Free
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- GitKraken -->
-                        <tr data-tags="git desktop enterprise">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo" style="font-size:1.3rem;">🐙</div>
-                                    <div>
-                                        <div class="ide-name">GitKraken</div>
-                                        <div class="ide-maker">Axosoft</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><div class="ide-tags"><span class="ide-tag green">GUI Client</span></div></td>
-                            <td><div class="ide-tags"><span class="ide-tag amber">Power Users</span></div></td>
-                            <td><p class="ide-desc">A powerful, cross-platform Git GUI with an intuitive commit graph, merge conflict editor, and built-in code review tools.</p></td>
-                            <td>
-                                <a href="https://www.gitkraken.com/download" target="_blank" class="ide-btn mirror">
-                                    <i class='bx bx-link-external'></i> Visit Site
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- SourceTree -->
-                        <tr data-tags="free git desktop">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo" style="font-size:1.3rem;">🌳</div>
-                                    <div>
-                                        <div class="ide-name">Sourcetree</div>
-                                        <div class="ide-maker">Atlassian</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><div class="ide-tags"><span class="ide-tag green">GUI Client</span></div></td>
-                            <td><div class="ide-tags"><span class="ide-tag gray">Beginners</span></div></td>
-                            <td><p class="ide-desc">A free desktop Git client for Windows and Mac. Simplifies how you interact with your repositories so you can focus on coding.</p></td>
-                            <td>
-                                <a href="https://www.sourcetreeapp.com" target="_blank" class="ide-btn free">
-                                    <i class='bx bx-download'></i> Free
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- SVN -->
-                        <tr data-tags="free enterprise">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo">
-                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/subversion/subversion-original.svg" alt="SVN">
-                                    </div>
-                                    <div>
-                                        <div class="ide-name">Apache SVN</div>
-                                        <div class="ide-maker">Apache Foundation</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><div class="ide-tags"><span class="ide-tag coral">Centralized VCS</span></div></td>
-                            <td><div class="ide-tags"><span class="ide-tag gray">Legacy Projects</span></div></td>
-                            <td><p class="ide-desc">A centralized version control system still widely used in enterprise environments. Good to know for legacy codebases.</p></td>
-                            <td>
-                                <a href="https://subversion.apache.org/packages.html" target="_blank" class="ide-btn free">
-                                    <i class='bx bx-download'></i> Free
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- Azure DevOps -->
-                        <tr data-tags="git cloud enterprise">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo">
-                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure DevOps">
-                                    </div>
-                                    <div>
-                                        <div class="ide-name">Azure DevOps</div>
-                                        <div class="ide-maker">Microsoft</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><div class="ide-tags"><span class="ide-tag purple">DevOps Platform</span></div></td>
-                            <td><div class="ide-tags"><span class="ide-tag purple">Enterprise</span></div></td>
-                            <td><p class="ide-desc">Microsoft's all-in-one DevOps solution with Git repos, pipelines, boards, and test plans. Free for up to 5 users.</p></td>
-                            <td>
-                                <a href="https://azure.microsoft.com/en-us/products/devops" target="_blank" class="ide-btn mirror">
-                                    <i class='bx bx-link-external'></i> Visit Site
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- Mercurial -->
-                        <tr data-tags="free git">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo" style="font-size:1.3rem;">☿</div>
-                                    <div>
-                                        <div class="ide-name">Mercurial</div>
-                                        <div class="ide-maker">Matt Mackall</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><div class="ide-tags"><span class="ide-tag coral">Distributed VCS</span></div></td>
-                            <td><div class="ide-tags"><span class="ide-tag gray">Alternative to Git</span></div></td>
-                            <td><p class="ide-desc">A free, distributed source control management tool. Known for being simpler than Git while still being powerful and scalable.</p></td>
-                            <td>
-                                <a href="https://www.mercurial-scm.org/downloads" target="_blank" class="ide-btn free">
-                                    <i class='bx bx-download'></i> Free
-                                </a>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-
         </div>
     </main>
 
     <script src="../../script.js"></script>
-    <script>
-        document.querySelectorAll('.ide-filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.ide-filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const filter = btn.dataset.filter;
-                document.querySelectorAll('#vc-tbody tr').forEach(row => {
-                    if (filter === 'all') {
-                        row.style.display = '';
-                    } else {
-                        const tags = row.dataset.tags || '';
-                        row.style.display = tags.includes(filter) ? '' : 'none';
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="../../search.js"></script>
+    <script src="../../links.js"></script>
 </body>
 </html>
