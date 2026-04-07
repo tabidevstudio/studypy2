@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IDEs | Studypy</title>
+    <title>IDEs & Editors | StudyPY</title>
     <link rel="stylesheet" href="../../style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
     <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
     <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
@@ -16,21 +16,353 @@
     <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
 </head>
 <body>
+
     <div id="navbar-placeholder"></div>
 
     <main class="main">
-        <br> <br> <br>
-        <div class="tools-page">
-            <div class="tools-badge"><i class='bx bx-code-block'></i> Code Editors</div>
-            <h1 class="tools-title">IDEs & Code Editors</h1>
-            <p class="tools-subtitle">Choose the right integrated development environment for your workflow. From lightweight editors to full-featured IDEs with advanced debugging.</p>
+        <div class="ide-page">
 
-            <div id="tools-container" data-page="ides"></div>
+            <!-- Header -->
+            <div class="ide-badge">
+                <i class='bx bx-check-circle'></i>
+                Curated Developer Ecosystem
+            </div>
+            <h1 class="ide-title">IDEs & Editors</h1>
+            <p class="ide-subtitle">
+                The ultimate directory for modern development environments.
+                From lightweight text editors to heavy-duty integrated platforms.
+            </p>
+
+            <!-- Filter buttons -->
+            <div class="ide-filters">
+                <button class="ide-filter-btn active" data-filter="all">All</button>
+                <button class="ide-filter-btn" data-filter="free">Free</button>
+                <button class="ide-filter-btn" data-filter="web">Web</button>
+                <button class="ide-filter-btn" data-filter="python">Python</button>
+                <button class="ide-filter-btn" data-filter="java">Java</button>
+                <button class="ide-filter-btn" data-filter="cpp">C/C++</button>
+                <button class="ide-filter-btn" data-filter="mobile">Mobile</button>
+            </div>
+
+            <!-- Table -->
+            <div class="ide-table-wrap">
+                <table class="ide-table">
+                    <thead>
+                        <tr>
+                            <th>IDE Name</th>
+                            <th>Primary Use Case</th>
+                            <th>Description</th>
+                            <th>Acquisition</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ide-tbody">
+
+                        <!-- VS Code -->
+                        <tr data-tags="free web python java cpp mobile">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">VS Code</div>
+                                        <div class="ide-maker">Microsoft</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag cyan">Web & Cloud</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">A lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux.</p>
+                            </td>
+                            <td>
+                                <a href="https://code.visualstudio.com/download" target="_blank" class="ide-btn download">
+                                    <i class='bx bx-download'></i> Download
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- IntelliJ IDEA -->
+                        <tr data-tags="java">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="IntelliJ">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">IntelliJ IDEA</div>
+                                        <div class="ide-maker">JetBrains</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag purple">Enterprise</span>
+                                    <span class="ide-tag purple">Java</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">The premier IDE for Java, Kotlin, and more. Features deep intelligence and ergonomic design for high-productivity development.</p>
+                            </td>
+                            <td>
+                                <a href="https://www.jetbrains.com/idea/download/" target="_blank" class="ide-btn license">
+                                    <i class='bx bx-cart'></i> Get License
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- PyCharm -->
+                        <tr data-tags="python free">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pycharm/pycharm-original.svg" alt="PyCharm">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">PyCharm</div>
+                                        <div class="ide-maker">JetBrains</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag green">Data Science</span>
+                                    <span class="ide-tag green">Python</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">Dedicated IDE for Python development, providing a wide range of essential tools for Python developers including smart code navigation.</p>
+                            </td>
+                            <td>
+                                <a href="https://www.jetbrains.com/pycharm/download/" target="_blank" class="ide-btn download">
+                                    <i class='bx bx-download'></i> Download
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Apache NetBeans -->
+                        <tr data-tags="free java cpp">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" alt="NetBeans">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Apache NetBeans</div>
+                                        <div class="ide-maker">Apache Foundation</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag gray">Java / PHP / C++</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">A popular open-source IDE that provides editors, wizards, and templates to help you create applications in Java, PHP, and more.</p>
+                            </td>
+                            <td>
+                                <a href="https://netbeans.apache.org/front/main/download/" target="_blank" class="ide-btn mirror">
+                                    <i class='bx bx-link-external'></i> Mirror Link
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Eclipse -->
+                        <tr data-tags="free java cpp">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eclipse/eclipse-original.svg" alt="Eclipse">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Eclipse</div>
+                                        <div class="ide-maker">Eclipse Foundation</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag amber">Java / C++</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">A widely-used open-source IDE primarily for Java development, with powerful plugin support for many other languages.</p>
+                            </td>
+                            <td>
+                                <a href="https://www.eclipse.org/downloads/" target="_blank" class="ide-btn download">
+                                    <i class='bx bx-download'></i> Download
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Code::Blocks -->
+                        <tr data-tags="free cpp">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo" style="font-size:1.4rem;">⚙️</div>
+                                    <div>
+                                        <div class="ide-name">Code::Blocks</div>
+                                        <div class="ide-maker">The Code::Blocks Team</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag coral">C / C++</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">A free, open-source, cross-platform IDE for C, C++ and Fortran. Simple to use and highly configurable for beginners.</p>
+                            </td>
+                            <td>
+                                <a href="https://www.codeblocks.org/downloads/" target="_blank" class="ide-btn download">
+                                    <i class='bx bx-download'></i> Download
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Sublime Text -->
+                        <tr data-tags="web python cpp">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sublimetext/sublimetext-original.svg" alt="Sublime">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Sublime Text</div>
+                                        <div class="ide-maker">Sublime HQ</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag cyan">Multi-language</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">A sophisticated text editor for code, markup, and prose with a slick interface and extraordinary performance.</p>
+                            </td>
+                            <td>
+                                <a href="https://www.sublimetext.com/download" target="_blank" class="ide-btn mirror">
+                                    <i class='bx bx-link-external'></i> Visit Site
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Android Studio -->
+                        <tr data-tags="mobile java free">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" alt="Android Studio">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Android Studio</div>
+                                        <div class="ide-maker">Google</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag green">Mobile</span>
+                                    <span class="ide-tag green">Android</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">The official IDE for Android app development, built on IntelliJ IDEA with tools for building apps on every type of Android device.</p>
+                            </td>
+                            <td>
+                                <a href="https://developer.android.com/studio" target="_blank" class="ide-btn download">
+                                    <i class='bx bx-download'></i> Download
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Vim -->
+                        <tr data-tags="free web python cpp">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg" alt="Vim">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Vim</div>
+                                        <div class="ide-maker">Bram Moolenaar</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag gray">Terminal / CLI</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">A highly configurable text editor built to enable efficient text editing. A must-learn for any serious developer working in terminals.</p>
+                            </td>
+                            <td>
+                                <a href="https://www.vim.org/download.php" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-download'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Xcode -->
+                        <tr data-tags="mobile">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo" style="font-size:1.4rem;">🔨</div>
+                                    <div>
+                                        <div class="ide-name">Xcode</div>
+                                        <div class="ide-maker">Apple</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ide-tags">
+                                    <span class="ide-tag purple">Mobile</span>
+                                    <span class="ide-tag purple">iOS / macOS</span>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ide-desc">Apple's official IDE for developing software for macOS, iOS, iPadOS, watchOS, and tvOS using Swift and Objective-C.</p>
+                            </td>
+                            <td>
+                                <a href="https://developer.apple.com/xcode/" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-link-external'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </main>
 
     <script src="../../script.js"></script>
-    <script src="../../search.js"></script>
-    <script src="../../links.js"></script>
+    <script>
+        // Filter functionality
+        document.querySelectorAll('.ide-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.ide-filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                document.querySelectorAll('#ide-tbody tr').forEach(row => {
+                    if (filter === 'all') {
+                        row.style.display = '';
+                    } else {
+                        const tags = row.dataset.tags || '';
+                        row.style.display = tags.includes(filter) ? '' : 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

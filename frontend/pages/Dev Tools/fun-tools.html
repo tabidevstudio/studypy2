@@ -1,41 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fun Tools | Studypy</title>
-    <link rel="stylesheet" href="../../style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="StudyPY" />
-    <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fun Tools | Studypy</title>
+  <link rel="stylesheet" href="../../style.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+  <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="StudyPY" />
+  <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
 </head>
 <body>
-    <div id="navbar-placeholder"></div>
-
-    <main class="main">
-        <br> <br> <br>
-        <div class="tools-page">
-            <div class="tools-badge"><i class='bx bx-smile'></i> Creative Tools</div>
-            <h1 class="tools-title">Fun & Creative Tools</h1>
-            <p class="tools-subtitle">Make coding fun! Experiment with creative tools, playgrounds, and AI-powered coding assistants. Explore ideas without worrying about deployment.</p>
-
-            <div class="tools-search-container">
-                <input type="text" id="toolsSearchInput" class="tools-search-bar" placeholder="Search tools...">
-                <i class="bx bx-search"></i>
-            </div>
-
-            <div id="tools-container" data-page="fun-tools"></div>
+  <div id="navbar-placeholder"></div>
+  <main class="main">
+    <section class="page-hero" style="padding: 110px 20px 28px;">
+      <div class="hero-inner" style="max-width: 1120px; margin: 0 auto;">
+        <h1>Fun Tools</h1>
+        <p>Discover UI kits, design inspiration resources, and developer utilities in one place.</p>
+        <div id="searchbar" style="margin-top: 24px;">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true" style="color:#9bc3e3;"></i>
+          <label for="search-input">Search</label>
+          <input type="search" id="search-input" placeholder="Search component library, asset, or utility..." aria-label="Search for resources" />
         </div>
-    </main>
+      </div>
+    </section>
 
-    <script src="../../script.js"></script>
-    <script src="../../search.js"></script>
-    <script src="../../links.js"></script>
+    <section class="content-section" style="margin-top: 24px;">
+      <div class="section-bar">
+        <div class="tabs">
+          <button class="tab active" type="button">All</button>
+          <button class="tab" type="button">UI Components</button>
+          <button class="tab" type="button">Creative Kits</button>
+          <button class="tab" type="button">Developer Utilities</button>
+        </div>
+      </div>
+
+      <div id="no-results" style="display:none;text-align:center;color:#fff;margin:10px 0;">No resources found.</div>
+
+      <section class="tools-section" style="margin-top: 20px;" id="ui-component-libraries">
+        <h2 class="category-heading">UI Component Libraries</h2>
+        <div class="videos-grid">
+          <div class="Tools" data-genres="ui component libraries">
+            <div class="tool-card-content">
+              <div class="tool-tag">UI Components</div>
+              <a class="card-link" href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer"><h2>shadcn/ui</h2></a>
+              <p>Accessible React + Tailwind components with TypeScript primitives.</p>
+              <img src="../../assets/website-previews/shadcn.png" alt="shadcn/ui preview" class="tool-image">
+            </div>
+          </div>
+          <div class="Tools" data-genres="ui component libraries">
+            <div class="tool-card-content">
+              <div class="tool-tag">UI Components</div>
+              <a class="card-link" href="https://flowbite.com/" target="_blank" rel="noopener noreferrer"><h2>Flowbite</h2></a>
+              <p>Tailwind CSS component kit for dashboards, forms and navigation.</p>
+              <img src="../../assets/website-previews/flowbite.png" alt="Flowbite preview" class="tool-image">
+            </div>
+          </div>
+          <div class="Tools" data-genres="ui component libraries">
+            <div class="tool-card-content">
+              <div class="tool-tag">UI Components</div>
+              <a class="card-link" href="https://mambaui.com/" target="_blank" rel="noopener noreferrer"><h2>Mamba UI</h2></a>
+              <p>Modern animated Tailwind components plus starter screens and templates.</p>
+              <img src="../../assets/website-previews/mambaui.png" alt="Mamba UI preview" class="tool-image">
+            </div>
+          </div>
+          <div class="Tools" data-genres="ui component libraries">
+            <div class="tool-card-content">
+              <div class="tool-tag">UI Components</div>
+              <a class="card-link" href="https://daisyui.com/" target="_blank" rel="noopener noreferrer"><h2>DaisyUI</h2></a>
+              <p>Tailwind plugin with a large library of themeable reusable components.</p>
+              <img src="../../assets/website-previews/daisyui.png" alt="DaisyUI preview" class="tool-image">
+            </div>
+          </div>
+          <div class="Tools" data-genres="ui component libraries">
+            <div class="tool-card-content">
+              <div class="tool-tag">UI Components</div>
+              <a class="card-link" href="https://uiverse.io/elements/" target="_blank" rel="noopener noreferrer"><h2>UIVerse</h2></a>
+              <p>Open-source UI elements and components for web development.</p>
+              <img src="../../assets/website-previews/UiVerse.png" alt="UiVerse preview" class="tool-image">
+            </div>
+          </div>
+          <div class="Tools" data-genres="ui component libraries">
+            <div class="tool-card-content">
+              <div class="tool-tag">UI Components</div>
+              <a class="card-link" href="https://www.hover.dev/" target="_blank" rel="noopener noreferrer"><h2>Hover</h2></a>
+              <p>React component library featuring hover effects and interactive animations.</p>
+              <img src="../../assets/website-previews/hover.png" alt="Hover preview" class="tool-image">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tools-section" style="margin-top: 20px;" id="creative-kits">
+        <h2 class="category-heading">Creative Kits</h2>
+        <div class="videos-grid">
+          <div class="Tools" data-genres="design inspiration assets">
+            <div class="tool-card-content">
+              <div class="tool-tag">Creative</div>
+              <a class="card-link" href="https://www.behance.net/" target="_blank" rel="noopener noreferrer"><h2>Behance</h2></a>
+              <p>Top-tier portfolio gallery and design inspiration community.</p>
+              <img src="../../assets/website-previews/behance.png" alt="Behance preview" class="tool-image">
+            </div>
+          </div>
+          <div class="Tools" data-genres="design inspiration assets">
+            <div class="tool-card-content">
+              <div class="tool-tag">Creative</div>
+              <a class="card-link" href="https://lottiefiles.com/" target="_blank" rel="noopener noreferrer"><h2>LottieFiles</h2></a>
+              <p>Lightweight animation library with free Lottie assets and editing tools.</p>
+              <img src="../../assets/website-previews/lottiefiles.png" alt="LottieFiles preview" class="tool-image">
+            </div>
+          </div>
+          <div class="Tools" data-genres="design inspiration assets">
+            <div class="tool-card-content">
+              <div class="tool-tag">Creative</div>
+              <a class="card-link" href="https://www.pexels.com/" target="_blank" rel="noopener noreferrer"><h2>Pexels</h2></a>
+              <p>Free stock photos and video content for high-quality UI mockups.</p>
+              <img src="../../assets/website-previews/pexels.png" alt="Pexels preview" class="tool-image">
+            </div>
+          </div>
+          <div class="Tools" data-genres="design inspiration assets">
+            <div class="tool-card-content">
+              <div class="tool-tag">Creative</div>
+              <a class="card-link" href="https://unsplash.com/" target="_blank" rel="noopener noreferrer"><h2>Unsplash</h2></a>
+              <p>High-resolution royalty-free photos for visually rich web designs.</p>
+              <img src="../../assets/website-previews/unsplash.png" alt="Unsplash preview" class="tool-image">
+            </div>
+          </div>
+          <div class="Tools" data-genres="design inspiration assets">
+            <div class="tool-card-content">
+              <div class="tool-tag">Creative</div>
+              <a class="card-link" href="https://dribbble.com/" target="_blank" rel="noopener noreferrer"><h2>Dribbble</h2></a>
+              <p>Community platform for designers to showcase and discover creative designs.</p>
+              <img src="../../assets/website-previews/dribbble.png" alt="Dribbble preview" class="tool-image">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tools-section" style="margin-top: 20px;" id="developer-utilities">
+        <h2 class="category-heading">Developer Utilities</h2>
+        <div class="videos-grid">
+          <div class="Tools" data-genres="developer utilities">
+            <div class="tool-card-content">
+              <div class="tool-tag">Utilities</div>
+              <a class="card-link" href="https://www.fontshare.com/" target="_blank" rel="noopener noreferrer"><h2>Fontshare</h2></a>
+              <p>Fast, open font library for modern typography and UI design.</p>
+              <img src="../../assets/website-previews/fontshare.png" alt="Fontshare preview" class="tool-image">
+            </div>
+          </div>
+          <div class="Tools" data-genres="developer utilities">
+            <div class="tool-card-content">
+              <div class="tool-tag">Utilities</div>
+              <a class="card-link" href="https://responsively.app/" target="_blank" rel="noopener noreferrer"><h2>Responsively App</h2></a>
+              <p>Responsive design tester with multi-device sync for faster development.</p>
+              <img src="../../assets/website-previews/responsively.png" alt="Responsively App preview" class="tool-image">
+            </div>
+          </div>
+          <div class="Tools" data-genres="developer utilities">
+            <div class="tool-card-content">
+              <div class="tool-tag">Utilities</div>
+              <a class="card-link" href="https://cursify.ui-layouts.com/" target="_blank" rel="noopener noreferrer"><h2>Cursify</h2></a>
+              <p>Cursor animation library for React & Next.js with themed effects.</p>
+              <img src="../../assets/website-previews/cursify.png" alt="Cursify preview" class="tool-image">
+            </div>
+          </div>
+          <div class="Tools" data-genres="developer utilities">
+            <div class="tool-card-content">
+              <div class="tool-tag">Utilities</div>
+              <a class="card-link" href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer"><h2>Google Fonts</h2></a>
+              <p>Trusted web font library with rapid integration for UI prototypes.</p>
+              <img src="../../assets/website-previews/googlefonts.png" alt="Google Fonts preview" class="tool-image">
+            </div>
+          </div>
+        </div>
+      </section>    </section>
+  </main>
+
+  <script src="../../script.js"></script>
+  <script src="../../search.js"></script>
 </body>
 </html>

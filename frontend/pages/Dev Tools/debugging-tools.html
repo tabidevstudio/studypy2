@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Debugging Tools | Studypy</title>
+    <title>Debugging Tools | StudyPY</title>
     <link rel="stylesheet" href="../../style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
     <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
     <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
@@ -16,21 +16,344 @@
     <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
 </head>
 <body>
+
     <div id="navbar-placeholder"></div>
 
     <main class="main">
-        <br> <br> <br>
-        <div class="tools-page">
-            <div class="tools-badge"><i class='bx bx-bug'></i> Debugging Tools</div>
-            <h1 class="tools-title">Debugging Tools</h1>
-            <p class="tools-subtitle">Master the art of debugging with professional-grade tools. Find and fix bugs faster, understand code execution, and profile performance.</p>
+        <div class="ide-page">
 
-            <div id="tools-container" data-page="debugging-tools"></div>
+            <!-- Header -->
+            <div class="ide-badge">
+                <i class='bx bx-bug'></i>
+                Find & Fix Faster
+            </div>
+            <h1 class="ide-title">Debugging Tools</h1>
+            <p class="ide-subtitle">
+                A curated set of tools to help you find bugs, analyze performance,
+                test APIs, and write cleaner code across every language and platform.
+            </p>
+
+            <!-- Filter buttons -->
+            <div class="ide-filters">
+                <button class="ide-filter-btn active" data-filter="all">All</button>
+                <button class="ide-filter-btn" data-filter="free">Free</button>
+                <button class="ide-filter-btn" data-filter="browser">Browser</button>
+                <button class="ide-filter-btn" data-filter="python">Python</button>
+                <button class="ide-filter-btn" data-filter="java">Java</button>
+                <button class="ide-filter-btn" data-filter="cpp">C/C++</button>
+                <button class="ide-filter-btn" data-filter="api">API Testing</button>
+                <button class="ide-filter-btn" data-filter="linting">Linting</button>
+            </div>
+
+            <!-- Table -->
+            <div class="ide-table-wrap">
+                <table class="ide-table">
+                    <thead>
+                        <tr>
+                            <th>Tool</th>
+                            <th>Category</th>
+                            <th>Best For</th>
+                            <th>Description</th>
+                            <th>Access</th>
+                        </tr>
+                    </thead>
+                    <tbody id="debug-tbody">
+
+                        <!-- Chrome DevTools -->
+                        <tr data-tags="free browser">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg" alt="Chrome DevTools">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Chrome DevTools</div>
+                                        <div class="ide-maker">Google</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag cyan">Browser Debugger</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag cyan">Web Dev</span></div></td>
+                            <td><p class="ide-desc">Built into Chrome — inspect HTML/CSS, debug JavaScript, monitor network requests, and analyze page performance in real time.</p></td>
+                            <td>
+                                <a href="https://developer.chrome.com/docs/devtools" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-link-external'></i> Built-in
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Firefox DevTools -->
+                        <tr data-tags="free browser">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firefox/firefox-original.svg" alt="Firefox DevTools">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Firefox DevTools</div>
+                                        <div class="ide-maker">Mozilla</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag cyan">Browser Debugger</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag cyan">CSS & Layout</span></div></td>
+                            <td><p class="ide-desc">Firefox's built-in developer tools with an excellent CSS grid/flexbox inspector, JavaScript debugger, and network monitor.</p></td>
+                            <td>
+                                <a href="https://firefox-source-docs.mozilla.org/devtools-user/" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-link-external'></i> Built-in
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- GDB -->
+                        <tr data-tags="free cpp">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo" style="font-size:1.3rem;">🔍</div>
+                                    <div>
+                                        <div class="ide-name">GDB</div>
+                                        <div class="ide-maker">GNU Project</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag coral">CLI Debugger</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag coral">C / C++</span></div></td>
+                            <td><p class="ide-desc">The GNU Debugger — the standard debugger for C and C++ programs. Set breakpoints, inspect variables, and step through code execution.</p></td>
+                            <td>
+                                <a href="https://www.sourceware.org/gdb/" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-download'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- pdb -->
+                        <tr data-tags="free python">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="pdb">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">pdb</div>
+                                        <div class="ide-maker">Python Standard Library</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag green">CLI Debugger</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag green">Python</span></div></td>
+                            <td><p class="ide-desc">Python's built-in interactive debugger. Set breakpoints with `breakpoint()`, step through code, and inspect variables without installing anything.</p></td>
+                            <td>
+                                <a href="https://docs.python.org/3/library/pdb.html" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-link-external'></i> Built-in
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- JDB -->
+                        <tr data-tags="free java">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="JDB">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">JDB</div>
+                                        <div class="ide-maker">Oracle</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag amber">CLI Debugger</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag amber">Java</span></div></td>
+                            <td><p class="ide-desc">The Java Debugger included with the JDK. Debug Java programs from the command line — set breakpoints, inspect threads, and evaluate expressions.</p></td>
+                            <td>
+                                <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jdb.html" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-link-external'></i> Built-in
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Postman -->
+                        <tr data-tags="free api">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Postman</div>
+                                        <div class="ide-maker">Postman Inc.</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag purple">API Testing</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag purple">Backend Dev</span></div></td>
+                            <td><p class="ide-desc">The most popular API testing tool. Send HTTP requests, inspect responses, write automated tests, and mock APIs during development.</p></td>
+                            <td>
+                                <a href="https://www.postman.com/downloads/" target="_blank" class="ide-btn download">
+                                    <i class='bx bx-download'></i> Download
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Insomnia -->
+                        <tr data-tags="free api">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo" style="font-size:1.3rem;">😴</div>
+                                    <div>
+                                        <div class="ide-name">Insomnia</div>
+                                        <div class="ide-maker">Kong Inc.</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag purple">API Testing</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag gray">REST & GraphQL</span></div></td>
+                            <td><p class="ide-desc">A lightweight, open-source API client for REST and GraphQL. Clean interface, environment variables, and request chaining for complex workflows.</p></td>
+                            <td>
+                                <a href="https://insomnia.rest/download" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-download'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- ESLint -->
+                        <tr data-tags="free linting">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" alt="ESLint">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">ESLint</div>
+                                        <div class="ide-maker">OpenJS Foundation</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag cyan">Linter</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag cyan">JavaScript</span></div></td>
+                            <td><p class="ide-desc">The standard linting tool for JavaScript and TypeScript. Catches syntax errors, enforces code style, and helps prevent common bugs before runtime.</p></td>
+                            <td>
+                                <a href="https://eslint.org" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-link-external'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Pylint -->
+                        <tr data-tags="free linting python">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Pylint">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Pylint</div>
+                                        <div class="ide-maker">PyCQA</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag green">Linter</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag green">Python</span></div></td>
+                            <td><p class="ide-desc">A comprehensive Python linter that checks for errors, enforces coding standards, and looks for code smells. Integrates with VS Code and PyCharm.</p></td>
+                            <td>
+                                <a href="https://pylint.readthedocs.io" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-link-external'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Valgrind -->
+                        <tr data-tags="free cpp">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo" style="font-size:1.3rem;">🧠</div>
+                                    <div>
+                                        <div class="ide-name">Valgrind</div>
+                                        <div class="ide-maker">Valgrind Developers</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag coral">Memory Analyzer</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag coral">C / C++</span></div></td>
+                            <td><p class="ide-desc">Detects memory leaks, invalid memory access, and threading errors in C/C++ programs. Essential for systems programming courses.</p></td>
+                            <td>
+                                <a href="https://valgrind.org/downloads/" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-download'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- VisualVM -->
+                        <tr data-tags="free java">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="VisualVM">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">VisualVM</div>
+                                        <div class="ide-maker">Oracle / GraalVM</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag amber">Profiler</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag amber">Java</span></div></td>
+                            <td><p class="ide-desc">A visual tool for monitoring and profiling Java applications. Analyze CPU usage, memory consumption, thread activity, and heap dumps.</p></td>
+                            <td>
+                                <a href="https://visualvm.github.io/download.html" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-download'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Checkstyle -->
+                        <tr data-tags="free linting java">
+                            <td>
+                                <div class="ide-name-cell">
+                                    <div class="ide-logo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Checkstyle">
+                                    </div>
+                                    <div>
+                                        <div class="ide-name">Checkstyle</div>
+                                        <div class="ide-maker">Checkstyle Team</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="ide-tags"><span class="ide-tag amber">Linter</span></div></td>
+                            <td><div class="ide-tags"><span class="ide-tag amber">Java</span></div></td>
+                            <td><p class="ide-desc">Helps Java developers write code that adheres to a coding standard. Automates checking of Java code for compliance with Google or Sun style guides.</p></td>
+                            <td>
+                                <a href="https://checkstyle.sourceforge.io" target="_blank" class="ide-btn free">
+                                    <i class='bx bx-link-external'></i> Free
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </main>
 
     <script src="../../script.js"></script>
-    <script src="../../search.js"></script>
-    <script src="../../links.js"></script>
+    <script>
+        document.querySelectorAll('.ide-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.ide-filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                document.querySelectorAll('#debug-tbody tr').forEach(row => {
+                    if (filter === 'all') {
+                        row.style.display = '';
+                    } else {
+                        const tags = row.dataset.tags || '';
+                        row.style.display = tags.includes(filter) ? '' : 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
