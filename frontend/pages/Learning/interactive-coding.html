@@ -1,52 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Interactive Coding | StudyPY</title>
-        <link rel="stylesheet" href="../../style.css">
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-        <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
-        <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
-        <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
-        <meta name="apple-mobile-web-app-title" content="StudyPY" />
-        <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
-    </head>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Coding | Studypy</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="StudyPY" />
+    <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
 
+    <main class="main">
+        <br> <br> <br>
+        <div class="learning-page">
+            <div class="learning-badge"><i class='bx bx-code'></i> Learn by Doing</div>
+            <h1 class="learning-title">Interactive Coding</h1>
+            <p class="learning-subtitle">Learn programming through hands-on practice. Solve challenges, build projects, and get instant feedback in real-time.</p>
+            <div id="searchbar">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true" style="color:#9bc3e3;"></i>
+                <label for="search-input">Search</label>
+                <input type="search" id="search-input" placeholder="Search for platforms, courses, or topics..." aria-label="Search coding platforms">
+            </div>
 
-    <body>
-        <!-- The navbar is injected here -->
-        <div id="navbar-placeholder"></div>
+            <div id="tools-container" data-page="interactive-coding"></div>
+        </div>
+    </main>
 
-        <!-- The Contents and links of this page-->
-
-        
-        
-        <main class="main">
-            <section class="page-hero">
-                <br> <br> <br>
-                <div class="hero-inner">
-                    <h1>StudyPY</h1>
-                    <p> Master programming with expert-led video courses and comprehensive learning paths</p>
-                    <div id="searchbar">
-                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true" style="color:#9bc3e3;"></i>
-                        <label for="search-input">Search</label>
-                        <input type="search" id="search-input" placeholder="Search for courses, topics, or instructors..." aria-label="Search videos">
-                    </div>
-                </div>
-            </section>
-            <br> <br>
-
-                <div id="tools-container" data-page="interactive-coding"></div>
-        </main>
-
-        <!-- The Contents and links of this page ends here-->
-
-        <script src="../../script.js"></script>
-        <script src="../../search.js"></script>
-        <script src="../../links.js"></script>
-    </body>
+    <script src="../../script.js"></script>
+    <script src="../../search.js"></script>
+    <script src="../../links.js"></script>
+</body>
 </html>

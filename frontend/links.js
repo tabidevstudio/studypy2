@@ -1,5 +1,29 @@
 const BASE_URL = window.ENV_BASE_URL || "http://localhost:3000";
 
+function getCardPrefix(pageName) {
+  const prefixes = {
+    "interview-prep": "career",
+    "job-boards": "career",
+    "resume-building": "career",
+    "coding-problems": "challenge",
+    "competition": "challenge",
+    "projectideas": "challenge",
+    "discord-servers": "community",
+    "forums": "community",
+    "study-groups": "community",
+    "debugging-tools": "tools",
+    "version-control": "tools",
+    "fun-tools": "tools",
+    "ides": "tools",
+    "official-docs": "docs",
+    "video-tutorials": "learning",
+    "interactive-coding": "learning",
+    "book-and-ebooks": "learning",
+    "online-courses": "learning"
+  };
+  return prefixes[pageName] || "tools";
+}
+
 async function getLinks() {
   const response = await fetch(`${BASE_URL}/links`);
   if (!response.ok) throw new Error("Failed to fetch links");
@@ -29,17 +53,58 @@ async function loadLinks() {
       return;
     }
 
-    allLinks.forEach(link => {
-      const card = document.createElement("div");
-      card.className = "Tools";
-      card.innerHTML = `
-        <a class="links" href="${link.url}" target="_blank">
-          <h2>${link.title}</h2>
-          <p>${link.description}</p>
-        </a>
-      `;
-      container.appendChild(card);
-    });
+    // Special handling for video tutorials with embedded iframes
+    if (pageName === "video-tutorials") {
+      const grid = document.createElement("div");
+      grid.className = "learning-grid";
+
+      allLinks.forEach(link => {
+        const card = document.createElement("div");
+        card.className = "Tools";
+        card.innerHTML = `
+          <a class="card-link" href="${link.url}" target="_blank" title="${link.title}">
+            <h2>${link.title}</h2>
+          </a>
+          <div class="video-preview">
+            <iframe data-src="${link.url}" title="${link.title}" allowfullscreen></iframe>
+          </div>
+          <h5>${link.description}</h5>
+        `;
+        grid.appendChild(card);
+      });
+
+      container.appendChild(grid);
+    } else {
+      // Regular card rendering for other pages
+      const prefix = getCardPrefix(pageName);
+      const gridClass = `${prefix}-grid`;
+      const cardClass = `${prefix}-card`;
+      const cardBodyClass = `${prefix}-card-body`;
+      const cardNameClass = `${prefix}-card-name`;
+      const cardDescClass = `${prefix}-card-desc`;
+      const cardFooterClass = `${prefix}-card-footer`;
+      const btnClass = `${prefix}-btn-visit`;
+
+      const grid = document.createElement("div");
+      grid.className = gridClass;
+
+      allLinks.forEach(link => {
+        const card = document.createElement("div");
+        card.className = cardClass;
+        card.innerHTML = `
+          <div class="${cardBodyClass}">
+            <div class="${cardNameClass}">${link.title}</div>
+            <div class="${cardDescClass}">${link.description}</div>
+          </div>
+          <div class="${cardFooterClass}">
+            <a href="${link.url}" target="_blank" class="${btnClass}">Visit</a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      container.appendChild(grid);
+    }
 
   } catch (err) {
     console.error("Failed to load links:", err);

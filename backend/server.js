@@ -37,7 +37,7 @@ const path = require("path");
 
 app.get("/links", (req, res) => {
   try {
-    const filePath = path.join(__dirname, "/data/data.json");
+    const filePath = path.join(__dirname, "../frontend/data/data.json");
     const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
     res.json(data);
   } catch (err) {

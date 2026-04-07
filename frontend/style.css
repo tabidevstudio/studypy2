@@ -2961,3 +2961,188 @@ h4 {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* ── Career, Challenge, Community, Tools, Docs, Learning Pages ─────────────────────── */
+
+.career-page, .challenge-page, .community-page, .tools-page, .docs-page, .learning-page {
+  min-height: 100vh;
+  padding: 5rem 2.5rem 4rem;
+  background-color: #16171B;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.career-badge, .challenge-badge, .community-badge, .tools-badge, .docs-badge, .learning-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.85rem;
+  background: rgba(145, 218, 235, 0.08);
+  border: 1px solid rgba(145, 218, 235, 0.2);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgb(145, 218, 235);
+  margin-bottom: 1rem;
+  letter-spacing: 0.06em;
+}
+
+.career-title, .challenge-title, .community-title, .tools-title, .docs-title, .learning-title {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  letter-spacing: -0.8px;
+}
+
+.career-subtitle, .challenge-subtitle, .community-subtitle, .tools-subtitle, .docs-subtitle, .learning-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 750px;
+  font-weight: 300;
+}
+
+.career-grid, .challenge-grid, .community-grid, .tools-grid, .docs-grid, .learning-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.career-card, .challenge-card, .community-card, .tools-card, .docs-card, .learning-card {
+  background: #1c1d22;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.career-card:hover, .challenge-card:hover, .community-card:hover, .tools-card:hover, .docs-card:hover, .learning-card:hover {
+  border-color: rgba(145, 218, 235, 0.25);
+  transform: translateY(-2px);
+}
+
+.career-card-body, .challenge-card-body, .community-card-body, .tools-card-body, .docs-card-body, .learning-card-body {
+  padding: 1.25rem;
+  flex: 1;
+}
+
+.career-card-icon, .challenge-card-icon, .community-card-icon, .tools-card-icon, .docs-card-icon, .learning-card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+}
+
+.career-card-name, .challenge-card-name, .community-card-name, .tools-card-name, .docs-card-name, .learning-card-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.career-card-desc, .challenge-card-desc, .community-card-desc, .tools-card-desc, .docs-card-desc, .learning-card-desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.career-card-footer, .challenge-card-footer, .community-card-footer, .tools-card-footer, .docs-card-footer, .learning-card-footer {
+  padding: 0 1.25rem 1.25rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.career-btn-visit, .challenge-btn-visit, .community-btn-visit, .tools-btn-visit, .docs-btn-visit, .learning-btn-visit {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  background: rgba(70, 168, 243, 0.12);
+  border: 1px solid rgba(145, 218, 235, 0.2);
+  color: rgb(145, 218, 235);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 0.15s, border-color 0.15s;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.career-btn-visit:hover, .challenge-btn-visit:hover, .community-btn-visit:hover, .tools-btn-visit:hover, .docs-btn-visit:hover, .learning-btn-visit:hover {
+  background: rgba(70, 168, 243, 0.2);
+  border-color: rgba(145, 218, 235, 0.4);
+}
+
+/* ── Tools Search Bar (Fun Tools Only) ───────────────────────────────────────────── */
+.tools-search-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  max-width: 600px;
+  margin: 0 auto 32px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(145, 218, 235, 0.2);
+  transition: all 0.3s ease;
+  color: rgba(145, 218, 235, 0.7);
+}
+
+.tools-search-container:focus-within {
+  border-color: rgba(145, 218, 235, 0.5);
+  background: rgba(145, 218, 235, 0.05);
+  box-shadow: 0 0 0 3px rgba(145, 218, 235, 0.1);
+}
+
+.tools-search-container i {
+  font-size: 1.2rem;
+}
+
+.tools-search-bar {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  outline: none;
+  font-size: 0.95rem;
+  padding: 0;
+}
+
+.tools-search-bar::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .career-grid, .challenge-grid, .community-grid, .tools-grid, .docs-grid, .learning-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .career-page, .challenge-page, .community-page, .tools-page, .docs-page, .learning-page {
+    padding: 4.5rem 1rem 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .career-page, .challenge-page, .community-page, .tools-page, .docs-page, .learning-page {
+    padding: 4.5rem 1rem 3rem;
+  }
+
+  .career-title, .challenge-title, .community-title, .tools-title, .docs-title, .learning-title {
+    font-size: 2rem;
+  }
+
+  .career-grid, .challenge-grid, .community-grid, .tools-grid, .docs-grid, .learning-grid {
+    grid-template-columns: 1fr;
+  }
