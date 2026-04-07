@@ -1507,14 +1507,15 @@ color: #149CEA;
   display: flex;
   align-content: center;
   align-items: center;
-  margin: 130px 0px 0px 110px;
+  margin: 130px 0px 0px 0px;
 }
 
 .DocumentationLanguages{
+  justify-content: center;
   align-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 20px;
   display: flex;
   margin: 0px 0px 100px 0px;
 
@@ -1544,7 +1545,6 @@ color: #149CEA;
 .InfoForLang{
   flex-direction: column;
   display: flex;
-  padding: 20px;
 }
 
 .InfoForLang p{
@@ -1554,7 +1554,8 @@ color: #149CEA;
   border-bottom: none;
 }
 
-.InfoForLang button{
+.btnfordocu{
+  width: 600px;
   border-top: none;
   border: 1px solid rgb(255, 255, 255);
   border-bottom-left-radius: 20px;

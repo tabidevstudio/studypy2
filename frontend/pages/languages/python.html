@@ -13,72 +13,75 @@
 
     <div id="navbar-placeholder"></div>
 
-    <main class="mainlanguages">
+    <div class="main">
+        <main class="mainlanguages">
 
-        <section class="DocumentationLanguages">
-            <div class="InfoForLang">
-                <div class="ImgAndTitle">
-                <img src="../../assets/images/Python-logo-notext.svg.webp" alt="">
-                <h1>Python</h1>
-                </div>
-                <p>Python is a high-level, versatile programming language known for its simplicity and readability. 
-                It is widely used for web development, data analysis, artificial intelligence, automation, and more, making it ideal for both beginners and professionals.
-                </p>
-                <button>Click For More Info</button>
-            </div>
-            <iframe 
-                width="560" 
-                height="315" 
-                src="https://www.youtube.com/embed/kqtD5dpn9C8" 
-                title="YouTube Video" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </section>
-
-        <section>
-            <div id="examples-panel"></div>
-            <div class="sp-compiler" id="compiler-python">
-                <div class="sp-compiler__header">
-                    <div class="sp-compiler__lang-badge">
-                    <span class="dot"></span>
-                    Python 3.14
+            <section class="DocumentationLanguages">
+                <div class="InfoForLang">
+                    <div class="ImgAndTitle">
+                    <img src="../../assets/images/Python-logo-notext.svg.webp" alt="">
+                    <h1>Python</h1>
                     </div>
-                    <div class="sp-compiler__actions">
-                    <button class="sp-btn-clear">Clear</button>
-                    <button class="sp-btn-run">
-                        <svg viewBox="0 0 16 16"><path d="M3 2l10 6-10 6V2z"/></svg>
-                        Run
-                    </button>
-                    </div>
+                    <p>Python is a high-level, versatile programming language known for its simplicity and readability. 
+                    It is widely used for web development, data analysis, artificial intelligence, automation, and more, making it ideal for both beginners and professionals.
+                    </p>
+                    <a href="https://docs.python.org/3/"><button class="btnfordocu">Click For More Info</button></a>
                 </div>
-                
-                <div class="sp-compiler__editor-wrap">
-                    <textarea class="sp-compiler__textarea" spellcheck="false"></textarea>
-                </div>
-                
-                <div class="sp-compiler__stdin-wrap">
-                    <div class="sp-compiler__stdin-label">stdin (optional input)</div>
-                    <textarea class="sp-compiler__stdin" placeholder="e.g. Alice" rows="2"></textarea>
-                </div>
-                
-                <div class="sp-compiler__output-wrap">
-                    <div class="sp-compiler__output-header">
-                    <div class="sp-compiler__output-label">
-                        <span class="sp-output-dot"></span>
-                        Output
-                    </div>
-                    <div class="sp-compiler__stats">
-                        <span class="sp-stat-time"></span>
-                        <span class="sp-stat-mem"></span>
-                    </div>
-                    </div>
-                    <pre class="sp-compiler__output is-empty">Output will appear here...</pre>
-                </div>
-                </div>
+                <iframe 
+                    width="560" 
+                    height="315" 
+                    src="https://www.youtube.com/embed/kqtD5dpn9C8" 
+                    title="YouTube Video" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
             </section>
-    </main>
+
+            <section>
+                <div id="examples-panel"></div>
+                <div class="sp-compiler" id="compiler-python">
+                    <div class="sp-compiler__header">
+                        <div class="sp-compiler__lang-badge">
+                        <span class="dot"></span>
+                        Python 3.14
+                        </div>
+                        <div class="sp-compiler__actions">
+                        <button class="sp-btn-clear">Clear</button>
+                        <button class="sp-btn-run">
+                            <svg viewBox="0 0 16 16"><path d="M3 2l10 6-10 6V2z"/></svg>
+                            Run
+                        </button>
+                        </div>
+                    </div>
+                    
+                    <div class="sp-compiler__editor-wrap">
+                        <textarea class="sp-compiler__textarea" spellcheck="false"></textarea>
+                    </div>
+                    
+                    <div class="sp-compiler__stdin-wrap">
+                        <div class="sp-compiler__stdin-label">stdin (optional input)</div>
+                        <textarea class="sp-compiler__stdin" placeholder="e.g. Alice" rows="2"></textarea>
+                    </div>
+                    
+                    <div class="sp-compiler__output-wrap">
+                        <div class="sp-compiler__output-header">
+                        <div class="sp-compiler__output-label">
+                            <span class="sp-output-dot"></span>
+                            Output
+                        </div>
+                        <div class="sp-compiler__stats">
+                            <span class="sp-stat-time"></span>
+                            <span class="sp-stat-mem"></span>
+                        </div>
+                        </div>
+                        <pre class="sp-compiler__output is-empty">Output will appear here...</pre>
+                    </div>
+                    </div>
+                </section>
+        </main>
+    </div>
+    
     <script src="../../script.js"></script>
     <script src="../../compiler.js"></script>
     <script src="../../examples.js"></script>

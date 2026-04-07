@@ -13,75 +13,78 @@
 <body>
 
     <div id="navbar-placeholder"></div>
+    
+    <div class="main">
+        <main class="mainlanguages">
 
-    <main class="mainlanguages">
-
-        <section class="DocumentationLanguages">
-            <div class="InfoForLang">
-                <div class="ImgAndTitle">
-                <img src="../../assets/images/ISO_C++_Logo.svg.png" alt="">
-                <h1>C++</h1>
+            <section class="DocumentationLanguages">
+                <div class="InfoForLang">
+                    <div class="ImgAndTitle">
+                    <img src="../../assets/images/ISO_C++_Logo.svg.png" alt="">
+                    <h1>C++</h1>
+                    </div>
+                    <p>C++ is a powerful and versatile programming language created by Bjarne Stroustrup. 
+                    It combines speed and efficiency with advanced features like object-oriented programming, making it ideal for software, games, and high-performance applications. 
+                    C++ gives developers control over memory and system resources, allowing them to build fast and complex programs.
+                    </p>
+                    <a href="https://devdocs.io/cpp/"><button class="btnfordocu">Click For More Info</button></a>
                 </div>
-                <p>C++ is a powerful and versatile programming language created by Bjarne Stroustrup. 
-                It combines speed and efficiency with advanced features like object-oriented programming, making it ideal for software, games, and high-performance applications. 
-                C++ gives developers control over memory and system resources, allowing them to build fast and complex programs.
-                </p>
-                <button>Click For More Info</button>
-            </div>
-            <iframe 
-                width="560" 
-                height="315" 
-                src="https://www.youtube.com/embed/ZzaPdXTrSb8" 
-                title="YouTube Video" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </section>
+                <iframe 
+                    width="560" 
+                    height="315" 
+                    src="https://www.youtube.com/embed/ZzaPdXTrSb8" 
+                    title="YouTube Video" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </section>
 
 
-        <section>
-            <div id="examples-panel"></div>
-            <div class="sp-compiler" id="compiler-cpp">
-                <div class="sp-compiler__header">
-                    <div class="sp-compiler__lang-badge">
-                    <span class="dot"></span>
-                    C++ — G++ 15
+            <section>
+                <div id="examples-panel"></div>
+                <div class="sp-compiler" id="compiler-cpp">
+                    <div class="sp-compiler__header">
+                        <div class="sp-compiler__lang-badge">
+                        <span class="dot"></span>
+                        C++ — G++ 15
+                        </div>
+                        <div class="sp-compiler__actions">
+                        <button class="sp-btn-clear">Clear</button>
+                        <button class="sp-btn-run">
+                            <svg viewBox="0 0 16 16"><path d="M3 2l10 6-10 6V2z"/></svg>
+                            Run
+                        </button>
+                        </div>
                     </div>
-                    <div class="sp-compiler__actions">
-                    <button class="sp-btn-clear">Clear</button>
-                    <button class="sp-btn-run">
-                        <svg viewBox="0 0 16 16"><path d="M3 2l10 6-10 6V2z"/></svg>
-                        Run
-                    </button>
+                    
+                    <div class="sp-compiler__editor-wrap">
+                        <textarea class="sp-compiler__textarea" spellcheck="false"></textarea>
+                    </div>
+                    
+                    <div class="sp-compiler__stdin-wrap">
+                        <div class="sp-compiler__stdin-label">stdin (optional input)</div>
+                        <textarea class="sp-compiler__stdin" placeholder="e.g. 42" rows="2"></textarea>
+                    </div>
+                    
+                    <div class="sp-compiler__output-wrap">
+                        <div class="sp-compiler__output-header">
+                        <div class="sp-compiler__output-label">
+                            <span class="sp-output-dot"></span>
+                            Output
+                        </div>
+                        <div class="sp-compiler__stats">
+                            <span class="sp-stat-time"></span>
+                            <span class="sp-stat-mem"></span>
+                        </div>
+                        </div>
+                        <pre class="sp-compiler__output is-empty">Output will appear here...</pre>
                     </div>
                 </div>
-                
-                <div class="sp-compiler__editor-wrap">
-                    <textarea class="sp-compiler__textarea" spellcheck="false"></textarea>
-                </div>
-                
-                <div class="sp-compiler__stdin-wrap">
-                    <div class="sp-compiler__stdin-label">stdin (optional input)</div>
-                    <textarea class="sp-compiler__stdin" placeholder="e.g. 42" rows="2"></textarea>
-                </div>
-                
-                <div class="sp-compiler__output-wrap">
-                    <div class="sp-compiler__output-header">
-                    <div class="sp-compiler__output-label">
-                        <span class="sp-output-dot"></span>
-                        Output
-                    </div>
-                    <div class="sp-compiler__stats">
-                        <span class="sp-stat-time"></span>
-                        <span class="sp-stat-mem"></span>
-                    </div>
-                    </div>
-                    <pre class="sp-compiler__output is-empty">Output will appear here...</pre>
-                </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+    </div>
+
     <script src="../../compiler.js"></script>
     <script src="../../script.js"></script>
     <script src="../../examples.js"></script>

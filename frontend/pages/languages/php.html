@@ -14,73 +14,76 @@
 
     <div id="navbar-placeholder"></div>
 
-     <main class="mainlanguages">
+    <div class="main">
+        <main class="mainlanguages">
 
-        <section class="DocumentationLanguages">
-            <div class="InfoForLang">
-                <div class="ImgAndTitle">
-                <img src="../../assets/images/PHP-logo.svg.png" alt="">
-                <h1>PHP</h1>
+            <section class="DocumentationLanguages">
+                <div class="InfoForLang">
+                    <div class="ImgAndTitle">
+                    <img src="../../assets/images/PHP-logo.svg.png" alt="">
+                    <h1>PHP</h1>
+                    </div>
+                    <p>PHP is a popular server-side scripting language designed for web development. 
+                    It allows developers to create dynamic websites and interact with databases, making web pages responsive and data-driven. 
+                    PHP powers many websites and platforms, including WordPress.
+                    </p>
+                    <a href="https://www.php.net/docs.php"><button class="btnfordocu">Click For More Info</button></a>
                 </div>
-                <p>PHP is a popular server-side scripting language designed for web development. 
-                It allows developers to create dynamic websites and interact with databases, making web pages responsive and data-driven. 
-                PHP powers many websites and platforms, including WordPress.
-                </p>
-                <button>Click For More Info</button>
-            </div>
-            <iframe 
-                width="560" 
-                height="315" 
-                src="https://www.youtube.com/embed/zZ6vybT1HQs" 
-                title="YouTube Video" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </section>
+                <iframe 
+                    width="560" 
+                    height="315" 
+                    src="https://www.youtube.com/embed/zZ6vybT1HQs" 
+                    title="YouTube Video" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </section>
 
-        <section>
-            <div id="examples-panel"></div>
-            <div class="sp-compiler" id="compiler-php">
-                <div class="sp-compiler__header">
-                    <div class="sp-compiler__lang-badge">
-                    <span class="dot"></span>
-                    PHP 8.5
+            <section>
+                <div id="examples-panel"></div>
+                <div class="sp-compiler" id="compiler-php">
+                    <div class="sp-compiler__header">
+                        <div class="sp-compiler__lang-badge">
+                        <span class="dot"></span>
+                        PHP 8.5
+                        </div>
+                        <div class="sp-compiler__actions">
+                        <button class="sp-btn-clear">Clear</button>
+                        <button class="sp-btn-run">
+                            <svg viewBox="0 0 16 16"><path d="M3 2l10 6-10 6V2z"/></svg>
+                            Run
+                        </button>
+                        </div>
                     </div>
-                    <div class="sp-compiler__actions">
-                    <button class="sp-btn-clear">Clear</button>
-                    <button class="sp-btn-run">
-                        <svg viewBox="0 0 16 16"><path d="M3 2l10 6-10 6V2z"/></svg>
-                        Run
-                    </button>
+                    
+                    <div class="sp-compiler__editor-wrap">
+                        <textarea class="sp-compiler__textarea" spellcheck="false"></textarea>
+                    </div>
+                    
+                    <div class="sp-compiler__stdin-wrap">
+                        <div class="sp-compiler__stdin-label">stdin (optional input)</div>
+                        <textarea class="sp-compiler__stdin" placeholder="optional" rows="2"></textarea>
+                    </div>
+                    
+                    <div class="sp-compiler__output-wrap">
+                        <div class="sp-compiler__output-header">
+                        <div class="sp-compiler__output-label">
+                            <span class="sp-output-dot"></span>
+                            Output
+                        </div>
+                        <div class="sp-compiler__stats">
+                            <span class="sp-stat-time"></span>
+                            <span class="sp-stat-mem"></span>
+                        </div>
+                        </div>
+                        <pre class="sp-compiler__output is-empty">Output will appear here...</pre>
                     </div>
                 </div>
-                
-                <div class="sp-compiler__editor-wrap">
-                    <textarea class="sp-compiler__textarea" spellcheck="false"></textarea>
-                </div>
-                
-                <div class="sp-compiler__stdin-wrap">
-                    <div class="sp-compiler__stdin-label">stdin (optional input)</div>
-                    <textarea class="sp-compiler__stdin" placeholder="optional" rows="2"></textarea>
-                </div>
-                
-                <div class="sp-compiler__output-wrap">
-                    <div class="sp-compiler__output-header">
-                    <div class="sp-compiler__output-label">
-                        <span class="sp-output-dot"></span>
-                        Output
-                    </div>
-                    <div class="sp-compiler__stats">
-                        <span class="sp-stat-time"></span>
-                        <span class="sp-stat-mem"></span>
-                    </div>
-                    </div>
-                    <pre class="sp-compiler__output is-empty">Output will appear here...</pre>
-                </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+    </div>
+    
     <script src="../../compiler.js"></script>
     <script src="../../script.js"></script>
     <script src="../../examples.js"></script>
