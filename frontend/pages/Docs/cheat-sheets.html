@@ -8,294 +8,229 @@
     <link rel="stylesheet" href="../../style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
-    <style>
-        .uc-wrapper {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-            position: relative;
-            overflow: hidden;
-            background: #16171B;
-        }
-
-        .uc-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at 15% 40%, rgba(12, 78, 139, 0.45) 0%, transparent 50%),
-                radial-gradient(circle at 85% 60%, rgba(35, 76, 114, 0.35) 0%, transparent 50%),
-                radial-gradient(circle at 50% 80%, rgba(14, 73, 100, 0.2) 0%, transparent 50%);
-            animation: bgPulse 8s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes bgPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        .uc-card {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 580px;
-            width: 100%;
-        }
-
-        .uc-code {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(7rem, 20vw, 11rem);
-            font-weight: 700;
-            line-height: 1;
-            letter-spacing: -4px;
-            color: transparent;
-            -webkit-text-stroke: 2px rgba(145, 218, 235, 0.25);
-            position: relative;
-            user-select: none;
-        }
-
-        .uc-code::after {
-            content: '503';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgb(145, 218, 235) 0%, #46a8f3 50%, rgba(145, 218, 235, 0.4) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: flicker 4s ease-in-out infinite;
-        }
-
-        @keyframes flicker {
-            0%, 90%, 100% { opacity: 1; }
-            92% { opacity: 0.6; }
-            94% { opacity: 1; }
-            96% { opacity: 0.7; }
-        }
-
-        .uc-divider {
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgb(145, 218, 235), transparent);
-            margin: 4px auto 28px;
-            border-radius: 999px;
-        }
-
-        .uc-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 18px;
-            border-radius: 999px;
-            background: rgba(14, 73, 100, 0.4);
-            border: 1px solid rgba(145, 218, 235, 0.2);
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: rgb(145, 218, 235);
-            margin-bottom: 22px;
-        }
-
-        .uc-badge-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: rgb(145, 218, 235);
-            animation: blink 1.4s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(0.7); }
-        }
-
-        .uc-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(1.4rem, 4vw, 2rem);
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-        }
-
-        .uc-title span {
-            color: rgb(145, 218, 235);
-        }
-
-        .uc-sub {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            color: rgba(255,255,255,0.65);
-            line-height: 1.7;
-            margin-bottom: 10px;
-        }
-
-        .uc-thanks {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: rgba(145, 218, 235, 0.85);
-            margin-bottom: 36px;
-            letter-spacing: 0.5px;
-        }
-
-        .uc-progress-wrap {
-            width: 100%;
-            max-width: 360px;
-            margin: 0 auto 36px;
-        }
-
-        .uc-progress-label {
-            display: flex;
-            justify-content: space-between;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.72rem;
-            color: rgba(255,255,255,0.4);
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .uc-progress-track {
-            height: 4px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 999px;
-            overflow: hidden;
-        }
-
-        .uc-progress-bar {
-            height: 100%;
-            border-radius: 999px;
-            background: linear-gradient(90deg, rgb(14, 73, 100), rgb(145, 218, 235));
-            animation: progressAnim 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes progressAnim {
-            0%   { width: 20%; }
-            100% { width: 75%; }
-        }
-
-        .uc-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0.9rem 2.6rem;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #fff;
-            background: rgba(14, 73, 100, 0.5);
-            border: 1px solid rgba(145, 218, 235, 0.35);
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .uc-btn:hover {
-            transform: translateY(-4px);
-            background: rgba(14, 73, 100, 0.8);
-            border-color: rgba(145, 218, 235, 0.7);
-            box-shadow: 0 8px 28px rgba(145, 218, 235, 0.15);
-            color: #fff;
-        }
-
-        .uc-btn i {
-            font-size: 18px;
-            transition: transform 0.2s ease;
-        }
-
-        .uc-btn:hover i {
-            transform: translateX(-4px);
-        }
-
-        .uc-gear {
-            position: fixed;
-            color: rgba(145, 218, 235, 0.05);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .uc-gear-1 {
-            top: 6%;
-            right: 4%;
-            font-size: 160px;
-            animation: spinSlow 18s linear infinite;
-        }
-
-        .uc-gear-2 {
-            bottom: 8%;
-            left: 3%;
-            font-size: 110px;
-            animation: spinSlow 12s linear infinite reverse;
-        }
-
-        .uc-gear-3 {
-            top: 48%;
-            left: 1%;
-            font-size: 65px;
-            animation: spinSlow 9s linear infinite;
-        }
-
-        @keyframes spinSlow {
-            from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
-        }
-    </style>
+    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="StudyPY" />
+    <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
 </head>
 <body>
-
     <div id="navbar-placeholder"></div>
-
+ 
     <main class="main">
-        <div class="uc-wrapper">
-
-            <i class='bx bx-cog uc-gear uc-gear-1'></i>
-            <i class='bx bx-cog uc-gear uc-gear-2'></i>
-            <i class='bx bx-cog uc-gear uc-gear-3'></i>
-
-            <div class="uc-card">
-
-                <div class="uc-badge">
-                    <span class="uc-badge-dot"></span>
-                    Service Unavailable
-                </div>
-
-                <div class="uc-code">503</div>
-                <div class="uc-divider"></div>
-
-                <h1 class="uc-title">Under <span>Construction</span></h1>
-
-                <p class="uc-sub">This page is still being built. We're working hard to bring it to life — check back soon!</p>
-                <p class="uc-thanks">Thank you for your Support &#9825;</p>
-
-                <div class="uc-progress-wrap">
-                    <div class="uc-progress-label">
-                        <span>In Progress</span>
-                        <span>Coming Soon</span>
+        <br> <br> <br>
+        <div class="cs-page">
+ 
+            <div class="cs-badge"><i class='bx bx-book-open'></i> Quick Reference</div>
+            <h1 class="cs-title">Cheat Sheets </h1>
+            <p class="cs-subtitle">Concise, annotated reference cards for the commands, syntax, and concepts you'll use every day. Each entry includes a short description so you understand not just what to type — but why.</p>
+ 
+            <div class="cs-tabs">
+                <button class="cs-tab active" data-filter="all"><i class='bx bx-infinite'></i> All</button>
+                <button class="cs-tab" data-filter="languages"><i class='bx bx-code-alt'></i> Languages</button>
+                <button class="cs-tab" data-filter="devops"><i class='bx bx-git-branch'></i> DevOps</button>
+                <button class="cs-tab" data-filter="database"><i class='bx bx-data'></i> Database</button>
+                <button class="cs-tab" data-filter="algorithms"><i class='bx bx-trending-up'></i> Algorithms</button>
+                <button class="cs-tab" data-filter="web"><i class='bx bx-globe'></i> Web</button>
+            </div>
+ 
+            <div class="cs-grid">
+ 
+                <!-- Git Commands (wide) -->
+                <div class="cs-card wide" data-cat="devops">
+                    <div class="cs-card-header">
+                        <div class="cs-card-icon" style="background:#0d2010;"><i class='bx bx-git-branch' style="color:#4ade80;"></i></div>
+                        <div><div class="cs-card-title">Git Commands</div><div class="cs-card-cat">Version Control</div></div>
                     </div>
-                    <div class="uc-progress-track">
-                        <div class="uc-progress-bar"></div>
+                    <div class="cs-cmd-list">
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">git init</span><span class="cs-cmd-desc">Initializes a new Git repository in the current folder. Run this once when starting a new project.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">git clone &lt;url&gt;</span><span class="cs-cmd-desc">Downloads a remote repository to your machine. Use this to get a copy of a project from GitHub.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">git add .</span><span class="cs-cmd-desc">Stages all changed files for the next commit. Use <code style="color:rgb(145,218,235)">git add filename</code> to stage one specific file.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">git commit -m "msg"</span><span class="cs-cmd-desc">Saves a snapshot of your staged changes. Write clear messages like "Add login feature" — future you will thank you.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">git push origin main</span><span class="cs-cmd-desc">Uploads your local commits to the remote repository so others can see your changes.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">git pull</span><span class="cs-cmd-desc">Downloads and merges the latest changes from remote. Always pull before you push to avoid conflicts.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">git checkout -b &lt;name&gt;</span><span class="cs-cmd-desc">Creates a new branch and switches to it. Use branches to work on features without touching the main codebase.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">git status</span><span class="cs-cmd-desc">Shows which files are changed, staged, or untracked. Run this often — it's your map of where you are.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">git log --oneline</span><span class="cs-cmd-desc">Shows a compact list of all commits. Useful for reviewing history or finding a commit to revert to.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">git stash</span><span class="cs-cmd-desc">Temporarily saves your uncommitted changes so you can switch branches without losing work. Use <code style="color:rgb(145,218,235)">git stash pop</code> to restore.</span></div>
                     </div>
                 </div>
-
-                <a href="/index.html" class="uc-btn">
-                    <i class='bx bx-arrow-back'></i>
-                    Go Back
-                </a>
-
+ 
+                <!-- Big O -->
+                <div class="cs-card" data-cat="algorithms">
+                    <div class="cs-card-header">
+                        <div class="cs-card-icon" style="background:#130d1f;"><i class='bx bx-trending-up' style="color:#a78bfa;"></i></div>
+                        <div><div class="cs-card-title">Big O Notation</div><div class="cs-card-cat">Time Complexity</div></div>
+                    </div>
+                    <div class="cs-rows">
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label">O(1) — Constant</span><span class="cs-row-hint">Array index lookup, hash map get</span></div><span class="cs-row-val green">Best</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label">O(log n) — Logarithmic</span><span class="cs-row-hint">Binary search, balanced BST</span></div><span class="cs-row-val green">Great</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label">O(n) — Linear</span><span class="cs-row-hint">Loop through array once</span></div><span class="cs-row-val yellow">OK</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label">O(n log n) — Linearithmic</span><span class="cs-row-hint">Merge sort, quick sort</span></div><span class="cs-row-val yellow">Fair</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label">O(n²) — Quadratic</span><span class="cs-row-hint">Nested loops, bubble sort</span></div><span class="cs-row-val red">Slow</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label">O(2ⁿ) — Exponential</span><span class="cs-row-hint">Recursive Fibonacci (naive)</span></div><span class="cs-row-val red">Avoid</span></div>
+                    </div>
+                    <svg class="cs-chart" viewBox="0 0 200 55" preserveAspectRatio="none">
+                        <path d="M0 52 L200 52" stroke="rgba(255,255,255,0.06)" stroke-width="0.5" fill="none"/>
+                        <path d="M0 50 L200 50" stroke="#4ade80" stroke-width="1.2" fill="none" opacity="0.5"/>
+                        <path d="M0 50 Q100 25 200 5" stroke="#fbbf24" stroke-width="1.2" fill="none" opacity="0.5"/>
+                        <path d="M0 50 Q60 45 200 0" stroke="#f87171" stroke-width="1.2" fill="none" opacity="0.5"/>
+                    </svg>
+                </div>
+ 
+                <!-- HTTP Status Codes -->
+                <div class="cs-card" data-cat="web">
+                    <div class="cs-card-header">
+                        <div class="cs-card-icon" style="background:#1a1200;"><i class='bx bx-wifi' style="color:#fbbf24;"></i></div>
+                        <div><div class="cs-card-title">HTTP Status Codes</div><div class="cs-card-cat">Web / APIs</div></div>
+                    </div>
+                    <div class="cs-rows">
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label"><span class="cs-dot green"></span>200 OK</span><span class="cs-row-hint" style="padding-left:1.1rem">Request succeeded normally</span></div><span class="cs-row-val green">Success</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label"><span class="cs-dot green"></span>201 Created</span><span class="cs-row-hint" style="padding-left:1.1rem">New resource was made (POST)</span></div><span class="cs-row-val green">Success</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label"><span class="cs-dot yellow"></span>301 Moved</span><span class="cs-row-hint" style="padding-left:1.1rem">URL has permanently changed</span></div><span class="cs-row-val yellow">Redirect</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label"><span class="cs-dot red"></span>400 Bad Request</span><span class="cs-row-hint" style="padding-left:1.1rem">Malformed request from client</span></div><span class="cs-row-val red">Client Err</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label"><span class="cs-dot red"></span>401 Unauthorized</span><span class="cs-row-hint" style="padding-left:1.1rem">Login required to access this</span></div><span class="cs-row-val red">Client Err</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label"><span class="cs-dot red"></span>403 Forbidden</span><span class="cs-row-hint" style="padding-left:1.1rem">Logged in but no permission</span></div><span class="cs-row-val red">Client Err</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label"><span class="cs-dot red"></span>404 Not Found</span><span class="cs-row-hint" style="padding-left:1.1rem">Resource doesn't exist</span></div><span class="cs-row-val red">Client Err</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label"><span class="cs-dot red"></span>500 Internal Error</span><span class="cs-row-hint" style="padding-left:1.1rem">Something broke on the server</span></div><span class="cs-row-val red">Server Err</span></div>
+                    </div>
+                </div>
+ 
+                <!-- Linux Terminal (wide) -->
+                <div class="cs-card wide" data-cat="devops">
+                    <div class="cs-card-header">
+                        <div class="cs-card-icon" style="background:#0a1a10;"><i class='bx bx-terminal' style="color:#4ade80;"></i></div>
+                        <div><div class="cs-card-title">Linux Terminal</div><div class="cs-card-cat">Command Line</div></div>
+                    </div>
+                    <div class="cs-cmd-list">
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">ls -la</span><span class="cs-cmd-desc">Lists all files including hidden ones, with permissions and sizes. Hidden files start with a dot.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">cd &lt;folder&gt;</span><span class="cs-cmd-desc">Changes the current directory. Use <code style="color:rgb(145,218,235)">cd ..</code> to go up one level, <code style="color:rgb(145,218,235)">cd ~</code> to go home.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">mkdir -p &lt;path&gt;</span><span class="cs-cmd-desc">Creates a directory. The <code style="color:rgb(145,218,235)">-p</code> flag creates all parent directories if they don't exist yet.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">cp -r src/ dst/</span><span class="cs-cmd-desc">Copies a folder and its entire contents. Without <code style="color:rgb(145,218,235)">-r</code> it only works on single files.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">rm -rf &lt;folder&gt;</span><span class="cs-cmd-desc">Permanently deletes a folder and everything inside. No recycle bin — be very careful with this command.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">chmod 755 &lt;file&gt;</span><span class="cs-cmd-desc">Sets file permissions. 755 = owner can read/write/execute, everyone else can only read and execute.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">grep -r "text" .</span><span class="cs-cmd-desc">Searches all files in the current directory for a pattern. Great for finding where a function or variable is used.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">kill -9 &lt;PID&gt;</span><span class="cs-cmd-desc">Force-stops a process by its ID. Get the PID first using <code style="color:rgb(145,218,235)">ps aux | grep processname</code>.</span></div>
+                    </div>
+                </div>
+ 
+                <!-- SQL Queries -->
+                <div class="cs-card" data-cat="database">
+                    <div class="cs-card-header">
+                        <div class="cs-card-icon" style="background:#1a0e0a;"><i class='bx bx-data' style="color:#fb923c;"></i></div>
+                        <div><div class="cs-card-title">SQL Queries</div><div class="cs-card-cat">Database</div></div>
+                    </div>
+                    <div class="cs-cmd-list">
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">SELECT * FROM t</span><span class="cs-cmd-desc">Retrieves all columns from a table. Replace <code style="color:rgb(145,218,235)">*</code> with specific column names to fetch only what you need.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">WHERE col = val</span><span class="cs-cmd-desc">Filters rows by a condition. Combine conditions with AND / OR. Always comes after FROM.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">INNER JOIN t2 ON key</span><span class="cs-cmd-desc">Combines rows from two tables where keys match. Use LEFT JOIN to keep all rows from the left table even without a match.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">GROUP BY col</span><span class="cs-cmd-desc">Groups rows with the same value so you can use aggregate functions like COUNT, SUM, or AVG on each group.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">ORDER BY col DESC</span><span class="cs-cmd-desc">Sorts the result set. DESC = largest first, ASC = smallest first. Default is ascending.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">INSERT INTO t VALUES</span><span class="cs-cmd-desc">Adds a new row. Always specify column names explicitly to avoid errors when the table schema changes.</span></div>
+                    </div>
+                </div>
+ 
+                <!-- Python Built-ins -->
+                <div class="cs-card" data-cat="languages">
+                    <div class="cs-card-header">
+                        <div class="cs-card-icon" style="background:#0f1f10;"><i class='bx bxl-python' style="color:#4ade80;"></i></div>
+                        <div><div class="cs-card-title">Python Built-ins</div><div class="cs-card-cat">Language</div></div>
+                        <span class="cs-card-badge">v3.12</span>
+                    </div>
+                    <div class="cs-cmd-list">
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">len(x)</span><span class="cs-cmd-desc">Returns the number of items in a list, string, tuple, or dictionary.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">range(start, end)</span><span class="cs-cmd-desc">Generates a sequence of numbers for loops. <code style="color:rgb(145,218,235)">range(0, 5)</code> gives 0, 1, 2, 3, 4 — end is exclusive.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">enumerate(iterable)</span><span class="cs-cmd-desc">Loops with an automatic index — returns (index, value) pairs. Cleaner than manually incrementing a counter.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">zip(a, b)</span><span class="cs-cmd-desc">Pairs up two lists element by element. Stops at the shortest list. Great for iterating two lists together.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">sorted(list)</span><span class="cs-cmd-desc">Returns a new sorted list without modifying the original. Add <code style="color:rgb(145,218,235)">reverse=True</code> for descending order.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">isinstance(x, type)</span><span class="cs-cmd-desc">Checks if a variable is of a specific type. Returns True or False. Safer than using <code style="color:rgb(145,218,235)">type(x) ==</code>.</span></div>
+                    </div>
+                </div>
+ 
+                <!-- JavaScript -->
+                <div class="cs-card" data-cat="languages web">
+                    <div class="cs-card-header">
+                        <div class="cs-card-icon" style="background:#1a1500;"><i class='bx bxl-javascript' style="color:#fbbf24;"></i></div>
+                        <div><div class="cs-card-title">JavaScript</div><div class="cs-card-cat">Language</div></div>
+                        <span class="cs-card-badge">ES2024</span>
+                    </div>
+                    <div class="cs-cmd-list">
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">const / let</span><span class="cs-cmd-desc">Use <code style="color:rgb(145,218,235)">const</code> for values that won't change, <code style="color:rgb(145,218,235)">let</code> for those that will. Avoid <code style="color:rgb(145,218,235)">var</code> — it has unpredictable scoping.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">arr.map(fn)</span><span class="cs-cmd-desc">Creates a new array by running a function on every element. Doesn't change the original array.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">arr.filter(fn)</span><span class="cs-cmd-desc">Returns a new array with only the elements where the function returns true. Great for searching lists.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">async / await</span><span class="cs-cmd-desc">Makes asynchronous code (like fetch API calls) read like normal synchronous code. Wrap in try/catch for error handling.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">obj?.prop</span><span class="cs-cmd-desc">Optional chaining — safely accesses a property without crashing if <code style="color:rgb(145,218,235)">obj</code> is null or undefined.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">{...obj}</span><span class="cs-cmd-desc">Spread operator — copies all properties of an object. Use it to merge objects or clone without sharing a reference.</span></div>
+                    </div>
+                </div>
+ 
+                <!-- Sorting Algorithms -->
+                <div class="cs-card" data-cat="algorithms">
+                    <div class="cs-card-header">
+                        <div class="cs-card-icon" style="background:#0a1510;"><i class='bx bx-sort-alt-2' style="color:#34d399;"></i></div>
+                        <div><div class="cs-card-title">Sorting Algorithms</div><div class="cs-card-cat">Algorithms</div></div>
+                    </div>
+                    <div class="cs-rows">
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label">Bubble Sort</span><span class="cs-row-hint">Repeatedly swaps adjacent elements. Simple to understand but very slow on large data.</span></div><span class="cs-row-val red">O(n²)</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label">Selection Sort</span><span class="cs-row-hint">Finds the minimum element and places it at the front each pass.</span></div><span class="cs-row-val red">O(n²)</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label">Insertion Sort</span><span class="cs-row-hint">Fast on nearly-sorted data. Builds the sorted array one item at a time.</span></div><span class="cs-row-val yellow">O(n²)/O(n)</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label">Merge Sort</span><span class="cs-row-hint">Divide-and-conquer. Stable and consistent. Uses extra memory.</span></div><span class="cs-row-val green">O(n log n)</span></div>
+                        <div class="cs-row"><div class="cs-row-left"><span class="cs-row-label">Quick Sort</span><span class="cs-row-hint">Fast in practice. Picks a pivot and partitions around it. Unstable.</span></div><span class="cs-row-val green">O(n log n)</span></div>
+                    </div>
+                </div>
+ 
+                <!-- Regex -->
+                <div class="cs-card" data-cat="languages web">
+                    <div class="cs-card-header">
+                        <div class="cs-card-icon" style="background:#0f1520;"><i class='bx bx-code' style="color:#60a5fa;"></i></div>
+                        <div><div class="cs-card-title">Regex Patterns</div><div class="cs-card-cat">Text Matching</div></div>
+                    </div>
+                    <div class="cs-cmd-list">
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">^  and  $</span><span class="cs-cmd-desc">Anchors — <code style="color:rgb(145,218,235)">^</code> matches the start of a string, <code style="color:rgb(145,218,235)">$</code> matches the end. Used to match exact strings.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">\d  \w  \s</span><span class="cs-cmd-desc">Shorthand classes — <code style="color:rgb(145,218,235)">\d</code> = digit (0–9), <code style="color:rgb(145,218,235)">\w</code> = word character (a–z, A–Z, 0–9, _), <code style="color:rgb(145,218,235)">\s</code> = whitespace.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">*  +  ?</span><span class="cs-cmd-desc">Quantifiers — <code style="color:rgb(145,218,235)">*</code> = 0 or more, <code style="color:rgb(145,218,235)">+</code> = 1 or more, <code style="color:rgb(145,218,235)">?</code> = optional (0 or 1 time).</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">[a-z0-9]</span><span class="cs-cmd-desc">Character class — matches any lowercase letter or digit. Use <code style="color:rgb(145,218,235)">[^abc]</code> to match anything except those characters.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">{n,m}</span><span class="cs-cmd-desc">Repeat n to m times. <code style="color:rgb(145,218,235)">{3,16}</code> means at least 3 and at most 16 characters — useful for password validation.</span></div>
+                    </div>
+                </div>
+ 
+                <!-- Markdown -->
+                <div class="cs-card" data-cat="web devops">
+                    <div class="cs-card-header">
+                        <div class="cs-card-icon" style="background:#0f1520;"><i class='bx bxl-markdown' style="color:#60a5fa;"></i></div>
+                        <div><div class="cs-card-title">Markdown</div><div class="cs-card-cat">Formatting</div></div>
+                    </div>
+                    <div class="cs-cmd-list">
+                        <div class="cs-cmd-item"><span class="cs-cmd-code"># Heading</span><span class="cs-cmd-desc">Creates headings. One <code style="color:rgb(145,218,235)">#</code> = H1 (largest), up to <code style="color:rgb(145,218,235)">######</code> for H6. Used in README files and docs.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">**bold** _italic_</span><span class="cs-cmd-desc">Double asterisks for bold, single underscore or asterisk for italic. Can be combined: <code style="color:rgb(145,218,235)">**_bold italic_**</code>.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">`code` / ```block```</span><span class="cs-cmd-desc">Single backtick for inline code, triple backticks for a fenced code block. Add the language name for syntax highlighting.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">[text](url)</span><span class="cs-cmd-desc">Creates a hyperlink. The bracketed text is displayed, the URL in parentheses is where it points.</span></div>
+                        <div class="cs-cmd-item"><span class="cs-cmd-code">- item  /  1. item</span><span class="cs-cmd-desc">Creates bullet lists (use <code style="color:rgb(145,218,235)">-</code> or <code style="color:rgb(145,218,235)">*</code>) or numbered lists. Indent 2 spaces to nest items.</span></div>
+                    </div>
+                </div>
+ 
             </div>
         </div>
     </main>
-
+ 
     <script src="../../script.js"></script>
+    <script>
+        document.querySelectorAll('.cs-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.cs-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const filter = tab.dataset.filter;
+                document.querySelectorAll('.cs-card').forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = '';
+                    } else {
+                        const cat = card.dataset.cat || '';
+                        card.style.display = cat.includes(filter) ? '' : 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
