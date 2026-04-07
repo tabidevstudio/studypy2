@@ -1645,22 +1645,26 @@ h4 {
   animation: float 3.2s ease-in-out infinite;
 }
 
-/* ── Communities Style (Discord Servers) ───────────────── */
+/* ── Languages Style ───────────────── */
+
 .mainlanguages {
   flex-direction: column;
   display: flex;
   align-content: center;
   align-items: center;
-  margin: 130px 0px 0px 110px;
+  margin: 130px 0px 0px 0px;
 }
 
-.DocumentationLanguages {
+.DocumentationLanguages{
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1300px;
+  justify-content: center;
   align-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 50px;
+  gap: 20px;
   display: flex;
-  margin: 0px 0px 100px 0px;
+  margin: 0px auto 100px auto;
 
 }
 
@@ -1685,96 +1689,10 @@ h4 {
   font-size: 50px;
 }
 
-.InfoForLang {
-  flex-direction: column;
-  display: flex;
-  padding: 20px;
-}
-
-.InfoForLang p {
-  background-color: #1a264f;
-  padding: 20px;
-  border: 1px solid white;
-  border-bottom: none;
-}
-
-.InfoForLang button {
-  border-top: none;
-  border: 1px solid rgb(255, 255, 255);
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  font-size: 20px;
-  font-weight: bolder;
-  color: #0c348a;
-  padding: 15px;
-  transition: all 0.2s ease-in-out;
-}
-
-.InfoForLang button:hover {
-  background-color: #a0c9ff;
-}
-
-
-.DocumentationLanguages .InfoForLang {
-  width: 600px;
-
-}
-
-
-.DocumentationLanguages iframe {
-  border: 2px solid white;
-  border-radius: 20px;
-  height: 300px;
+.InfoForLang{
   width: 500px;
-
-}
-
-
-
-/* ── Communities Style (Discord Servers) ───────────────── */
-.mainlanguages {
   flex-direction: column;
   display: flex;
-  align-content: center;
-  align-items: center;
-  margin: 130px 0px 0px 110px;
-}
-
-.DocumentationLanguages {
-  align-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 50px;
-  display: flex;
-  margin: 0px 0px 100px 0px;
-
-}
-
-.ImgAndTitle {
-  border: 1px solid white;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-  padding: 20px;
-  background-color: #12122d;
-  gap: 20px;
-  align-content: center;
-  align-items: center;
-  display: flex;
-}
-
-.ImgAndTitle img {
-  height: 70px;
-}
-
-.ImgAndTitle h1 {
-  color: #149CEA;
-  font-size: 50px;
-}
-
-.InfoForLang {
-  flex-direction: column;
-  display: flex;
-  padding: 20px;
 }
 
 .InfoForLang p {
@@ -1784,7 +1702,8 @@ h4 {
   border-bottom: none;
 }
 
-.InfoForLang button {
+.btnfordocu{
+  width: 500px;
   border-top: none;
   border: 1px solid rgb(255, 255, 255);
   border-bottom-left-radius: 20px;
@@ -1796,18 +1715,12 @@ h4 {
   transition: all 0.2s ease-in-out;
 }
 
-.InfoForLang button:hover {
+.btnfordocu:hover{
   background-color: #a0c9ff;
 }
 
 
-.DocumentationLanguages .InfoForLang {
-  width: 600px;
-
-}
-
-
-.DocumentationLanguages iframe {
+.DocumentationLanguages iframe{
   border: 2px solid white;
   border-radius: 20px;
   height: 300px;
