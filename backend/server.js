@@ -37,7 +37,7 @@ const path = require("path");
 
 app.get("/links", (req, res) => {
   try {
-    const filePath = path.join(__dirname, "../frontend/data/data.json");
+    const filePath = path.join(__dirname, "data.json");
     const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
     res.json(data);
   } catch (err) {
@@ -45,4 +45,5 @@ app.get("/links", (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log("Backend running on http://localhost:3000"));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
