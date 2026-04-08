@@ -1,4 +1,4 @@
-const BASE_URL = window.ENV_BASE_URL || "http://localhost:3000";
+const BASE_URL = "https://your-backend-name.onrender.com";
 
 function getCardPrefix(pageName) {
   const prefixes = {
