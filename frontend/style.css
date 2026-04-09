@@ -3146,7 +3146,7 @@ h4 {
   .career-grid, .challenge-grid, .community-grid, .tools-grid, .docs-grid, .learning-grid {
     grid-template-columns: 1fr;
   }
-
+}
   /* Skeleton loading */
 @keyframes shimmer {
   0%   { background-position: 200% 0; }
@@ -3176,4 +3176,3 @@ h4 {
 .skeleton-line.sk-desc2 { height: 13px; width: 80%; }
 .skeleton-line.sk-desc3 { height: 13px; width: 65%; }
 .skeleton-line.sk-btn   { height: 34px; width: 80px; margin-top: auto; border-radius: 6px; }
-}
