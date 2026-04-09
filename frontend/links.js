@@ -36,12 +36,34 @@ async function getLinks(retries = 1) {
     } catch (err) {
       if (attempt < retries) {
         console.warn(`Fetch attempt ${attempt + 1} failed, retrying...`, err.message);
-        await new Promise(res => setTimeout(res, 3000)); // wait 3s before retry
+        await new Promise(res => setTimeout(res, 3000)); // 3 seconds cooldown for retry b
       } else {
         throw err;
       }
     }
   }
+}
+
+function showSkeletons(container, count = 6) {
+  container.innerHTML = "";
+  const grid = document.createElement("div");
+  // Temporarily use a generic grid style while loading
+  grid.style.cssText = "display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;";
+
+  for (let i = 0; i < count; i++) {
+    const card = document.createElement("div");
+    card.className = "skeleton-card";
+    card.innerHTML = `
+      <div class="skeleton-line sk-title"></div>
+      <div class="skeleton-line sk-desc"></div>
+      <div class="skeleton-line sk-desc2"></div>
+      <div class="skeleton-line sk-desc3"></div>
+      <div class="skeleton-line sk-btn"></div>
+    `;
+    grid.appendChild(card);
+  }
+
+  container.appendChild(grid);
 }
 
 async function loadLinks() {
@@ -54,8 +76,8 @@ async function loadLinks() {
     return;
   }
 
-  // Show loading state
-  container.innerHTML = "<p>Loading links...</p>";
+  // Show loading skeletons while fetching data
+ showSkeletons(container);
 
   try {
     const data = await getLinks();

@@ -3233,3 +3233,33 @@ h4 {
   .career-grid, .challenge-grid, .community-grid, .tools-grid, .docs-grid, .learning-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Skeleton loading */
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-line {
+  background: linear-gradient(90deg, #1e2a3a 25%, #2a3a4a 50%, #1e2a3a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-card {
+  background: #111827; /* matches your card bg */
+  border: 1px solid #1f2937;
+  border-radius: 10px;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 180px;
+}
+
+.skeleton-line.sk-title { height: 18px; width: 50%; }
+.skeleton-line.sk-desc  { height: 13px; width: 95%; }
+.skeleton-line.sk-desc2 { height: 13px; width: 80%; }
+.skeleton-line.sk-desc3 { height: 13px; width: 65%; }
+.skeleton-line.sk-btn   { height: 34px; width: 80px; margin-top: auto; border-radius: 6px; }
