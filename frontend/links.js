@@ -1,4 +1,4 @@
-const BASE_URL = "https://your-backend-name.onrender.com";
+const BASE_URL = "https://studypy-backend.onrender.com";
 
 function getCardPrefix(pageName) {
   const prefixes = {
@@ -24,10 +24,24 @@ function getCardPrefix(pageName) {
   return prefixes[pageName] || "tools";
 }
 
-async function getLinks() {
-  const response = await fetch(`${BASE_URL}/links`);
-  if (!response.ok) throw new Error("Failed to fetch links");
-  return response.json();
+// Retries the fetch once to handle Render cold starts (free tier spins down after inactivity)
+async function getLinks(retries = 1) {
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const response = await fetch(`${BASE_URL}/links`);
+      if (!response.ok) {
+        throw new Error(`Server returned ${response.status}: ${response.statusText}`);
+      }
+      return await response.json();
+    } catch (err) {
+      if (attempt < retries) {
+        console.warn(`Fetch attempt ${attempt + 1} failed, retrying...`, err.message);
+        await new Promise(res => setTimeout(res, 3000)); // wait 3s before retry
+      } else {
+        throw err;
+      }
+    }
+  }
 }
 
 async function loadLinks() {
@@ -40,6 +54,9 @@ async function loadLinks() {
     return;
   }
 
+  // Show loading state
+  container.innerHTML = "<p>Loading links...</p>";
+
   try {
     const data = await getLinks();
 
@@ -47,6 +64,9 @@ async function loadLinks() {
       .flatMap(category => category.pages)
       .find(page => page.name === pageName)
       ?.links ?? [];
+
+    // Clear loading message
+    container.innerHTML = "";
 
     if (allLinks.length === 0) {
       container.innerHTML = "<p>No links found for this page.</p>";
@@ -108,7 +128,10 @@ async function loadLinks() {
 
   } catch (err) {
     console.error("Failed to load links:", err);
-    container.innerHTML = "<p>Failed to load links.</p>";
+    container.innerHTML = `
+      <p>Failed to load links. The backend may be waking up — please refresh in a moment.</p>
+      <p style="font-size:0.8em;color:gray;">Error: ${err.message}</p>
+    `;
   }
 }
 
