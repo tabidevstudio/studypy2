@@ -1,140 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Studypy</title>
-        <link rel="stylesheet" href="style.css">
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="icon" type="image/png" href="assets\favicon/favicon-96x96.png" sizes="96x96" />
-        <link rel="icon" type="image/svg+xml" href="assets\favicon/favicon.svg" />
-        <link rel="shortcut icon" href="assets\favicon/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
-        <meta name="apple-mobile-web-app-title" content="StudyPY" />
-        <link rel="manifest" href="assets/favicon/site.webmanifest" />
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studypy</title>
+    <meta name="description"
+        content="All-in-one resource hub for CS/IT students. Courses, tools, docs, challenges, communities, and a built-in code compiler." />
+    <meta property="og:title" content="Studypy — Your Programming Study Hub" />
+    <meta property="og:description"
+        content="All-in-one resource hub for CS/IT students. Courses, tools, docs, challenges, communities, and a built-in code compiler." />
+    <meta property="og:image" content="https://studypy.vercel.app/assets/carl.jpg" />
+    <meta property="og:url" content="https://studypy.vercel.app/" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="StudyPY" />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+</head>
+<body>
 
-        <div id="navbar-placeholder"></div>
+    <div id="navbar-placeholder"></div>
 
-        <!-- Contents of Home Page -->
-        <main class="main">
-            <!-- Hero/Home-->
-            <section id="home" class="hero">
-                <div class="container">
-                    <div class="hero-content">
-                        <div class="hero-badge">Centralized collection of learning resources for IT/CS students</div>
-                        <h1>Learn, Code, <span class="hero-accent">Dominate!</span></h1>
-                        <p>Improve your coding/programming skills with us!!</p>
-                        <div class="cta-buttons">
-                            <a href="#explore" class="btn btn-secondary"><span>Ready to Learn?</span></a>
+    <!-- Contents of Home Page -->
+    <main class="main">
+        <!-- Hero/Home-->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">Centralized collection of learning resources for IT/CS students</div>
+                    <h1>Learn, Code, <span class="hero-accent">Dominate!</span></h1>
+                    <p>Improve your coding/programming skills with us!!</p>
+                    <div class="cta-buttons">
+                        <a href="#explore" class="btn btn-secondary"><span>Ready to Learn?</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="about">
+            <div class="about-container">
+                <div class="about-content reveal">
+                    <h2>What is StudyPy?</h2>
+                    <p>StudyPY is a comprehensive web-based learning platform designed to serve as an all-in-one hub for
+                        mastering programming and modern web technologies, bringing together essential knowledge, tools,
+                        and resources in a single accessible space.</p>
+                    <div class="cta-buttons">
+                        <a href="pages/studyPy.html" class="btn btn-secondary"><span>Read More</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="stats reveal">
+                <div class="stat">
+                    <h3>10+</h3>
+                    <p>Sites to learn from</p>
+                </div>
+                <div class="stat">
+                    <h3>100+</h3>
+                    <p>Videos to Watch</p>
+                </div>
+                <div class="stat">
+                    <h3>1000+</h3>
+                    <p>Resources Available</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explore -->
+        <section id="explore" class="explore">
+            <div class="container">
+                <div class="explore-container">
+                    <h2 class="explore-title">Get Started</h2>
+                    <p class="explore-description">Dive into our curated collection of learning materials, including
+                        video tutorials, interactive coding platforms, and comprehensive documentation to elevate your
+                        programming skills.</p>
+                    <div class="explore-cards">
+                        <div class="news-card">
+                            <div class="news-card__image"> <img src="./assets/images/OnlineCourses.png"
+                                    class="news-card__image" alt="Online Courses"> </div>
+                            <div class="news-card__body">
+                                <h3 class="news-card__title">Online Courses</h3>
+                                <p class="news-card__excerpt">Learn programming through various step-by-step lessons and
+                                    interactive coding courses featuring different educational platforms to build your
+                                    skills, learn fundamentals, or even advanced-level practices at your own pace with
+                                    guided learning paths.</p>
+                                <a class="btn btn-secondary" href="./pages/Learning/online-courses.html">click me</a>
+                            </div>
+                        </div>
+                        <div class="news-card">
+                            <div class="news-card__image"> <img src="./assets/images/videotuts.png"
+                                    class="news-card__image" alt="Video Tutorials"> </div>
+                            <div class="news-card__body">
+                                <h3 class="news-card__title">Video Tutorials</h3>
+                                <p class="news-card__excerpt">Explore our selection of video-based lessons from
+                                    professionals and digital creators, designed to guide you through programming
+                                    concepts, core fundamentals, and in-depth topics. Learn at your own pace with clear
+                                    explanations, practical examples, and thorough walkthroughs into the world of
+                                    programming.</p>
+                                <a class="btn btn-secondary" href="./pages/Learning/video-tutorials.html">click me</a>
+                            </div>
+                        </div>
+                        <div class="news-card">
+                            <div class="news-card__image"> <img src="./assets/images/Lang.png" class="news-card__image"
+                                    alt="Code Playground"> </div>
+                            <div class="news-card__body">
+                                <h3 class="news-card__title">Code Playgournd</h3>
+                                <p class="news-card__excerpt">Engage in our very own coding sandbox, featuring a wide
+                                    array of programming languages. Write, run, and test code, practicing with ease
+                                    while exploring new concepts and improving your programming skills. </p>
+                                <a class="btn btn-secondary" href="./pages/languages/python.html">click me</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
+        </section>
 
-            <!-- About -->
-            <section id="about" class="about">
-                <div class="about-container">
-                    <div class="about-content reveal">
-                        <h2>What is StudyPy?</h2>
-                        <p>StudyPY is a comprehensive web-based learning platform designed to serve as an all-in-one hub for mastering programming and modern web technologies, bringing together essential knowledge, tools, and resources in a single accessible space.</p>
-                        <div class="cta-buttons">
-                            <a href="pages/studyPy.html" class="btn btn-secondary"><span>Read More</span></a>
-                        </div>
+        <!-- Footer -->
+        <section id="footer">
+            <footer>
+                <div class="footer-container">
+                    <div class="fbox">
+                        <h4>About us</h4>
+                        <ul class="list">
+                            <li><a class="Flink" href="https://www.youtube.com/embed/dQw4w9WgXcQ" target="_blank"
+                                    rel="noopener noreferrer">Home</a></li>
+                            <li><a class="Flink" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
+                                    rel="noopener noreferrer">Dev Teams</a></li>
+                            <li><a class="Flink" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
+                                    rel="noopener noreferrer">Services</a></li>
+                            <li><a class="Flink" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
+                                    rel="noopener noreferrer">Products</a></li>
+                        </ul>
+                    </div>
+                    <div class="fbox">
+                        <h4>Feedbacks</h4>
+                        <ul class="list">
+                            <li><a class="Flink" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
+                                    rel="noopener noreferrer">Feedback form</a></li>
+                            <li><a class="Flink" href="mailto:tabidev404@gmail.com">Send Email</a></li>
+                        </ul>
+                    </div>
+                    <div class="fbox">
+                        <h4>Contact Us</h4>
+                        <ul class="social-icons">
+                            <li><a class="Flink" href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a class="Flink" href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a class="Flink" href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a class="Flink" href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="stats reveal">
-                    <div class="stat">
-                        <h3>10+</h3>
-                        <p>Sites to learn from</p>
-                    </div>
-                    <div class="stat">
-                        <h3>100+</h3>
-                        <p>Videos to Watch</p>
-                    </div>
-                    <div class="stat">
-                        <h3>1000+</h3>
-                        <p>Resources Available</p>
-                    </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2027 Tabi Dev Studio . All rights reserved</p>
                 </div>
-            </section>
+            </footer>
+        </section>
+    </main>
 
-            <!-- Explore -->
-            <section id="explore" class="explore">
-                <div class="container">
-                    <div class="explore-container"> 
-                        <h2 class="explore-title">Get Started</h2>
-                        <p class="explore-description">Dive into our curated collection of learning materials, including video tutorials, interactive coding platforms, and comprehensive documentation to elevate your programming skills.</p>
-                            <div class="explore-cards">
-                                <div class="news-card">
-                                    <div class="news-card__image"></div>
-                                    <div class="news-card__body">
-                                    <h3 class="news-card__title">Online Courses</h3>
-                                    <p class="news-card__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <a class="btn btn-secondary" href="./pages/Learning/online-courses.html">click me</a>
-                                    </div>
-                                </div>
-                                <div class="news-card">
-                                    <div class="news-card__image"></div>
-                                    <div class="news-card__body">
-                                    <h3 class="news-card__title">Video Tutorials</h3>
-                                    <p class="news-card__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <a class="btn btn-secondary" href="./pages/Learning/video-tutorials.html">click me</a>
-                                    </div>                    
-                                </div>
-                                <div class="news-card">
-                                    <div class="news-card__image"></div>
-                                    <div class="news-card__body">
-                                    <h3 class="news-card__title">Book and eBooks</h3>
-                                    <p class="news-card__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <a class="btn btn-secondary" href="./pages/Learning/book-and-ebooks.html">click me</a>
-                                    </div>
-                                </div>
-                    </div>
-                </div>
-            </section>
+    <script src="script.js"></script>
+</body>
 
-            <!-- Footer -->
-            <section id="footer">
-                <footer>
-                    <div class="footer-container">
-                        <div class="fbox">
-                            <h4>About us</h4>
-                            <ul class="list">
-                                <li><a class="Flink" href="https://www.youtube.com/embed/dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Home</a></li>
-                                <li><a class="Flink" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Dev Teams</a></li>
-                                <li><a class="Flink" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Services</a></li>
-                                <li><a class="Flink" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Products</a></li>
-                            </ul>
-                        </div>
-                        <div class="fbox">
-                            <h4>Feedbacks</h4>
-                            <ul class="list">
-                                <li><a class="Flink" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Feedback form</a></li>
-                                <li><a class="Flink" href="mailto:tabidev404@gmail.com">Send Email</a></li>
-                            </ul>
-                        </div>
-                        <div class="fbox">
-                            <h4>Contact Us</h4>
-                            <ul class="social-icons">
-                                <li><a class="Flink" href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a class="Flink" href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a class="Flink" href="#"><i class="fa fa-instagram"></i></a></li>
-                                <li><a class="Flink" href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="footer-bottom">
-                        <p>&copy; 2027 Tabi Dev Studio . All rights reserved</p>
-                    </div>
-                </footer>
-            </section>
-        </main>
-
-        <script src="script.js"></script>
-    </body>
 </html>
