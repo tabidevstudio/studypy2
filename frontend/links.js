@@ -47,18 +47,21 @@ async function getLinks(retries = 1) {
 function showSkeletons(container, count = 6) {
   container.innerHTML = "";
   const grid = document.createElement("div");
-  // Temporarily use a generic grid style while loading
-  grid.style.cssText = "display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;";
+  grid.style.cssText = "display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:2rem;";
 
   for (let i = 0; i < count; i++) {
     const card = document.createElement("div");
     card.className = "skeleton-card";
     card.innerHTML = `
-      <div class="skeleton-line sk-title"></div>
-      <div class="skeleton-line sk-desc"></div>
-      <div class="skeleton-line sk-desc2"></div>
-      <div class="skeleton-line sk-desc3"></div>
-      <div class="skeleton-line sk-btn"></div>
+      <div class="skeleton-card-body">
+        <div class="skeleton-line sk-title"></div>
+        <div class="skeleton-line sk-desc"></div>
+        <div class="skeleton-line sk-desc2"></div>
+        <div class="skeleton-line sk-desc3"></div>
+      </div>
+      <div class="skeleton-card-footer">
+        <div class="skeleton-line sk-btn"></div>
+      </div>
     `;
     grid.appendChild(card);
   }
