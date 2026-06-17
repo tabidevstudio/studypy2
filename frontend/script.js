@@ -24,6 +24,10 @@
 </nav>
  
 <div class="sidebar close">
+    <!-- Mobile-only close button -->
+    <button class="sidebar-mobile-close" aria-label="Close menu">
+        <i class='bx bx-x'></i>
+    </button>
     <div class="sidebar-header">
         <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar">
             <i class='bx bx-menu'></i>
@@ -177,6 +181,15 @@
     sidebarToggle.addEventListener("click", () => {
       sidebar.classList.toggle("close");
       syncSidebarState();
+    });
+  }
+
+  /* ─── Mobile close X button ─── */
+  const mobileCloseBtn = document.querySelector(".sidebar-mobile-close");
+  if (mobileCloseBtn) {
+    mobileCloseBtn.addEventListener("click", () => {
+      sidebar.classList.remove("mobile-open");
+      document.body.classList.remove("mobile-sidebar-active");
     });
   }
 

@@ -3159,8 +3159,9 @@ h4 {
 .skeleton-line.sk-desc3 { height: 13px; width: 65%; }
 .skeleton-line.sk-btn   { height: 34px; width: 80px; border-radius: 8px; }
 
-/* Hide mobile nav toggle by default on desktop */
-.mobile-nav-toggle {
+/* Hide mobile-only elements by default on desktop */
+.mobile-nav-toggle,
+.sidebar-mobile-close {
   display: none;
 }
 
@@ -3180,6 +3181,50 @@ h4 {
     left: 0 !important;
   }
 
+  /* ── Mobile Sidebar: X Close Button ── */
+  .sidebar-mobile-close {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s ease;
+  }
+
+  .sidebar-mobile-close:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  /* Hide desktop sidebar toggle on mobile */
+  .sidebar .sidebar-header {
+    display: none !important;
+  }
+
+  /* Padding top for nav-links since header is hidden */
+  .sidebar .nav-links {
+    padding-top: 60px !important;
+  }
+
+  /* ── Fix: force .iocn-link to stay as a horizontal flex row ── */
+  /* Desktop collapsed state uses display:block which breaks mobile layout */
+  .sidebar.close .nav-links li .iocn-link {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding-right: 8px !important;
+  }
+
   /* Force display link names and arrow icons on mobile sidebar even if closed */
   .sidebar.close .nav-links li a .link_name {
     flex: 1 !important;
@@ -3190,6 +3235,7 @@ h4 {
 
   .sidebar.close .nav-links li .iocn-link .arrow {
     display: flex !important;
+    flex: 0 0 36px !important;
   }
 
   .sidebar.close .nav-links li a i {
@@ -3202,16 +3248,9 @@ h4 {
     width: 100% !important;
     justify-content: flex-start !important;
     gap: 8px !important;
-    padding: 0 16px 0 8px !important;
-  }
-
-  /* Hide sidebar toggle button and header container on mobile */
-  .sidebar .sidebar-header {
-    display: none !important;
-  }
-
-  .sidebar .nav-links {
-    padding-top: 20px !important;
+    padding: 0 0 0 8px !important;
+    flex: 1 !important;
+    min-width: 0 !important;
   }
 
   /* Hamburger Sidebar Submenu Behavior (vertical dropdown instead of right flyout) */
