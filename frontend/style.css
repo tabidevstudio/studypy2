@@ -3258,13 +3258,32 @@ h4 {
     position: static !important;
     opacity: 1 !important;
     pointer-events: auto !important;
-    background: rgba(0, 0, 0, 0.2) !important;
-    padding-left: 20px !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-left: 2px solid rgba(255, 255, 255, 0.1) !important;
+    margin-left: 20px !important;
+    padding: 6px 0 10px 16px !important;
     display: none !important;
   }
   
   .sidebar.close .nav-links li.showMenu .sub-menu {
     display: block !important;
+  }
+
+  /* Give each sub-link more tap area and breathing room */
+  .sidebar.close .nav-links li .sub-menu a {
+    display: block !important;
+    padding: 10px 8px !important;
+    font-size: 14px !important;
+    white-space: normal !important;
+    opacity: 0.75 !important;
+    border-radius: 6px !important;
+    transition: background 0.2s, opacity 0.2s !important;
+  }
+
+  .sidebar.close .nav-links li .sub-menu a:hover,
+  .sidebar.close .nav-links li .sub-menu a:active {
+    opacity: 1 !important;
+    background: rgba(255, 255, 255, 0.07) !important;
   }
 
   .sidebar.close .nav-links li .sub-menu .link_name {
