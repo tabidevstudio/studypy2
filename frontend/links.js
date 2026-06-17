@@ -36,7 +36,7 @@ async function getLinks(retries = 1) {
     } catch (err) {
       if (attempt < retries) {
         console.warn(`Fetch attempt ${attempt + 1} failed, retrying...`, err.message);
-        await new Promise(res => setTimeout(res, 3000)); // 3 seconds cooldown for retry b
+        await new Promise(res => setTimeout(res, 3000)); // 3 seconds cooldown for retry
       } else {
         throw err;
       }
@@ -69,6 +69,20 @@ function showSkeletons(container, count = 6) {
   container.appendChild(grid);
 }
 
+/**
+ * Fires a "linksRendered" CustomEvent on the container element once cards
+ * are in the DOM. search.js listens for this event to initialise filtering
+ * AFTER the async fetch completes — fixing the DOMContentLoaded race condition.
+ */
+function dispatchRendered(container, pageName) {
+  container.dispatchEvent(
+    new CustomEvent("linksRendered", {
+      bubbles: true,
+      detail: { pageName }
+    })
+  );
+}
+
 async function loadLinks() {
   const container = document.getElementById("tools-container");
   if (!container) return;
@@ -80,7 +94,7 @@ async function loadLinks() {
   }
 
   // Show loading skeletons while fetching data
- showSkeletons(container);
+  showSkeletons(container);
 
   try {
     const data = await getLinks();
@@ -90,7 +104,7 @@ async function loadLinks() {
       .find(page => page.name === pageName)
       ?.links ?? [];
 
-    // Clear loading message
+    // Clear loading skeletons
     container.innerHTML = "";
 
     if (allLinks.length === 0) {
@@ -150,6 +164,9 @@ async function loadLinks() {
 
       container.appendChild(grid);
     }
+
+    // Notify search.js (and any other listeners) that cards are now in the DOM
+    dispatchRendered(container, pageName);
 
   } catch (err) {
     console.error("Failed to load links:", err);
