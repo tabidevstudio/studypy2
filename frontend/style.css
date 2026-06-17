@@ -346,25 +346,7 @@ body:not(.sidebar-collapsed) .main {
   display: none;
 }
 
-@media screen and (max-width: 400px) {
-  .sidebar {
-    width: 240px;
-  }
-
-  .sidebar.close {
-    width: 78px;
-  }
-
-  .main {
-    margin-left: 240px;
-    width: calc(100% - 240px);
-  }
-
-  .sidebar.close~.main {
-    margin-left: 78px;
-    width: calc(100% - 78px);
-  }
-}
+/* Removed old buggy sidebar width overrides for 400px screens */
 
 @media screen and (max-width: 900px) {
   .main {
@@ -1123,17 +1105,7 @@ h4 {
   }
 }
 
-@media screen and (max-width: 400px) {
-  #navbar-placeholder nav {
-    left: 240px;
-    width: calc(100% - 240px);
-  }
-
-  body.sidebar-collapsed #navbar-placeholder nav {
-    left: 78px;
-    width: calc(100% - 78px);
-  }
-}
+/* Removed old buggy nav offsets for 400px screens */
 
 /*VIDEO TUTORIALS PAGE*/
 .Tools.hidden-card {
@@ -3186,3 +3158,157 @@ h4 {
 .skeleton-line.sk-desc2 { height: 13px; width: 80%; }
 .skeleton-line.sk-desc3 { height: 13px; width: 65%; }
 .skeleton-line.sk-btn   { height: 34px; width: 80px; border-radius: 8px; }
+
+/* Hide mobile nav toggle by default on desktop */
+.mobile-nav-toggle {
+  display: none;
+}
+
+/* ── Mobile Responsive Overrides ── */
+@media (max-width: 768px) {
+  /* Sidebar Drawer Overlay */
+  .sidebar {
+    left: -260px !important;
+    width: 260px !important;
+    transition: left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5) !important;
+  }
+  
+  .sidebar.mobile-open {
+    left: 0 !important;
+  }
+
+  /* Hamburger Sidebar Submenu Behavior (vertical dropdown instead of right flyout) */
+  .sidebar.close .nav-links li .sub-menu {
+    position: static !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    padding-left: 20px !important;
+    display: none !important;
+  }
+  
+  .sidebar.close .nav-links li.showMenu .sub-menu {
+    display: block !important;
+  }
+
+  .sidebar.close .nav-links li .sub-menu .link_name {
+    display: none !important;
+  }
+
+  /* Main Container Offsets */
+  .main,
+  main {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 100px 15px 40px !important; /* Spacing below the fixed top nav */
+  }
+
+  body:not(.sidebar-collapsed) .main {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Top Navigation Bar */
+  #navbar-placeholder nav,
+  body.sidebar-collapsed #navbar-placeholder nav {
+    left: 0 !important;
+    width: 100% !important;
+    padding: 0.7rem 1.25rem !important;
+  }
+
+  nav ul {
+    display: none !important;
+  }
+
+  /* Reset relative offsets of nav links and logo so they align naturally on mobile */
+  nav a {
+    right: 0 !important;
+    position: static !important;
+  }
+  nav .logo-image {
+    right: 0 !important;
+    position: static !important;
+  }
+  .logo-wrap {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: auto !important;
+  }
+
+  .mobile-nav-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.2rem;
+    transition: color 0.2s;
+  }
+
+  .mobile-nav-toggle:hover {
+    color: var(--color-sky);
+  }
+
+  /* Backdrop Overlay styling */
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+    backdrop-filter: blur(4px);
+    animation: sp-fadeIn 0.3s ease;
+    display: none; /* Hidden by default */
+  }
+
+  body.mobile-sidebar-active .sidebar-backdrop {
+    display: block !important;
+  }
+
+  @keyframes sp-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Pixel-Fixed Width Element Overrides */
+  .InfoForLang {
+    width: 100% !important;
+    max-width: 500px !important;
+  }
+
+  .btnfordocu {
+    width: 100% !important;
+    max-width: 500px !important;
+  }
+
+  .DocumentationLanguages iframe {
+    width: 100% !important;
+    max-width: 500px !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  /* IDE Table Scrolling layout */
+  .ide-table-wrap {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+}
+
+@media (max-width: 480px) {
+  nav .LogoText {
+    font-size: 1.3rem !important;
+  }
+  nav .logo-image {
+    height: 40px !important;
+  }
+  
+  /* Ensure hero section titles scale nicely on narrow viewport */
+  .hero h1 {
+    font-size: 2.5rem !important;
+  }
+}

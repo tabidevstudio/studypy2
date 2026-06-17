@@ -341,3 +341,22 @@
 .sp-output-dot.success { background: var(--sp-success); }
 .sp-output-dot.error   { background: var(--sp-error); }
 .sp-output-dot.loading { background: var(--sp-cyan); animation: sp-pulse 1s infinite; }
+
+/* ── Responsive adjustments ── */
+@media (max-width: 480px) {
+  .sp-compiler__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+  }
+  .sp-compiler__actions {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+  .sp-btn-run, .sp-btn-clear {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}

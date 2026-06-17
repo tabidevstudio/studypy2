@@ -3,7 +3,10 @@
   const NAV_HTML = `
 <nav>
     <div class="container">
-        <div>
+        <div class="logo-wrap" style="display:flex; align-items:center; gap:10px;">
+            <button class="mobile-nav-toggle" aria-label="Open Menu">
+                <i class='bx bx-menu'></i>
+            </button>
             <a href="/index.html" class="logo container">
                 <img src="/assets/images/lugu-bg.png" alt="StudyPy" class="logo-image">
                 <div class="LogoText">StudyPy</div>
@@ -174,6 +177,29 @@
     sidebarToggle.addEventListener("click", () => {
       sidebar.classList.toggle("close");
       syncSidebarState();
+    });
+  }
+
+  /* ─── Mobile sidebar toggle & backdrop ─── */
+  const mobileToggle = document.querySelector(".mobile-nav-toggle");
+  if (mobileToggle) {
+    mobileToggle.addEventListener("click", () => {
+      console.log("[MOBILE SIDEBAR] Toggle clicked!");
+      sidebar.classList.toggle("mobile-open");
+      document.body.classList.toggle("mobile-sidebar-active");
+
+      let backdrop = document.querySelector(".sidebar-backdrop");
+      if (!backdrop) {
+        console.log("[MOBILE SIDEBAR] Creating backdrop element...");
+        backdrop = document.createElement("div");
+        backdrop.className = "sidebar-backdrop";
+        document.body.appendChild(backdrop);
+        backdrop.addEventListener("click", () => {
+          console.log("[MOBILE SIDEBAR] Backdrop clicked! Closing sidebar...");
+          sidebar.classList.remove("mobile-open");
+          document.body.classList.remove("mobile-sidebar-active");
+        });
+      }
     });
   }
 
