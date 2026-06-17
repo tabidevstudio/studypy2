@@ -1,5 +1,5 @@
 (function () {
-  /* ─── Inline nav/sidebar HTML (no fetch needed, works on file://) ─── */
+  /* Nav & Sidebar HTML */
   const NAV_HTML = `
 <nav>
     <div class="container">
@@ -24,7 +24,6 @@
 </nav>
  
 <div class="sidebar close">
-    <!-- Mobile-only close button -->
     <button class="sidebar-mobile-close" aria-label="Close menu">
         <i class='bx bx-x'></i>
     </button>
@@ -157,15 +156,15 @@
     </ul>
 </div>`;
 
-  /* ─── Inject into placeholder ─── */
+  /* Inject into placeholder */
   const placeholder = document.getElementById("navbar-placeholder");
   if (placeholder) {
     placeholder.innerHTML = NAV_HTML;
   }
 
-    /* ─── Sidebar toggle ─── */
-    const sidebar = document.querySelector(".sidebar");
-    window.__studypySidebarInit = true;
+  /* Sidebar toggle */
+  const sidebar = document.querySelector(".sidebar");
+  window.__studypySidebarInit = true;
 
   const syncSidebarState = () => {
     document.body.classList.toggle(
@@ -184,7 +183,7 @@
     });
   }
 
-  /* ─── Mobile close X button ─── */
+  /* Mobile close button */
   const mobileCloseBtn = document.querySelector(".sidebar-mobile-close");
   if (mobileCloseBtn) {
     mobileCloseBtn.addEventListener("click", () => {
@@ -193,22 +192,19 @@
     });
   }
 
-  /* ─── Mobile sidebar toggle & backdrop ─── */
+  /* Mobile sidebar toggle & backdrop */
   const mobileToggle = document.querySelector(".mobile-nav-toggle");
   if (mobileToggle) {
     mobileToggle.addEventListener("click", () => {
-      console.log("[MOBILE SIDEBAR] Toggle clicked!");
       sidebar.classList.toggle("mobile-open");
       document.body.classList.toggle("mobile-sidebar-active");
 
       let backdrop = document.querySelector(".sidebar-backdrop");
       if (!backdrop) {
-        console.log("[MOBILE SIDEBAR] Creating backdrop element...");
         backdrop = document.createElement("div");
         backdrop.className = "sidebar-backdrop";
         document.body.appendChild(backdrop);
         backdrop.addEventListener("click", () => {
-          console.log("[MOBILE SIDEBAR] Backdrop clicked! Closing sidebar...");
           sidebar.classList.remove("mobile-open");
           document.body.classList.remove("mobile-sidebar-active");
         });
@@ -216,12 +212,11 @@
     });
   }
 
-  /* ─── Click-based submenus ─── */
+  /* Click-based submenus */
   document.querySelectorAll(".iocn-link").forEach((iocnLink) => {
     const link = iocnLink.querySelector("a");
     if (!link) return;
 
-    // Ensure arrow element exists
     if (!iocnLink.querySelector(".arrow")) {
       const arrow = document.createElement("i");
       arrow.className = "bx bxs-chevron-down arrow";
@@ -229,7 +224,6 @@
     }
     const arrow = iocnLink.querySelector(".arrow");
 
-    // Shared toggle logic
     const toggleMenu = (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -247,7 +241,6 @@
       }
     };
 
-    // Both the category name link AND the arrow chevron open the dropdown
     link.addEventListener("click", toggleMenu);
     if (arrow) {
       arrow.style.cursor = "pointer";

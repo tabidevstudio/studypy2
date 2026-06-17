@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
-/* ── design variables ─────────────────────────────────────── */
+/* Design Variables */
 :root {
-  /* Colors */
+
   --color-sky: rgb(145, 218, 235);
   --color-sky-dim: rgba(145, 218, 235, 0.15);
   --color-sky-glow: rgba(145, 218, 235, 0.4);
@@ -89,7 +89,7 @@ ul {
 
 
 
-/* ── Main Content Area ─────────────────────────────────── */
+/* Main Content */
 
 .main {
   padding: 0px 0px 0px;
@@ -105,7 +105,7 @@ body:not(.sidebar-collapsed) .main {
   width: calc(100% - 260px);
 }
 
-/* ---- SIDEBAR ---------------------------------------------- */
+/* Sidebar */
 .sidebar {
   position: fixed;
   top: 0;
@@ -213,7 +213,7 @@ body:not(.sidebar-collapsed) .main {
   margin-left: 4px;
 }
 
-/* Arrow styles moved below with collapsed sidebar rules */
+
 
 .sidebar .nav-links li a {
   display: flex;
@@ -286,7 +286,7 @@ body:not(.sidebar-collapsed) .main {
   color: var(--color-accent);
 }
 
-/* ── Collapsed sidebar: submenu flies out to the right on click ── */
+/* Collapsed sidebar: submenu flyout */
 .sidebar.close .nav-links li .sub-menu {
   position: absolute;
   left: 100%;
@@ -303,7 +303,7 @@ body:not(.sidebar-collapsed) .main {
   z-index: 1300;
 }
 
-/* Show flyout when showMenu is active (set by JS click) */
+
 .sidebar.close .nav-links li.showMenu .sub-menu {
   opacity: 1;
   pointer-events: auto;
@@ -319,13 +319,13 @@ body:not(.sidebar-collapsed) .main {
   display: block;
 }
 
-/* Blank submenus (no children) stay hidden */
+
 .sidebar .nav-links li .sub-menu.blank {
   opacity: 0;
   pointer-events: none;
 }
 
-/* Arrow icon rotation */
+/* Arrow icon */
 .sidebar .nav-links li .iocn-link .arrow {
   min-width: 36px;
   height: 46px;
@@ -346,7 +346,7 @@ body:not(.sidebar-collapsed) .main {
   display: none;
 }
 
-/* Removed old buggy sidebar width overrides for 400px screens */
+
 
 @media screen and (max-width: 900px) {
   .main {
@@ -355,7 +355,7 @@ body:not(.sidebar-collapsed) .main {
   }
 }
 
-/* ── Navigation Bar ─────────────────────────────────────── */
+/* Navigation Bar */
 nav {
   position: fixed;
   top: 0;
@@ -407,7 +407,7 @@ nav .logo-container {
   text-decoration: none;
 }
 
-/* ──  Logo & Nav brand ──────────────────────────────────── */
+/* Logo */
 nav .logo-image {
   display: flex;
   position: relative;
@@ -479,7 +479,7 @@ nav a.active {
 }
 
 
-/* ── Hero Section ──────────────────────────────────────── */
+/* Hero Section */
 .hero {
   color: var(--color-text);
   min-height: 100vh;
@@ -749,7 +749,7 @@ nav a.active {
   letter-spacing: 1px;
 }
 
-/*explore*/
+/* Explore Section */
 .explore {
   padding: var(--space-2xl) 5%;
   position: relative;
@@ -757,10 +757,8 @@ nav a.active {
   justify-content: center;
   align-items: center;
   background-color: var(--color-bg);
-  /* base dark bg */
 }
 
-/* Circuit grid overlay sits inside .explore */
 .explore::before {
   content: '';
   position: absolute;
@@ -801,7 +799,6 @@ nav a.active {
     40px 40px;
 }
 
-/* Make sure content sits above the grid */
 .explore .container {
   position: relative;
   z-index: 1;
@@ -942,7 +939,6 @@ h5 {
 
 
 
-/* Card icon */
 #icons {
   height: 40px;
   width: 40px;
@@ -1105,9 +1101,8 @@ h4 {
   }
 }
 
-/* Removed old buggy nav offsets for 400px screens */
 
-/*VIDEO TUTORIALS PAGE*/
+/* Video Tutorials Page */
 .Tools.hidden-card {
   display: none;
 }
@@ -1124,7 +1119,6 @@ h4 {
   text-align: center;
 }
 
-/* Scoped tightly — only affects the inner paragraph inside .page-hero */
 .page-hero>.hero-inner>p {
   display: flex;
   position: relative;
@@ -1370,8 +1364,6 @@ h4 {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Video Tutorials grid overrides — scoped so they don't
-   break the homepage .Tools cards */
 #tools-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1389,7 +1381,6 @@ h4 {
   text-decoration: none;
 }
 
-/* Video page .Tools overrides */
 #tools-container.videos-grid .Tools {
   border: 1px solid rgba(14, 73, 100, 0.35);
   padding: 14px;
@@ -1888,7 +1879,6 @@ h4 {
   vertical-align: middle;
 }
 
-/* IDE name cell */
 .ide-name-cell {
   display: flex;
   align-items: center;
@@ -1929,7 +1919,6 @@ h4 {
   font-family: 'Courier New', monospace;
 }
 
-/* Tags */
 .ide-tags {
   display: flex;
   flex-wrap: wrap;
@@ -1980,7 +1969,6 @@ h4 {
   border: 1px solid rgba(248, 113, 113, 0.2);
 }
 
-/* Description */
 .ide-desc {
   font-size: 0.82rem;
   color: var(--color-text-dim);
@@ -1988,7 +1976,6 @@ h4 {
   max-width: 360px;
 }
 
-/* Acquisition buttons */
 .ide-btn {
   display: inline-flex;
   align-items: center;
@@ -2052,7 +2039,6 @@ h4 {
   transform: translateY(-1px);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .ide-page {
     padding: 1.5rem 1rem 3rem;
@@ -2069,7 +2055,6 @@ h4 {
 }
 
 
-/*Styles for Cheat Sheet Page*/
 .cs-page {
   min-height: 100vh;
   padding: 5rem 2.5rem 4rem;
@@ -2114,7 +2099,6 @@ h4 {
   margin: 0 0 2rem;
 }
 
-/* ── Tabs ── */
 .cs-tabs {
   display: flex;
   gap: 0.5rem;
@@ -2155,7 +2139,6 @@ h4 {
   font-size: 0.85rem;
 }
 
-/* ── Grid ── */
 .cs-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2170,7 +2153,6 @@ h4 {
   grid-column: span 3;
 }
 
-/* ── Card ── */
 .cs-card {
   background: #1c1d22;
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -2230,7 +2212,6 @@ h4 {
   border-radius: 4px;
 }
 
-/* ── Command list ── */
 .cs-cmd-list {
   display: flex;
   flex-direction: column;
@@ -2268,7 +2249,6 @@ h4 {
   line-height: 1.5;
 }
 
-/* ── Key-value rows ── */
 .cs-rows {
   display: flex;
   flex-direction: column;
@@ -2351,7 +2331,6 @@ h4 {
   background: #60a5fa;
 }
 
-/* ── Big O chart ── */
 .cs-chart {
   width: 100%;
   height: 55px;
@@ -2360,7 +2339,6 @@ h4 {
   overflow: hidden;
 }
 
-/* ── Responsive ── */
 @media (max-width: 960px) {
   .cs-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2398,8 +2376,6 @@ h4 {
   }
 }
 
-/*api reference page*/
-
 .api-page {
   min-height: 100vh;
   padding: 5rem 2.5rem 4rem;
@@ -2409,7 +2385,6 @@ h4 {
   font-family: 'Poppins', sans-serif;
 }
 
-/* ── Header ── */
 .api-badge {
   display: inline-flex;
   align-items: center;
@@ -2441,7 +2416,6 @@ h4 {
   margin: 0 0 2.5rem;
 }
 
-/* ── Filter tabs ── */
 .api-tabs {
   display: flex;
   gap: 0.5rem;
@@ -2478,7 +2452,6 @@ h4 {
   border-color: rgb(145, 218, 235);
 }
 
-/* ── Cards grid ── */
 .api-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2486,7 +2459,6 @@ h4 {
   margin-bottom: 4rem;
 }
 
-/* ── API Card ── */
 .api-card {
   background: #1c1d22;
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -2507,7 +2479,6 @@ h4 {
   flex: 1;
 }
 
-/* Card top row: icon + badge */
 .api-card-top {
   display: flex;
   align-items: flex-start;
@@ -2585,7 +2556,6 @@ h4 {
   margin-bottom: 1rem;
 }
 
-/* Card footer: Docs + Get Key + Try It */
 .api-card-footer {
   display: flex;
   align-items: center;
@@ -2661,7 +2631,6 @@ h4 {
   background: rgba(145, 218, 235, 0.07);
 }
 
-/* ── Try It Panel ── */
 .api-try-panel {
   display: none;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -2684,7 +2653,6 @@ h4 {
   margin-bottom: 0.25rem;
 }
 
-/* Key input row (for APIs that need a key) */
 .api-key-row {
   display: flex;
   gap: 0.5rem;
@@ -2734,7 +2702,6 @@ h4 {
   cursor: not-allowed;
 }
 
-/* Code snippet */
 .api-code-wrap {
   background: #080c12;
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -2768,7 +2735,6 @@ h4 {
   color: #fbbf24;
 }
 
-/* Response output */
 .api-response {
   background: #080c12;
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -3165,7 +3131,7 @@ h4 {
   display: none;
 }
 
-/* ── Mobile Responsive Overrides ── */
+/* Mobile Responsive */
 @media (max-width: 768px) {
   /* Sidebar Drawer Overlay */
   .sidebar,
@@ -3181,7 +3147,7 @@ h4 {
     left: 0 !important;
   }
 
-  /* ── Mobile Sidebar: X Close Button ── */
+  /* Mobile close button */
   .sidebar-mobile-close {
     display: flex !important;
     align-items: center;
@@ -3205,18 +3171,15 @@ h4 {
     background: rgba(255, 255, 255, 0.18);
   }
 
-  /* Hide desktop sidebar toggle on mobile */
   .sidebar .sidebar-header {
     display: none !important;
   }
 
-  /* Padding top for nav-links since header is hidden */
   .sidebar .nav-links {
     padding-top: 60px !important;
   }
 
-  /* ── Fix: force .iocn-link to stay as a horizontal flex row ── */
-  /* Desktop collapsed state uses display:block which breaks mobile layout */
+  /* Mobile iocn-link fix */
   .sidebar.close .nav-links li .iocn-link {
     display: flex !important;
     flex-direction: row !important;
@@ -3225,7 +3188,6 @@ h4 {
     padding-right: 8px !important;
   }
 
-  /* Force display link names and arrow icons on mobile sidebar even if closed */
   .sidebar.close .nav-links li a .link_name {
     flex: 1 !important;
     width: auto !important;
@@ -3253,7 +3215,7 @@ h4 {
     min-width: 0 !important;
   }
 
-  /* Hamburger Sidebar Submenu Behavior (vertical dropdown instead of right flyout) */
+  /* Mobile submenu */
   .sidebar.close .nav-links li .sub-menu {
     position: static !important;
     opacity: 1 !important;
@@ -3269,7 +3231,6 @@ h4 {
     display: block !important;
   }
 
-  /* Give each sub-link more tap area and breathing room */
   .sidebar.close .nav-links li .sub-menu a {
     display: block !important;
     padding: 10px 8px !important;
@@ -3295,7 +3256,7 @@ h4 {
   main {
     margin-left: 0 !important;
     width: 100% !important;
-    padding: 100px 15px 40px !important; /* Spacing below the fixed top nav */
+    padding: 100px 15px 40px !important;
   }
 
   body:not(.sidebar-collapsed) .main {
@@ -3315,7 +3276,6 @@ h4 {
     display: none !important;
   }
 
-  /* Reset relative offsets of nav links and logo so they align naturally on mobile */
   nav a {
     right: 0 !important;
     position: static !important;
@@ -3348,7 +3308,7 @@ h4 {
     color: var(--color-sky);
   }
 
-  /* Backdrop Overlay styling */
+  /* Backdrop */
   .sidebar-backdrop {
     position: fixed;
     inset: 0;
@@ -3356,7 +3316,7 @@ h4 {
     z-index: 1100;
     backdrop-filter: blur(4px);
     animation: sp-fadeIn 0.3s ease;
-    display: none; /* Hidden by default */
+    display: none;
   }
 
   body.mobile-sidebar-active .sidebar-backdrop {
@@ -3368,7 +3328,7 @@ h4 {
     to { opacity: 1; }
   }
 
-  /* Pixel-Fixed Width Element Overrides */
+  /* Fixed Width Overrides */
   .InfoForLang {
     width: 100% !important;
     max-width: 500px !important;
@@ -3401,7 +3361,6 @@ h4 {
     height: 40px !important;
   }
   
-  /* Ensure hero section titles scale nicely on narrow viewport */
   .hero h1 {
     font-size: 2.5rem !important;
   }
