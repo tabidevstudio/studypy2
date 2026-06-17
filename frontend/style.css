@@ -3188,7 +3188,7 @@ h4 {
     justify-content: center;
     position: absolute;
     top: 14px;
-    right: 14px;
+    left: 14px;
     width: 36px;
     height: 36px;
     background: rgba(255, 255, 255, 0.08);

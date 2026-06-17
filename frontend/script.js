@@ -221,14 +221,18 @@
     const link = iocnLink.querySelector("a");
     if (!link) return;
 
+    // Ensure arrow element exists
     if (!iocnLink.querySelector(".arrow")) {
       const arrow = document.createElement("i");
       arrow.className = "bx bxs-chevron-down arrow";
       iocnLink.appendChild(arrow);
     }
+    const arrow = iocnLink.querySelector(".arrow");
 
-    link.addEventListener("click", (e) => {
+    // Shared toggle logic
+    const toggleMenu = (e) => {
       e.preventDefault();
+      e.stopPropagation();
       const parentLi = iocnLink.closest("li");
       if (!parentLi) return;
 
@@ -241,6 +245,13 @@
       if (!isOpen) {
         parentLi.classList.add("showMenu");
       }
-    });
+    };
+
+    // Both the category name link AND the arrow chevron open the dropdown
+    link.addEventListener("click", toggleMenu);
+    if (arrow) {
+      arrow.style.cursor = "pointer";
+      arrow.addEventListener("click", toggleMenu);
+    }
   });
 })();
