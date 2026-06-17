@@ -3167,15 +3167,51 @@ h4 {
 /* ── Mobile Responsive Overrides ── */
 @media (max-width: 768px) {
   /* Sidebar Drawer Overlay */
-  .sidebar {
+  .sidebar,
+  .sidebar.close {
     left: -260px !important;
     width: 260px !important;
     transition: left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5) !important;
   }
   
-  .sidebar.mobile-open {
+  .sidebar.mobile-open,
+  .sidebar.close.mobile-open {
     left: 0 !important;
+  }
+
+  /* Force display link names and arrow icons on mobile sidebar even if closed */
+  .sidebar.close .nav-links li a .link_name {
+    flex: 1 !important;
+    width: auto !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .sidebar.close .nav-links li .iocn-link .arrow {
+    display: flex !important;
+  }
+
+  .sidebar.close .nav-links li a i {
+    min-width: 40px !important;
+    width: auto !important;
+    margin-left: 4px !important;
+  }
+
+  .sidebar.close .nav-links li a {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    padding: 0 16px 0 8px !important;
+  }
+
+  /* Hide sidebar toggle button and header container on mobile */
+  .sidebar .sidebar-header {
+    display: none !important;
+  }
+
+  .sidebar .nav-links {
+    padding-top: 20px !important;
   }
 
   /* Hamburger Sidebar Submenu Behavior (vertical dropdown instead of right flyout) */
