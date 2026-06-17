@@ -806,3 +806,7 @@ function initExamples(containerId, language) {
     });
   });
 }
+
+// Bind to window to preserve global access when imported as an ES6 module
+window.initExamples = initExamples;
+

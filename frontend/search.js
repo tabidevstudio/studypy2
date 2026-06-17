@@ -1,12 +1,20 @@
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * search.js - Handles searching, tab filtering, badges, lazy iframe loading,
+ * and page-load batching for StudyPy resource cards.
+ * 
+ * Works seamlessly with both static HTML cards and dynamic cards loaded via links.js.
+ */
+
+function initSearch() {
   const searchInput = document.getElementById('search-input');
-  const tools = Array.from(document.querySelectorAll('.Tools'));
   const noResults = document.getElementById('no-results');
   const loadMoreBtn = document.getElementById('load-more-btn');
+  const container = document.getElementById('tools-container');
 
-  const BATCH_SIZE = 12;
+  let tools = [];
+  let filteredTools = [];
   let currentBatch = 0;
-  let filteredTools = []; // tracks currently matching cards
+  const BATCH_SIZE = 12;
 
   const genreMap = {
     'html': 'html',
@@ -17,9 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
     'javascript': 'javascript',
     'frameworks': 'framework',
     'devops': 'devops',
-    'developer utilities': 'devutils',
-    'ui component libraries': 'ui',
-    'design inspiration & assets': 'design',
+    'developer utilities': 'developer utilities',
+    'ui components': 'ui component libraries',
+    'creative kits': 'design inspiration assets',
+    'ui component libraries': 'ui component libraries',
+    'design inspiration & assets': 'design inspiration assets',
     'performance': 'performance',
     'testing': 'testing',
     'accessibility': 'accessibility',
@@ -37,59 +47,64 @@ document.addEventListener('DOMContentLoaded', () => {
       if (el.querySelector('.tools-badges')) return;
       const data = (el.dataset.genres || 'uncategorized').toLowerCase();
       const parts = data.split(',').map(s => s.trim()).filter(Boolean);
-      const container = document.createElement('div');
-      container.className = 'tools-badges';
+      
+      const badgeContainer = document.createElement('div');
+      badgeContainer.className = 'tools-badges';
 
       const primary = document.createElement('span');
       primary.className = 'badge badge--primary';
       primary.textContent = parts[0] ? parts[0].replace(/\b\w/g, c => c.toUpperCase()) : 'General';
-      container.appendChild(primary);
+      badgeContainer.appendChild(primary);
 
       parts.slice(1).forEach(sub => {
         const subBadge = document.createElement('span');
         subBadge.className = 'badge badge--sub';
         subBadge.textContent = sub.replace(/\b\w/g, c => c.toUpperCase());
-        container.appendChild(subBadge);
+        badgeContainer.appendChild(subBadge);
       });
 
       const titleLink = el.querySelector('.card-link');
-      if (titleLink) el.insertBefore(container, titleLink);
-      else el.prepend(container);
+      if (titleLink) el.insertBefore(badgeContainer, titleLink);
+      else el.prepend(badgeContainer);
     });
   }
-
-  renderBadges();
 
   function normalize(text = '') {
     return text.toString().toLowerCase().trim();
   }
 
-  // ── UPDATED: filterTools now rebuilds filteredTools and resets batching ──
   function filterTools() {
     const q = normalize(searchInput?.value || '');
     const genre = getActiveGenre();
 
-    // Step 1: figure out which cards match the current filter/search
+    // Figure out which cards match the current filter/search
     filteredTools = tools.filter(el => {
-      const title = normalize(el.querySelector('h2')?.textContent || '');
-      const desc = normalize(el.querySelector('h5')?.textContent || '');
+      // Title: can be inside h2, or class ending with -card-name
+      const titleEl = el.querySelector('h2, [class*="-card-name"]');
+      const title = normalize(titleEl?.textContent || '');
+      
+      // Description: can be h5, p, or class ending with -card-desc
+      const descEl = el.querySelector('h5, p, [class*="-card-desc"]');
+      const desc = normalize(descEl?.textContent || '');
+
       const data = (el.dataset.genres || '').toLowerCase();
       const matchesSearch = q === '' || title.includes(q) || desc.includes(q);
       const matchesGenre = genre === 'all' || data.split(',').map(s => s.trim()).includes(genre);
       return matchesSearch && matchesGenre;
     });
 
-    // Step 2: hide ALL cards first
+    // Hide ALL cards first
     tools.forEach(el => el.style.display = 'none');
 
-    // Step 3: reset batch counter and show first batch
+    // Reset batch counter and show first batch
     currentBatch = 0;
     showNextBatch();
 
-    if (noResults) noResults.style.display = filteredTools.length === 0 ? 'block' : 'none';
+    if (noResults) {
+      noResults.style.display = filteredTools.length === 0 ? 'block' : 'none';
+    }
   }
 
-  // ── NEW: reveals the next BATCH_SIZE cards from filteredTools ──
   function showNextBatch() {
     const start = currentBatch * BATCH_SIZE;
     const end = start + BATCH_SIZE;
@@ -112,7 +127,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ── NEW: Load More button click ──
+  function setupTools() {
+    // Select cards dynamically. Matches '.Tools' (static/video) or immediate child divs of grid in tools-container
+    tools = Array.from(document.querySelectorAll('.Tools, #tools-container > div > div'));
+    renderBadges();
+    filterTools();
+  }
+
+  // Determine if we are on a dynamic page that has not loaded cards yet
+  if (container && container.dataset.page) {
+    container.addEventListener('linksRendered', () => {
+      setupTools();
+    });
+  } else {
+    // Static page, or cards are already rendered in the DOM
+    setupTools();
+  }
+
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', showNextBatch);
   }
@@ -138,10 +169,12 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', () => {
       tabButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
-      filterTools(); // ← this now also resets load more automatically
+      filterTools();
     });
   });
 
   updateActiveTab();
-  filterTools(); // ← initial load, shows first 6 cards
-});
+}
+
+// Initialize immediately as script is loaded as type="module" (deferred by default)
+initSearch();

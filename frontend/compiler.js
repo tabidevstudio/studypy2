@@ -319,3 +319,6 @@ function initCompiler(config) {
     }
   }
 }
+
+// Bind to window to preserve global access when imported as an ES6 module
+window.initCompiler = initCompiler;
