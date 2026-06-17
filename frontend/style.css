@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
-/* ── design variables ─────────────────────────────────────── */
+/* Design Variables */
 :root {
-  /* Colors */
+
   --color-sky: rgb(145, 218, 235);
   --color-sky-dim: rgba(145, 218, 235, 0.15);
   --color-sky-glow: rgba(145, 218, 235, 0.4);
@@ -89,7 +89,7 @@ ul {
 
 
 
-/* ── Main Content Area ─────────────────────────────────── */
+/* Main Content */
 
 .main {
   padding: 0px 0px 0px;
@@ -105,7 +105,7 @@ body:not(.sidebar-collapsed) .main {
   width: calc(100% - 260px);
 }
 
-/* ---- SIDEBAR ---------------------------------------------- */
+/* Sidebar */
 .sidebar {
   position: fixed;
   top: 0;
@@ -213,7 +213,7 @@ body:not(.sidebar-collapsed) .main {
   margin-left: 4px;
 }
 
-/* Arrow styles moved below with collapsed sidebar rules */
+
 
 .sidebar .nav-links li a {
   display: flex;
@@ -286,7 +286,7 @@ body:not(.sidebar-collapsed) .main {
   color: var(--color-accent);
 }
 
-/* ── Collapsed sidebar: submenu flies out to the right on click ── */
+/* Collapsed sidebar: submenu flyout */
 .sidebar.close .nav-links li .sub-menu {
   position: absolute;
   left: 100%;
@@ -303,7 +303,7 @@ body:not(.sidebar-collapsed) .main {
   z-index: 1300;
 }
 
-/* Show flyout when showMenu is active (set by JS click) */
+
 .sidebar.close .nav-links li.showMenu .sub-menu {
   opacity: 1;
   pointer-events: auto;
@@ -319,13 +319,13 @@ body:not(.sidebar-collapsed) .main {
   display: block;
 }
 
-/* Blank submenus (no children) stay hidden */
+
 .sidebar .nav-links li .sub-menu.blank {
   opacity: 0;
   pointer-events: none;
 }
 
-/* Arrow icon rotation */
+/* Arrow icon */
 .sidebar .nav-links li .iocn-link .arrow {
   min-width: 36px;
   height: 46px;
@@ -346,25 +346,7 @@ body:not(.sidebar-collapsed) .main {
   display: none;
 }
 
-@media screen and (max-width: 400px) {
-  .sidebar {
-    width: 240px;
-  }
 
-  .sidebar.close {
-    width: 78px;
-  }
-
-  .main {
-    margin-left: 240px;
-    width: calc(100% - 240px);
-  }
-
-  .sidebar.close~.main {
-    margin-left: 78px;
-    width: calc(100% - 78px);
-  }
-}
 
 @media screen and (max-width: 900px) {
   .main {
@@ -373,7 +355,7 @@ body:not(.sidebar-collapsed) .main {
   }
 }
 
-/* ── Navigation Bar ─────────────────────────────────────── */
+/* Navigation Bar */
 nav {
   position: fixed;
   top: 0;
@@ -425,7 +407,7 @@ nav .logo-container {
   text-decoration: none;
 }
 
-/* ──  Logo & Nav brand ──────────────────────────────────── */
+/* Logo */
 nav .logo-image {
   display: flex;
   position: relative;
@@ -497,7 +479,7 @@ nav a.active {
 }
 
 
-/* ── Hero Section ──────────────────────────────────────── */
+/* Hero Section */
 .hero {
   color: var(--color-text);
   min-height: 100vh;
@@ -767,7 +749,7 @@ nav a.active {
   letter-spacing: 1px;
 }
 
-/*explore*/
+/* Explore Section */
 .explore {
   padding: var(--space-2xl) 5%;
   position: relative;
@@ -775,10 +757,8 @@ nav a.active {
   justify-content: center;
   align-items: center;
   background-color: var(--color-bg);
-  /* base dark bg */
 }
 
-/* Circuit grid overlay sits inside .explore */
 .explore::before {
   content: '';
   position: absolute;
@@ -819,7 +799,6 @@ nav a.active {
     40px 40px;
 }
 
-/* Make sure content sits above the grid */
 .explore .container {
   position: relative;
   z-index: 1;
@@ -960,7 +939,6 @@ h5 {
 
 
 
-/* Card icon */
 #icons {
   height: 40px;
   width: 40px;
@@ -1123,19 +1101,8 @@ h4 {
   }
 }
 
-@media screen and (max-width: 400px) {
-  #navbar-placeholder nav {
-    left: 240px;
-    width: calc(100% - 240px);
-  }
 
-  body.sidebar-collapsed #navbar-placeholder nav {
-    left: 78px;
-    width: calc(100% - 78px);
-  }
-}
-
-/*VIDEO TUTORIALS PAGE*/
+/* Video Tutorials Page */
 .Tools.hidden-card {
   display: none;
 }
@@ -1152,7 +1119,6 @@ h4 {
   text-align: center;
 }
 
-/* Scoped tightly — only affects the inner paragraph inside .page-hero */
 .page-hero>.hero-inner>p {
   display: flex;
   position: relative;
@@ -1398,8 +1364,6 @@ h4 {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Video Tutorials grid overrides — scoped so they don't
-   break the homepage .Tools cards */
 #tools-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1417,7 +1381,6 @@ h4 {
   text-decoration: none;
 }
 
-/* Video page .Tools overrides */
 #tools-container.videos-grid .Tools {
   border: 1px solid rgba(14, 73, 100, 0.35);
   padding: 14px;
@@ -1916,7 +1879,6 @@ h4 {
   vertical-align: middle;
 }
 
-/* IDE name cell */
 .ide-name-cell {
   display: flex;
   align-items: center;
@@ -1957,7 +1919,6 @@ h4 {
   font-family: 'Courier New', monospace;
 }
 
-/* Tags */
 .ide-tags {
   display: flex;
   flex-wrap: wrap;
@@ -2008,7 +1969,6 @@ h4 {
   border: 1px solid rgba(248, 113, 113, 0.2);
 }
 
-/* Description */
 .ide-desc {
   font-size: 0.82rem;
   color: var(--color-text-dim);
@@ -2016,7 +1976,6 @@ h4 {
   max-width: 360px;
 }
 
-/* Acquisition buttons */
 .ide-btn {
   display: inline-flex;
   align-items: center;
@@ -2080,7 +2039,6 @@ h4 {
   transform: translateY(-1px);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .ide-page {
     padding: 1.5rem 1rem 3rem;
@@ -2097,7 +2055,6 @@ h4 {
 }
 
 
-/*Styles for Cheat Sheet Page*/
 .cs-page {
   min-height: 100vh;
   padding: 5rem 2.5rem 4rem;
@@ -2142,7 +2099,6 @@ h4 {
   margin: 0 0 2rem;
 }
 
-/* ── Tabs ── */
 .cs-tabs {
   display: flex;
   gap: 0.5rem;
@@ -2183,7 +2139,6 @@ h4 {
   font-size: 0.85rem;
 }
 
-/* ── Grid ── */
 .cs-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2198,7 +2153,6 @@ h4 {
   grid-column: span 3;
 }
 
-/* ── Card ── */
 .cs-card {
   background: #1c1d22;
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -2258,7 +2212,6 @@ h4 {
   border-radius: 4px;
 }
 
-/* ── Command list ── */
 .cs-cmd-list {
   display: flex;
   flex-direction: column;
@@ -2296,7 +2249,6 @@ h4 {
   line-height: 1.5;
 }
 
-/* ── Key-value rows ── */
 .cs-rows {
   display: flex;
   flex-direction: column;
@@ -2379,7 +2331,6 @@ h4 {
   background: #60a5fa;
 }
 
-/* ── Big O chart ── */
 .cs-chart {
   width: 100%;
   height: 55px;
@@ -2388,7 +2339,6 @@ h4 {
   overflow: hidden;
 }
 
-/* ── Responsive ── */
 @media (max-width: 960px) {
   .cs-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2426,8 +2376,6 @@ h4 {
   }
 }
 
-/*api reference page*/
-
 .api-page {
   min-height: 100vh;
   padding: 5rem 2.5rem 4rem;
@@ -2437,7 +2385,6 @@ h4 {
   font-family: 'Poppins', sans-serif;
 }
 
-/* ── Header ── */
 .api-badge {
   display: inline-flex;
   align-items: center;
@@ -2469,7 +2416,6 @@ h4 {
   margin: 0 0 2.5rem;
 }
 
-/* ── Filter tabs ── */
 .api-tabs {
   display: flex;
   gap: 0.5rem;
@@ -2506,7 +2452,6 @@ h4 {
   border-color: rgb(145, 218, 235);
 }
 
-/* ── Cards grid ── */
 .api-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2514,7 +2459,6 @@ h4 {
   margin-bottom: 4rem;
 }
 
-/* ── API Card ── */
 .api-card {
   background: #1c1d22;
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -2535,7 +2479,6 @@ h4 {
   flex: 1;
 }
 
-/* Card top row: icon + badge */
 .api-card-top {
   display: flex;
   align-items: flex-start;
@@ -2613,7 +2556,6 @@ h4 {
   margin-bottom: 1rem;
 }
 
-/* Card footer: Docs + Get Key + Try It */
 .api-card-footer {
   display: flex;
   align-items: center;
@@ -2689,7 +2631,6 @@ h4 {
   background: rgba(145, 218, 235, 0.07);
 }
 
-/* ── Try It Panel ── */
 .api-try-panel {
   display: none;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -2712,7 +2653,6 @@ h4 {
   margin-bottom: 0.25rem;
 }
 
-/* Key input row (for APIs that need a key) */
 .api-key-row {
   display: flex;
   gap: 0.5rem;
@@ -2762,7 +2702,6 @@ h4 {
   cursor: not-allowed;
 }
 
-/* Code snippet */
 .api-code-wrap {
   background: #080c12;
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -2796,7 +2735,6 @@ h4 {
   color: #fbbf24;
 }
 
-/* Response output */
 .api-response {
   background: #080c12;
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -3186,3 +3124,244 @@ h4 {
 .skeleton-line.sk-desc2 { height: 13px; width: 80%; }
 .skeleton-line.sk-desc3 { height: 13px; width: 65%; }
 .skeleton-line.sk-btn   { height: 34px; width: 80px; border-radius: 8px; }
+
+/* Hide mobile-only elements by default on desktop */
+.mobile-nav-toggle,
+.sidebar-mobile-close {
+  display: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  /* Sidebar Drawer Overlay */
+  .sidebar,
+  .sidebar.close {
+    left: -260px !important;
+    width: 260px !important;
+    transition: left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5) !important;
+  }
+  
+  .sidebar.mobile-open,
+  .sidebar.close.mobile-open {
+    left: 0 !important;
+  }
+
+  /* Mobile close button */
+  .sidebar-mobile-close {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s ease;
+  }
+
+  .sidebar-mobile-close:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .sidebar .sidebar-header {
+    display: none !important;
+  }
+
+  .sidebar .nav-links {
+    padding-top: 60px !important;
+  }
+
+  /* Mobile iocn-link fix */
+  .sidebar.close .nav-links li .iocn-link {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding-right: 8px !important;
+  }
+
+  .sidebar.close .nav-links li a .link_name {
+    flex: 1 !important;
+    width: auto !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .sidebar.close .nav-links li .iocn-link .arrow {
+    display: flex !important;
+    flex: 0 0 36px !important;
+  }
+
+  .sidebar.close .nav-links li a i {
+    min-width: 40px !important;
+    width: auto !important;
+    margin-left: 4px !important;
+  }
+
+  .sidebar.close .nav-links li a {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    padding: 0 0 0 8px !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+
+  /* Mobile submenu */
+  .sidebar.close .nav-links li .sub-menu {
+    position: static !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-left: 2px solid rgba(255, 255, 255, 0.1) !important;
+    margin-left: 20px !important;
+    padding: 6px 0 10px 16px !important;
+    display: none !important;
+  }
+  
+  .sidebar.close .nav-links li.showMenu .sub-menu {
+    display: block !important;
+  }
+
+  .sidebar.close .nav-links li .sub-menu a {
+    display: block !important;
+    padding: 10px 8px !important;
+    font-size: 14px !important;
+    white-space: normal !important;
+    opacity: 0.75 !important;
+    border-radius: 6px !important;
+    transition: background 0.2s, opacity 0.2s !important;
+  }
+
+  .sidebar.close .nav-links li .sub-menu a:hover,
+  .sidebar.close .nav-links li .sub-menu a:active {
+    opacity: 1 !important;
+    background: rgba(255, 255, 255, 0.07) !important;
+  }
+
+  .sidebar.close .nav-links li .sub-menu .link_name {
+    display: none !important;
+  }
+
+  /* Main Container Offsets */
+  .main,
+  main {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 100px 15px 40px !important;
+  }
+
+  body:not(.sidebar-collapsed) .main {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Top Navigation Bar */
+  #navbar-placeholder nav,
+  body.sidebar-collapsed #navbar-placeholder nav {
+    left: 0 !important;
+    width: 100% !important;
+    padding: 0.7rem 1.25rem !important;
+  }
+
+  nav ul {
+    display: none !important;
+  }
+
+  nav a {
+    right: 0 !important;
+    position: static !important;
+  }
+  nav .logo-image {
+    right: 0 !important;
+    position: static !important;
+  }
+  .logo-wrap {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: auto !important;
+  }
+
+  .mobile-nav-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.2rem;
+    transition: color 0.2s;
+  }
+
+  .mobile-nav-toggle:hover {
+    color: var(--color-sky);
+  }
+
+  /* Backdrop */
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+    backdrop-filter: blur(4px);
+    animation: sp-fadeIn 0.3s ease;
+    display: none;
+  }
+
+  body.mobile-sidebar-active .sidebar-backdrop {
+    display: block !important;
+  }
+
+  @keyframes sp-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Fixed Width Overrides */
+  .InfoForLang {
+    width: 100% !important;
+    max-width: 500px !important;
+  }
+
+  .btnfordocu {
+    width: 100% !important;
+    max-width: 500px !important;
+  }
+
+  .DocumentationLanguages iframe {
+    width: 100% !important;
+    max-width: 500px !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  /* IDE Table Scrolling layout */
+  .ide-table-wrap {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+}
+
+@media (max-width: 480px) {
+  nav .LogoText {
+    font-size: 1.3rem !important;
+  }
+  nav .logo-image {
+    height: 40px !important;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem !important;
+  }
+}

@@ -1,9 +1,12 @@
 (function () {
-  /* ─── Inline nav/sidebar HTML (no fetch needed, works on file://) ─── */
+  /* Nav & Sidebar HTML */
   const NAV_HTML = `
 <nav>
     <div class="container">
-        <div>
+        <div class="logo-wrap" style="display:flex; align-items:center; gap:10px;">
+            <button class="mobile-nav-toggle" aria-label="Open Menu">
+                <i class='bx bx-menu'></i>
+            </button>
             <a href="/index.html" class="logo container">
                 <img src="/assets/images/lugu-bg.png" alt="StudyPy" class="logo-image">
                 <div class="LogoText">StudyPy</div>
@@ -21,6 +24,9 @@
 </nav>
  
 <div class="sidebar close">
+    <button class="sidebar-mobile-close" aria-label="Close menu">
+        <i class='bx bx-x'></i>
+    </button>
     <div class="sidebar-header">
         <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar">
             <i class='bx bx-menu'></i>
@@ -150,15 +156,15 @@
     </ul>
 </div>`;
 
-  /* ─── Inject into placeholder ─── */
+  /* Inject into placeholder */
   const placeholder = document.getElementById("navbar-placeholder");
   if (placeholder) {
     placeholder.innerHTML = NAV_HTML;
   }
 
-    /* ─── Sidebar toggle ─── */
-    const sidebar = document.querySelector(".sidebar");
-    window.__studypySidebarInit = true;
+  /* Sidebar toggle */
+  const sidebar = document.querySelector(".sidebar");
+  window.__studypySidebarInit = true;
 
   const syncSidebarState = () => {
     document.body.classList.toggle(
@@ -177,7 +183,36 @@
     });
   }
 
-  /* ─── Click-based submenus ─── */
+  /* Mobile close button */
+  const mobileCloseBtn = document.querySelector(".sidebar-mobile-close");
+  if (mobileCloseBtn) {
+    mobileCloseBtn.addEventListener("click", () => {
+      sidebar.classList.remove("mobile-open");
+      document.body.classList.remove("mobile-sidebar-active");
+    });
+  }
+
+  /* Mobile sidebar toggle & backdrop */
+  const mobileToggle = document.querySelector(".mobile-nav-toggle");
+  if (mobileToggle) {
+    mobileToggle.addEventListener("click", () => {
+      sidebar.classList.toggle("mobile-open");
+      document.body.classList.toggle("mobile-sidebar-active");
+
+      let backdrop = document.querySelector(".sidebar-backdrop");
+      if (!backdrop) {
+        backdrop = document.createElement("div");
+        backdrop.className = "sidebar-backdrop";
+        document.body.appendChild(backdrop);
+        backdrop.addEventListener("click", () => {
+          sidebar.classList.remove("mobile-open");
+          document.body.classList.remove("mobile-sidebar-active");
+        });
+      }
+    });
+  }
+
+  /* Click-based submenus */
   document.querySelectorAll(".iocn-link").forEach((iocnLink) => {
     const link = iocnLink.querySelector("a");
     if (!link) return;
@@ -187,9 +222,11 @@
       arrow.className = "bx bxs-chevron-down arrow";
       iocnLink.appendChild(arrow);
     }
+    const arrow = iocnLink.querySelector(".arrow");
 
-    link.addEventListener("click", (e) => {
+    const toggleMenu = (e) => {
       e.preventDefault();
+      e.stopPropagation();
       const parentLi = iocnLink.closest("li");
       if (!parentLi) return;
 
@@ -202,6 +239,12 @@
       if (!isOpen) {
         parentLi.classList.add("showMenu");
       }
-    });
+    };
+
+    link.addEventListener("click", toggleMenu);
+    if (arrow) {
+      arrow.style.cursor = "pointer";
+      arrow.addEventListener("click", toggleMenu);
+    }
   });
 })();
