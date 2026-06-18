@@ -840,26 +840,50 @@ nav a.active {
   width: 320px;
   border-radius: 18px;
   overflow: hidden;
-  background: var(--color-bg);
-  border: 1.5px solid var(--color-accent);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .news-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  border-color: var(--color-sky);
+  box-shadow: 0 12px 30px var(--color-sky-glow);
 }
 
 .news-card__image {
   width: 100%;
   height: 180px;
   background: linear-gradient(160deg, #7ef0f0 0%, #5dd8ea 40%, #74b8e8 100%);
+  overflow: hidden;
+  position: relative;
+}
+
+.news-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.news-card:hover .news-card__image img {
+  transform: scale(1.05);
 }
 
 .news-card__body {
-  padding: 18px 20px 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.news-card__body .btn {
+  align-self: flex-start;
+  margin-top: auto;
 }
 
 .news-card__source {
@@ -877,16 +901,17 @@ nav a.active {
   line-height: 1.65;
   display: block;
   max-width: unset;
-  margin-bottom: 0;
+  margin-bottom: 24px;
   font-weight: 400;
+  flex-grow: 1;
 }
 
 .news-card__title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--color-text);
   line-height: 1.3;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 /* ── Resource Cards (Tools) — global/homepage styles ────────────────────────────── */
