@@ -55,6 +55,50 @@ app.get("/links", async (req, res) => {
 });
 
 /* ─────────────────────────────────────────────────────────────────────────────
+   GET /search  —  Performs a text search across all categories in MongoDB.
+   Query parameter: q=search_term
+───────────────────────────────────────────────────────────────────────────── */
+app.get("/search", async (req, res) => {
+  const query = req.query.q;
+  if (!query) {
+    return res.status(400).json({ error: "Missing query parameter 'q'." });
+  }
+
+  try {
+    const results = await Category.aggregate([
+      { $unwind: "$pages" },
+      { $unwind: "$pages.links" },
+      {
+        $match: {
+          $or: [
+            { "pages.links.title": { $regex: query, $options: "i" } },
+            { "pages.links.description": { $regex: query, $options: "i" } },
+            { "pages.name": { $regex: query, $options: "i" } },
+            { "name": { $regex: query, $options: "i" } }
+          ]
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          title: "$pages.links.title",
+          description: "$pages.links.description",
+          url: "$pages.links.url",
+          pageName: "$pages.name",
+          pagePath: "$pages.path",
+          categoryName: "$name"
+        }
+      }
+    ]);
+
+    res.json({ results });
+  } catch (err) {
+    console.error("GET /search error:", err.message);
+    res.status(500).json({ error: "Failed to perform global search." });
+  }
+});
+
+/* ─────────────────────────────────────────────────────────────────────────────
    Database connection → then start Express.
    The server only accepts requests once Atlas is confirmed reachable.
 ───────────────────────────────────────────────────────────────────────────── */
