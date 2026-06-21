@@ -85,6 +85,79 @@ function dispatchRendered(container, pageName) {
   );
 }
 
+function guessToolGenres(title, description) {
+  const t = (title + " " + description).toLowerCase();
+  const genres = [];
+
+  // UI Components / Libraries
+  if (
+    t.includes("ui") ||
+    t.includes("component") ||
+    t.includes("library") ||
+    t.includes("shadcn") ||
+    t.includes("flowbite") ||
+    t.includes("daisy") ||
+    t.includes("tailwind") ||
+    t.includes("bootstrap") ||
+    t.includes("hover") ||
+    t.includes("design system")
+  ) {
+    genres.push("ui component libraries");
+  }
+
+  // Creative Kits / Design Assets
+  if (
+    t.includes("creative") ||
+    t.includes("inspiration") ||
+    t.includes("behance") ||
+    t.includes("dribbble") ||
+    t.includes("lottie") ||
+    t.includes("asset") ||
+    t.includes("vector") ||
+    t.includes("illustration") ||
+    t.includes("photo") ||
+    t.includes("stock") ||
+    t.includes("unsplash") ||
+    t.includes("pexels") ||
+    t.includes("design") ||
+    t.includes("kit")
+  ) {
+    genres.push("design inspiration assets");
+  }
+
+  // Developer Utilities
+  if (
+    t.includes("utility") ||
+    t.includes("tool") ||
+    t.includes("compiler") ||
+    t.includes("editor") ||
+    t.includes("copilot") ||
+    t.includes("ai") ||
+    t.includes("codepen") ||
+    t.includes("fiddle") ||
+    t.includes("replit") ||
+    t.includes("glitch") ||
+    t.includes("responsively") ||
+    t.includes("font") ||
+    t.includes("regex") ||
+    t.includes("json") ||
+    t.includes("format") ||
+    t.includes("debug") ||
+    t.includes("git") ||
+    t.includes("github") ||
+    t.includes("observable")
+  ) {
+    genres.push("developer utilities");
+  }
+
+  // Fallback if none matched
+  if (genres.length === 0) {
+    genres.push("developer utilities");
+  }
+
+  return [...new Set(genres)].join(",");
+}
+
 function guessVideoGenres(title) {
   const t = title.toLowerCase();
   const genres = [];
@@ -183,6 +256,7 @@ async function loadLinks() {
       allLinks.forEach(link => {
         const card = document.createElement("div");
         card.className = cardClass;
+        card.dataset.genres = guessToolGenres(link.title, link.description);
         card.innerHTML = `
           <div class="${cardBodyClass}">
             <div class="${cardNameClass}">${link.title}</div>
