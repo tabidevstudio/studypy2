@@ -67,6 +67,9 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Interactive</a></li>
                 <li><a href="/pages/Interactive/css-playground.html">CSS Playground</a></li>
+                <li><a href="/pages/Interactive/git-branching.html">Git Branching</a></li>
+                <li><a href="/pages/Interactive/sql-joins.html">SQL Joins</a></li>
+                <li><a href="/pages/Interactive/dsa-visualizer.html">DSA Visualizer</a></li>
             </ul>
         </li>
         <li>

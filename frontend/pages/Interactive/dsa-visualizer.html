@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Visualizer | StudyPy</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/interactive.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="StudyPY" />
+    <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main">
+        <div class="playground-page">
+            <br> <br> <br>
+            <div class="playground-badge"><i class='bx bx-brain'></i> Algorithm Sandbox</div>
+            <h1 class="playground-title">Data Structures & Algorithms Visualizer</h1>
+            <p class="playground-subtitle">Learn fundamental computer science concepts interactively. Switch between Sorting Algorithms and Stack/Queue memory representations below.</p>
+
+            <!-- Tabs -->
+            <div class="playground-mode-tabs">
+                <button class="mode-tab active" id="btn-mode-sorting"><i class='bx bx-bar-chart-alt-2'></i> Sorting Algorithms</button>
+                <button class="mode-tab" id="btn-mode-linear"><i class='bx bx-list-ol'></i> Stack &amp; Queue</button>
+            </div>
+
+            <!-- Workspace -->
+            <div class="playground-workspace">
+                
+                <!-- Section 1: Sorting Algorithms -->
+                <div class="workspace-section active" id="section-sorting">
+                    <div class="sandbox-grid dsa-visualizer-layout">
+                        <!-- Control Sidebar -->
+                        <div class="sandbox-controls">
+                            <h3>Sorting Controls</h3>
+                            
+                            <div class="control-item">
+                                <label>Algorithm</label>
+                                <select id="sort-algorithm">
+                                    <option value="bubble">Bubble Sort</option>
+                                    <option value="selection">Selection Sort</option>
+                                    <option value="insertion">Insertion Sort</option>
+                                </select>
+                            </div>
+
+                            <div class="control-item">
+                                <label>Array Size</label>
+                                <input type="range" id="sort-size" min="10" max="50" value="25">
+                            </div>
+
+                            <div class="control-item">
+                                <label>Animation Speed</label>
+                                <input type="range" id="sort-speed" min="10" max="600" value="100" style="transform: rotate(180deg);">
+                                <span style="font-size: 0.72rem; color: rgba(255,255,255,0.4); text-align: right; margin-top:-2px;">Slide left for faster speed</span>
+                            </div>
+
+                            <div class="control-item item-actions">
+                                <button class="action-btn" id="btn-generate-array"><i class='bx bx-refresh'></i> Randomize</button>
+                                <button class="action-btn" id="btn-start-sort"><i class='bx bx-play'></i> Sort</button>
+                            </div>
+                        </div>
+
+                        <!-- Visualization Panel -->
+                        <div class="sandbox-preview">
+                            <div class="preview-header">
+                                <span>Array State Canvas</span>
+                            </div>
+                            
+                            <div class="dsa-canvas-container" id="sorting-bars-container">
+                                <!-- Bars rendered dynamically here -->
+                            </div>
+                            
+                            <div class="sorting-explanation-panel">
+                                <h4 id="sorting-name-lbl">Bubble Sort</h4>
+                                <p id="sorting-desc-lbl">Compares adjacent elements and swaps them if they are in the wrong order. Time Complexity: O(n²).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Stack & Queue -->
+                <div class="workspace-section" id="section-linear">
+                    <div class="sandbox-grid dsa-visualizer-layout">
+                        <!-- Control Sidebar -->
+                        <div class="sandbox-controls">
+                            <h3>Structure Selection</h3>
+                            <div class="control-toggle-group" style="margin-bottom: 8px;">
+                                <button class="toggle-btn active" id="linear-mode-stack">Stack (LIFO)</button>
+                                <button class="toggle-btn" id="linear-mode-queue">Queue (FIFO)</button>
+                            </div>
+
+                            <div class="controls-subset" id="controls-linear-ops">
+                                <div class="control-item">
+                                    <label>Element Value</label>
+                                    <input type="text" id="linear-value-input" placeholder="e.g. 42" maxlength="4" style="background:#20232a; border: 1px solid rgba(255,255,255,0.12); border-radius:6px; color:#fff; padding:8px 12px; outline:none; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">
+                                </div>
+                                
+                                <div class="control-item item-actions">
+                                    <button class="action-btn" id="btn-linear-push">Push</button>
+                                    <button class="action-btn secondary" id="btn-linear-pop">Pop</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Visualization Panel -->
+                        <div class="sandbox-preview">
+                            <div class="preview-header">
+                                <span id="linear-title-lbl">Stack Representation</span>
+                            </div>
+                            
+                            <div class="dsa-canvas-container linear-container-wrapper" id="linear-canvas">
+                                <div class="linear-visual-track" id="linear-elements-container">
+                                    <!-- Linear node blocks rendered dynamically here -->
+                                </div>
+                            </div>
+
+                            <div class="sorting-explanation-panel">
+                                <h4 id="linear-name-lbl">Stack (LIFO)</h4>
+                                <p id="linear-desc-lbl">A Last-In-First-Out linear structure. Elements are pushed onto the top and popped off the top. Push: O(1), Pop: O(1).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="../../script.js"></script>
+    <script type="module" src="../../dsa-visualizer.js"></script>
+</body>
+</html>

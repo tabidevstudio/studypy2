@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Join Visualizer | StudyPy</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/interactive.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="StudyPY" />
+    <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main">
+        <div class="playground-page">
+            <br> <br> <br>
+            <div class="playground-badge"><i class='bx bx-data'></i> Database Sandbox</div>
+            <h1 class="playground-title">SQL Join & Venn Diagram Visualizer</h1>
+            <p class="playground-subtitle">Interactive guide to database joins. Select a join type to dynamically highlight the Venn diagram regions, inspect the SQL query syntax, and view the live joined rows.</p>
+
+            <div class="sandbox-grid sql-join-layout">
+                <!-- Left Panel: Controls and Input Tables -->
+                <div class="sandbox-controls sql-controls-panel">
+                    <h3>Select Join Type</h3>
+                    
+                    <div class="join-type-list">
+                        <button class="join-type-card active" data-join="inner">
+                            <div class="join-card-header">
+                                <span class="join-title">INNER JOIN</span>
+                                <i class="bx bx-check-shield"></i>
+                            </div>
+                            <p class="join-description">Returns records that have matching values in both tables.</p>
+                        </button>
+                        
+                        <button class="join-type-card" data-join="left">
+                            <div class="join-card-header">
+                                <span class="join-title">LEFT JOIN</span>
+                                <i class="bx bx-left-arrow-circle"></i>
+                            </div>
+                            <p class="join-description">Returns all records from the left table, and matched records from the right.</p>
+                        </button>
+
+                        <button class="join-type-card" data-join="right">
+                            <div class="join-card-header">
+                                <span class="join-title">RIGHT JOIN</span>
+                                <i class="bx bx-right-arrow-circle"></i>
+                            </div>
+                            <p class="join-description">Returns all records from the right table, and matched records from the left.</p>
+                        </button>
+
+                        <button class="join-type-card" data-join="full">
+                            <div class="join-card-header">
+                                <span class="join-title">FULL OUTER JOIN</span>
+                                <i class="bx bx-globe"></i>
+                            </div>
+                            <p class="join-description">Returns all records when there is a match in either left or right table.</p>
+                        </button>
+
+                        <button class="join-type-card" data-join="left-excluding">
+                            <div class="join-card-header">
+                                <span class="join-title">LEFT EXCLUDING JOIN</span>
+                                <i class="bx bx-log-out-circle"></i>
+                            </div>
+                            <p class="join-description">Returns only records in the left table that have NO match in the right table.</p>
+                        </button>
+
+                        <button class="join-type-card" data-join="right-excluding">
+                            <div class="join-card-header">
+                                <span class="join-title">RIGHT EXCLUDING JOIN</span>
+                                <i class="bx bx-log-in-circle"></i>
+                            </div>
+                            <p class="join-description">Returns only records in the right table that have NO match in the left table.</p>
+                        </button>
+                    </div>
+
+                    <!-- Database Reference Tables -->
+                    <div class="sql-source-tables-wrapper">
+                        <h4>Input Datasets</h4>
+                        <div class="sql-tables-flex">
+                            <!-- Table A -->
+                            <div class="source-table-card">
+                                <h5>Table A: Employees</h5>
+                                <div class="table-container-mini">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>name</th>
+                                                <th>dept_id</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>1</td><td>Alice</td><td>10</td></tr>
+                                            <tr><td>2</td><td>Bob</td><td>20</td></tr>
+                                            <tr><td>3</td><td>Charlie</td><td>30</td></tr>
+                                            <tr><td>4</td><td>David</td><td>NULL</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- Table B -->
+                            <div class="source-table-card">
+                                <h5>Table B: Departments</h5>
+                                <div class="table-container-mini">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>10</td><td>Engineering</td></tr>
+                                            <tr><td>20</td><td>Marketing</td></tr>
+                                            <tr><td>40</td><td>Sales</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Venn Visualizer & Results -->
+                <div class="sandbox-preview sql-preview-panel">
+                    <!-- 1. Venn Diagram Visualizer Card -->
+                    <div class="sql-card venn-card">
+                        <div class="card-header">
+                            <span>Venn Diagram Visualization</span>
+                        </div>
+                        <div class="venn-diagram-container">
+                            <svg viewBox="0 0 300 200" id="venn-svg" width="100%" height="200">
+                                <!-- Background box grid representation -->
+                                <rect width="300" height="200" fill="transparent"/>
+                                
+                                <!-- Venn paths -->
+                                <g id="venn-regions">
+                                    <!-- Left Crescent (Left Only) -->
+                                    <path id="venn-left" d="M 150 48 A 60 60 0 1 0 150 152 A 60 60 0 0 1 150 48" class="venn-region" />
+                                    <!-- Intersection (Both) -->
+                                    <path id="venn-middle" d="M 150 48 A 60 60 0 0 1 150 152 A 60 60 0 0 1 150 48" class="venn-region" />
+                                    <!-- Right Crescent (Right Only) -->
+                                    <path id="venn-right" d="M 150 48 A 60 60 0 0 1 150 152 A 60 60 0 1 1 150 48" class="venn-region" />
+                                </g>
+
+                                <!-- Outlines of complete circles for better layout context -->
+                                <circle cx="120" cy="100" r="60" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="2" class="venn-circle-outline" />
+                                <circle cx="180" cy="100" r="60" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="2" class="venn-circle-outline" />
+
+                                <!-- Text Labels -->
+                                <text x="90" y="35" class="venn-label text-left-label" text-anchor="middle">Table A</text>
+                                <text x="210" y="35" class="venn-label text-right-label" text-anchor="middle">Table B</text>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- 2. Generated SQL Query -->
+                    <div class="code-output-container">
+                        <div class="code-header">
+                            <span>Generated SQL Query</span>
+                            <button class="copy-code-btn" id="copy-sql-btn">
+                                <i class="bx bx-copy"></i> Copy SQL
+                            </button>
+                        </div>
+                        <pre><code id="sql-query-display">SELECT * FROM Employees;</code></pre>
+                    </div>
+
+                    <!-- 3. Join Live Results Table -->
+                    <div class="sql-card results-card">
+                        <div class="card-header">
+                            <span>Live Query Result Table</span>
+                        </div>
+                        <div class="table-container-results">
+                            <table id="sql-results-table">
+                                <thead>
+                                    <!-- Headers populated in JS -->
+                                </thead>
+                                <tbody>
+                                    <!-- Rows populated in JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="../../script.js"></script>
+    <script type="module" src="../../sql-joins.js"></script>
+</body>
+</html>
