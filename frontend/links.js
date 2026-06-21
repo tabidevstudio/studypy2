@@ -1,4 +1,6 @@
-const BASE_URL = "https://studypy-backend.onrender.com";
+const BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+  ? "http://localhost:3000"
+  : "https://studypy-backend.onrender.com";
 
 function getCardPrefix(pageName) {
   const prefixes = {
@@ -83,6 +85,36 @@ function dispatchRendered(container, pageName) {
   );
 }
 
+function guessVideoGenres(title) {
+  const t = title.toLowerCase();
+  const genres = [];
+
+  if (t.includes("html")) genres.push("html");
+  if (t.includes("css") || t.includes("selectors")) genres.push("css");
+  if (t.includes("flexbox") || t.includes("grid") || t.includes("responsive")) {
+    genres.push("css", "responsive");
+  }
+  if (t.includes("javascript") || t.includes("js") || t.includes("dom") || t.includes("async")) genres.push("javascript");
+  if (t.includes("react") || t.includes("hooks") || t.includes("framework")) genres.push("framework");
+
+  // DevOps & Deployment
+  if (t.includes("git") || t.includes("github") || t.includes("security") || t.includes("database") || t.includes("sql") || t.includes("mongodb") || t.includes("node") || t.includes("express") || t.includes("api")) {
+    genres.push("devops");
+  }
+  if (t.includes("deploy") || t.includes("hosting") || t.includes("domain") || t.includes("cdn") || t.includes("cache")) {
+    genres.push("deployment");
+  }
+
+  if (t.includes("performance") || t.includes("speed")) genres.push("performance");
+  if (t.includes("testing") || t.includes("jest")) genres.push("testing");
+  if (t.includes("accessibility") || t.includes("a11y")) genres.push("accessibility");
+
+  // All videos are part of web development
+  genres.push("webdev");
+
+  return [...new Set(genres)].join(",");
+}
+
 async function loadLinks() {
   const container = document.getElementById("tools-container");
   if (!container) return;
@@ -120,6 +152,7 @@ async function loadLinks() {
       allLinks.forEach(link => {
         const card = document.createElement("div");
         card.className = "Tools";
+        card.dataset.genres = guessVideoGenres(link.title);
         card.innerHTML = `
           <a class="card-link" href="${link.url}" target="_blank" title="${link.title}">
             <h2>${link.title}</h2>
