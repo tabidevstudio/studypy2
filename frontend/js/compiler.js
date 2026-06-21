@@ -2,6 +2,8 @@ const BACKEND_URL = window.location.hostname === "localhost" || window.location.
   ? "http://localhost:3000/run"
   : "https://studypy-backend.onrender.com/run";
 
+const cmViews = {};
+
 // CodeMirror 6 CDN modules
 const CM_VERSION = '6.0.1';
 const CM_MODULES = {
@@ -202,9 +204,8 @@ function initCompiler(config) {
       parent: editorWrap,
     });
 
-    // Expose globally so examples.js can load code into this editor
-    if (!window.__cmViews) window.__cmViews = {};
-    window.__cmViews[containerId] = editorView;
+    // Expose in the module registry so examples.js can load code into this editor
+    cmViews[containerId] = editorView;
 
   }).catch((err) => {
     // Fallback to plain textarea if CodeMirror fails
@@ -324,5 +325,5 @@ function initCompiler(config) {
   }
 }
 
-// Bind to window to preserve global access when imported as an ES6 module
-window.initCompiler = initCompiler;
+// Export variables for module usage
+export { initCompiler, cmViews };

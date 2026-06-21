@@ -14,16 +14,37 @@ document.querySelectorAll('.api-tab').forEach(tab => {
     });
 });
 
-/* ── Toggle Try It panel ── */
-function toggleTry(btn) {
-    const card = btn.closest('.api-card');
-    const panel = card.querySelector('.api-try-panel');
-    const open = panel.classList.toggle('open');
-    btn.classList.toggle('open', open);
-    btn.innerHTML = open
-        ? "<i class='bx bx-x'></i> Close"
-        : "<i class='bx bx-play'></i> Try It";
-}
+/* ── Setup Event Listeners Programmatically ── */
+document.querySelectorAll('.api-card').forEach(card => {
+    const tryBtn = card.querySelector('.api-btn-try');
+    if (tryBtn) {
+        tryBtn.addEventListener('click', () => {
+            const panel = card.querySelector('.api-try-panel');
+            const open = panel.classList.toggle('open');
+            tryBtn.classList.toggle('open', open);
+            tryBtn.innerHTML = open
+                ? "<i class='bx bx-x'></i> Close"
+                : "<i class='bx bx-play'></i> Try It";
+        });
+    }
+
+    const runBtn = card.querySelector('.api-run-btn');
+    if (runBtn) {
+        if (card.querySelector('#gh-input')) {
+            runBtn.addEventListener('click', runGithub);
+        } else if (card.querySelector('#nasa-response')) {
+            runBtn.addEventListener('click', runNasa);
+        } else if (card.querySelector('#owm-city')) {
+            runBtn.addEventListener('click', runWeather);
+        } else if (card.querySelector('#news-topic')) {
+            runBtn.addEventListener('click', runNews);
+        } else if (card.querySelector('#oai-prompt')) {
+            runBtn.addEventListener('click', runOpenAI);
+        } else if (card.querySelector('#rc-input')) {
+            runBtn.addEventListener('click', runCountry);
+        }
+    }
+});
 
 /* ── Helper: show response ── */
 function showResponse(el, text, isError) {

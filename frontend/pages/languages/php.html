@@ -85,10 +85,12 @@
         </main>
     </div>
     
-    <script type="module" src="../../compiler.js?v=2"></script>
-    <script type="module" src="../../script.js"></script>
-    <script type="module" src="../../examples.js"></script>
+    <script type="module" src="../../js/compiler.js"></script>
+    <script type="module" src="../../js/script.js"></script>
+    <script type="module" src="../../js/examples.js"></script>
     <script type="module">
+        import { initCompiler } from '../../js/compiler.js';
+        import { initExamples } from '../../js/examples.js';
         initCompiler({
             containerId: 'compiler-php',
             language: 'php-8.5',

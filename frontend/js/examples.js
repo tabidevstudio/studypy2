@@ -1,3 +1,5 @@
+import { cmViews } from './compiler.js';
+
 const EXAMPLES = {
   python: [
     {
@@ -787,8 +789,8 @@ function initExamples(containerId, language) {
 
       // Try CodeMirror first
       const cmEditor = compilerEl.querySelector('.cm-editor');
-      if (cmEditor && window.__cmViews) {
-        const view = window.__cmViews[compilerEl.id];
+      if (cmEditor && cmViews) {
+        const view = cmViews[compilerEl.id];
         if (view) {
           view.dispatch({
             changes: { from: 0, to: view.state.doc.length, insert: example.code }
@@ -807,6 +809,6 @@ function initExamples(containerId, language) {
   });
 }
 
-// Bind to window to preserve global access when imported as an ES6 module
-window.initExamples = initExamples;
+// Export variables for module usage
+export { initExamples };
 
