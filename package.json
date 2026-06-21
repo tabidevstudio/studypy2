@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"cd backend && node server.js\" \"http-server frontend -p 5500 -o\""
+    "dev": "concurrently \"cd backend && node server.js\" \"http-server frontend -p 5500 --ext html -o\""
   },
   "repository": {
     "type": "git",
