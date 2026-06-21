@@ -172,11 +172,11 @@ body:not(.sidebar-collapsed) .main {
   opacity: 1;
   pointer-events: auto;
 }
-.sidebar.close li .iocn-link {
+.sidebar.close .nav-links li .iocn-link {
   display: block;
   padding-right: 0;
 }
-.sidebar.close li .iocn-link .arrow {
+.sidebar.close .nav-links li .iocn-link .arrow {
   display: none !important;
 }
 .sidebar .sidebar-header {

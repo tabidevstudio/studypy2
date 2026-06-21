@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "cd backend && npm install",
     "dev": "concurrently \"cd backend && node server.js\" \"npm run sass:watch\" \"http-server frontend -p 5500 -c-1 --ext html -o\"",
     "sass:watch": "sass --watch frontend/scss:frontend/css --style=expanded",
     "sass:build": "sass frontend/scss:frontend/css --style=expanded"
