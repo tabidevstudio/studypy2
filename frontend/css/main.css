@@ -177,7 +177,7 @@ body:not(.sidebar-collapsed) .main {
   padding-right: 0;
 }
 .sidebar.close li .iocn-link .arrow {
-  display: none;
+  display: none !important;
 }
 .sidebar .sidebar-header {
   height: 60px;
@@ -434,7 +434,8 @@ body.sidebar-collapsed #navbar-placeholder nav {
   position: relative;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
+  z-index: 10;
   padding-top: 100px;
 }
 .hero::before {

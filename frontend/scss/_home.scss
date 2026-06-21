@@ -5,7 +5,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
+  z-index: 10;
   padding-top: 100px;
 
   &::before {
