@@ -572,6 +572,15 @@ nav a.active {
   animation: fadeInUp 1s ease 0.7s backwards;
 }
 
+#GetStarted{
+  color: white;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 40px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
 
 /* ── Buttons ─────────────────────────────────────────────── */
 .btn {
