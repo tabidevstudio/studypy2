@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Playground | StudyPy</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/interactive.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="StudyPY" />
+    <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main">
+        <div class="playground-page">
+            <br> <br> <br>
+            <div class="playground-badge"><i class='bx bx-pointer'></i> Interactive Sandbox</div>
+            <h1 class="playground-title">CSS Playground</h1>
+            <p class="playground-subtitle">Learn CSS layout structures and shape manipulations interactively. Switch between the Layout Simulator and the Clip-Path Maker below.</p>
+
+            <!-- Mode Selector Tabs -->
+            <div class="playground-mode-tabs">
+                <button class="mode-tab active" id="btn-mode-layout"><i class='bx bx-grid-alt'></i> Layout Playground</button>
+                <button class="mode-tab" id="btn-mode-clippath"><i class='bx bx-cut'></i> Clip-Path Maker</button>
+            </div>
+
+            <!-- WORKSPACE CONTAINER -->
+            <div class="playground-workspace">
+
+                <!-- 1. CSS LAYOUT PLAYGROUND -->
+                <div class="workspace-section active" id="section-layout">
+                    <div class="sandbox-grid">
+                        <!-- Control Sidebar -->
+                        <div class="sandbox-controls">
+                            <h3>Layout Mode</h3>
+                            <div class="control-toggle-group">
+                                <button class="toggle-btn active" id="layout-mode-flex">Flexbox</button>
+                                <button class="toggle-btn" id="layout-mode-grid">CSS Grid</button>
+                            </div>
+
+                            <!-- Flexbox Controls -->
+                            <div class="controls-subset" id="controls-flex">
+                                <div class="control-item">
+                                    <label>flex-direction</label>
+                                    <select id="flex-direction">
+                                        <option value="row">row</option>
+                                        <option value="row-reverse">row-reverse</option>
+                                        <option value="column">column</option>
+                                        <option value="column-reverse">column-reverse</option>
+                                    </select>
+                                </div>
+                                <div class="control-item">
+                                    <label>justify-content</label>
+                                    <select id="flex-justify">
+                                        <option value="flex-start">flex-start</option>
+                                        <option value="center">center</option>
+                                        <option value="flex-end">flex-end</option>
+                                        <option value="space-between">space-between</option>
+                                        <option value="space-around">space-around</option>
+                                        <option value="space-evenly">space-evenly</option>
+                                    </select>
+                                </div>
+                                <div class="control-item">
+                                    <label>align-items</label>
+                                    <select id="flex-align">
+                                        <option value="stretch">stretch</option>
+                                        <option value="flex-start">flex-start</option>
+                                        <option value="center" selected>center</option>
+                                        <option value="flex-end">flex-end</option>
+                                    </select>
+                                </div>
+                                <div class="control-item">
+                                    <label>flex-wrap</label>
+                                    <select id="flex-wrap">
+                                        <option value="nowrap">nowrap</option>
+                                        <option value="wrap">wrap</option>
+                                        <option value="wrap-reverse">wrap-reverse</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Grid Controls -->
+                            <div class="controls-subset hidden" id="controls-grid">
+                                <div class="control-item">
+                                    <label>grid-template-columns</label>
+                                    <select id="grid-columns">
+                                        <option value="repeat(3, 1fr)">repeat(3, 1fr)</option>
+                                        <option value="1fr 2fr 1fr">1fr 2fr 1fr</option>
+                                        <option value="repeat(auto-fit, minmax(100px, 1fr))">auto-fit (minmax 100px)</option>
+                                    </select>
+                                </div>
+                                <div class="control-item">
+                                    <label>justify-items</label>
+                                    <select id="grid-justify">
+                                        <option value="stretch">stretch</option>
+                                        <option value="start">start</option>
+                                        <option value="center" selected>center</option>
+                                        <option value="end">end</option>
+                                    </select>
+                                </div>
+                                <div class="control-item">
+                                    <label>align-items</label>
+                                    <select id="grid-align">
+                                        <option value="stretch">stretch</option>
+                                        <option value="start">start</option>
+                                        <option value="center" selected>center</option>
+                                        <option value="end">end</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Common Layout Controls -->
+                            <div class="control-item">
+                                <label>gap (<span id="gap-val">15px</span>)</label>
+                                <input type="range" id="layout-gap" min="0" max="40" value="15">
+                            </div>
+
+                            <div class="control-item item-actions">
+                                <button class="action-btn" id="btn-add-item"><i class='bx bx-plus'></i> Add Box</button>
+                                <button class="action-btn secondary" id="btn-remove-item"><i class='bx bx-minus'></i> Remove</button>
+                            </div>
+                        </div>
+
+                        <!-- Preview Panel -->
+                        <div class="sandbox-preview">
+                            <div class="preview-header">
+                                <span>Live Layout Preview</span>
+                            </div>
+                            <div class="layout-container flex-mode" id="layout-sandbox-container">
+                                <div class="layout-box">1</div>
+                                <div class="layout-box">2</div>
+                                <div class="layout-box">3</div>
+                                <div class="layout-box">4</div>
+                            </div>
+                            
+                            <!-- Generated CSS Display -->
+                            <div class="code-output-container">
+                                <div class="code-header">
+                                    <span>Generated CSS Code</span>
+                                    <button class="copy-code-btn" id="btn-copy-layout-code"><i class='bx bx-copy'></i> Copy</button>
+                                </div>
+                                <pre><code class="language-css" id="code-layout-output">.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 15px;
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. CSS CLIP-PATH MAKER -->
+                <div class="workspace-section" id="section-clippath">
+                    <div class="sandbox-grid">
+                        <!-- Control Sidebar -->
+                        <div class="sandbox-controls">
+                            <h3>Clip Shapes</h3>
+                            <div class="control-item">
+                                <label>Preset Shape</label>
+                                <select id="clip-preset">
+                                    <option value="triangle">Triangle</option>
+                                    <option value="trapezoid">Trapezoid</option>
+                                    <option value="pentagon">Pentagon</option>
+                                    <option value="hexagon">Hexagon</option>
+                                    <option value="star">Star</option>
+                                    <option value="custom" selected>Custom Quad</option>
+                                </select>
+                            </div>
+
+                            <!-- Custom point slider -->
+                            <div class="control-item hidden" id="custom-vertices-wrap">
+                                <label>Vertices: <span id="vertices-count-val">4</span></label>
+                                <input type="range" id="custom-vertices" min="3" max="8" value="4">
+                            </div>
+
+                            <p style="font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.4; margin-top: 1rem;">
+                                <i class='bx bx-info-circle'></i> Drag the handles overlaying the image to modify the clipping coordinates in real time.
+                            </p>
+                        </div>
+
+                        <!-- Preview Canvas -->
+                        <div class="sandbox-preview">
+                            <div class="preview-header">
+                                <span>Draggable Clip Canvas</span>
+                            </div>
+                            
+                            <!-- Interactive clipping container -->
+                            <div class="clipping-canvas-wrapper">
+                                <div class="clipping-canvas" id="clip-interactive-canvas">
+                                    <img src="../../assets/images/OnlineCourses.png" alt="Clipping background" class="clip-target-img" id="clip-target-img">
+                                    <svg class="clip-svg-overlay" id="clip-svg-overlay">
+                                        <polygon class="clip-poly-preview" id="clip-poly-preview"></polygon>
+                                    </svg>
+                                    <!-- Draggable handles will be injected here by javascript -->
+                                </div>
+                            </div>
+
+                            <!-- Generated CSS Display -->
+                            <div class="code-output-container">
+                                <div class="code-header">
+                                    <span>Generated CSS Code</span>
+                                    <button class="copy-code-btn" id="btn-copy-clip-code"><i class='bx bx-copy'></i> Copy</button>
+                                </div>
+                                <pre><code class="language-css" id="code-clip-output">.clipped-element {
+  clip-path: polygon(10% 10%, 90% 10%, 90% 90%, 10% 90%);
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="../../script.js"></script>
+    <script type="module" src="../../css-playground.js"></script>
+</body>
+</html>

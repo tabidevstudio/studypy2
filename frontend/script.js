@@ -60,6 +60,18 @@
         <li>
             <div class="iocn-link">
                 <a href="#">
+                    <i class='bx bx-pointer'></i>
+                    <span class="link_name">Interactive</span>
+                </a>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Interactive</a></li>
+                <li><a href="/pages/Interactive/css-playground.html">CSS Playground</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="iocn-link">
+                <a href="#">
                     <i class='bx bx-code-alt'></i>
                     <span class="link_name">Languages</span>
                 </a>
