@@ -251,21 +251,47 @@ async function loadLinks() {
       const btnClass = `${prefix}-btn-visit`;
 
       const grid = document.createElement("div");
-      grid.className = gridClass;
+      grid.className = (pageName === "fun-tools") ? "videos-grid" : gridClass;
 
       allLinks.forEach(link => {
         const card = document.createElement("div");
-        card.className = cardClass;
+        card.className = (pageName === "fun-tools") ? "tool-card" : cardClass;
         card.dataset.genres = guessToolGenres(link.title, link.description);
-        card.innerHTML = `
-          <div class="${cardBodyClass}">
-            <div class="${cardNameClass}">${link.title}</div>
-            <div class="${cardDescClass}">${link.description}</div>
-          </div>
-          <div class="${cardFooterClass}">
-            <a href="${link.url}" target="_blank" class="${btnClass}">Visit</a>
-          </div>
-        `;
+
+        if (pageName === "fun-tools") {
+          const genre = guessToolGenres(link.title, link.description).split(',')[0];
+          const tagText = {
+            "ui component libraries": "UI Components",
+            "design inspiration assets": "Creative",
+            "developer utilities": "Utilities"
+          }[genre] || "Tool";
+
+          // Construct clean filename for the preview image
+          let filename = link.title.toLowerCase().replace(/[^a-z0-9]/g, "");
+          if (filename === "shadcnui") filename = "shadcn";
+          if (filename === "responsivelyapp") filename = "responsively";
+
+          card.innerHTML = `
+            <div class="tool-card-content">
+              <div class="tool-tag">${tagText}</div>
+              <a class="card-link" href="${link.url}" target="_blank" rel="noopener noreferrer">
+                <h2>${link.title}</h2>
+              </a>
+              <p>${link.description}</p>
+              <img src="../../assets/website-previews/${filename}.png" alt="${link.title} preview" class="tool-image" onerror="this.style.display='none'">
+            </div>
+          `;
+        } else {
+          card.innerHTML = `
+            <div class="${cardBodyClass}">
+              <div class="${cardNameClass}">${link.title}</div>
+              <div class="${cardDescClass}">${link.description}</div>
+            </div>
+            <div class="${cardFooterClass}">
+              <a href="${link.url}" target="_blank" class="${btnClass}">Visit</a>
+            </div>
+          `;
+        }
         grid.appendChild(card);
       });
 

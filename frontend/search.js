@@ -96,9 +96,29 @@ function initSearch() {
     // Hide ALL cards first
     tools.forEach(el => el.style.display = 'none');
 
-    // Reset batch counter and show first batch
-    currentBatch = 0;
-    showNextBatch();
+    if (!loadMoreBtn) {
+      // Show ALL filtered tools if there's no "Load More" button on the page
+      filteredTools.forEach(el => {
+        el.style.display = '';
+        const iframe = el.querySelector('iframe[data-src]');
+        if (iframe) {
+          iframe.src = iframe.dataset.src;
+        }
+      });
+    } else {
+      // Reset batch counter and show first batch
+      currentBatch = 0;
+      showNextBatch();
+    }
+
+    // Toggle visibility of category sections if they contain no visible cards
+    document.querySelectorAll('.tools-section').forEach(section => {
+      const sectionCards = Array.from(section.querySelectorAll('.Tools, .tool-card, .video-card, #tools-container > div > div'));
+      if (sectionCards.length > 0) {
+        const hasVisible = sectionCards.some(el => el.style.display !== 'none');
+        section.style.display = hasVisible ? '' : 'none';
+      }
+    });
 
     if (noResults) {
       noResults.style.display = filteredTools.length === 0 ? 'block' : 'none';

@@ -552,6 +552,81 @@
           "path": "frontend/pages/Dev Tools/fun-tools.html",
           "links": [
             {
+              "title": "shadcn/ui",
+              "description": "Build your component library with Radix Primitives and Tailwind CSS.",
+              "url": "https://ui.shadcn.com/"
+            },
+            {
+              "title": "Flowbite",
+              "description": "Tailwind CSS component kit for dashboards, forms and navigation.",
+              "url": "https://flowbite.com/"
+            },
+            {
+              "title": "Mamba UI",
+              "description": "Modern animated Tailwind components plus starter screens and templates.",
+              "url": "https://mambaui.com/"
+            },
+            {
+              "title": "DaisyUI",
+              "description": "Tailwind plugin with a large library of themeable reusable components.",
+              "url": "https://daisyui.com/"
+            },
+            {
+              "title": "UIVerse",
+              "description": "Open-source UI elements and components for web development.",
+              "url": "https://uiverse.io/elements/"
+            },
+            {
+              "title": "Hover.dev",
+              "description": "React component library featuring hover effects and interactive animations.",
+              "url": "https://www.hover.dev/"
+            },
+            {
+              "title": "Behance",
+              "description": "Top-tier portfolio gallery and design inspiration community.",
+              "url": "https://www.behance.net/"
+            },
+            {
+              "title": "LottieFiles",
+              "description": "Lightweight animation library with free Lottie assets and editing tools.",
+              "url": "https://lottiles.com/"
+            },
+            {
+              "title": "Pexels",
+              "description": "Free stock photos and video content for high-quality UI mockups.",
+              "url": "https://www.pexels.com/"
+            },
+            {
+              "title": "Unsplash",
+              "description": "High-resolution royalty-free photos for visually rich web designs.",
+              "url": "https://unsplash.com/"
+            },
+            {
+              "title": "Dribbble",
+              "description": "Community platform for designers to showcase and discover creative designs.",
+              "url": "https://dribbble.com/"
+            },
+            {
+              "title": "Fontshare",
+              "description": "Fast, open font library for modern typography and UI design.",
+              "url": "https://www.fontshare.com/"
+            },
+            {
+              "title": "Responsively App",
+              "description": "Responsive design tester with multi-device sync for faster development.",
+              "url": "https://responsively.app/"
+            },
+            {
+              "title": "Cursify",
+              "description": "Cursor animation library for React & Next.js with themed effects.",
+              "url": "https://cursify.ui-layouts.com/"
+            },
+            {
+              "title": "Google Fonts",
+              "description": "Trusted web font library with rapid integration for UI prototypes.",
+              "url": "https://fonts.google.com/"
+            },
+            {
               "title": "GitHub Copilot",
               "description": "AI pair programmer that autocompletes code and suggests improvements.",
               "url": "https://github.com/features/copilot"
