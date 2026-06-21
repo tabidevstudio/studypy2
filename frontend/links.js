@@ -188,6 +188,108 @@ function guessVideoGenres(title) {
   return [...new Set(genres)].join(",");
 }
 
+const CACHE_KEY = "studypy_links_cache";
+
+function extractLinksForPage(data, pageName) {
+  return data?.categories
+    ?.flatMap(category => category.pages)
+    ?.find(page => page.name === pageName)
+    ?.links ?? [];
+}
+
+function renderPageLinks(container, allLinks, pageName) {
+  container.innerHTML = "";
+
+  if (allLinks.length === 0) {
+    container.innerHTML = "<p>No links found for this page.</p>";
+    return;
+  }
+
+  // Special handling for video tutorials with embedded iframes
+  if (pageName === "video-tutorials") {
+    const grid = document.createElement("div");
+    grid.className = "learning-grid";
+
+    allLinks.forEach(link => {
+      const card = document.createElement("div");
+      card.className = "video-card";
+      card.dataset.genres = guessVideoGenres(link.title);
+      card.innerHTML = `
+        <a class="card-link" href="${link.url}" target="_blank" title="${link.title}">
+          <h2>${link.title}</h2>
+        </a>
+        <div class="video-preview">
+          <iframe data-src="${link.url}" title="${link.title}" allowfullscreen></iframe>
+        </div>
+        <h5>${link.description}</h5>
+      `;
+      grid.appendChild(card);
+    });
+
+    container.appendChild(grid);
+  } else {
+    // Regular card rendering for other pages
+    const prefix = getCardPrefix(pageName);
+    const gridClass = `${prefix}-grid`;
+    const cardClass = `${prefix}-card`;
+    const cardBodyClass = `${prefix}-card-body`;
+    const cardNameClass = `${prefix}-card-name`;
+    const cardDescClass = `${prefix}-card-desc`;
+    const cardFooterClass = `${prefix}-card-footer`;
+    const btnClass = `${prefix}-btn-visit`;
+
+    const grid = document.createElement("div");
+    grid.className = (pageName === "fun-tools") ? "videos-grid" : gridClass;
+
+    allLinks.forEach(link => {
+      const card = document.createElement("div");
+      card.className = (pageName === "fun-tools") ? "tool-card" : cardClass;
+      card.dataset.genres = guessToolGenres(link.title, link.description);
+
+      if (pageName === "fun-tools") {
+        const genre = guessToolGenres(link.title, link.description).split(',')[0];
+        const tagText = {
+          "ui component libraries": "UI Components",
+          "design inspiration assets": "Creative",
+          "developer utilities": "Utilities"
+        }[genre] || "Tool";
+
+        // Construct clean filename for the preview image
+        let filename = link.title.toLowerCase().replace(/[^a-z0-9]/g, "");
+        if (filename === "shadcnui") filename = "shadcn";
+        if (filename === "responsivelyapp") filename = "responsively";
+
+        card.innerHTML = `
+          <div class="tool-card-content">
+            <div class="tool-tag">${tagText}</div>
+            <a class="card-link" href="${link.url}" target="_blank" rel="noopener noreferrer">
+              <h2>${link.title}</h2>
+            </a>
+            <p>${link.description}</p>
+            <img src="../../assets/website-previews/${filename}.png" alt="${link.title} preview" class="tool-image" onerror="this.style.display='none'">
+          </div>
+        `;
+      } else {
+        card.innerHTML = `
+          <div class="${cardBodyClass}">
+            <div class="${cardNameClass}">${link.title}</div>
+            <div class="${cardDescClass}">${link.description}</div>
+          </div>
+          <div class="${cardFooterClass}">
+            <a href="${link.url}" target="_blank" class="${btnClass}">Visit</a>
+          </div>
+        `;
+      }
+      grid.appendChild(card);
+    });
+
+    container.appendChild(grid);
+  }
+
+  // Notify search.js (and any other listeners) that cards are now in the DOM
+  dispatchRendered(container, pageName);
+}
+
 async function loadLinks() {
   const container = document.getElementById("tools-container");
   if (!container) return;
@@ -198,115 +300,61 @@ async function loadLinks() {
     return;
   }
 
-  // Show loading skeletons while fetching data
-  showSkeletons(container);
-
+  // Check if we have cached data in localStorage
+  let cachedData = null;
   try {
-    const data = await getLinks();
+    const rawCache = localStorage.getItem(CACHE_KEY);
+    if (rawCache) {
+      cachedData = JSON.parse(rawCache);
+    }
+  } catch (cacheErr) {
+    console.warn("Failed to read links cache from localStorage:", cacheErr);
+  }
 
-    const allLinks = data.categories
-      .flatMap(category => category.pages)
-      .find(page => page.name === pageName)
-      ?.links ?? [];
+  // If cache exists, render it immediately!
+  if (cachedData) {
+    console.log(`[Cache] Loading links for page: ${pageName} from localStorage...`);
+    const cachedLinks = extractLinksForPage(cachedData, pageName);
+    renderPageLinks(container, cachedLinks, pageName);
+  } else {
+    // If no cache, show loading skeletons
+    showSkeletons(container);
+  }
 
-    // Clear loading skeletons
-    container.innerHTML = "";
+  // Perform background fetch (Revalidation)
+  try {
+    const freshData = await getLinks();
 
-    if (allLinks.length === 0) {
-      container.innerHTML = "<p>No links found for this page.</p>";
-      return;
+    // Save fresh data to localStorage cache
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify(freshData));
+    } catch (saveErr) {
+      console.warn("Failed to save links to localStorage cache:", saveErr);
     }
 
-    // Special handling for video tutorials with embedded iframes
-    if (pageName === "video-tutorials") {
-      const grid = document.createElement("div");
-      grid.className = "learning-grid";
+    const freshLinks = extractLinksForPage(freshData, pageName);
 
-      allLinks.forEach(link => {
-        const card = document.createElement("div");
-        card.className = "video-card";
-        card.dataset.genres = guessVideoGenres(link.title);
-        card.innerHTML = `
-          <a class="card-link" href="${link.url}" target="_blank" title="${link.title}">
-            <h2>${link.title}</h2>
-          </a>
-          <div class="video-preview">
-            <iframe data-src="${link.url}" title="${link.title}" allowfullscreen></iframe>
-          </div>
-          <h5>${link.description}</h5>
-        `;
-        grid.appendChild(card);
-      });
-
-      container.appendChild(grid);
-    } else {
-      // Regular card rendering for other pages
-      const prefix = getCardPrefix(pageName);
-      const gridClass = `${prefix}-grid`;
-      const cardClass = `${prefix}-card`;
-      const cardBodyClass = `${prefix}-card-body`;
-      const cardNameClass = `${prefix}-card-name`;
-      const cardDescClass = `${prefix}-card-desc`;
-      const cardFooterClass = `${prefix}-card-footer`;
-      const btnClass = `${prefix}-btn-visit`;
-
-      const grid = document.createElement("div");
-      grid.className = (pageName === "fun-tools") ? "videos-grid" : gridClass;
-
-      allLinks.forEach(link => {
-        const card = document.createElement("div");
-        card.className = (pageName === "fun-tools") ? "tool-card" : cardClass;
-        card.dataset.genres = guessToolGenres(link.title, link.description);
-
-        if (pageName === "fun-tools") {
-          const genre = guessToolGenres(link.title, link.description).split(',')[0];
-          const tagText = {
-            "ui component libraries": "UI Components",
-            "design inspiration assets": "Creative",
-            "developer utilities": "Utilities"
-          }[genre] || "Tool";
-
-          // Construct clean filename for the preview image
-          let filename = link.title.toLowerCase().replace(/[^a-z0-9]/g, "");
-          if (filename === "shadcnui") filename = "shadcn";
-          if (filename === "responsivelyapp") filename = "responsively";
-
-          card.innerHTML = `
-            <div class="tool-card-content">
-              <div class="tool-tag">${tagText}</div>
-              <a class="card-link" href="${link.url}" target="_blank" rel="noopener noreferrer">
-                <h2>${link.title}</h2>
-              </a>
-              <p>${link.description}</p>
-              <img src="../../assets/website-previews/${filename}.png" alt="${link.title} preview" class="tool-image" onerror="this.style.display='none'">
-            </div>
-          `;
-        } else {
-          card.innerHTML = `
-            <div class="${cardBodyClass}">
-              <div class="${cardNameClass}">${link.title}</div>
-              <div class="${cardDescClass}">${link.description}</div>
-            </div>
-            <div class="${cardFooterClass}">
-              <a href="${link.url}" target="_blank" class="${btnClass}">Visit</a>
-            </div>
-          `;
-        }
-        grid.appendChild(card);
-      });
-
-      container.appendChild(grid);
+    // If cache was loaded, check if the links actually changed before updating the DOM (prevents layout shifts/flashes)
+    if (cachedData) {
+      const cachedLinks = extractLinksForPage(cachedData, pageName);
+      if (JSON.stringify(cachedLinks) === JSON.stringify(freshLinks)) {
+        console.log(`[Cache] Links for page: ${pageName} are up to date.`);
+        return;
+      }
+      console.log(`[Cache] Cache outdated for page: ${pageName}, updating DOM with fresh database entries...`);
     }
 
-    // Notify search.js (and any other listeners) that cards are now in the DOM
-    dispatchRendered(container, pageName);
+    renderPageLinks(container, freshLinks, pageName);
 
   } catch (err) {
-    console.error("Failed to load links:", err);
-    container.innerHTML = `
-      <p>Failed to load links. The backend may be waking up — please refresh in a moment.</p>
-      <p style="font-size:0.8em;color:gray;">Error: ${err.message}</p>
-    `;
+    console.error("Failed to load links from backend:", err);
+    // If we don't have cached data, display the error block. If we do, we silently keep showing the cached data!
+    if (!cachedData) {
+      container.innerHTML = `
+        <p>Failed to load links. The backend may be waking up — please refresh in a moment.</p>
+        <p style="font-size:0.8em;color:gray;">Error: ${err.message}</p>
+      `;
+    }
   }
 }
 
