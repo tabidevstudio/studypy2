@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"cd backend && node server.js\" \"npm run sass:watch\" \"http-server frontend -p 5500 --ext html -o\"",
-    "sass:watch": "sass --watch frontend/scss:frontend/css --style=compressed",
-    "sass:build": "sass frontend/scss:frontend/css --style=compressed"
+    "sass:watch": "sass --watch frontend/scss:frontend/css --style=expanded",
+    "sass:build": "sass frontend/scss:frontend/css --style=expanded"
   },
   "repository": {
     "type": "git",
