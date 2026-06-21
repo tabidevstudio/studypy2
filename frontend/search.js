@@ -128,8 +128,8 @@ function initSearch() {
   }
 
   function setupTools() {
-    // Select cards dynamically. Matches '.Tools' (static/video) or immediate child divs of grid in tools-container
-    tools = Array.from(document.querySelectorAll('.Tools, #tools-container > div > div'));
+    // Select cards dynamically. Matches '.Tools', '.tool-card', '.video-card' (static/video) or immediate child divs of grid in tools-container
+    tools = Array.from(document.querySelectorAll('.Tools, .tool-card, .video-card, #tools-container > div > div'));
     renderBadges();
     filterTools();
   }

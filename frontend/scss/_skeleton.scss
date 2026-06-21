@@ -1,0 +1,39 @@
+/* Skeleton loading */
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-card {
+  background: #1c1d22;                      
+  border: 1px solid rgba(255, 255, 255, 0.07); 
+  border-radius: 14px;                        
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-card-body {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.skeleton-card-footer {
+  padding: 0 1.25rem 1.25rem;
+}
+
+.skeleton-line {
+  background: linear-gradient(90deg, #2a2b32 25%, #35363f 50%, #2a2b32 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+
+  &.sk-title { height: 17px; width: 55%; margin-bottom: 0.5rem; }
+  &.sk-desc  { height: 13px; width: 95%; }
+  &.sk-desc2 { height: 13px; width: 80%; }
+  &.sk-desc3 { height: 13px; width: 65%; }
+  &.sk-btn   { height: 34px; width: 80px; border-radius: 8px; }
+}

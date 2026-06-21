@@ -1,0 +1,48 @@
+// resets
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-fast);
+
+  &:hover {
+    color: var(--color-sky);
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+/* Main Content Wrapper */
+.main {
+  padding: 0px;
+  min-height: 100vh;
+  background: var(--color-bg);
+  margin-left: 78px;
+  width: calc(100% - 78px);
+  transition: margin-left 0.5s ease, width 0.5s ease;
+}
+
+body:not(.sidebar-collapsed) .main {
+  margin-left: 260px;
+  width: calc(100% - 260px);
+}

@@ -151,7 +151,7 @@ async function loadLinks() {
 
       allLinks.forEach(link => {
         const card = document.createElement("div");
-        card.className = "Tools";
+        card.className = "video-card";
         card.dataset.genres = guessVideoGenres(link.title);
         card.innerHTML = `
           <a class="card-link" href="${link.url}" target="_blank" title="${link.title}">

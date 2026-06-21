@@ -5,7 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Video Tutorials | StudyPy</title>
-        <link rel="stylesheet" href="../../style.css">
+        <link rel="stylesheet" href="../../css/main.css">
+        <link rel="stylesheet" href="../../css/learning.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
         <link rel="icon" type="image/png" href="../..//assets/favicon/favicon-96x96.png" sizes="96x96" />
@@ -16,47 +17,47 @@
         <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
     </head>
     <body>
-        
+
         <div id="navbar-placeholder"></div>
 
 
         <main class="main">
-            <section class="page-hero">
-                <div class="hero-inner">
-                    <h1>StudyPY</h1>
-                    <p> Master programming with expert-led video courses and comprehensive learning paths</p>
-                    <div id="searchbar">
-                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true" style="color:#9bc3e3;"></i>
-                        <label for="search-input">Search</label>
-                        <input type="search" id="search-input" placeholder="Search for courses, topics, or instructors..." aria-label="Search videos">
-                    </div>
+            <div class="learning-page">
+                <br> <br> <br>
+                <div class="learning-badge"><i class='bx bx-book'></i>Watch and Learn</div>
+                <h1 class="learning-title">Video Courses & Tutorials</h1>
+                <p class="learning-subtitle">Master programming with expert-led courses from top platforms. Get certificates, access to community, and comprehensive learning paths from beginner to advanced.</p>
+                <div id="searchbar">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true" style="color:#9bc3e3;"></i>
+                    <label for="search-input">Search</label>
+                    <input type="search" id="search-input" placeholder="Search for courses, topics, or platforms..." aria-label="Search courses">
                 </div>
-            </section>
-            <br> <br>
-            <section class="content-section">
-                <div class="section-bar">
-                    <div class="tabs">
-                        <button class="tab" type="button">HTML</button>
-                        <button class="tab" type="button">CSS</button>
-                        <button class="tab" type="button">Responsive</button>
-                        <button class="tab" type="button">Web Development</button>
-                        <button class="tab" type="button">Deployment</button>
-                        <button class="tab" type="button">JavaScript</button>
-                        <button class="tab" type="button">Frameworks</button>
-                        <button class="tab" type="button">DevOps</button>
-                        <button class="tab" type="button">Performance</button>
-                        <button class="tab" type="button">Testing</button>
-                        <button class="tab" type="button">Accessibility</button>
+                <br><br><br>
+                <section class="content-section">
+                    <div class="section-bar">
+                        <div class="tabs">
+                            <button class="tab" type="button">HTML</button>
+                            <button class="tab" type="button">CSS</button>
+                            <button class="tab" type="button">Responsive</button>
+                            <button class="tab" type="button">Web Development</button>
+                            <button class="tab" type="button">Deployment</button>
+                            <button class="tab" type="button">JavaScript</button>
+                            <button class="tab" type="button">Frameworks</button>
+                            <button class="tab" type="button">DevOps</button>
+                            <button class="tab" type="button">Performance</button>
+                            <button class="tab" type="button">Testing</button>
+                            <button class="tab" type="button">Accessibility</button>
+                        </div>
                     </div>
-                </div>
-                <div id="no-results" style="display:none;text-align:center;color:#111;margin:10px 0;">No videos found.</div>
-                <section class="tools-section">
-                    <div id="tools-container" class="videos-grid" data-page="video-tutorials"></div>
-                    <div style="text-align:center;">
-                        <button id="load-more-btn" type="button">Load More Videos</button>
-                    </div>
+                    <div id="no-results" style="display:none;text-align:center;color:#111;margin:10px 0;">No videos found.</div>
+                    <section class="tools-section">
+                        <div id="tools-container" class="videos-grid" data-page="video-tutorials"></div>
+                        <div style="text-align:center;">
+                            <button id="load-more-btn" type="button">Load More Videos</button>
+                        </div>
+                    </section>
                 </section>
-            </section>
+            </div>
         </main>
         <script type="module" src="../../script.js"></script>
         <script type="module" src="../../search.js"></script>

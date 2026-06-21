@@ -1,0 +1,53 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// _variables.scss  —  All design tokens / CSS custom properties
+// Edit this file to update colours, spacing, and typography across the whole app
+// ─────────────────────────────────────────────────────────────────────────────
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+:root {
+  // ── Colours ──────────────────────────────────────────────
+  --color-sky:           rgb(145, 218, 235);
+  --color-sky-dim:       rgba(145, 218, 235, 0.15);
+  --color-sky-glow:      rgba(145, 218, 235, 0.4);
+  --color-blue-deep:     rgb(14, 73, 100);
+  --color-blue-mid:      rgb(12, 78, 139);
+  --color-blue-muted:    rgb(35, 76, 114);
+  --color-accent:        #46a8f3;
+  --color-accent-glow:   rgba(97, 163, 244, 0.4);
+
+  --color-bg:            #16171B;
+  --color-bg-card:       #060e11;
+  --color-bg-overlay:    rgba(255, 255, 255, 0.05);
+  --color-bg-footer:     rgba(0, 0, 0, 0.3);
+
+  --color-text:          #ffffff;
+  --color-text-muted:    rgba(255, 255, 255, 0.8);
+  --color-text-dim:      rgba(255, 255, 255, 0.5);
+  --color-text-label:    #909091;
+
+  --color-border:        rgb(14, 73, 100);
+  --color-border-hover:  var(--color-sky);
+  --color-border-subtle: rgba(255, 255, 255, 0.1);
+
+  // ── Spacing ───────────────────────────────────────────────
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  1.5rem;
+  --space-lg:  2.5rem;
+  --space-xl:  5rem;
+  --space-2xl: 8rem;
+
+  // ── Border Radius ─────────────────────────────────────────
+  --radius-sm:   10px;
+  --radius-md:   20px;
+  --radius-lg:   25px;
+  --radius-pill: 50px;
+
+  // ── Typography ────────────────────────────────────────────
+  --font-main:  "Poppins", sans-serif;
+
+  // ── Transitions ───────────────────────────────────────────
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+}

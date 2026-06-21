@@ -1,0 +1,273 @@
+/* Communities Page styles */
+.community-page {
+  min-height: 100vh;
+  padding: 5rem 2.5rem 4rem;
+  background-color: #16171B;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.community-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.85rem;
+  background: rgba(145, 218, 235, 0.08);
+  border: 1px solid rgba(145, 218, 235, 0.2);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgb(145, 218, 235);
+  margin-bottom: 1rem;
+  letter-spacing: 0.06em;
+}
+
+.community-title {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  letter-spacing: -0.8px;
+}
+
+.community-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 750px;
+  font-weight: 300;
+}
+
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.community-card {
+  background: #1c1d22;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    border-color: rgba(145, 218, 235, 0.25);
+    transform: translateY(-2px);
+  }
+}
+
+.community-card-body {
+  padding: 1.25rem;
+  flex: 1;
+}
+
+.community-card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+}
+
+.community-card-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.community-card-desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.community-card-footer {
+  padding: 0 1.25rem 1.25rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.community-btn-visit {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  background: rgba(70, 168, 243, 0.12);
+  border: 1px solid rgba(145, 218, 235, 0.2);
+  color: rgb(145, 218, 235);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 0.15s, border-color 0.15s;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(70, 168, 243, 0.2);
+    border-color: rgba(145, 218, 235, 0.4);
+  }
+}
+
+/* ── Discord Servers (Communities/discord-servers.html) styles ── */
+.MainDiscordServers {
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 130px 0px 0px 110px;
+
+  h1 strong {
+    color: #149CEA;
+  }
+
+  #AddDiscordBtn {
+    background-color: #131333;
+    font-weight: bolder;
+    font-size: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.506);
+    border-radius: 30px;
+    width: 200px;
+    padding: 20px;
+    color: #8dd2fa;
+    transition: all 0.2s ease-out;
+
+    &:hover {
+      box-shadow: 0px 0px 15px 5px rgba(131, 210, 255, 0.172);
+      border: 2px solid rgba(131, 255, 255, 0.506);
+      background-color: #223370a5;
+      color: #eef9ff;
+    }
+  }
+}
+
+.TabDiscordServers {
+  text-align: left;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  display: flex;
+  margin: 20px;
+}
+
+.TabServers {
+  justify-content: space-between;
+  flex-direction: column;
+  display: flex;
+  border: 1px solid rgba(255, 255, 255, 0.549);
+  width: 250px;
+  border-radius: 20px;
+  margin-top: 20px;
+  padding: 20px;
+  background-image: linear-gradient(rgba(0, 113, 179, 0.302), rgba(7, 7, 57, 0.591));
+  background-color: rgba(27, 52, 92, 0.638);
+  transition: all .3s ease-out;
+  height: 298.5px;
+
+  h3 {
+    font-size: 40px;
+    color: #97d9ff;
+  }
+
+  p {
+    font-size: 15px;
+    color: #97d9ff;
+  }
+
+  button {
+    font-size: 15px;
+    margin: 50px 0px 0px 0px;
+    font-weight: bolder;
+    color: rgb(139, 251, 255);
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border: 2px solid rgba(139, 251, 255, 0.419);
+    background: none;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #0088ff31;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0px 0px 15px 2px rgba(0, 242, 255, 0.172);
+    border: 1px solid rgb(129, 242, 255);
+    scale: 1.02;
+    animation: float 3.2s ease-in-out infinite;
+
+    .Cover {
+      z-index: -1;
+      opacity: 0;
+    }
+  }
+}
+
+.Cover {
+  background-image: linear-gradient(rgba(56, 83, 254, 0.191), rgba(11, 5, 60, 0.591));
+  border-bottom: 2px solid rgba(17, 115, 189, 0.996);
+  border-right: 2px solid rgba(17, 115, 189, 0.996);
+  border-left: 2px solid rgba(171, 218, 255, 0.996);
+  border-top: 2px solid rgba(171, 218, 255, 0.996);
+  background-color: #192531;
+  flex-wrap: wrap;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 250px;
+  height: 298.5px;
+  border-radius: 20px;
+  margin: -21px -21px -21px -21px;
+  padding: 50px;
+  transition: all .6s ease-in-out;
+
+  h1 {
+    color: #5f8ef2;
+  }
+
+  img {
+    border-radius: 50%;
+    border: 1px solid rgb(93, 160, 253);
+    height: 100px;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .community-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .community-page {
+    padding: 4.5rem 1rem 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .community-page {
+    padding: 4.5rem 1rem 3rem;
+  }
+
+  .community-title {
+    font-size: 2rem;
+  }
+
+  .community-grid {
+    grid-template-columns: 1fr;
+  }
+}
