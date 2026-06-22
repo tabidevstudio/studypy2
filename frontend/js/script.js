@@ -1,6 +1,6 @@
 (function () {
-  /* Nav & Sidebar HTML */
-  const NAV_HTML = `
+    /* Nav & Sidebar HTML */
+    const NAV_HTML = `
 <nav>
     <div class="container">
         <div class="logo-wrap" style="display:flex; align-items:center; gap:10px;">
@@ -22,7 +22,7 @@
         </div>
     </div>
 </nav>
- 
+
 <div class="sidebar close">
     <button class="sidebar-mobile-close" aria-label="Close menu">
         <i class='bx bx-x'></i>
@@ -171,95 +171,107 @@
     </ul>
 </div>`;
 
-  /* Inject into placeholder */
-  const placeholder = document.getElementById("navbar-placeholder");
-  if (placeholder) {
-    placeholder.innerHTML = NAV_HTML;
-  }
-
-  /* Sidebar toggle */
-  const sidebar = document.querySelector(".sidebar");
-  window.__studypySidebarInit = true;
-
-  const syncSidebarState = () => {
-    document.body.classList.toggle(
-      "sidebar-collapsed",
-      sidebar.classList.contains("close")
-    );
-  };
-
-  syncSidebarState();
-
-  const sidebarToggle = document.querySelector(".sidebar-toggle");
-  if (sidebarToggle) {
-    sidebarToggle.addEventListener("click", () => {
-      sidebar.classList.toggle("close");
-      syncSidebarState();
-    });
-  }
-
-  /* Mobile close button */
-  const mobileCloseBtn = document.querySelector(".sidebar-mobile-close");
-  if (mobileCloseBtn) {
-    mobileCloseBtn.addEventListener("click", () => {
-      sidebar.classList.remove("mobile-open");
-      document.body.classList.remove("mobile-sidebar-active");
-    });
-  }
-
-  /* Mobile sidebar toggle & backdrop */
-  const mobileToggle = document.querySelector(".mobile-nav-toggle");
-  if (mobileToggle) {
-    mobileToggle.addEventListener("click", () => {
-      sidebar.classList.toggle("mobile-open");
-      document.body.classList.toggle("mobile-sidebar-active");
-
-      let backdrop = document.querySelector(".sidebar-backdrop");
-      if (!backdrop) {
-        backdrop = document.createElement("div");
-        backdrop.className = "sidebar-backdrop";
-        document.body.appendChild(backdrop);
-        backdrop.addEventListener("click", () => {
-          sidebar.classList.remove("mobile-open");
-          document.body.classList.remove("mobile-sidebar-active");
-        });
-      }
-    });
-  }
-
-  /* Click-based submenus */
-  document.querySelectorAll(".iocn-link").forEach((iocnLink) => {
-    const link = iocnLink.querySelector("a");
-    if (!link) return;
-
-    if (!iocnLink.querySelector(".arrow")) {
-      const arrow = document.createElement("i");
-      arrow.className = "bx bxs-chevron-down arrow";
-      iocnLink.appendChild(arrow);
+    /* Inject into placeholder */
+    const placeholder = document.getElementById("navbar-placeholder");
+    if (placeholder) {
+        placeholder.innerHTML = NAV_HTML;
     }
-    const arrow = iocnLink.querySelector(".arrow");
 
-    const toggleMenu = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const parentLi = iocnLink.closest("li");
-      if (!parentLi) return;
+    /* Sidebar toggle */
+    const sidebar = document.querySelector(".sidebar");
+    window.__studypySidebarInit = true;
 
-      const isOpen = parentLi.classList.contains("showMenu");
-
-      document.querySelectorAll(".nav-links li.showMenu").forEach((li) => {
-        li.classList.remove("showMenu");
-      });
-
-      if (!isOpen) {
-        parentLi.classList.add("showMenu");
-      }
+    const syncSidebarState = () => {
+        document.body.classList.toggle(
+            "sidebar-collapsed",
+            sidebar.classList.contains("close")
+        );
     };
 
-    link.addEventListener("click", toggleMenu);
-    if (arrow) {
-      arrow.style.cursor = "pointer";
-      arrow.addEventListener("click", toggleMenu);
+    syncSidebarState();
+
+    const sidebarToggle = document.querySelector(".sidebar-toggle");
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+            syncSidebarState();
+        });
     }
-  });
+
+    /* Mobile close button */
+    const mobileCloseBtn = document.querySelector(".sidebar-mobile-close");
+    if (mobileCloseBtn) {
+        mobileCloseBtn.addEventListener("click", () => {
+            sidebar.classList.remove("mobile-open");
+            document.body.classList.remove("mobile-sidebar-active");
+        });
+    }
+
+    /* Mobile sidebar toggle & backdrop */
+    const mobileToggle = document.querySelector(".mobile-nav-toggle");
+    if (mobileToggle) {
+        mobileToggle.addEventListener("click", () => {
+            sidebar.classList.toggle("mobile-open");
+            document.body.classList.toggle("mobile-sidebar-active");
+
+            let backdrop = document.querySelector(".sidebar-backdrop");
+            if (!backdrop) {
+                backdrop = document.createElement("div");
+                backdrop.className = "sidebar-backdrop";
+                document.body.appendChild(backdrop);
+                backdrop.addEventListener("click", () => {
+                    sidebar.classList.remove("mobile-open");
+                    document.body.classList.remove("mobile-sidebar-active");
+                });
+            }
+        });
+    }
+
+    /* Click-based submenus */
+    document.querySelectorAll(".iocn-link").forEach((iocnLink) => {
+        const link = iocnLink.querySelector("a");
+        if (!link) return;
+
+        if (!iocnLink.querySelector(".arrow")) {
+            const arrow = document.createElement("i");
+            arrow.className = "bx bxs-chevron-down arrow";
+            iocnLink.appendChild(arrow);
+        }
+        const arrow = iocnLink.querySelector(".arrow");
+
+        const toggleMenu = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const parentLi = iocnLink.closest("li");
+            if (!parentLi) return;
+
+            const isOpen = parentLi.classList.contains("showMenu");
+
+            document.querySelectorAll(".nav-links li.showMenu").forEach((li) => {
+                li.classList.remove("showMenu");
+            });
+
+            if (!isOpen) {
+                parentLi.classList.add("showMenu");
+            }
+        };
+
+        link.addEventListener("click", toggleMenu);
+        if (arrow) {
+            arrow.style.cursor = "pointer";
+            arrow.addEventListener("click", toggleMenu);
+        }
+    });
+
+
+
+    if ("serviceWorker" in navigator){
+        window.addEventListener("load", () => {
+            navigator.serviceWorker
+                .register("/sw.js")
+                .then((reg) => console.log("Service Worker registered successfully:", reg.scope))
+                .catch((err) => console.error("Service Worker registration failed:", err));
+        })
+    }
+
 })();
