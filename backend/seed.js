@@ -1,49 +1,51 @@
-"use strict";
+require('dotenv').config();
 
-/**
- * seed.js — One-time migration script.
- * Reads backend/data.json and inserts all categories into MongoDB Atlas.
- *
- * Usage (from the backend/ directory):
- *   node seed.js
- */
+const { MongoClient } = require('mongodb');
+const data = require('./data.json');
 
-const mongoose = require("mongoose");
-require("dotenv").config();
-
-const Category = require("./models/Resource");
-const rawData  = require("./data.json");
+const CONNECTION_STRING = process.env.MONGO_URI || 'mongodb://localhost:27017';
+const DB_NAME = 'studypy';
+const COLLECTION_NAME = 'links';
 
 async function seed() {
-  if (!process.env.MONGO_URI) {
-    console.error("❌ MONGO_URI is not defined in .env");
-    process.exit(1);
-  }
+  const client = new MongoClient(CONNECTION_STRING);
 
   try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("✅ Connected to MongoDB Atlas");
+    await client.connect();
+    console.log('Connected to MongoDB...');
 
-    // Wipe existing data so the seed is idempotent
-    await Category.deleteMany({});
-    console.log("🗑  Cleared existing categories");
+    const db = client.db(DB_NAME);
+    const collection = db.collection(COLLECTION_NAME);
 
-    // Insert every category from data.json
-    const inserted = await Category.insertMany(rawData.categories);
-    console.log(`✅ Seeded ${inserted.length} categories into MongoDB Atlas`);
+    const docs = [];
 
-    rawData.categories.forEach((cat) => {
-      const totalLinks = cat.pages.reduce((sum, p) => sum + p.links.length, 0);
-      console.log(
-        `   • ${cat.name}: ${cat.pages.length} page(s), ${totalLinks} link(s)`
-      );
-    });
+    for (const category of data.categories) {
+      for (const page of category.pages) {
+        for (const link of page.links) {
+          docs.push({
+            title: link.title,
+            description: link.description,
+            url: link.url,
+            category: category.name,
+            page: page.name,
+            addedAt: new Date(),
+          });
+        }
+      }
+    }
+
+    console.log(`Prepared ${docs.length} documents...`);
+
+    await collection.deleteMany({});
+    console.log('Cleared existing links...');
+
+    const result = await collection.insertMany(docs);
+    console.log(`Inserted ${result.insertedCount} links`);
+
   } catch (err) {
-    console.error("❌ Seed failed:", err.message);
-    process.exit(1);
+    console.error('Seeding failed:', err.message);
   } finally {
-    await mongoose.disconnect();
-    console.log("🔌 Disconnected from MongoDB Atlas");
+    await client.close();
   }
 }
 
