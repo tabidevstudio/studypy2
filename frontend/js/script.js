@@ -1,3 +1,5 @@
+import { getProfile } from "./auth.js";
+
 (function () {
     /* Nav & Sidebar HTML */
     const NAV_HTML = `
@@ -18,6 +20,7 @@
                 <li><a href="/index.html#about">About</a></li>
                 <li><a href="/index.html#explore">Explore</a></li>
                 <li><a href="/index.html#footer">Contact</a></li>
+                <li id="nav-auth-item"><a href="/pages/login.html">Login</a></li>
             </ul>
         </div>
     </div>
@@ -168,6 +171,15 @@
                 <li><a class="link_name" href="/pages/settings.html">Setting</a></li>
             </ul>
         </li>
+        <li id="sidebar-auth-item">
+            <a href="/pages/login.html" id="auth-sidebar-link">
+                <i class='bx bx-log-in' id="auth-sidebar-icon"></i>
+                <span class="link_name" id="auth-sidebar-text">Login</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="/pages/login.html" id="auth-submenu-link">Login</a></li>
+            </ul>
+        </li>
     </ul>
 </div>`;
 
@@ -261,6 +273,51 @@
             arrow.style.cursor = "pointer";
             arrow.addEventListener("click", toggleMenu);
         }
+    });
+
+    // Synchronize User Authentication Status
+    getProfile().then((res) => {
+        const navAuthItem = document.getElementById("nav-auth-item");
+        const authSidebarLink = document.getElementById("auth-sidebar-link");
+        const authSidebarIcon = document.getElementById("auth-sidebar-icon");
+        const authSidebarText = document.getElementById("auth-sidebar-text");
+        const authSubmenuLink = document.getElementById("auth-submenu-link");
+
+        if (res && res.authenticated) {
+            const user = res.user;
+            if (navAuthItem) {
+                navAuthItem.innerHTML = `
+                    <a href="/pages/settings.html" style="display:flex; align-items:center; gap:8px;">
+                        <img src="${user.avatar || '/assets/images/lugu-bg.png'}" alt="Avatar" style="width:24px; height:24px; border-radius:50%; object-fit:cover; border:1px solid rgb(145, 218, 235);">
+                        <span>${user.username}</span>
+                    </a>
+                `;
+            }
+            if (authSidebarLink) authSidebarLink.href = "/pages/settings.html";
+            if (authSidebarIcon) {
+                authSidebarIcon.className = "bx bx-user-circle";
+            }
+            if (authSidebarText) authSidebarText.textContent = "Profile";
+            if (authSubmenuLink) {
+                authSubmenuLink.href = "/pages/settings.html";
+                authSubmenuLink.textContent = "Profile";
+            }
+        } else {
+            if (navAuthItem) {
+                navAuthItem.innerHTML = `<a href="/pages/login.html">Login</a>`;
+            }
+            if (authSidebarLink) authSidebarLink.href = "/pages/login.html";
+            if (authSidebarIcon) {
+                authSidebarIcon.className = "bx bx-log-in";
+            }
+            if (authSidebarText) authSidebarText.textContent = "Login";
+            if (authSubmenuLink) {
+                authSubmenuLink.href = "/pages/login.html";
+                authSubmenuLink.textContent = "Login";
+            }
+        }
+    }).catch((err) => {
+        console.error("Auth status sync error:", err);
     });
 
 
