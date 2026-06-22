@@ -1,4 +1,4 @@
-const CACHE_NAME = "studypy-cache-v1";
+const CACHE_NAME = "studypy-cache-v2";
 const ASSETS_TO_CACHE = [
     "/",
     "/css/main.css",
