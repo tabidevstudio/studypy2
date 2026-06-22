@@ -379,6 +379,20 @@ async function loadLinks() {
     console.error("No data-page attribute set on #tools-container");
     return;
   }
+    const UNDER_CONSTRUCTION_PAGES = [
+        "interview-prep",
+        "job-boards",
+        "resume-building",
+        "coding-problems",
+        "projectideas",
+        "forums",
+        "study-groups"
+    ];
+    if(UNDER_CONSTRUCTION_PAGES.includes(pageName)) {
+        window.location.href = `/pages/503.html?page=${encodeURIComponent(pageName)}`;
+        return;
+    }
+
 
   // Check auth status first
   try {
