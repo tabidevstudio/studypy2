@@ -4,7 +4,7 @@ const { MongoClient } = require('mongodb');
 const data = require('./data.json');
 
 const CONNECTION_STRING = process.env.MONGO_URI || 'mongodb://localhost:27017';
-const DB_NAME = 'studypy';
+const DB_NAME = 'studypy_db';
 const COLLECTION_NAME = 'links';
 
 async function seed() {
