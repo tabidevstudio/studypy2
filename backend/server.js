@@ -18,7 +18,7 @@ app.use(cors({
       "http://localhost:5500",
       "http://127.0.0.1:5500",
       process.env.FRONTEND_URL
-    ].filter(Boolean);
+    ].filter(Boolean).map(o => o.replace(/\/$/, ""));
     
     // Allow requests with no origin (like mobile apps, postman, curl)
     // or origins that match allowed origins or start with http://localhost

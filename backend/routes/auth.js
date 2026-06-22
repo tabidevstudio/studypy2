@@ -147,10 +147,11 @@ router.get("/google/callback", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "7d" });
 
     // Set cookie on client
+    const isLocalhost = FRONTEND_URL.includes("localhost") || FRONTEND_URL.includes("127.0.0.1");
     res.cookie("studypy_token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      secure: !isLocalhost,
+      sameSite: isLocalhost ? "lax" : "none",
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
@@ -293,10 +294,11 @@ router.get("/github/callback", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "7d" });
 
     // Set cookie on client
+    const isLocalhost = FRONTEND_URL.includes("localhost") || FRONTEND_URL.includes("127.0.0.1");
     res.cookie("studypy_token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      secure: !isLocalhost,
+      sameSite: isLocalhost ? "lax" : "none",
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
@@ -362,10 +364,11 @@ router.get("/me", requireAuth, async (req, res) => {
 
 // 2. Logout Endpoint
 router.post("/logout", (req, res) => {
+  const isLocalhost = FRONTEND_URL.includes("localhost") || FRONTEND_URL.includes("127.0.0.1");
   res.clearCookie("studypy_token", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax"
+    secure: !isLocalhost,
+    sameSite: isLocalhost ? "lax" : "none"
   });
   res.json({ message: "Logged out successfully" });
 });
