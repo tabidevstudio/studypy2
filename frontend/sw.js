@@ -1,7 +1,6 @@
 const CACHE_NAME = "studypy-cache-v1";
 const ASSETS_TO_CACHE = [
     "/",
-    "/index.html",
     "/css/main.css",
     "/js/script.js",
     "/js/search.js",
@@ -43,7 +42,7 @@ self.addEventListener("fetch", (event) => {
             return cachedResponse || fetch(event.request).catch(() => {
                 const acceptHeader = event.request.headers.get("accept");
                 if (acceptHeader && acceptHeader.includes("text/html")) {
-                    return caches.match("/index.html") || caches.match("/");
+                    return caches.match("/");
                 }
                 // Return a fallback response for other assets to avoid ERR_FAILED
                 return new Response("Offline", { status: 503, statusText: "Offline" });
