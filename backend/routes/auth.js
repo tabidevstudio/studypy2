@@ -12,9 +12,25 @@ const JWT_SECRET = process.env.JWT_SECRET || "studypy_super_secret_session_key_9
 
 // Helper to resolve URLs dynamically based on request context
 function getUrls(req) {
-  const backendUrl = process.env.BACKEND_URL || "https://studypy-backend.onrender.com";
+  let backendUrl = process.env.BACKEND_URL || "https://studypy-backend.onrender.com";
+  
+  // If the request was proxied (e.g. Vercel), determine the proxy host and protocol
+  if (req && req.headers["x-forwarded-host"]) {
+    const forwardedHost = req.headers["x-forwarded-host"];
+    const forwardedProto = req.headers["x-forwarded-proto"] || "https";
+    backendUrl = `${forwardedProto}://${forwardedHost}`;
+  }
+
   const frontendUrl = process.env.FRONTEND_URL || "https://studypy.vercel.app";
-  return { backendUrl, frontendUrl, isLocal: false };
+  
+  // Determine if it is a local request (direct or proxied)
+  const isLocal = req 
+    ? (req.headers.host.includes("localhost") || 
+       req.headers.host.includes("127.0.0.1") || 
+       (req.headers["x-forwarded-host"] && (req.headers["x-forwarded-host"].includes("localhost") || req.headers["x-forwarded-host"].includes("127.0.0.1"))))
+    : false;
+
+  return { backendUrl, frontendUrl, isLocal };
 }
 
 // Helper to calculate days between two YYYY-MM-DD dates

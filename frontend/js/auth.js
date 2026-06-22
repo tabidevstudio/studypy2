@@ -1,5 +1,8 @@
 // Backend API Base URL
-export const API_BASE = "https://studypy-backend.onrender.com/api/auth";
+const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+export const API_BASE = isLocal
+  ? "http://localhost:3000/api/auth"
+  : "/api/auth";
 
 /**
  * Helper to wrap fetch calls with credentials (supporting HTTP-Only cookies)

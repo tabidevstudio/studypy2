@@ -43,7 +43,10 @@
         import { getProfile } from "../js/auth.js";
 
         // Setup OAuth URLs
-        const BACKEND_BASE = "https://studypy-backend.onrender.com";
+        const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+        const BACKEND_BASE = isLocal
+            ? "http://localhost:3000"
+            : "";
 
         document.getElementById("google-login-btn").href = `${BACKEND_BASE}/api/auth/google`;
         document.getElementById("github-login-btn").href = `${BACKEND_BASE}/api/auth/github`;

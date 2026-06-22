@@ -1,6 +1,9 @@
 import { getProfile, toggleBookmark, toggleWatched } from "./auth.js";
 
-const BASE_URL = "https://studypy-backend.onrender.com";
+const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+const BASE_URL = isLocal
+  ? "http://localhost:3000"
+  : "";
 
 let loggedInUser = null;
 

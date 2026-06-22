@@ -226,7 +226,10 @@
             verifyResult.className = "verify-result";
             verifyResult.innerHTML = "<i class='bx bx-loader-alt bx-spin'></i> Running test cases...";
 
-            const BACKEND_BASE = "https://studypy-backend.onrender.com";
+            const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+            const BACKEND_BASE = isLocal
+                ? "http://localhost:3000"
+                : "";
 
             try {
                 const completeCode = userCode + challenge.assertions;

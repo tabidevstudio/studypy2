@@ -1,5 +1,9 @@
 {
   "rewrites": [
+    { "source": "/api/:path*", "destination": "https://studypy-backend.onrender.com/api/:path*" },
+    { "source": "/run", "destination": "https://studypy-backend.onrender.com/run" },
+    { "source": "/links", "destination": "https://studypy-backend.onrender.com/links" },
+    { "source": "/search", "destination": "https://studypy-backend.onrender.com/search" },
     { "source": "/", "destination": "/index.html" }
   ],
   "cleanUrls": true
