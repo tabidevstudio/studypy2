@@ -1,14 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-
-                    scale=1.0">
-        <title>Coding Problems | Studypy</title>
-    </head>
-    <body>
-        <div id="tools-container" data-page="coding-problems"></div>
-        <script type="module" src="../../js/links.js"></script>
-    </body>
-</html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coding Flashcards | StudyPy</title>
+    <meta name="description" content="Master syntax, core programming concepts, and algorithmic thinking with StudyPy interactive coding flashcards." />
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/challenges.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+</head>
+<body>
 
+    <div id="navbar-placeholder"></div>
+
+    <main class="main">
+        <div class="challenge-page">
+            <br><br><br>
+            
+            <!-- Hero Header -->
+            <div class="arena-hero" style="margin-bottom: 2rem;">
+                <div class="arena-grid-overlay"></div>
+                <div class="challenge-badge">
+                    <i class='bx bx-brain'></i>
+                    Interactive Learning
+                </div>
+                <h1 class="challenge-title" style="margin-bottom: 0.8rem; font-family: 'Poppins', sans-serif; font-weight: 700; background: linear-gradient(90deg, #fff, rgb(145, 218, 235)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Coding Flashcards</h1>
+                <p class="challenge-subtitle" style="margin-bottom: 0; max-width: 800px; font-weight: 300; line-height: 1.6; color: rgba(255, 255, 255, 0.72);">
+                    Test your memory, logical syntax, and language concepts. Choose your programming language and difficulty level to begin. Submit answers and watch the flashcards rotate through a 3D space.
+                </p>
+            </div>
+
+            <div class="flashcard-view">
+                
+                <!-- CONTAINER 1: SETUP -->
+                <div class="setup-card" id="setup-container">
+                    <div class="setup-section-title">
+                        <i class='bx bx-code-alt'></i>
+                        Select Language
+                    </div>
+                    
+                    <div class="lang-grid">
+                        <div class="lang-card-select" data-lang="python">
+                            <i class='bx bxl-python'></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="lang-card-select" data-lang="javascript">
+                            <i class='bx bxl-javascript'></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="lang-card-select" data-lang="java">
+                            <i class='bx bxl-java'></i>
+                            <span>Java</span>
+                        </div>
+                        <div class="lang-card-select" data-lang="cpp">
+                            <i class='bx bx-code-curly'></i>
+                            <span>C++</span>
+                        </div>
+                    </div>
+
+                    <div class="setup-section-title">
+                        <i class='bx bx-slider-alt'></i>
+                        Select Difficulty
+                    </div>
+                    
+                    <div class="difficulty-selector">
+                        <div class="diff-btn easy-btn" data-diff="easy">Easy</div>
+                        <div class="diff-btn medium-btn" data-diff="medium">Medium</div>
+                        <div class="diff-btn hard-btn" data-diff="hard">Hard</div>
+                    </div>
+
+                    <div class="start-action-wrap">
+                        <button class="btn-start-challenge" id="btn-start-challenge" disabled>
+                            Start Flashcards
+                            <i class='bx bx-right-arrow-alt'></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CONTAINER 2: ARENA PLAY -->
+                <div class="setup-card hidden" id="arena-container" style="background: none; border: none; box-shadow: none; padding: 0;">
+                    <div class="arena-header">
+                        <button class="back-btn back-to-setup">
+                            <i class='bx bx-left-arrow-alt'></i>
+                            Back
+                        </button>
+                        <h2 class="arena-lang-title" id="arena-lang-title" style="font-size: 1.15rem; font-weight: 600; color: #fff; margin: 0;">Python - Easy</h2>
+                        <div class="arena-stats">
+                            <div class="stat-box">Score: <span id="score-val">0</span></div>
+                            <div class="stat-box">Progress: <span id="progress-text">1 / 4</span></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-container">
+                        <div class="progress-bar" id="arena-progress-bar"></div>
+                    </div>
+
+                    <div class="flashcard-stack-wrap" id="flashcard-stack">
+                        <!-- Dynamic card slots A, B, C loaded here -->
+                    </div>
+                </div>
+
+                <!-- CONTAINER 3: RESULTS SUMMARY -->
+                <div class="results-card hidden" id="results-container">
+                    <i class="bx bxs-trophy success-trophy" id="res-trophy"></i>
+                    <h2>Challenge Completed!</h2>
+                    <p>Excellent effort. Here is how you performed in this arena.</p>
+
+                    <div class="stats-circle-wrap">
+                        <svg class="progress-svg">
+                            <circle class="circle-bg" cx="75" cy="75" r="70"></circle>
+                            <circle class="circle-fill" cx="75" cy="75" r="70"></circle>
+                        </svg>
+                        <div class="stats-percent-text" id="res-percent">
+                            0%
+                            <span>Accuracy</span>
+                        </div>
+                    </div>
+
+                    <div class="results-metrics">
+                        <div class="metric-box">
+                            <div class="metric-label">Correct Answers</div>
+                            <div class="metric-value success-val"><span id="res-score">0</span></div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-label">Total Questions</div>
+                            <div class="metric-value"><span id="res-total">0</span></div>
+                        </div>
+                    </div>
+
+                    <div class="results-actions-wrap">
+                        <button class="btn-results-action primary-action back-to-setup">
+                            <i class='bx bx-refresh'></i>
+                            Try Another
+                        </button>
+                        <a href="/pages/Challenges/competition.html" class="btn-results-action secondary-action">
+                            <i class='bx bx-arrow-back'></i>
+                            Arena Home
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <script type="module" src="../../js/script.js"></script>
+    <script type="module" src="../../js/coding-problems.js"></script>
+</body>
+</html>

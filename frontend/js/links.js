@@ -384,7 +384,6 @@ async function loadLinks() {
         "interview-prep",
         "job-boards",
         "resume-building",
-        "coding-problems",
         "projectideas",
         "forums",
         "study-groups"
