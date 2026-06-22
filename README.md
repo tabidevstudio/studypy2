@@ -1,60 +1,68 @@
 # StudyPY 👨🏻‍💻
 
-A centralized learning platform for IT/CS students – providing a code editor, learning resources, and study tools in one place.
+A centralized, interactive learning platform and sandbox hub for Information Technology & Computer Science students. StudyPy provides a multi-language online compiler, visual database sandboxes, version control simulators, and structured academic documentation in a single unified dashboard.
 
-## 📖 About The Project
+---
 
-**StudyPY** was built as a collaborative project to help IT/CS students access learning materials and practice coding without juggling multiple tools. It features an online Python compiler, organized video tutorials, and a code examples library – all in a clean, student-friendly interface.
+## 📖 Project Overview
 
-### What It Does
+**StudyPy** is designed to bridge the gap between theoretical computer science concepts and active practice. Beginners and advanced students alike can write code, visualize complex data structures, practice Git workflows, and experiment with databases without having to manage separate tools.
 
-- **Online Compiler** – Write and run code directly in the browser (powered by OnlineCompiler.io API)
-- **Learning Videos** – Curated video tutorials organized by topic
-- **Code Examples Library** – Ready-to-run code snippets for common algorithms and concepts
-- **Clean Dashboard** – Central hub for all learning resources
+Originally built as a collection of static templates, the platform has evolved into a robust, full-stack web application powered by a MongoDB Atlas database, an Express API proxy, and native ES6 JavaScript module playgrounds.
 
-### Tech Stack
+---
 
-| Layer    | Technology                    | Hosting          |
-|----------|-------------------------------|------------------|
-| Frontend | HTML, CSS, Vanilla JavaScript | Vercel           |
-| Backend  | Node.js + Express             | Render           |
-| API      | OnlineCompiler.io             | External service |
+## 🚀 Key Features & Interactive Sandboxes
 
-### Architecture
+### 💻 1. Multi-Language Online Compiler
+A secure browser-based code runner utilizing CodeMirror 6 with full syntax highlighting, automatic indentation, tab-indent, and run stats tracking (Execution Time & Memory usage).
+*   **Languages:** Python 3.14, Java (OpenJDK 25), C/C++ (GCC/G++ 15), JavaScript (Deno), and PHP 8.5.
+*   **Safety:** Execution runs through our backend proxy server, shielding external compiler API tokens.
 
-Frontend (Vercel) → Backend API (Render) → OnlineCompiler.io
-↓ ↓ ↓
-Static pages Proxies API requests Executes code
-(hides API key)
+### 🌿 2. Git Branching Simulator
+A visual version control simulator that models Git state transformations dynamically.
+*   **Interactive Terminal:** Type standard Git commands (`git commit`, `git branch`, `git checkout`, `git merge`, `git log`) or use quick command buttons.
+*   **Visual Canvas:** Renders commits as dynamic nodes connected via cubic Bezier curves on a scrollable SVG canvas, complete with branch labels and stacked `HEAD` pointers.
+*   **Interactivity:** Click directly on any commit node to run `git checkout` to that commit.
 
-The frontend never directly calls the third-party API – all compilation requests go through our backend, which adds the API key securely.
+### 📊 3. SQL Join & Venn Diagram Visualizer
+A learning tool designed to demystify relational database joins.
+*   **Shaded Venn Diagrams:** Choose INNER, LEFT, RIGHT, FULL, or anti-joins to watch corresponding SVG regions highlight instantly.
+*   **Live SQL Queries:** Generates formatted SQL query templates with automatic keyword, alias, and NULL value syntax coloring.
+*   **Dynamic Datasets:** Computes join records in real time over sample tables (`Employees` and `Departments`) to show exact outputs.
+
+### 🧠 4. Data Structures & Algorithms Visualizer
+An educational animator illustrating computer science algorithms.
+*   **Sorting Algorithms:** Watch bubble sort, selection sort, and insertion sort rearrange array bars, highlighting comparing (yellow), swapping (red), and sorted (green) elements dynamically.
+*   **Linear Structures:** Visualizes Push/Pop operations on LIFO Stacks and Enqueue/Dequeue operations on FIFO Queues, displaying top, front, and rear indicator arrows.
+
+### 🔍 5. Curated Learning Tracks & Global Search
+*   **Global Search API:** Site-wide search fetching matching titles and descriptions directly from MongoDB Atlas.
+*   **Resource Library:** Dynamically loads curated online courses, video tutorials, e-books, and official documentation with localized browser caching for fast loading.
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technologies | Primary Purpose |
+| :--- | :--- | :--- |
+| **Frontend** | HTML5, Vanilla JS (Strict ES6 Modules), CSS3 (Compiled Sass/SCSS) | Responsive UI, interactive engines, animations |
+| **Backend** | Node.js, Express, Mongoose, dotenv, cors | Secure API routing, online compiler proxy |
+| **Database** | MongoDB Atlas Cloud | Dynamic resource links and search indexes |
+| **Integrations** | CodeMirror 6 (esm.sh CDN), Font Awesome, Boxicons | Text editing, iconography |
+
+---
 
 ## 👥 Contributors
 
-This project was developed by:
+This project is built and maintained by the **CCS student developer team** at **Tabi Dev Studio**:
 
-- Bryan P. Saavedra 
-- Nur-Mohammad Zaarr L. Iraji
-- Carl Marcel O. Mapa
-- Landis Angelo J. Tarro
+*   **Bryan P. Saavedra**
+*   **Nur-Mohammad Zaarr L. Iraji**
+*   **Carl Marcel O. Mapa**
+*   **Landis Angelo J. Tarro**
+*   **Norielle John Buhawe**
 
-## 🎯 Purpose
-
-This repository is part of a learning exercise in:
-- Full-stack JavaScript development
-- API integration and security (keeping keys safe)
-- Deploying separate frontend and backend services
-- Collaborative Git workflows
-
-## 🔒 Private Repository
-
-**Note:** This repository is for internal/educational purposes within the tabidevstudio team. It is not configured for public deployment or external contribution. Setup instructions are intentionally omitted as the project is maintained by its original contributors.
-
-## 🚀 Live Deployment
-
-- Frontend: [studypy.vercel.app](https://studypy.vercel.app)
-- Backend: Hosted on Render (private endpoint)
 
 ---
 
