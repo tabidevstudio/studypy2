@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
             btnModeLinear.classList.add('active');
             sectionSorting.classList.remove('active');
             sectionLinear.classList.add('active');
-            // Re-render stack/queue
+            // Stop sorting loop & Re-render stack/queue
+            stopSortingFlag = true;
             renderLinear();
         }
     }

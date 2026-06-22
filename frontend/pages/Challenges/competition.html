@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>503 - Under Construction | Studypy</title>
+    <title>The Challenge Arena | StudyPy</title>
+    <meta name="description" content="Enter the StudyPy programming challenge arena. Explore hackathons, capture the flag (CTF) security hacking, and algorithmic programming to test your engineering limits." />
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/challenges.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -15,291 +16,237 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="StudyPY" />
     <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
-    <style>
-        .uc-wrapper {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-            position: relative;
-            overflow: hidden;
-            background: #16171B;
-        }
-
-        .uc-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at 15% 40%, rgba(12, 78, 139, 0.45) 0%, transparent 50%),
-                radial-gradient(circle at 85% 60%, rgba(35, 76, 114, 0.35) 0%, transparent 50%),
-                radial-gradient(circle at 50% 80%, rgba(14, 73, 100, 0.2) 0%, transparent 50%);
-            animation: bgPulse 8s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes bgPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        .uc-card {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 580px;
-            width: 100%;
-        }
-
-        .uc-code {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(7rem, 20vw, 11rem);
-            font-weight: 700;
-            line-height: 1;
-            letter-spacing: -4px;
-            color: transparent;
-            -webkit-text-stroke: 2px rgba(145, 218, 235, 0.25);
-            position: relative;
-            user-select: none;
-        }
-
-        .uc-code::after {
-            content: '503';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgb(145, 218, 235) 0%, #46a8f3 50%, rgba(145, 218, 235, 0.4) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: flicker 4s ease-in-out infinite;
-        }
-
-        @keyframes flicker {
-            0%, 90%, 100% { opacity: 1; }
-            92% { opacity: 0.6; }
-            94% { opacity: 1; }
-            96% { opacity: 0.7; }
-        }
-
-        .uc-divider {
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgb(145, 218, 235), transparent);
-            margin: 4px auto 28px;
-            border-radius: 999px;
-        }
-
-        .uc-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 18px;
-            border-radius: 999px;
-            background: rgba(14, 73, 100, 0.4);
-            border: 1px solid rgba(145, 218, 235, 0.2);
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: rgb(145, 218, 235);
-            margin-bottom: 22px;
-        }
-
-        .uc-badge-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: rgb(145, 218, 235);
-            animation: blink 1.4s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(0.7); }
-        }
-
-        .uc-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(1.4rem, 4vw, 2rem);
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-        }
-
-        .uc-title span {
-            color: rgb(145, 218, 235);
-        }
-
-        .uc-sub {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            color: rgba(255,255,255,0.65);
-            line-height: 1.7;
-            margin-bottom: 10px;
-        }
-
-        .uc-thanks {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: rgba(145, 218, 235, 0.85);
-            margin-bottom: 36px;
-            letter-spacing: 0.5px;
-        }
-
-        .uc-progress-wrap {
-            width: 100%;
-            max-width: 360px;
-            margin: 0 auto 36px;
-        }
-
-        .uc-progress-label {
-            display: flex;
-            justify-content: space-between;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.72rem;
-            color: rgba(255,255,255,0.4);
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .uc-progress-track {
-            height: 4px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 999px;
-            overflow: hidden;
-        }
-
-        .uc-progress-bar {
-            height: 100%;
-            border-radius: 999px;
-            background: linear-gradient(90deg, rgb(14, 73, 100), rgb(145, 218, 235));
-            animation: progressAnim 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes progressAnim {
-            0%   { width: 20%; }
-            100% { width: 75%; }
-        }
-
-        .uc-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0.9rem 2.6rem;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #fff;
-            background: rgba(14, 73, 100, 0.5);
-            border: 1px solid rgba(145, 218, 235, 0.35);
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .uc-btn:hover {
-            transform: translateY(-4px);
-            background: rgba(14, 73, 100, 0.8);
-            border-color: rgba(145, 218, 235, 0.7);
-            box-shadow: 0 8px 28px rgba(145, 218, 235, 0.15);
-            color: #fff;
-        }
-
-        .uc-btn i {
-            font-size: 18px;
-            transition: transform 0.2s ease;
-        }
-
-        .uc-btn:hover i {
-            transform: translateX(-4px);
-        }
-
-        .uc-gear {
-            position: fixed;
-            color: rgba(145, 218, 235, 0.05);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .uc-gear-1 {
-            top: 6%;
-            right: 4%;
-            font-size: 160px;
-            animation: spinSlow 18s linear infinite;
-        }
-
-        .uc-gear-2 {
-            bottom: 8%;
-            left: 3%;
-            font-size: 110px;
-            animation: spinSlow 12s linear infinite reverse;
-        }
-
-        .uc-gear-3 {
-            top: 48%;
-            left: 1%;
-            font-size: 65px;
-            animation: spinSlow 9s linear infinite;
-        }
-
-        @keyframes spinSlow {
-            from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
-        }
-    </style>
 </head>
 <body>
 
     <div id="navbar-placeholder"></div>
 
     <main class="main">
-        <div class="uc-wrapper">
+        <div class="challenge-page">
+            <br><br><br>
+            
+            <!-- Cyber Hero Banner -->
+            <div class="arena-hero">
+                <div class="arena-grid-overlay"></div>
+                <div class="arena-badge-live">
+                    <span class="badge-pulse"></span>
+                    Live Tournaments Active
+                </div>
+                <h1 class="challenge-title" style="margin-bottom: 0.8rem; font-family: 'Poppins', sans-serif; font-weight: 700; background: linear-gradient(90deg, #fff, rgb(145, 218, 235)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">The Challenge Arena</h1>
+                <p class="challenge-subtitle" style="margin-bottom: 0; max-width: 800px; font-weight: 300; line-height: 1.6; color: rgba(255, 255, 255, 0.72);">
+                    Welcome to the proving grounds. Compete against global developers to expand your limits. Build rapid software at Hackathons, exploit server vulnerabilities in security CTFs, or submit optimized logic for algorithmic rating points.
+                </p>
+            </div>
 
-            <i class='bx bx-cog uc-gear uc-gear-1'></i>
-            <i class='bx bx-cog uc-gear uc-gear-2'></i>
-            <i class='bx bx-cog uc-gear uc-gear-3'></i>
+            <!-- Battle Lanes Arena -->
+            <div class="arena-lanes-container">
+                
+                <!-- Lane 1: Hackathons -->
+                <div class="arena-lane hackathon-lane">
+                    <div class="arena-lane-header">
+                        <div class="lane-title-area">
+                            <div class="challenge-card-icon" style="background: rgba(46, 204, 113, 0.1); color: #2ecc71;">
+                                <i class='bx bx-code-block'></i>
+                            </div>
+                            <div class="lane-title-text">
+                                <h3>Hackathons</h3>
+                                <span>Collaborative Prototyping</span>
+                            </div>
+                        </div>
+                        <div class="lane-desc-area">
+                            <p>Collaborative coding marathons where you form teams to design, develop, and pitch a working software application within a tight 24-to-48 hour window. Connect to global servers below to start building.</p>
+                        </div>
+                        <div class="lane-stats-area">
+                            <div class="stat-label">Skill Rewards</div>
+                            <div class="stat-row">
+                                <span>Team Collaboration</span>
+                                <span class="stat-val">+25 EXP</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Rapid Prototyping</span>
+                                <span class="stat-val">+20 EXP</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Project Pitching</span>
+                                <span class="stat-val">+15 EXP</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portal-mini-grid">
+                        <div class="platform-portal-card">
+                            <div>
+                                <div class="portal-difficulty novice">Novice / Challenger</div>
+                                <h4>Devpost <i class='bx bx-trophy'></i></h4>
+                                <p>The primary global directory hosting open hackathons. Register online, find team members, and inspect thousands of previously compiled portfolios.</p>
+                            </div>
+                            <div class="portal-footer">
+                                <a href="https://devpost.com" target="_blank" rel="noopener noreferrer" class="portal-link">Connect Server <i class='bx bx-right-arrow-alt'></i></a>
+                            </div>
+                        </div>
 
-            <div class="uc-card">
+                        <div class="platform-portal-card">
+                            <div>
+                                <div class="portal-difficulty novice">Novice / Student</div>
+                                <h4>Major League Hacking <i class='bx bx-calendar-event'></i></h4>
+                                <p>The official student hackathon organization. Hosts annual student leagues, provides free hardware sandboxes, and coordinates global university events.</p>
+                            </div>
+                            <div class="portal-footer">
+                                <a href="https://mlh.io" target="_blank" rel="noopener noreferrer" class="portal-link">Connect Server <i class='bx bx-right-arrow-alt'></i></a>
+                            </div>
+                        </div>
 
-                <div class="uc-badge">
-                    <span class="uc-badge-dot"></span>
-                    Service Unavailable
+                        <div class="platform-portal-card">
+                            <div>
+                                <div class="portal-difficulty challenger">Challenger</div>
+                                <h4>HackerEarth <i class='bx bx-select-multiple'></i></h4>
+                                <p>An enterprise-driven coding hub featuring corporate hackathons, specialized theme sprints, and developer hiring tournaments.</p>
+                            </div>
+                            <div class="portal-footer">
+                                <a href="https://www.hackerearth.com" target="_blank" rel="noopener noreferrer" class="portal-link">Connect Server <i class='bx bx-right-arrow-alt'></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="uc-code">503</div>
-                <div class="uc-divider"></div>
-
-                <h1 class="uc-title">Under <span>Construction</span></h1>
-
-                <p class="uc-sub">This page is still being built. We're working hard to bring it to life — check back soon!</p>
-                <p class="uc-thanks">Thank you for your Support &#9825;</p>
-
-                <div class="uc-progress-wrap">
-                    <div class="uc-progress-label">
-                        <span>In Progress</span>
-                        <span>Coming Soon</span>
+                <!-- Lane 2: Capture The Flag -->
+                <div class="arena-lane ctf-lane">
+                    <div class="arena-lane-header">
+                        <div class="lane-title-area">
+                            <div class="challenge-card-icon" style="background: rgba(231, 76, 60, 0.1); color: #e74c3c;">
+                                <i class='bx bx-shield-quarter'></i>
+                            </div>
+                            <div class="lane-title-text">
+                                <h3>Capture The Flag</h3>
+                                <span>Cybersecurity &amp; Penetration Testing</span>
+                            </div>
+                        </div>
+                        <div class="lane-desc-area">
+                            <p>Gamified cybersecurity challenges where you audit source code, reverse-engineer binary files, bypass auth headers, and crack cryptography to capture hidden flag strings. Start hacking on secure sandboxes below.</p>
+                        </div>
+                        <div class="lane-stats-area">
+                            <div class="stat-label">Skill Rewards</div>
+                            <div class="stat-row">
+                                <span>Security Audits</span>
+                                <span class="stat-val">+25 EXP</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Linux Scripting</span>
+                                <span class="stat-val">+20 EXP</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Assembly &amp; Debugging</span>
+                                <span class="stat-val">+15 EXP</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="uc-progress-track">
-                        <div class="uc-progress-bar"></div>
+                    
+                    <div class="portal-mini-grid">
+                        <div class="platform-portal-card">
+                            <div>
+                                <div class="portal-difficulty novice">Novice / Educational</div>
+                                <h4>PicoCTF <i class='bx bx-flag'></i></h4>
+                                <p>Created by Carnegie Mellon University. Exceptional starting point for beginners, utilizing a game structure to teach basic security exploitation.</p>
+                            </div>
+                            <div class="portal-footer">
+                                <a href="https://picoctf.org" target="_blank" rel="noopener noreferrer" class="portal-link">Connect Server <i class='bx bx-right-arrow-alt'></i></a>
+                            </div>
+                        </div>
+
+                        <div class="platform-portal-card">
+                            <div>
+                                <div class="portal-difficulty challenger">Challenger</div>
+                                <h4>Hack The Box <i class='bx bx-terminal'></i></h4>
+                                <p>Highly realistic penetration testing labs. Connect via OpenVPN tunnels to explore and gain administrative control over active vulnerable servers.</p>
+                            </div>
+                            <div class="portal-footer">
+                                <a href="https://www.hackthebox.com" target="_blank" rel="noopener noreferrer" class="portal-link">Connect Server <i class='bx bx-right-arrow-alt'></i></a>
+                            </div>
+                        </div>
+
+                        <div class="platform-portal-card">
+                            <div>
+                                <div class="portal-difficulty master">Master / Elite</div>
+                                <h4>CTFtime <i class='bx bx-radar'></i></h4>
+                                <p>The global calendar tracker for cyber CTF tournaments. Monitor ongoing scoreboards, read solution write-ups, and track team rankings.</p>
+                            </div>
+                            <div class="portal-footer">
+                                <a href="https://ctftime.org" target="_blank" rel="noopener noreferrer" class="portal-link">Connect Server <i class='bx bx-right-arrow-alt'></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <a href="/index.html" class="uc-btn">
-                    <i class='bx bx-arrow-back'></i>
-                    Go Back
-                </a>
+                <!-- Lane 3: Competitive Programming -->
+                <div class="arena-lane algo-lane">
+                    <div class="arena-lane-header">
+                        <div class="lane-title-area">
+                            <div class="challenge-card-icon" style="background: rgba(145, 218, 235, 0.1); color: rgb(145, 218, 235);">
+                                <i class='bx bx-brain'></i>
+                            </div>
+                            <div class="lane-title-text">
+                                <h3>Competitive Coding</h3>
+                                <span>Algorithms &amp; Optimizations</span>
+                            </div>
+                        </div>
+                        <div class="lane-desc-area">
+                            <p>Intense mathematical and algorithmic contests requiring you to construct optimized data structures to process large test datasets within strict runtime constraints. Join the rating ladders below.</p>
+                        </div>
+                        <div class="lane-stats-area">
+                            <div class="stat-label">Skill Rewards</div>
+                            <div class="stat-row">
+                                <span>Data Structures</span>
+                                <span class="stat-val">+25 EXP</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Big-O Complexity</span>
+                                <span class="stat-val">+20 EXP</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Edge-Case Debugging</span>
+                                <span class="stat-val">+15 EXP</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portal-mini-grid">
+                        <div class="platform-portal-card">
+                            <div>
+                                <div class="portal-difficulty novice">Novice / Intermediate</div>
+                                <h4>LeetCode <i class='bx bx-objects-horizontal-left'></i></h4>
+                                <p>The industry benchmark for learning and refining standard algorithmic patterns. Join weekly tournaments to test speed against thousands.</p>
+                            </div>
+                            <div class="portal-footer">
+                                <a href="https://leetcode.com" target="_blank" rel="noopener noreferrer" class="portal-link">Connect Server <i class='bx bx-right-arrow-alt'></i></a>
+                            </div>
+                        </div>
+
+                        <div class="platform-portal-card">
+                            <div>
+                                <div class="portal-difficulty novice">Novice</div>
+                                <h4>HackerRank <i class='bx bx-check-square'></i></h4>
+                                <p>Highly structured algorithms and data structure practices. Solve tasks categorized by core skills, including SQL and database schemas.</p>
+                            </div>
+                            <div class="portal-footer">
+                                <a href="https://www.hackerrank.com" target="_blank" rel="noopener noreferrer" class="portal-link">Connect Server <i class='bx bx-right-arrow-alt'></i></a>
+                            </div>
+                        </div>
+
+                        <div class="platform-portal-card">
+                            <div>
+                                <div class="portal-difficulty master">Master / Elite</div>
+                                <h4>Codeforces <i class='bx bx-line-chart'></i></h4>
+                                <p>The proving grounds for hardcore algorithms. Compete in 2-hour rating rounds with strict logical puzzles and global Elo statistics.</p>
+                            </div>
+                            <div class="portal-footer">
+                                <a href="https://codeforces.com" target="_blank" rel="noopener noreferrer" class="portal-link">Connect Server <i class='bx bx-right-arrow-alt'></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
+
         </div>
     </main>
 

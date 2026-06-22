@@ -137,5 +137,329 @@
     grid-template-columns: 1fr;
   }
 }
+.arena-hero {
+  position: relative;
+  padding: 3.5rem 2.5rem;
+  background: linear-gradient(135deg, #111215 0%, #1a1c22 100%);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 20px;
+  margin-bottom: 3rem;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+.arena-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 85% 20%, rgba(145, 218, 235, 0.12) 0%, transparent 50%), radial-gradient(circle at 15% 85%, rgba(231, 76, 60, 0.08) 0%, transparent 50%), radial-gradient(circle at 50% 50%, rgba(46, 204, 113, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+.arena-hero .arena-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.arena-badge-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(231, 76, 60, 0.12);
+  border: 1px solid rgba(231, 76, 60, 0.35);
+  color: #e74c3c;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 10px rgba(231, 76, 60, 0.1);
+}
+.arena-badge-live .badge-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e74c3c;
+  box-shadow: 0 0 8px #e74c3c;
+  animation: neonPulse 1.5s infinite ease-in-out;
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 4px #e74c3c;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.4;
+    box-shadow: 0 0 10px #e74c3c;
+  }
+}
+.arena-section-title {
+  font-size: 1.35rem;
+  color: #fff;
+  font-weight: 600;
+  margin: 3.5rem 0 1.5rem;
+  font-family: "Poppins", sans-serif;
+  border-left: 4px solid rgb(145, 218, 235);
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.arena-section-title i {
+  font-size: 1.5rem;
+  color: rgb(145, 218, 235);
+}
+
+.arena-lane {
+  background: rgba(24, 25, 30, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  padding: 2.2rem 2rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+.arena-lane:hover {
+  background: rgba(28, 29, 35, 0.8);
+  transform: translateY(-2px);
+}
+.arena-lane.hackathon-lane {
+  border-left: 5px solid #2ecc71;
+}
+.arena-lane.hackathon-lane:hover {
+  border-color: rgba(46, 204, 113, 0.3);
+  box-shadow: 0 12px 36px rgba(46, 204, 113, 0.08);
+}
+.arena-lane.ctf-lane {
+  border-left: 5px solid #e74c3c;
+}
+.arena-lane.ctf-lane:hover {
+  border-color: rgba(231, 76, 60, 0.3);
+  box-shadow: 0 12px 36px rgba(231, 76, 60, 0.08);
+}
+.arena-lane.algo-lane {
+  border-left: 5px solid rgb(145, 218, 235);
+}
+.arena-lane.algo-lane:hover {
+  border-color: rgba(145, 218, 235, 0.3);
+  box-shadow: 0 12px 36px rgba(145, 218, 235, 0.08);
+}
+
+.arena-lane-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2.5rem;
+}
+@media (max-width: 900px) {
+  .arena-lane-header {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.lane-title-area {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.lane-title-area .challenge-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.lane-title-area .lane-title-text h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 2px;
+}
+.lane-title-area .lane-title-text span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.lane-desc-area {
+  flex: 1;
+}
+.lane-desc-area p {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 300;
+}
+
+.lane-stats-area {
+  min-width: 280px;
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+@media (max-width: 900px) {
+  .lane-stats-area {
+    width: 100%;
+    min-width: unset;
+  }
+}
+.lane-stats-area .stat-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 2px;
+}
+.lane-stats-area .stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+}
+.lane-stats-area .stat-row .stat-val {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+.hackathon-lane .lane-stats-area .stat-row .stat-val {
+  color: #2ecc71;
+}
+.ctf-lane .lane-stats-area .stat-row .stat-val {
+  color: #e74c3c;
+}
+.algo-lane .lane-stats-area .stat-row .stat-val {
+  color: rgb(145, 218, 235);
+}
+
+.portal-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 1.5rem;
+}
+
+.platform-portal-card {
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+.platform-portal-card:hover {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  transform: translateY(-2px);
+}
+.platform-portal-card .portal-difficulty {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.8rem;
+  width: fit-content;
+}
+.platform-portal-card .portal-difficulty.novice {
+  background: rgba(46, 204, 113, 0.06);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.15);
+}
+.platform-portal-card .portal-difficulty.challenger {
+  background: rgba(145, 218, 235, 0.06);
+  color: rgb(145, 218, 235);
+  border: 1px solid rgba(145, 218, 235, 0.15);
+}
+.platform-portal-card .portal-difficulty.master {
+  background: rgba(231, 76, 60, 0.06);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.15);
+}
+.platform-portal-card h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.platform-portal-card h4 i {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.15);
+  transition: color 0.2s ease;
+}
+.platform-portal-card:hover h4 i {
+  color: rgb(145, 218, 235);
+}
+.platform-portal-card p {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.4;
+  margin-bottom: 1.1rem;
+  font-weight: 300;
+}
+.platform-portal-card .portal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  padding-top: 10px;
+}
+.platform-portal-card .portal-footer .portal-link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgb(145, 218, 235);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s ease;
+}
+.platform-portal-card .portal-footer .portal-link i {
+  font-size: 0.85rem;
+  transition: transform 0.15s ease;
+}
+.platform-portal-card .portal-footer .portal-link:hover {
+  color: #fff;
+}
+.platform-portal-card .portal-footer .portal-link:hover i {
+  transform: translate(2px, -2px);
+}
 
 /*# sourceMappingURL=challenges.css.map */

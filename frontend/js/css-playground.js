@@ -198,7 +198,7 @@ function initClipPathMaker() {
     custom: [[10, 10], [90, 10], [90, 90], [10, 90]]
   };
 
-  let points = [...shapePresets.custom]; // Active polygon coordinates as percentage array [[x,y], [x,y]...]
+  let points = shapePresets.custom.map(pt => [...pt]); // Active polygon coordinates as percentage array [[x,y], [x,y]...]
   let activeHandle = null;
 
   // Initialize custom points dynamically based on count
@@ -318,7 +318,7 @@ function initClipPathMaker() {
       setCustomPointsCount(parseInt(customVerticesRange.value));
     } else {
       customVerticesWrap.classList.add("hidden");
-      points = [...shapePresets[shape]];
+      points = shapePresets[shape].map(pt => [...pt]);
     }
 
     renderHandles();

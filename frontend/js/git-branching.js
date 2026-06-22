@@ -176,8 +176,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Handle detached HEAD commits
         let commitBranch = activeBranch;
         if (!commitBranch) {
-            // Detached commit creates a temporary branch path
-            commitBranch = `detached-${activeCommitId}`;
+            // Detached commit inherits parent's branch if already detached
+            const parentCommit = commits[activeCommitId];
+            if (parentCommit && parentCommit.branch.startsWith('detached-')) {
+                commitBranch = parentCommit.branch;
+            } else {
+                commitBranch = `detached-${activeCommitId}`;
+            }
             // Ensure Y track allocation
             getBranchTrack(commitBranch);
         }
