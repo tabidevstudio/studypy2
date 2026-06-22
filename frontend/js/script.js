@@ -1,8 +1,8 @@
 import { getProfile } from "./auth.js";
 
 (function () {
-  /* Nav & Sidebar HTML */
-  const NAV_HTML = `
+    /* Nav & Sidebar HTML */
+    const NAV_HTML = `
 <nav>
     <div class="container">
         <div class="logo-wrap" style="display:flex; align-items:center; gap:10px;">
@@ -25,7 +25,7 @@ import { getProfile } from "./auth.js";
         </div>
     </div>
 </nav>
- 
+
 <div class="sidebar close">
     <button class="sidebar-mobile-close" aria-label="Close menu">
         <i class='bx bx-x'></i>
@@ -183,140 +183,150 @@ import { getProfile } from "./auth.js";
     </ul>
 </div>`;
 
-  /* Inject into placeholder */
-  const placeholder = document.getElementById("navbar-placeholder");
-  if (placeholder) {
-    placeholder.innerHTML = NAV_HTML;
-  }
-
-  /* Sidebar toggle */
-  const sidebar = document.querySelector(".sidebar");
-  window.__studypySidebarInit = true;
-
-  const syncSidebarState = () => {
-    document.body.classList.toggle(
-      "sidebar-collapsed",
-      sidebar.classList.contains("close")
-    );
-  };
-
-  syncSidebarState();
-
-  const sidebarToggle = document.querySelector(".sidebar-toggle");
-  if (sidebarToggle) {
-    sidebarToggle.addEventListener("click", () => {
-      sidebar.classList.toggle("close");
-      syncSidebarState();
-    });
-  }
-
-  /* Mobile close button */
-  const mobileCloseBtn = document.querySelector(".sidebar-mobile-close");
-  if (mobileCloseBtn) {
-    mobileCloseBtn.addEventListener("click", () => {
-      sidebar.classList.remove("mobile-open");
-      document.body.classList.remove("mobile-sidebar-active");
-    });
-  }
-
-  /* Mobile sidebar toggle & backdrop */
-  const mobileToggle = document.querySelector(".mobile-nav-toggle");
-  if (mobileToggle) {
-    mobileToggle.addEventListener("click", () => {
-      sidebar.classList.toggle("mobile-open");
-      document.body.classList.toggle("mobile-sidebar-active");
-
-      let backdrop = document.querySelector(".sidebar-backdrop");
-      if (!backdrop) {
-        backdrop = document.createElement("div");
-        backdrop.className = "sidebar-backdrop";
-        document.body.appendChild(backdrop);
-        backdrop.addEventListener("click", () => {
-          sidebar.classList.remove("mobile-open");
-          document.body.classList.remove("mobile-sidebar-active");
-        });
-      }
-    });
-  }
-
-  /* Click-based submenus */
-  document.querySelectorAll(".iocn-link").forEach((iocnLink) => {
-    const link = iocnLink.querySelector("a");
-    if (!link) return;
-
-    if (!iocnLink.querySelector(".arrow")) {
-      const arrow = document.createElement("i");
-      arrow.className = "bx bxs-chevron-down arrow";
-      iocnLink.appendChild(arrow);
+    /* Inject into placeholder */
+    const placeholder = document.getElementById("navbar-placeholder");
+    if (placeholder) {
+        placeholder.innerHTML = NAV_HTML;
     }
-    const arrow = iocnLink.querySelector(".arrow");
 
-    const toggleMenu = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const parentLi = iocnLink.closest("li");
-      if (!parentLi) return;
+    /* Sidebar toggle */
+    const sidebar = document.querySelector(".sidebar");
+    window.__studypySidebarInit = true;
 
-      const isOpen = parentLi.classList.contains("showMenu");
-
-      document.querySelectorAll(".nav-links li.showMenu").forEach((li) => {
-        li.classList.remove("showMenu");
-      });
-
-      if (!isOpen) {
-        parentLi.classList.add("showMenu");
-      }
+    const syncSidebarState = () => {
+        document.body.classList.toggle(
+            "sidebar-collapsed",
+            sidebar.classList.contains("close")
+        );
     };
 
-    link.addEventListener("click", toggleMenu);
-    if (arrow) {
-      arrow.style.cursor = "pointer";
-      arrow.addEventListener("click", toggleMenu);
-    }
-  });
+    syncSidebarState();
 
-  // Synchronize User Authentication Status
-  getProfile().then((res) => {
-    const navAuthItem = document.getElementById("nav-auth-item");
-    const authSidebarLink = document.getElementById("auth-sidebar-link");
-    const authSidebarIcon = document.getElementById("auth-sidebar-icon");
-    const authSidebarText = document.getElementById("auth-sidebar-text");
-    const authSubmenuLink = document.getElementById("auth-submenu-link");
-
-    if (res && res.authenticated) {
-      const user = res.user;
-      if (navAuthItem) {
-        navAuthItem.innerHTML = `
-          <a href="/pages/settings.html" style="display:flex; align-items:center; gap:8px;">
-            <img src="${user.avatar || '/assets/images/lugu-bg.png'}" alt="Avatar" style="width:24px; height:24px; border-radius:50%; object-fit:cover; border:1px solid rgb(145, 218, 235);">
-            <span>${user.username}</span>
-          </a>
-        `;
-      }
-      if (authSidebarLink) authSidebarLink.href = "/pages/settings.html";
-      if (authSidebarIcon) {
-        authSidebarIcon.className = "bx bx-user-circle";
-      }
-      if (authSidebarText) authSidebarText.textContent = "Profile";
-      if (authSubmenuLink) {
-        authSubmenuLink.href = "/pages/settings.html";
-        authSubmenuLink.textContent = "Profile";
-      }
-    } else {
-      if (navAuthItem) {
-        navAuthItem.innerHTML = `<a href="/pages/login.html">Login</a>`;
-      }
-      if (authSidebarLink) authSidebarLink.href = "/pages/login.html";
-      if (authSidebarIcon) {
-        authSidebarIcon.className = "bx bx-log-in";
-      }
-      if (authSidebarText) authSidebarText.textContent = "Login";
-      if (authSubmenuLink) {
-        authSubmenuLink.href = "/pages/login.html";
-        authSubmenuLink.textContent = "Login";
-      }
+    const sidebarToggle = document.querySelector(".sidebar-toggle");
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+            syncSidebarState();
+        });
     }
-  }).catch((err) => {
-    console.error("Auth status sync error:", err);
-  });
+    /* Mobile close button */
+    const mobileCloseBtn = document.querySelector(".sidebar-mobile-close");
+    if (mobileCloseBtn) {
+        mobileCloseBtn.addEventListener("click", () => {
+            sidebar.classList.remove("mobile-open");
+            document.body.classList.remove("mobile-sidebar-active");
+        });
+    }
+
+    /* Mobile sidebar toggle & backdrop */
+    const mobileToggle = document.querySelector(".mobile-nav-toggle");
+    if (mobileToggle) {
+        mobileToggle.addEventListener("click", () => {
+            sidebar.classList.toggle("mobile-open");
+            document.body.classList.toggle("mobile-sidebar-active");
+
+            let backdrop = document.querySelector(".sidebar-backdrop");
+            if (!backdrop) {
+                backdrop = document.createElement("div");
+                backdrop.className = "sidebar-backdrop";
+                document.body.appendChild(backdrop);
+                backdrop.addEventListener("click", () => {
+                    sidebar.classList.remove("mobile-open");
+                    document.body.classList.remove("mobile-sidebar-active");
+                });
+            }
+        });
+    }
+
+    /* Click-based submenus */
+    document.querySelectorAll(".iocn-link").forEach((iocnLink) => {
+        const link = iocnLink.querySelector("a");
+        if (!link) return;
+
+        if (!iocnLink.querySelector(".arrow")) {
+            const arrow = document.createElement("i");
+            arrow.className = "bx bxs-chevron-down arrow";
+            iocnLink.appendChild(arrow);
+        }
+        const arrow = iocnLink.querySelector(".arrow");
+
+        const toggleMenu = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const parentLi = iocnLink.closest("li");
+            if (!parentLi) return;
+
+            const isOpen = parentLi.classList.contains("showMenu");
+
+            document.querySelectorAll(".nav-links li.showMenu").forEach((li) => {
+                li.classList.remove("showMenu");
+            });
+
+            if (!isOpen) {
+                parentLi.classList.add("showMenu");
+            }
+        };
+
+        link.addEventListener("click", toggleMenu);
+        if (arrow) {
+            arrow.style.cursor = "pointer";
+            arrow.addEventListener("click", toggleMenu);
+        }
+    });
+
+    // Synchronize User Authentication Status
+    getProfile().then((res) => {
+        const navAuthItem = document.getElementById("nav-auth-item");
+        const authSidebarLink = document.getElementById("auth-sidebar-link");
+        const authSidebarIcon = document.getElementById("auth-sidebar-icon");
+        const authSidebarText = document.getElementById("auth-sidebar-text");
+        const authSubmenuLink = document.getElementById("auth-submenu-link");
+
+        if (res && res.authenticated) {
+            const user = res.user;
+            if (navAuthItem) {
+                navAuthItem.innerHTML = `
+                    <a href="/pages/settings.html" style="display:flex; align-items:center; gap:8px;">
+                        <img src="${user.avatar || '/assets/images/lugu-bg.png'}" alt="Avatar" style="width:24px; height:24px; border-radius:50%; object-fit:cover; border:1px solid rgb(145, 218, 235);">
+                        <span>${user.username}</span>
+                    </a>
+                `;
+            }
+            if (authSidebarLink) authSidebarLink.href = "/pages/settings.html";
+            if (authSidebarIcon) {
+                authSidebarIcon.className = "bx bx-user-circle";
+            }
+            if (authSidebarText) authSidebarText.textContent = "Profile";
+            if (authSubmenuLink) {
+                authSubmenuLink.href = "/pages/settings.html";
+                authSubmenuLink.textContent = "Profile";
+            }
+        } else {
+            if (navAuthItem) {
+                navAuthItem.innerHTML = `<a href="/pages/login.html">Login</a>`;
+            }
+            if (authSidebarLink) authSidebarLink.href = "/pages/login.html";
+            if (authSidebarIcon) {
+                authSidebarIcon.className = "bx bx-log-in";
+            }
+            if (authSidebarText) authSidebarText.textContent = "Login";
+            if (authSubmenuLink) {
+                authSubmenuLink.href = "/pages/login.html";
+                authSubmenuLink.textContent = "Login";
+            }
+        }
+    }).catch((err) => {
+        console.error("Auth status sync error:", err);
+    });
+
+    // PWA Service Worker Registration
+    if ("serviceWorker" in navigator){
+        window.addEventListener("load", () => {
+            navigator.serviceWorker
+                .register("/sw.js")
+                .then((reg) => console.log("Service Worker registered successfully:", reg.scope))
+                .catch((err) => console.error("Service Worker registration failed:", err));
+        });
+    }
+
 })();
