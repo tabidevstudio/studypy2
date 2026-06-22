@@ -281,7 +281,7 @@
 
                 <h1 class="uc-title">Under <span>Construction</span></h1>
 
-                <p class="uc-sub">This page is still being built. We're working hard to bring it to life — check back soon!</p>
+                <p class="uc-sub" id="uc-description">This page is still being built. We're working hard to bring it to life — check back soon!</p>
                 <p class="uc-thanks">Thank you for your Support &#9825;</p>
 
                 <div class="uc-progress-wrap">
@@ -294,7 +294,7 @@
                     </div>
                 </div>
 
-                <a href="/index.html" class="uc-btn">
+                <a href="/" class="uc-btn">
                     <i class='bx bx-arrow-back'></i>
                     Go Back
                 </a>
@@ -304,6 +304,22 @@
     </main>
 
     <script type="module" src="../js/script.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const pageParam = urlParams.get('page');
+
+        if (pageParam) {
+            const formattedPageName = pageParam
+                .split('-')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+
+            const descEl = document.getElementById('uc-description');
+            if (descEl) {
+                descEl.innerHTML = `The <strong>${formattedPageName}</strong> page is still being built. We're working hard to bring it to life — check back soon!`;
+            }
+        }
+    </script>
 </body>
 </html>
 

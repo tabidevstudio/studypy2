@@ -9,17 +9,17 @@ import { getProfile } from "./auth.js";
             <button class="mobile-nav-toggle" aria-label="Open Menu">
                 <i class='bx bx-menu'></i>
             </button>
-            <a href="/index.html" class="logo container">
+            <a href="/" class="logo container">
                 <img src="/assets/images/lugu-bg.png" alt="StudyPy" class="logo-image">
                 <div class="LogoText">StudyPy</div>
             </a>
         </div>
         <div>
             <ul>
-                <li><a href="/index.html#home">Home</a></li>
-                <li><a href="/index.html#about">About</a></li>
-                <li><a href="/index.html#explore">Explore</a></li>
-                <li><a href="/index.html#footer">Contact</a></li>
+                <li><a href="/#home">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#explore">Explore</a></li>
+                <li><a href="/#footer">Contact</a></li>
                 <li id="nav-auth-item"><a href="/pages/login.html">Login</a></li>
             </ul>
         </div>
@@ -37,12 +37,12 @@ import { getProfile } from "./auth.js";
     </div>
     <ul class="nav-links">
         <li>
-            <a href="/index.html">
+            <a href="/">
                 <i class='bx bx-home-alt'></i>
                 <span class="link_name">Home</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a class="link_name" href="/index.html">Home</a></li>
+                <li><a class="link_name" href="/">Home</a></li>
             </ul>
         </li>
         <li>
