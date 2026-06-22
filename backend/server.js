@@ -1,16 +1,42 @@
 "use strict";
 
-const express  = require("express");
-const fetch    = require("node-fetch");
-const cors     = require("cors");
-const mongoose = require("mongoose");
+const express      = require("express");
+const fetch        = require("node-fetch");
+const cors         = require("cors");
+const cookieParser = require("cookie-parser");
+const mongoose     = require("mongoose");
 require("dotenv").config();
 
 const Category = require("./models/Resource");
+const authRouter = require("./routes/auth");
 
 const app = express();
-app.use(cors());
+
+app.use(cors({
+  origin: function(origin, callback) {
+    const allowedOrigins = [
+      "http://localhost:5500",
+      "http://127.0.0.1:5500",
+      process.env.FRONTEND_URL
+    ].filter(Boolean);
+    
+    // Allow requests with no origin (like mobile apps, postman, curl)
+    // or origins that match allowed origins or start with http://localhost
+    if (!origin || allowedOrigins.some(o => origin.startsWith(o)) || origin.startsWith("http://localhost:")) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
+
+app.use(cookieParser());
 app.use(express.json());
+
+// Mount authentication router
+app.use("/api/auth", authRouter);
+
 
 /* ─────────────────────────────────────────────────────────────────────────────
    POST /run  —  Compiler proxy: forwards code to external OnlineCompiler API.

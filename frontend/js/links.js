@@ -1,6 +1,10 @@
+import { getProfile, toggleBookmark, toggleWatched } from "./auth.js";
+
 const BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
   ? "http://localhost:3000"
   : "https://studypy-backend.onrender.com";
+
+let loggedInUser = null;
 
 function getCardPrefix(pageName) {
   const prefixes = {
@@ -211,13 +215,28 @@ function renderPageLinks(container, allLinks, pageName) {
     grid.className = "learning-grid";
 
     allLinks.forEach(link => {
+      const isBookmarked = loggedInUser && loggedInUser.bookmarks.includes(link.url);
+      const isWatched = loggedInUser && loggedInUser.watchedVideos.includes(link.url);
+
       const card = document.createElement("div");
       card.className = "video-card";
       card.dataset.genres = guessVideoGenres(link.title);
       card.innerHTML = `
-        <a class="card-link" href="${link.url}" target="_blank" title="${link.title}">
-          <h2>${link.title}</h2>
-        </a>
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px; width: 100%;">
+          <a class="card-link" href="${link.url}" target="_blank" title="${link.title}">
+            <h2>${link.title}</h2>
+          </a>
+          ${loggedInUser ? `
+            <div class="premium-actions" style="display:flex; gap:12px; align-items:center;">
+              <button class="watched-toggle-btn" data-url="${link.url}" style="background:none; border:none; cursor:pointer; font-size:1.45rem; color:${isWatched ? '#4cd137' : 'rgba(255,255,255,0.3)'}; transition:transform 0.2s;" title="${isWatched ? 'Mark as Unwatched' : 'Mark as Watched'}">
+                <i class='bx ${isWatched ? "bxs-check-circle" : "bx-check-circle"}'></i>
+              </button>
+              <button class="bookmark-toggle-btn" data-path="${link.url}" style="background:none; border:none; cursor:pointer; font-size:1.45rem; color:${isBookmarked ? '#46a8f3' : 'rgba(255,255,255,0.3)'}; transition:transform 0.2s;" title="Bookmark">
+                <i class='bx ${isBookmarked ? "bxs-bookmark" : "bx-bookmark"}'></i>
+              </button>
+            </div>
+          ` : ''}
+        </div>
         <div class="video-preview">
           <iframe data-src="${link.url}" title="${link.title}" allowfullscreen></iframe>
         </div>
@@ -259,9 +278,18 @@ function renderPageLinks(container, allLinks, pageName) {
         if (filename === "shadcnui") filename = "shadcn";
         if (filename === "responsivelyapp") filename = "responsively";
 
+        const isBookmarked = loggedInUser && loggedInUser.bookmarks.includes(link.url);
+
         card.innerHTML = `
           <div class="tool-card-content">
-            <div class="tool-tag">${tagText}</div>
+            <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-bottom:8px;">
+              <div class="tool-tag">${tagText}</div>
+              ${loggedInUser ? `
+                <button class="bookmark-toggle-btn" data-path="${link.url}" style="background:none; border:none; cursor:pointer; font-size:1.3rem; color:${isBookmarked ? '#46a8f3' : 'rgba(255,255,255,0.3)'}; transition:transform 0.2s;" title="Bookmark">
+                  <i class='bx ${isBookmarked ? "bxs-bookmark" : "bx-bookmark"}'></i>
+                </button>
+              ` : ''}
+            </div>
             <a class="card-link" href="${link.url}" target="_blank" rel="noopener noreferrer">
               <h2>${link.title}</h2>
             </a>
@@ -270,9 +298,18 @@ function renderPageLinks(container, allLinks, pageName) {
           </div>
         `;
       } else {
+        const isBookmarked = loggedInUser && loggedInUser.bookmarks.includes(link.url);
+
         card.innerHTML = `
           <div class="${cardBodyClass}">
-            <div class="${cardNameClass}">${link.title}</div>
+            <div class="${cardNameClass}" style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
+              <span>${link.title}</span>
+              ${loggedInUser ? `
+                <button class="bookmark-toggle-btn" data-path="${link.url}" style="background:none; border:none; cursor:pointer; font-size:1.3rem; color:${isBookmarked ? '#46a8f3' : 'rgba(255,255,255,0.25)'}; transition:transform 0.2s;" title="Bookmark">
+                  <i class='bx ${isBookmarked ? "bxs-bookmark" : "bx-bookmark"}'></i>
+                </button>
+              ` : ''}
+            </div>
             <div class="${cardDescClass}">${link.description}</div>
           </div>
           <div class="${cardFooterClass}">
@@ -284,6 +321,49 @@ function renderPageLinks(container, allLinks, pageName) {
     });
 
     container.appendChild(grid);
+  }
+
+  // Bind event listeners for logged-in premium interactions
+  if (loggedInUser) {
+    container.querySelectorAll(".bookmark-toggle-btn").forEach(btn => {
+      btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const path = btn.dataset.path;
+        try {
+          const res = await toggleBookmark(path);
+          const isBookmarked = res.bookmarked;
+          btn.style.color = isBookmarked ? '#46a8f3' : 'rgba(255,255,255,0.3)';
+          const icon = btn.querySelector("i");
+          if (icon) {
+            icon.className = `bx ${isBookmarked ? "bxs-bookmark" : "bx-bookmark"}`;
+          }
+          loggedInUser.bookmarks = res.bookmarks;
+        } catch (err) {
+          console.error("Failed to toggle bookmark:", err);
+        }
+      });
+    });
+
+    container.querySelectorAll(".watched-toggle-btn").forEach(btn => {
+      btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const url = btn.dataset.url;
+        try {
+          const res = await toggleWatched(url);
+          const isWatched = res.watched;
+          btn.style.color = isWatched ? '#4cd137' : 'rgba(255,255,255,0.3)';
+          const icon = btn.querySelector("i");
+          if (icon) {
+            icon.className = `bx ${isWatched ? "bxs-check-circle" : "bx-check-circle"}`;
+          }
+          loggedInUser.watchedVideos = res.watchedVideos;
+        } catch (err) {
+          console.error("Failed to toggle watched video:", err);
+        }
+      });
+    });
   }
 
   // Notify search.js (and any other listeners) that cards are now in the DOM
@@ -298,6 +378,16 @@ async function loadLinks() {
   if (!pageName) {
     console.error("No data-page attribute set on #tools-container");
     return;
+  }
+
+  // Check auth status first
+  try {
+    const authRes = await getProfile();
+    if (authRes && authRes.authenticated) {
+      loggedInUser = authRes.user;
+    }
+  } catch (authErr) {
+    console.warn("Failed to retrieve profile:", authErr);
   }
 
   // Check if we have cached data in localStorage
