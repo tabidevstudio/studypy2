@@ -1,9 +1,5 @@
-const BACKEND_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
-  ? "http://localhost:3000"
-  : "https://studypy-backend.onrender.com";
-
 // Backend API Base URL
-export const API_BASE = `${BACKEND_BASE}/api/auth`;
+export const API_BASE = "https://studypy-backend.onrender.com/api/auth";
 
 /**
  * Helper to wrap fetch calls with credentials (supporting HTTP-Only cookies)

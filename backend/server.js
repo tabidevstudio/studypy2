@@ -5,6 +5,10 @@ const fetch        = require("node-fetch");
 const cors         = require("cors");
 const cookieParser = require("cookie-parser");
 const mongoose     = require("mongoose");
+const { exec }     = require("child_process");
+const fs           = require("fs");
+const path         = require("path");
+const os           = require("os");
 require("dotenv").config();
 
 const Category = require("./models/Resource");
@@ -15,14 +19,12 @@ const app = express();
 app.use(cors({
   origin: function(origin, callback) {
     const allowedOrigins = [
-      "http://localhost:5500",
-      "http://127.0.0.1:5500",
       process.env.FRONTEND_URL
     ].filter(Boolean).map(o => o.replace(/\/$/, ""));
     
     // Allow requests with no origin (like mobile apps, postman, curl)
-    // or origins that match allowed origins or start with http://localhost
-    if (!origin || allowedOrigins.some(o => origin.startsWith(o)) || origin.startsWith("http://localhost:")) {
+    // or origins that match allowed origins
+    if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
@@ -49,20 +51,58 @@ app.post("/run", async (req, res) => {
     return res.status(400).json({ error: "Missing language or code." });
   }
 
-  try {
-    const response = await fetch("https://api.onlinecompiler.io/api/run-code-sync/", {
-      method: "POST",
-      headers: {
-        Authorization:  process.env.API_KEY,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ compiler: language, code, input: input || "" }),
-    });
+  // If API_KEY is set, use onlinecompiler.io
+  if (process.env.API_KEY) {
+    try {
+      const response = await fetch("https://api.onlinecompiler.io/api/run-code-sync/", {
+        method: "POST",
+        headers: {
+          Authorization:  process.env.API_KEY,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ compiler: language, code, input: input || "" }),
+      });
 
-    const data = await response.json();
-    res.json(data);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to reach compiler API." });
+      const data = await response.json();
+      return res.json(data);
+    } catch (err) {
+      return res.status(500).json({ error: "Failed to reach compiler API." });
+    }
+  }
+
+  // Local fallback for python3
+  if (language === "python3") {
+    const tempDir = os.tmpdir();
+    const tempFile = path.join(tempDir, `studypy_run_${Date.now()}_${Math.random().toString(36).substr(2, 5)}.py`);
+
+    try {
+      fs.writeFileSync(tempFile, code, "utf8");
+
+      exec(`python "${tempFile}"`, { timeout: 5000 }, (error, stdout, stderr) => {
+        try {
+          fs.unlinkSync(tempFile);
+        } catch (e) {}
+
+        if (error && error.killed) {
+          return res.json({ errors: "Execution timed out (5s limit)." });
+        }
+
+        const errors = stderr ? stderr.toString() : "";
+        const output = stdout ? stdout.toString() : "";
+
+        res.json({
+          output: output,
+          errors: errors || (error ? error.message : "")
+        });
+      });
+    } catch (err) {
+      try {
+        fs.unlinkSync(tempFile);
+      } catch (e) {}
+      res.status(500).json({ error: `Local python execution failed: ${err.message}` });
+    }
+  } else {
+    res.status(400).json({ error: "API_KEY not configured for onlinecompiler.io and local execution is only supported for python3." });
   }
 });
 
