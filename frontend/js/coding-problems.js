@@ -829,7 +829,7 @@ function populateCardData(cardEl, qData, qIdx) {
       <div class="options-list">
         ${qData.options.map((opt, idx) => `
           <button class="option-card-btn" data-idx="${idx}">
-            <span>${opt}</span>
+            <span>${escapeHtml(opt)}</span>
             <i class="bx bx-check-circle"></i>
           </button>
         `).join("")}
@@ -952,6 +952,10 @@ function rotateCardStack() {
         // No more items to feed back, hide it
         oldFront.className = "flashcard-item card--hidden";
       }
+
+      // Reset per-card state before binding the new front card
+      isSubmitted = false;
+      selectedOptionIdx = null;
 
       // Re-assign event listeners to the new front (which is now cardElements[0])
       bindFrontCardActions(cardElements[0]);

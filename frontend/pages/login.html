@@ -51,10 +51,10 @@
         document.getElementById("google-login-btn").href = `${BACKEND_BASE}/api/auth/google`;
         document.getElementById("github-login-btn").href = `${BACKEND_BASE}/api/auth/github`;
 
-        // If user is already logged in, redirect them to settings page
+        // If user is already logged in, redirect them to profile dashboard
         getProfile().then(res => {
             if (res.authenticated) {
-                window.location.href = "/pages/settings.html";
+                window.location.href = "/pages/profile.html";
             }
         });
 
