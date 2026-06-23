@@ -541,6 +541,87 @@
   transform: translateY(-1px);
 }
 
+/* ── AI Tools page specifics ──────────────────────────────────────────── */
+.ai-beginner-tip {
+  background: rgba(145, 218, 235, 0.06);
+  border: 1px solid rgba(145, 218, 235, 0.18);
+  border-left: 3px solid var(--color-sky);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 0 auto 32px;
+  max-width: 860px;
+  font-size: 0.88rem;
+  color: var(--color-text-dim);
+  line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.ai-beginner-tip i {
+  font-size: 1.3rem;
+  color: var(--color-sky);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.ai-pricing-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.ai-pricing-badge.free {
+  background: rgba(76, 209, 55, 0.12);
+  color: #4cd137;
+  border: 1px solid rgba(76, 209, 55, 0.25);
+}
+.ai-pricing-badge.freemium {
+  background: rgba(255, 159, 67, 0.12);
+  color: #ff9f43;
+  border: 1px solid rgba(255, 159, 67, 0.25);
+}
+.ai-pricing-badge.paid {
+  background: rgba(235, 94, 85, 0.1);
+  color: #eb5e55;
+  border: 1px solid rgba(235, 94, 85, 0.2);
+}
+
+/* "Best for beginners" star badge */
+.beginner-star {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(253, 203, 110, 0.1);
+  color: #fdcb6e;
+  border: 1px solid rgba(253, 203, 110, 0.25);
+  border-radius: var(--radius-pill);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* AI Tools — "Try" button variant */
+.ide-btn.try {
+  background: rgba(145, 218, 235, 0.12);
+  color: var(--color-sky);
+  border: 1px solid rgba(145, 218, 235, 0.25);
+}
+.ide-btn.try:hover {
+  background: rgba(145, 218, 235, 0.22);
+}
+
+/* Row glow on hover for AI table */
+.ide-table tbody tr:hover td {
+  background: rgba(145, 218, 235, 0.04);
+}
+
 /* Responsive adjustments */
 @media (max-width: 1200px) {
   .videos-grid {
