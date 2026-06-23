@@ -73,3 +73,13 @@ export async function toggleWatched(videoUrl) {
     body: { videoUrl }
   });
 }
+
+/**
+ * Update the authenticated user's username.
+ */
+export async function updateProfile(username) {
+  return await apiFetch(`${API_BASE}/profile`, {
+    method: "PUT",
+    body: { username }
+  });
+}

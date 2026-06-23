@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile | Studypy</title>
+    <meta name="description" content="Your StudyPy profile dashboard — view your streak, daily challenge, bookmarks, and watched tutorials." />
+    <link rel="stylesheet" href="../css/main.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+    <link rel="icon" type="image/png" href="../assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <style>
+        /* ── Edit Username Modal ─────────────────────────────── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .modal-card {
+            background: #1e2026;
+            border: 1px solid rgba(145, 218, 235, 0.2);
+            border-radius: 18px;
+            padding: 36px 32px 28px;
+            width: 100%;
+            max-width: 440px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+            transform: translateY(20px) scale(0.97);
+            transition: transform 0.25s ease;
+            position: relative;
+        }
+        .modal-overlay.open .modal-card {
+            transform: translateY(0) scale(1);
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.4);
+            font-size: 1.4rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .modal-close-btn:hover { color: #fff; }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .modal-subtitle {
+            font-size: 0.84rem;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 24px;
+        }
+        .modal-field label {
+            display: block;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 7px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .modal-input {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 9px;
+            padding: 11px 14px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            color: #fff;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+        }
+        .modal-input:focus {
+            border-color: rgb(145, 218, 235);
+            box-shadow: 0 0 0 3px rgba(145,218,235,0.12);
+        }
+        .modal-char-count {
+            text-align: right;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+            margin-top: 5px;
+        }
+        .modal-error {
+            font-size: 0.8rem;
+            color: #eb5e55;
+            margin-top: 8px;
+            min-height: 18px;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .btn-modal-save {
+            flex: 1;
+            background: rgb(145, 218, 235);
+            color: #111;
+            border: none;
+            border-radius: 9px;
+            padding: 11px 0;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: background 0.2s, opacity 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+        }
+        .btn-modal-save:hover { background: #b0e7f4; }
+        .btn-modal-save:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .btn-modal-cancel {
+            flex: 1;
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 9px;
+            padding: 11px 0;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-modal-cancel:hover { background: rgba(255,255,255,0.1); }
+
+        /* Edit button in profile card */
+        .btn-edit-username {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(145, 218, 235, 0.1);
+            color: rgb(145, 218, 235);
+            border: 1px solid rgba(145, 218, 235, 0.2);
+            padding: 7px 16px;
+            border-radius: 7px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 14px;
+        }
+        .btn-edit-username:hover {
+            background: rgba(145, 218, 235, 0.2);
+            border-color: rgba(145, 218, 235, 0.4);
+        }
+
+        /* Success toast */
+        .profile-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(76, 209, 55, 0.15);
+            border: 1px solid rgba(76, 209, 55, 0.35);
+            color: #4cd137;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+            z-index: 99999;
+            white-space: nowrap;
+        }
+        .profile-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <!-- Edit Username Modal -->
+    <div class="modal-overlay" id="edit-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="modal-close-btn" aria-label="Close"><i class='bx bx-x'></i></button>
+            <div class="modal-title" id="modal-title-text">Edit Username</div>
+            <div class="modal-subtitle">Choose a new display name for your account.</div>
+            <div class="modal-field">
+                <label for="username-input">Username</label>
+                <input type="text" id="username-input" class="modal-input" maxlength="30" autocomplete="off" spellcheck="false" placeholder="Enter new username" />
+                <div class="modal-char-count"><span id="char-count">0</span> / 30</div>
+                <div class="modal-error" id="modal-error"></div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-modal-cancel" id="modal-cancel-btn">Cancel</button>
+                <button class="btn-modal-save" id="modal-save-btn" disabled>
+                    <i class='bx bx-check'></i>
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success toast -->
+    <div class="profile-toast" id="profile-toast"></div>
+
+    <div class="settings-container">
+        <div class="settings-layout">
+            
+            <!-- SIDEBAR DETAILS -->
+            <div class="left-column">
+                <!-- Profile card -->
+                <div class="dashboard-card profile-header">
+                    <img src="/assets/images/lugu-bg.png" alt="Avatar" id="user-avatar" class="profile-avatar">
+                    <h2 id="user-name" class="profile-name">...</h2>
+                    <p id="user-email" class="profile-email">...</p>
+                    <button class="btn-edit-username" id="btn-edit-username">
+                        <i class='bx bx-edit-alt'></i>
+                        Edit Username
+                    </button>
+                    <button id="logout-btn" class="btn-logout">
+                        <i class='bx bx-log-out'></i>
+                        Sign Out
+                    </button>
+                </div>
+
+                <!-- Daily Streak flame -->
+                <div class="dashboard-card streak-card">
+                    <div class="streak-flame">🔥</div>
+                    <div class="streak-count" id="streak-count">0</div>
+                    <div class="streak-title">Days Streak</div>
+                    <div id="streak-status" class="streak-status">...</div>
+                </div>
+            </div>
+
+            <!-- MAIN WORKSPACE -->
+            <div class="right-column">
+                <!-- Daily challenge panel -->
+                <div class="dashboard-card">
+                    <h2 class="card-title">
+                        <i class='bx bx-code-block'></i>
+                        Daily Coding Challenge
+                    </h2>
+                    <div class="challenge-box">
+                        <div class="challenge-title" id="challenge-title">...</div>
+                        <p class="challenge-desc" id="challenge-desc">...</p>
+                        <textarea id="challenge-code" class="code-textarea" spellcheck="false"></textarea>
+                        <button id="verify-challenge-btn" class="btn-verify">Run &amp; Verify Challenge</button>
+                        <div id="verify-result" class="verify-result"></div>
+                    </div>
+                </div>
+
+                <!-- Bookmarked Resources -->
+                <div class="dashboard-card">
+                    <h2 class="card-title">
+                        <i class='bx bx-bookmark'></i>
+                        Bookmarked Resources
+                    </h2>
+                    <div id="bookmarks-list" class="list-container">
+                        <div class="empty-placeholder">No bookmarks saved yet.</div>
+                    </div>
+                </div>
+
+                <!-- Watched video tutorials progress -->
+                <div class="dashboard-card">
+                    <h2 class="card-title">
+                        <i class='bx bx-video'></i>
+                        Watched Video Tutorials
+                    </h2>
+                    <div id="watched-list" class="list-container">
+                        <div class="empty-placeholder">No videos completed yet.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module" src="../js/script.js"></script>
+    <script type="module">
+        import { getProfile, logoutUser, toggleBookmark, toggleWatched, updateProfile } from "../js/auth.js";
+
+        // ── Guard: redirect to login if not authenticated ────────────────────
+        // Runs before rendering anything
+        let currentUser = null;
+
+        const CHALLENGES = {
+            1: { // Monday
+                title: "Odd or Even (Python)",
+                desc: "Write a function <code>is_even(n)</code> that returns <code>True</code> if an integer <code>n</code> is even, and <code>False</code> if it is odd.",
+                template: "def is_even(n):\n    # Write your code here\n    return False\n",
+                assertions: "\n# Test cases\nassert is_even(4) == True, 'Failed for n=4'\nassert is_even(7) == False, 'Failed for n=7'\nassert is_even(0) == True, 'Failed for n=0'\nprint('All tests passed!')\n"
+            },
+            2: { // Tuesday
+                title: "Reverse a String (Python)",
+                desc: "Write a function <code>reverse_str(s)</code> that returns the reversed version of string <code>s</code>.",
+                template: "def reverse_str(s):\n    # Write your code here\n    return s\n",
+                assertions: "\n# Test cases\nassert reverse_str('hello') == 'olleh', \"Failed for 'hello'\"\nassert reverse_str('') == '', 'Failed for empty string'\nassert reverse_str('Py') == 'yP', \"Failed for 'Py'\"\nprint('All tests passed!')\n"
+            },
+            3: { // Wednesday
+                title: "Sum of a List (Python)",
+                desc: "Write a function <code>sum_list(arr)</code> that returns the sum of all elements in list <code>arr</code>. Return 0 if the list is empty.",
+                template: "def sum_list(arr):\n    # Write your code here\n    return 0\n",
+                assertions: "\n# Test cases\nassert sum_list([1, 2, 3]) == 6, 'Failed for [1, 2, 3]'\nassert sum_list([]) == 0, 'Failed for empty list'\nassert sum_list([-1, 5]) == 4, 'Failed for list with negative number'\nprint('All tests passed!')\n"
+            },
+            4: { // Thursday
+                title: "Find Maximum in List (Python)",
+                desc: "Write a function <code>find_max(arr)</code> that returns the largest number in the list. Assume list has at least one item.",
+                template: "def find_max(arr):\n    # Write your code here\n    return arr[0]\n",
+                assertions: "\n# Test cases\nassert find_max([3, 1, 4, 1, 5]) == 5, 'Failed for [3, 1, 4, 1, 5]'\nassert find_max([-10, -5, -20]) == -5, 'Failed for list of negative numbers'\nprint('All tests passed!')\n"
+            },
+            5: { // Friday
+                title: "FizzBuzz (Python)",
+                desc: "Write a function <code>fizzbuzz(n)</code> that returns <code>'Fizz'</code> if divisible by 3, <code>'Buzz'</code> if divisible by 5, <code>'FizzBuzz'</code> if divisible by both, and the string of <code>n</code> otherwise.",
+                template: "def fizzbuzz(n):\n    # Write your code here\n    return str(n)\n",
+                assertions: "\n# Test cases\nassert fizzbuzz(3) == 'Fizz', 'Failed for n=3'\nassert fizzbuzz(5) == 'Buzz', 'Failed for n=5'\nassert fizzbuzz(15) == 'FizzBuzz', 'Failed for n=15'\nassert fizzbuzz(7) == '7', 'Failed for n=7'\nprint('All tests passed!')\n"
+            },
+            6: { // Saturday
+                title: "Palindrome Checker (Python)",
+                desc: "Write a function <code>is_palindrome(s)</code> that returns <code>True</code> if string <code>s</code> is a palindrome, and <code>False</code> otherwise.",
+                template: "def is_palindrome(s):\n    # Write your code here\n    return False\n",
+                assertions: "\n# Test cases\nassert is_palindrome('racecar') == True, \"Failed for 'racecar'\"\nassert is_palindrome('hello') == False, \"Failed for 'hello'\"\nassert is_palindrome('a') == True, \"Failed for 'a'\"\nprint('All tests passed!')\n"
+            },
+            0: { // Sunday
+                title: "Factorial (Python)",
+                desc: "Write a function <code>factorial(n)</code> that returns the factorial of integer <code>n</code> (where n >= 0). Note that 0! = 1.",
+                template: "def factorial(n):\n    # Write your code here\n    return 1\n",
+                assertions: "\n# Test cases\nassert factorial(5) == 120, 'Failed for n=5'\nassert factorial(0) == 1, 'Failed for n=0'\nassert factorial(3) == 6, 'Failed for n=3'\nprint('All tests passed!')\n"
+            }
+        };
+
+        // ── Dashboard Init ───────────────────────────────────────────────────
+        async function initDashboard() {
+            const profileRes = await getProfile();
+
+            if (!profileRes.authenticated) {
+                window.location.href = "/pages/login.html";
+                return;
+            }
+
+            currentUser = profileRes.user;
+            renderProfile();
+            renderStreak();
+            renderChallenge();
+            renderBookmarks();
+            renderWatchedVideos();
+        }
+
+        function renderProfile() {
+            document.getElementById("user-avatar").src = currentUser.avatar || "/assets/images/lugu-bg.png";
+            document.getElementById("user-name").textContent = currentUser.username;
+            document.getElementById("user-email").textContent = currentUser.email;
+        }
+
+        function renderStreak() {
+            const streak = currentUser.streak || { count: 0, lastActiveDate: "" };
+            document.getElementById("streak-count").textContent = streak.count;
+
+            const todayStr = getTodayStr();
+            const streakStatusBox = document.getElementById("streak-status");
+            if (streak.lastActiveDate === todayStr) {
+                streakStatusBox.className = "streak-status";
+                streakStatusBox.innerHTML = "<i class='bx bx-check-double'></i> Streak is Active for Today!";
+            } else {
+                streakStatusBox.className = "streak-status inactive";
+                streakStatusBox.innerHTML = "<i class='bx bx-time'></i> Complete today's challenge to maintain your streak!";
+            }
+        }
+
+        function renderChallenge() {
+            const day = new Date().getDay();
+            const challenge = CHALLENGES[day];
+
+            document.getElementById("challenge-title").textContent = challenge.title;
+            document.getElementById("challenge-desc").innerHTML = challenge.desc;
+
+            const todayStr = getTodayStr();
+            const streak = currentUser.streak || { count: 0, lastActiveDate: "" };
+            const verifyResult = document.getElementById("verify-result");
+            const verifyBtn = document.getElementById("verify-challenge-btn");
+            const codeArea = document.getElementById("challenge-code");
+
+            if (streak.lastActiveDate === todayStr) {
+                codeArea.value = `# Today's challenge is already completed!\n# Current streak is locked for today.`;
+                codeArea.disabled = true;
+                verifyBtn.disabled = true;
+                verifyBtn.style.opacity = 0.5;
+                verifyResult.style.display = "block";
+                verifyResult.className = "verify-result success";
+                verifyResult.innerHTML = "<i class='bx bxs-check-circle'></i> Challenge Completed! Come back tomorrow for a new one.";
+            } else {
+                codeArea.value = challenge.template;
+                codeArea.disabled = false;
+                verifyBtn.disabled = false;
+                verifyBtn.style.opacity = 1;
+                verifyResult.style.display = "none";
+            }
+        }
+
+        async function verifyChallenge() {
+            const day = new Date().getDay();
+            const challenge = CHALLENGES[day];
+            const userCode = document.getElementById("challenge-code").value;
+
+            const verifyResult = document.getElementById("verify-result");
+            verifyResult.style.display = "block";
+            verifyResult.className = "verify-result";
+            verifyResult.innerHTML = "<i class='bx bx-loader-alt bx-spin'></i> Running test cases...";
+
+            const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+            const BACKEND_BASE = isLocal ? "http://localhost:3000" : "";
+
+            try {
+                const completeCode = userCode + challenge.assertions;
+                const response = await fetch(`${BACKEND_BASE}/run`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ language: "python3", code: completeCode })
+                });
+
+                if (!response.ok) throw new Error("Compiler API failed. Please try again.");
+                const result = await response.json();
+
+                if (result.errors) {
+                    verifyResult.className = "verify-result error";
+                    verifyResult.innerHTML = `<strong>Error:</strong><pre style="margin-top:5px; font-family:monospace; font-size:0.75rem;">${result.errors}</pre>`;
+                } else if (result.output && result.output.includes("All tests passed!")) {
+                    verifyResult.className = "verify-result success";
+                    verifyResult.innerHTML = "<i class='bx bxs-check-circle'></i> <strong>Success!</strong> All assertions passed! Updating streak...";
+
+                    const todayStr = getTodayStr();
+                    const streakRes = await fetch(`${BACKEND_BASE}/api/auth/streak/increment`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ date: todayStr }),
+                        credentials: "include"
+                    });
+
+                    if (streakRes.ok) {
+                        const streakData = await streakRes.json();
+                        currentUser.streak = streakData.streak;
+                        renderStreak();
+                        renderChallenge();
+                    } else {
+                        verifyResult.innerHTML = "<i class='bx bxs-check-circle'></i> <strong>Success!</strong> Code passed, but failed to update streak in the database.";
+                    }
+                } else {
+                    verifyResult.className = "verify-result error";
+                    verifyResult.innerHTML = `<strong>Result:</strong> Output did not verify assertions.<pre style="margin-top:5px; font-family:monospace; font-size:0.75rem;">${result.output || "No output returned."}</pre>`;
+                }
+            } catch (err) {
+                verifyResult.className = "verify-result error";
+                verifyResult.innerHTML = `<strong>Failed to compile:</strong> ${err.message}`;
+            }
+        }
+
+        function renderBookmarks() {
+            const container = document.getElementById("bookmarks-list");
+            const bookmarks = currentUser.bookmarks || [];
+
+            if (bookmarks.length === 0) {
+                container.innerHTML = `<div class="empty-placeholder">No bookmarks saved yet. Explore <a href="/pages/Learning/online-courses.html">Online Courses</a> or <a href="/pages/Docs/official-docs.html">Cheat Sheets</a> to save resources!</div>`;
+                return;
+            }
+
+            container.innerHTML = "";
+            bookmarks.forEach(urlPath => {
+                let cleanTitle = urlPath;
+                try {
+                    const url = new URL(urlPath, window.location.origin);
+                    const pathParts = url.pathname.split("/").filter(Boolean);
+                    if (pathParts.length > 0) {
+                        const lastPart = pathParts[pathParts.length - 1].replace(".html", "");
+                        cleanTitle = lastPart.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+                    }
+                } catch(e) {}
+
+                const card = document.createElement("div");
+                card.className = "resource-card";
+                card.innerHTML = `
+                    <div class="resource-info">
+                        <h3>${cleanTitle}</h3>
+                        <p>${urlPath}</p>
+                    </div>
+                    <div class="resource-actions">
+                        <a href="${urlPath}" class="btn-go" title="Visit Resource"><i class='bx bx-right-top-arrow-circle'></i></a>
+                        <button class="btn-remove remove-bookmark" data-path="${urlPath}" title="Delete Bookmark"><i class='bx bx-trash'></i></button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            container.querySelectorAll(".remove-bookmark").forEach(btn => {
+                btn.addEventListener("click", async () => {
+                    const res = await toggleBookmark(btn.dataset.path);
+                    currentUser.bookmarks = res.bookmarks;
+                    renderBookmarks();
+                });
+            });
+        }
+
+        function renderWatchedVideos() {
+            const container = document.getElementById("watched-list");
+            const videos = currentUser.watchedVideos || [];
+
+            if (videos.length === 0) {
+                container.innerHTML = `<div class="empty-placeholder">No videos marked as watched yet. Start learning in <a href="/pages/Learning/video-tutorials.html">Video Tutorials</a>!</div>`;
+                return;
+            }
+
+            container.innerHTML = "";
+            videos.forEach(videoUrl => {
+                let videoTitle = "Video Tutorial";
+                if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
+                    videoTitle = "YouTube Lecture / Tutorial";
+                }
+
+                const card = document.createElement("div");
+                card.className = "resource-card";
+                card.innerHTML = `
+                    <div class="resource-info">
+                        <h3>${videoTitle}</h3>
+                        <p>${videoUrl}</p>
+                    </div>
+                    <div class="resource-actions">
+                        <a href="${videoUrl}" target="_blank" class="btn-go" title="Play Video"><i class='bx bx-play-circle'></i></a>
+                        <button class="btn-remove remove-watched" data-url="${videoUrl}" title="Remove Progress"><i class='bx bx-trash'></i></button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            container.querySelectorAll(".remove-watched").forEach(btn => {
+                btn.addEventListener("click", async () => {
+                    const res = await toggleWatched(btn.dataset.url);
+                    currentUser.watchedVideos = res.watchedVideos;
+                    renderWatchedVideos();
+                });
+            });
+        }
+
+        // ── Helpers ──────────────────────────────────────────────────────────
+        function getTodayStr() {
+            const d = new Date();
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById("profile-toast");
+            toast.textContent = message;
+            toast.style.background = isError ? "rgba(235,94,85,0.15)" : "rgba(76,209,55,0.15)";
+            toast.style.borderColor = isError ? "rgba(235,94,85,0.35)" : "rgba(76,209,55,0.35)";
+            toast.style.color = isError ? "#eb5e55" : "#4cd137";
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 3000);
+        }
+
+        // ── Modal Logic ──────────────────────────────────────────────────────
+        const modal = document.getElementById("edit-modal");
+        const usernameInput = document.getElementById("username-input");
+        const charCount = document.getElementById("char-count");
+        const modalError = document.getElementById("modal-error");
+        const modalSaveBtn = document.getElementById("modal-save-btn");
+
+        function openModal() {
+            usernameInput.value = currentUser.username || "";
+            charCount.textContent = usernameInput.value.length;
+            modalError.textContent = "";
+            modalSaveBtn.disabled = false;
+            modal.classList.add("open");
+            setTimeout(() => usernameInput.focus(), 100);
+        }
+
+        function closeModal() {
+            modal.classList.remove("open");
+        }
+
+        usernameInput.addEventListener("input", () => {
+            charCount.textContent = usernameInput.value.length;
+            modalError.textContent = "";
+            modalSaveBtn.disabled = usernameInput.value.trim().length < 2;
+        });
+
+        document.getElementById("btn-edit-username").addEventListener("click", openModal);
+        document.getElementById("modal-close-btn").addEventListener("click", closeModal);
+        document.getElementById("modal-cancel-btn").addEventListener("click", closeModal);
+
+        // Close on overlay click (outside card)
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Close on Escape key
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
+        });
+
+        modalSaveBtn.addEventListener("click", async () => {
+            const newUsername = usernameInput.value.trim();
+            if (!newUsername || newUsername.length < 2) {
+                modalError.textContent = "Username must be at least 2 characters.";
+                return;
+            }
+
+            modalSaveBtn.disabled = true;
+            modalSaveBtn.innerHTML = `<i class='bx bx-loader-alt bx-spin'></i> Saving...`;
+            modalError.textContent = "";
+
+            try {
+                const res = await updateProfile(newUsername);
+                currentUser.username = res.user.username;
+
+                // Update all username displays
+                document.getElementById("user-name").textContent = currentUser.username;
+
+                // Also update navbar avatar tooltip
+                const navAvatarLink = document.querySelector(".nav-avatar-btn");
+                if (navAvatarLink) navAvatarLink.title = currentUser.username;
+
+                closeModal();
+                showToast("✓ Username updated successfully!");
+            } catch (err) {
+                modalError.textContent = err.message || "Failed to update username. Please try again.";
+                showToast(err.message || "Update failed.", true);
+            } finally {
+                modalSaveBtn.disabled = false;
+                modalSaveBtn.innerHTML = `<i class='bx bx-check'></i> Save Changes`;
+            }
+        });
+
+        // ── Global Events ────────────────────────────────────────────────────
+        document.getElementById("logout-btn").addEventListener("click", async () => {
+            await logoutUser();
+            window.location.href = "/pages/login.html";
+        });
+
+        document.getElementById("verify-challenge-btn").addEventListener("click", verifyChallenge);
+
+        // ── Boot ─────────────────────────────────────────────────────────────
+        initDashboard().catch(err => {
+            console.error("Profile dashboard failed to initialize:", err);
+            window.location.href = "/pages/login.html";
+        });
+    </script>
+</body>
+</html>

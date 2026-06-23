@@ -160,7 +160,8 @@ router.get("/google/callback", async (req, res) => {
       if (!user.googleId) {
         user.googleId = profile.id;
       }
-      if (profile.picture && !user.avatar) {
+      // Always sync latest OAuth avatar (removes stale/expired URLs)
+      if (profile.picture) {
         user.avatar = profile.picture;
       }
     }
@@ -178,7 +179,7 @@ router.get("/google/callback", async (req, res) => {
     });
 
     // Redirect to frontend (dashboard/settings or homepage)
-    res.redirect(`${frontendUrl}/pages/settings.html?auth=success`);
+    res.redirect(`${frontendUrl}/pages/profile.html?auth=success`);
   } catch (err) {
     console.error("Google OAuth error:", err);
     res.redirect(`${frontendUrl}/pages/login.html?error=auth_failed`);
@@ -308,7 +309,8 @@ router.get("/github/callback", async (req, res) => {
       if (!user.githubId) {
         user.githubId = profile.id;
       }
-      if (profile.picture && !user.avatar) {
+      // Always sync latest OAuth avatar (removes stale/expired URLs)
+      if (profile.picture) {
         user.avatar = profile.picture;
       }
     }
@@ -325,7 +327,7 @@ router.get("/github/callback", async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
-    res.redirect(`${frontendUrl}/pages/settings.html?auth=success`);
+    res.redirect(`${frontendUrl}/pages/profile.html?auth=success`);
   } catch (err) {
     console.error("GitHub OAuth error:", err);
     res.redirect(`${frontendUrl}/pages/login.html?error=auth_failed`);
@@ -387,15 +389,49 @@ router.get("/me", requireAuth, async (req, res) => {
 
 // 2. Logout Endpoint
 router.post("/logout", (req, res) => {
+  const { isLocal } = getUrls(req);
   res.clearCookie("studypy_token", {
     httpOnly: true,
-    secure: true,
-    sameSite: "none"
+    secure: !isLocal,
+    sameSite: isLocal ? "lax" : "none"
   });
   res.json({ message: "Logged out successfully" });
 });
 
-// 3. Toggle Bookmark
+// 3. Update Profile (username only)
+router.put("/profile", requireAuth, async (req, res) => {
+  const { username } = req.body;
+
+  if (!username || typeof username !== "string") {
+    return res.status(400).json({ error: "Username is required." });
+  }
+
+  const trimmed = username.trim();
+  if (trimmed.length < 2 || trimmed.length > 30) {
+    return res.status(400).json({ error: "Username must be between 2 and 30 characters." });
+  }
+
+  // Allow letters, numbers, spaces, underscores, hyphens
+  if (!/^[a-zA-Z0-9 _\-]+$/.test(trimmed)) {
+    return res.status(400).json({ error: "Username can only contain letters, numbers, spaces, underscores, and hyphens." });
+  }
+
+  const user = req.user;
+  user.username = trimmed;
+  await user.save();
+
+  res.json({
+    success: true,
+    user: {
+      username: user.username,
+      email: user.email,
+      avatar: user.avatar,
+      streak: user.streak
+    }
+  });
+});
+
+// 4. Toggle Bookmark
 router.post("/bookmark", requireAuth, async (req, res) => {
   const { path } = req.body;
   if (!path) {
@@ -415,7 +451,7 @@ router.post("/bookmark", requireAuth, async (req, res) => {
   res.json({ bookmarks: user.bookmarks, bookmarked: index === -1 });
 });
 
-// 4. Toggle Watched Video status
+// 5. Toggle Watched Video status
 router.post("/watched", requireAuth, async (req, res) => {
   const { videoUrl } = req.body;
   if (!videoUrl) {
@@ -435,7 +471,7 @@ router.post("/watched", requireAuth, async (req, res) => {
   res.json({ watchedVideos: user.watchedVideos, watched: index === -1 });
 });
 
-// 5. Update Streak manually (or via challenge check)
+// 6. Update Streak manually (or via challenge check)
 router.post("/streak/increment", requireAuth, async (req, res) => {
   const user = req.user;
   const { date } = req.body; // Expecting "YYYY-MM-DD"
