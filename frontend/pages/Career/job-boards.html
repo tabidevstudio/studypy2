@@ -1,14 +1,150 @@
- <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-
-  scale=1.0">
-        <title>Job Boards | Studypy</title>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Job Board | StudyPy</title>
+        <link rel="stylesheet" href="../../css/main.css">
+        <link rel="stylesheet" href="../../css/career.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+        <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
+        <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="StudyPY" />
+        <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     </head>
     <body>
-        <div id="tools-container" data-page="job-boards"></div>
-        <script type="module" src="../../js/links.js"></script>
-    </body>
-    </html>
+        <div id="navbar-placeholder"></div>
 
+        <main class="main">
+            <br><br><br>
+            <div class="career-page">
+                <div class="career-badge">
+                    <i class='bx bx-briefcase'></i> StudyPy Opportunities
+                </div>
+
+                <h1 class="career-title">Fresh Graduate Job Board</h1>
+
+                <p class="career-subtitle">Find entry-level developer roles and internships in the Philippines. Filter by tech stack and work mode.</p>                <div class="job-dashboard">
+                    <!-- Left Sidebar: Filter Panel -->
+                    <aside class="job-sidebar">
+                        <h3 class="sidebar-section-title"><i class='bx bx-filter-alt'></i> Search & Filters</h3>
+
+                        <div class="filter-group">
+                            <span class="filter-label">Search</span>
+                            <div class="search-field-wrap">
+                                <i class='bx bx-search search-icon'></i>
+                                <input type="text" id="job-search-input" placeholder="Role or company..." class="job-input">
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <span class="filter-label">Tech Stack</span>
+                            <div class="tech-pills">
+                                <button class="tech-pill active" data-tech="">All</button>
+                                <button class="tech-pill" data-tech="python"><i class='bx bxl-python'></i> Python</button>
+                                <button class="tech-pill" data-tech="javascript"><i class='bx bxl-javascript'></i> JavaScript</button>
+                                <button class="tech-pill" data-tech="sql"><i class='bx bx-data'></i> SQL</button>
+                                <button class="tech-pill" data-tech="html css"><i class='bx bxl-html5'></i> Web Dev</button>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <span class="filter-label">Work Mode</span>
+                            <div class="tech-pills">
+                                <button class="toggle-btn active" data-mode="">Anywhere</button>
+                                <button class="toggle-btn" data-mode="remote">Remote 🏠</button>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <span class="filter-label">Experience Level</span>
+                            <select id="filter-type" class="job-select-custom">
+                                <option value="">All Experience Levels</option>
+                                <option value="entry-level">Entry-Level / Fresh Grad</option>
+                                <option value="internship">Internship / OJT</option>
+                            </select>
+                        </div>
+ 
+                    </aside>
+
+                    <!-- Right Content Pane: Jobs List -->
+                    <section class="job-stream">
+                        <div class="stream-header">
+                            <span id="job-count">Loading opportunities...</span>
+                        </div>
+                        <div id="jobs-container" class="jobs-list">
+                            <!-- Dynamic Job Rows go here -->
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Platform Links — outside .job-dashboard grid -->
+                <div class="platform-links">
+                    <p class="platform-links-label">Find more opportunities on</p>
+                    <div class="platform-links-grid">
+
+                        <a href="https://www.linkedin.com/jobs" target="_blank" class="platform-link-card">
+                            <img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=32" alt="LinkedIn" class="platform-favicon">
+                            <span>LinkedIn</span>
+                        </a>
+
+                        <a href="https://www.jobstreet.com.ph" target="_blank" class="platform-link-card">
+                            <img src="https://www.google.com/s2/favicons?domain=jobstreet.com.ph&sz=32" alt="JobStreet" class="platform-favicon">
+                            <span>JobStreet</span>
+                        </a>
+
+                        <a href="https://www.kalibrr.com" target="_blank" class="platform-link-card">
+                            <img src="https://www.google.com/s2/favicons?domain=kalibrr.com&sz=32" alt="Kalibrr" class="platform-favicon">
+                            <span>Kalibrr</span>
+                        </a>
+
+                        <a href="https://www.onlinejobs.ph" target="_blank" class="platform-link-card">
+                            <img src="https://www.google.com/s2/favicons?domain=onlinejobs.ph&sz=32" alt="OnlineJobs.ph" class="platform-favicon">
+                            <span>OnlineJobs.ph</span>
+                        </a>
+
+                        <a href="https://bossjob.ph" target="_blank" class="platform-link-card">
+                            <img src="https://www.google.com/s2/favicons?domain=bossjob.ph&sz=32" alt="Bossjob" class="platform-favicon">
+                            <span>Bossjob</span>
+                        </a>
+
+                        <a href="https://ph.jobsdb.com" target="_blank" class="platform-link-card">
+                            <img src="https://www.google.com/s2/favicons?domain=jobsdb.com&sz=32" alt="JobsDB" class="platform-favicon">
+                            <span>JobsDB</span>
+                        </a>
+
+                        <a href="https://ph.indeed.com" target="_blank" class="platform-link-card">
+                            <img src="https://www.google.com/s2/favicons?domain=indeed.com&sz=32" alt="Indeed" class="platform-favicon">
+                            <span>Indeed</span>
+                        </a>
+
+                        <a href="https://jooble.org" target="_blank" class="platform-link-card">
+                            <img src="https://www.google.com/s2/favicons?domain=jooble.org&sz=32" alt="Jooble" class="platform-favicon">
+                            <span>Jooble</span>
+                        </a>
+
+                        <a href="https://www.philjobnet.gov.ph" target="_blank" class="platform-link-card">
+                            <img src="https://www.google.com/s2/favicons?domain=philjobnet.gov.ph&sz=32" alt="PhilJobNet" class="platform-favicon">
+                            <span>PhilJobNet</span>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <script type="module" src="../../js/script.js"></script>
+        <script type="module" src="../../js/job-boards.js"></script>
+        <script>
+            document.querySelectorAll('.platform-favicon').forEach(img => {
+                img.onerror = function() { this.style.display = 'none'; };
+            });
+        </script>
+    </body>
+</html>

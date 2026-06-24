@@ -382,7 +382,6 @@ async function loadLinks() {
   }
     const UNDER_CONSTRUCTION_PAGES = [
         "interview-prep",
-        "job-boards",
         "resume-building",
         "projectideas",
         "forums",
