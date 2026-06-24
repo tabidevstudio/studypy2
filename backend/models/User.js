@@ -9,11 +9,11 @@ const UserSchema = new mongoose.Schema(
     googleId: { type: String, unique: true, sparse: true },
     githubId: { type: String, unique: true, sparse: true },
     avatar: { type: String },
-    bookmarks: { type: [String], default: [] }, // Array of bookmarked URL paths
-    watchedVideos: { type: [String], default: [] }, // Array of video URLs/IDs
+    bookmarks: { type: [String], default: [] }, 
+    watchedVideos: { type: [String], default: [] },
     streak: {
       count: { type: Number, default: 0 },
-      lastActiveDate: { type: String, default: "" } // Format: "YYYY-MM-DD"
+      lastActiveDate: { type: String, default: "" } 
     }
   },
   {

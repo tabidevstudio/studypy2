@@ -18,15 +18,15 @@ const data = require("./data/flashcards.json");
 async function seed() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log("âœ… Connected to MongoDB Atlas");
+    console.log("The blutooth device is connected successfully");
 
     let upserted = 0;
     let unchanged = 0;
 
     for (const doc of data) {
       const result = await Flashcard.findOneAndUpdate(
-        { language: doc.language },   // filter
-        doc,                          // full replacement
+        { language: doc.language },
+        doc,                     
         { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true }
       );
       if (result) upserted++;
@@ -39,10 +39,10 @@ async function seed() {
     console.log(`   â€¢ Total questions: ${data.reduce((sum, d) => sum + d.easy.length + d.medium.length + d.hard.length, 0)}`);
 
   } catch (err) {
-    console.error("âŒ Seeding failed:", err.message);
+    console.error("Seeding failed:", err.message);
   } finally {
     await mongoose.disconnect();
-    console.log("\nðŸ”Œ Disconnected from MongoDB");
+    console.log("\nhina ng connection mo ya dc ka");
   }
 }
 

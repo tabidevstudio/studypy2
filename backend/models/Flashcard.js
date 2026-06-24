@@ -6,9 +6,9 @@ const mongoose = require("mongoose");
 const QuestionSchema = new mongoose.Schema(
   {
     question:    { type: String, required: true, trim: true },
-    code:        { type: String, default: "" },          // optional code snippet
-    options:     { type: [String], required: true },     // 4 answer choices
-    answer:      { type: Number, required: true },       // 0-indexed correct answer
+    code:        { type: String, default: "" },      
+    options:     { type: [String], required: true },   
+    answer:      { type: Number, required: true }, 
     explanation: { type: String, required: true, trim: true },
   },
   { _id: false }
@@ -17,8 +17,8 @@ const QuestionSchema = new mongoose.Schema(
 /* ── Top-level document: one document per programming language ───────────── */
 const FlashcardSchema = new mongoose.Schema(
   {
-    language:    { type: String, required: true, unique: true, trim: true, lowercase: true }, // e.g. "python"
-    displayName: { type: String, required: true, trim: true },                                // e.g. "Python"
+    language:    { type: String, required: true, unique: true, trim: true, lowercase: true },
+    displayName: { type: String, required: true, trim: true },                             
     easy:        { type: [QuestionSchema], default: [] },
     medium:      { type: [QuestionSchema], default: [] },
     hard:        { type: [QuestionSchema], default: [] },

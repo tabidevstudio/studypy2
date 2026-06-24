@@ -18,28 +18,28 @@ const data = require("./data/ai-tools.json");
 async function seed() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log("âœ… Connected to MongoDB Atlas");
+    console.log("The blutooth device is connected successfully");
 
     let upserted = 0;
 
     for (const doc of data) {
       await AiTool.findOneAndUpdate(
-        { name: doc.name },           // filter
-        doc,                          // full replacement
+        { name: doc.name },        
+        doc,                
         { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true }
       );
       upserted++;
     }
 
-    console.log(`\nðŸ¤– AI Tools seeded:`);
+    console.log(`\nAI Tools seeded:`);
     console.log(`   â€¢ ${upserted} tool document(s) upserted`);
     console.log(`   â€¢ Tools: ${data.map(d => d.name).join(", ")}`);
 
   } catch (err) {
-    console.error("âŒ Seeding failed:", err.message);
+    console.error("Seeding failed:", err.message);
   } finally {
     await mongoose.disconnect();
-    console.log("\nðŸ”Œ Disconnected from MongoDB");
+    console.log("\nhina ng connection mo ya dc ka");
   }
 }
 

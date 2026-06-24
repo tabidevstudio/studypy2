@@ -16,8 +16,8 @@ const StepLinkSchema = new mongoose.Schema(
 /* ── Sub-document: a tag badge on a step ─────────────────────────────────── */
 const StepTagSchema = new mongoose.Schema(
   {
-    label: { type: String, required: true, trim: true },  // e.g. "Must Learn"
-    type:  { type: String, default: "must" },             // must | optional | good
+    label: { type: String, required: true, trim: true },  
+    type:  { type: String, default: "must" },            
   },
   { _id: false }
 );
@@ -38,7 +38,7 @@ const StepSchema = new mongoose.Schema(
 /* ── Sub-document: a phase grouping steps ────────────────────────────────── */
 const PhaseSchema = new mongoose.Schema(
   {
-    label: { type: String, required: true, trim: true },  // e.g. "Phase 1 — The Basics"
+    label: { type: String, required: true, trim: true }, 
     steps: { type: [StepSchema], default: [] },
   },
   { _id: false }
@@ -47,14 +47,14 @@ const PhaseSchema = new mongoose.Schema(
 /* ── Top-level document: one document per roadmap track ──────────────────── */
 const RoadmapSchema = new mongoose.Schema(
   {
-    trackId:     { type: String, required: true, unique: true, trim: true }, // e.g. "frontend"
+    trackId:     { type: String, required: true, unique: true, trim: true }, 
     title:       { type: String, required: true, trim: true },
     description: { type: String, required: true, trim: true },
-    icon:        { type: String, default: "bx-map-alt" },    // boxicons class
+    icon:        { type: String, default: "bx-map-alt" },   
     iconColor:   { type: String, default: "#fff" },
     iconBg:      { type: String, default: "rgba(255,255,255,0.1)" },
-    meta:        { type: [String], default: [] },             // pill labels
-    order:       { type: Number, default: 0 },                // display order
+    meta:        { type: [String], default: [] },             
+    order:       { type: Number, default: 0 },                
     phases:      { type: [PhaseSchema], default: [] },
   },
   {

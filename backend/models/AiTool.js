@@ -9,17 +9,17 @@ const AiToolSchema = new mongoose.Schema(
     maker:          { type: String, required: true, trim: true },
     logoUrl:        { type: String, default: "" },
     logoFallback:   { type: String, default: "🤖" },
-    logoStyle:      { type: String, default: "" },        // inline CSS for logo fallback div
-    tags:           { type: [String], default: [] },      // filter tags e.g. ["free", "vscode"]
-    categories:     { type: [String], default: [] },      // display labels e.g. ["Autocomplete"]
-    categoryColors: { type: [String], default: [] },      // matching color per category badge
+    logoStyle:      { type: String, default: "" },    
+    tags:           { type: [String], default: [] },     
+    categories:     { type: [String], default: [] },    
+    categoryColors: { type: [String], default: [] },      
     description:    { type: String, required: true, trim: true },
     pricing:        { type: String, enum: ["free", "freemium", "paid"], default: "freemium" },
     beginnerPick:   { type: Boolean, default: false },
     url:            { type: String, required: true, trim: true },
     btnLabel:       { type: String, default: "Visit Site" },
-    btnClass:       { type: String, default: "mirror" },  // "try" (teal) | "mirror" (subtle)
-    order:          { type: Number, default: 0 },         // display order in table
+    btnClass:       { type: String, default: "mirror" },  
+    order:          { type: Number, default: 0 },        
   },
   {
     timestamps: true,

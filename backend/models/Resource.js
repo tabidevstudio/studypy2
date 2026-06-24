@@ -9,14 +9,14 @@ const LinkSchema = new mongoose.Schema(
     description: { type: String, required: true, trim: true },
     url:         { type: String, required: true, trim: true },
   },
-  { _id: false }          // links are embedded; no separate _id needed
+  { _id: false }        
 );
 
 /* ── Sub-document: a page inside a category ──────────────────────────────── */
 const PageSchema = new mongoose.Schema(
   {
-    name:  { type: String, required: true, trim: true }, // e.g. "online-courses"
-    path:  { type: String, required: true, trim: true }, // e.g. "frontend/pages/Learning/online-courses.html"
+    name:  { type: String, required: true, trim: true },
+    path:  { type: String, required: true, trim: true }, 
     links: { type: [LinkSchema], default: [] },
   },
   { _id: false }
@@ -25,12 +25,12 @@ const PageSchema = new mongoose.Schema(
 /* ── Top-level document: a resource category ─────────────────────────────── */
 const CategorySchema = new mongoose.Schema(
   {
-    name:  { type: String, required: true, unique: true, trim: true }, // e.g. "learning"
-    path:  { type: String, required: true, trim: true },               // e.g. "frontend/pages/Learning"
+    name:  { type: String, required: true, unique: true, trim: true },
+    path:  { type: String, required: true, trim: true },              
     pages: { type: [PageSchema], default: [] },
   },
   {
-    timestamps: true,   // createdAt / updatedAt for free
+    timestamps: true, 
     collection: "resources",
   }
 );

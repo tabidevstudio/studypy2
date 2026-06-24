@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 /**
  * seed.js  â€”  Resource Links seeder
@@ -13,12 +13,12 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const Resource = require("./models/Resource");
-const data = require("./data.json");
+const data = require("./data/resources.json");
 
 async function seed() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log("âœ… Connected to MongoDB Atlas");
+    console.log("The blutooth device is connected successfully");
 
     let upserted = 0;
 
@@ -41,10 +41,10 @@ async function seed() {
     console.log(`   â€¢ Total links: ${totalLinks}`);
 
   } catch (err) {
-    console.error("âŒ Seeding failed:", err.message);
+    console.error("Seeding failed:", err.message);
   } finally {
     await mongoose.disconnect();
-    console.log("\nðŸ”Œ Disconnected from MongoDB");
+    console.log("\nhina ng connection mo ya dc ka");
   }
 }
 
