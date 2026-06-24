@@ -54,6 +54,7 @@ import { getProfile } from "./auth.js";
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Learning</a></li>
+                <li><a href="/pages/Learning/roadmaps.html">Roadmaps</a></li>
                 <li><a href="/pages/Learning/online-courses.html">Online Courses</a></li>
                 <li><a href="/pages/Learning/interactive-coding.html">Interactive Coding</a></li>
                 <li><a href="/pages/Learning/video-tutorials.html">Video Tutorials</a></li>
@@ -102,6 +103,7 @@ import { getProfile } from "./auth.js";
                 <li><a class="link_name" href="#">Dev Tools</a></li>
                 <li><a href="/pages/Dev Tools/IDES.html">IDEs &amp; Editors</a></li>
                 <li><a href="/pages/Dev Tools/version-control.html">Version Control</a></li>
+                <li><a href="/pages/Dev Tools/ai-tools.html">AI Tools</a></li>
                 <li><a href="/pages/Dev Tools/debugging-tools.html">Debugging Tools</a></li>
                 <li><a href="/pages/Dev Tools/fun-tools.html">Fun Tools</a></li>
             </ul>
