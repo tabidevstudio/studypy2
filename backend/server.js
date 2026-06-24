@@ -13,13 +13,16 @@ require("dotenv").config();
 
 const Category = require("./models/Resource");
 const authRouter = require("./routes/auth");
-
+const Job = require("./models/Job.js");
 const app = express();
 
 app.use(cors({
   origin: function(origin, callback) {
     const allowedOrigins = [
-      process.env.FRONTEND_URL
+      process.env.FRONTEND_URL,
+      "http://localhost:5500",
+      "http://127.0.0.1:5500",
+      "http://localhost:3000"
     ].filter(Boolean).map(o => o.replace(/\/$/, ""));
     
     // Allow requests with no origin (like mobile apps, postman, curl)
@@ -124,44 +127,37 @@ app.get("/links", async (req, res) => {
    GET /search  —  Performs a text search across all categories in MongoDB.
    Query parameter: q=search_term
 ───────────────────────────────────────────────────────────────────────────── */
-app.get("/search", async (req, res) => {
-  const query = req.query.q;
-  if (!query) {
-    return res.status(400).json({ error: "Missing query parameter 'q'." });
-  }
 
-  try {
-    const results = await Category.aggregate([
-      { $unwind: "$pages" },
-      { $unwind: "$pages.links" },
-      {
-        $match: {
-          $or: [
-            { "pages.links.title": { $regex: query, $options: "i" } },
-            { "pages.links.description": { $regex: query, $options: "i" } },
-            { "pages.name": { $regex: query, $options: "i" } },
-            { "name": { $regex: query, $options: "i" } }
-          ]
-        }
-      },
-      {
-        $project: {
-          _id: 0,
-          title: "$pages.links.title",
-          description: "$pages.links.description",
-          url: "$pages.links.url",
-          pageName: "$pages.name",
-          pagePath: "$pages.path",
-          categoryName: "$name"
-        }
-      }
-    ]);
+app.get("/api/jobs", async (req, res) => {
+    const { tech, mode, location, type } = req.query;
+    const filter = {};
 
-    res.json({ results });
-  } catch (err) {
-    console.error("GET /search error:", err.message);
-    res.status(500).json({ error: "Failed to perform global search." });
-  }
+    if (tech) {
+        filter.techTags = { $in: [new RegExp(tech, "i")] };
+    }
+    if (mode) {
+        filter.workMode = mode;
+    }
+    if (location) {
+        filter.location = new RegExp(location, "i");
+    }
+    if (type) {
+        // strict match — no senior/mid roles slipping through
+        filter.experienceLevel = type;
+    } else {
+        // default: exclude nothing, but block senior-level titles
+        filter.title = {
+            $not: /\b(senior|sr\.|lead|principal|staff|head of|manager|director|vp |vice president|architect)\b/i
+        };
+    }
+
+    try {
+        const jobs = await Job.find(filter).sort({ postedAt: -1 }).limit(50);
+        res.json({ jobs });
+    } catch (err) {
+        console.error("Error querying jobs from MongoDB:", err.message);
+        res.status(500).json({ error: "Failed to fetch job postings." });
+    }
 });
 
 /* ─────────────────────────────────────────────────────────────────────────────
