@@ -1,52 +1,52 @@
-require('dotenv').config();
+﻿"use strict";
 
-const { MongoClient } = require('mongodb');
-const data = require('./data.json');
+/**
+ * seed.js  â€”  Resource Links seeder
+ * ----------------------------------
+ * Upserts all resource link categories from data.json into MongoDB Atlas.
+ * Run with:  node backend/seed.js
+ *
+ * Uses the Mongoose Resource model (consistent with server.js).
+ * Collection: "resources"
+ */
 
-const CONNECTION_STRING = process.env.MONGO_URI || 'mongodb://localhost:27017';
-const DB_NAME = 'studypy_db';
-const COLLECTION_NAME = 'links';
+require("dotenv").config();
+const mongoose = require("mongoose");
+const Resource = require("./models/Resource");
+const data = require("./data.json");
 
 async function seed() {
-  const client = new MongoClient(CONNECTION_STRING);
-
   try {
-    await client.connect();
-    console.log('Connected to MongoDB...');
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("âœ… Connected to MongoDB Atlas");
 
-    const db = client.db(DB_NAME);
-    const collection = db.collection(COLLECTION_NAME);
-
-    const docs = [];
+    let upserted = 0;
 
     for (const category of data.categories) {
-      for (const page of category.pages) {
-        for (const link of page.links) {
-          docs.push({
-            title: link.title,
-            description: link.description,
-            url: link.url,
-            category: category.name,
-            page: page.name,
-            addedAt: new Date(),
-          });
-        }
-      }
+      await Resource.findOneAndUpdate(
+        { name: category.name },      // filter by unique category name
+        category,                     // full replacement
+        { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true }
+      );
+      upserted++;
     }
 
-    console.log(`Prepared ${docs.length} documents...`);
+    const totalLinks = data.categories.reduce((sum, cat) =>
+      sum + cat.pages.reduce((s, page) => s + page.links.length, 0), 0
+    );
 
-    await collection.deleteMany({});
-    console.log('Cleared existing links...');
-
-    const result = await collection.insertMany(docs);
-    console.log(`Inserted ${result.insertedCount} links`);
+    console.log(`\nðŸ”— Resource links seeded:`);
+    console.log(`   â€¢ ${upserted} category document(s) upserted`);
+    console.log(`   â€¢ Categories: ${data.categories.map(c => c.name).join(", ")}`);
+    console.log(`   â€¢ Total links: ${totalLinks}`);
 
   } catch (err) {
-    console.error('Seeding failed:', err.message);
+    console.error("âŒ Seeding failed:", err.message);
   } finally {
-    await client.close();
+    await mongoose.disconnect();
+    console.log("\nðŸ”Œ Disconnected from MongoDB");
   }
 }
 
 seed();
+

@@ -31,7 +31,7 @@ const CategorySchema = new mongoose.Schema(
   },
   {
     timestamps: true,   // createdAt / updatedAt for free
-    collection: "categories",
+    collection: "resources",
   }
 );
 

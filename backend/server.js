@@ -11,7 +11,11 @@ const path         = require("path");
 const os           = require("os");
 require("dotenv").config();
 
-const Category = require("./models/Resource");
+// ── Models ───────────────────────────────────────────────────────────────────
+const Resource  = require("./models/Resource");    // resource link categories
+const Flashcard = require("./models/Flashcard");   // coding flashcard questions
+const Roadmap   = require("./models/Roadmap");     // learning roadmap tracks
+const AiTool    = require("./models/AiTool");      // AI coding tools table
 const authRouter = require("./routes/auth");
 
 const app = express();
@@ -21,7 +25,7 @@ app.use(cors({
     const allowedOrigins = [
       process.env.FRONTEND_URL
     ].filter(Boolean).map(o => o.replace(/\/$/, ""));
-    
+
     // Allow requests with no origin (like mobile apps, postman, curl)
     // or origins that match allowed origins
     if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
@@ -108,11 +112,10 @@ app.post("/run", async (req, res) => {
 
 /* ─────────────────────────────────────────────────────────────────────────────
    GET /links  —  Returns all resource categories from MongoDB Atlas.
-   Replaces the previous fs.readFileSync(data.json) implementation.
 ───────────────────────────────────────────────────────────────────────────── */
 app.get("/links", async (req, res) => {
   try {
-    const categories = await Category.find({}, { __v: 0, createdAt: 0, updatedAt: 0 }).lean();
+    const categories = await Resource.find({}, { __v: 0, createdAt: 0, updatedAt: 0 }).lean();
     res.json({ categories });
   } catch (err) {
     console.error("GET /links error:", err.message);
@@ -131,27 +134,27 @@ app.get("/search", async (req, res) => {
   }
 
   try {
-    const results = await Category.aggregate([
+    const results = await Resource.aggregate([
       { $unwind: "$pages" },
       { $unwind: "$pages.links" },
       {
         $match: {
           $or: [
-            { "pages.links.title": { $regex: query, $options: "i" } },
+            { "pages.links.title":       { $regex: query, $options: "i" } },
             { "pages.links.description": { $regex: query, $options: "i" } },
-            { "pages.name": { $regex: query, $options: "i" } },
-            { "name": { $regex: query, $options: "i" } }
+            { "pages.name":              { $regex: query, $options: "i" } },
+            { "name":                    { $regex: query, $options: "i" } }
           ]
         }
       },
       {
         $project: {
           _id: 0,
-          title: "$pages.links.title",
-          description: "$pages.links.description",
-          url: "$pages.links.url",
-          pageName: "$pages.name",
-          pagePath: "$pages.path",
+          title:        "$pages.links.title",
+          description:  "$pages.links.description",
+          url:          "$pages.links.url",
+          pageName:     "$pages.name",
+          pagePath:     "$pages.path",
           categoryName: "$name"
         }
       }
@@ -161,6 +164,112 @@ app.get("/search", async (req, res) => {
   } catch (err) {
     console.error("GET /search error:", err.message);
     res.status(500).json({ error: "Failed to perform global search." });
+  }
+});
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   GET /api/flashcards          → all languages summary
+   GET /api/flashcards?lang=python            → full doc for one language
+   GET /api/flashcards?lang=python&diff=easy  → only the easy array
+───────────────────────────────────────────────────────────────────────────── */
+app.get("/api/flashcards", async (req, res) => {
+  const { lang, diff } = req.query;
+
+  try {
+    // No language specified → return list of available languages
+    if (!lang) {
+      const summary = await Flashcard.find(
+        {},
+        { language: 1, displayName: 1, _id: 0,
+          easyCount: { $size: "$easy" },
+          mediumCount: { $size: "$medium" },
+          hardCount: { $size: "$hard" } }
+      ).lean();
+      return res.json({ flashcards: summary });
+    }
+
+    // Fetch for a specific language
+    const doc = await Flashcard.findOne(
+      { language: lang.toLowerCase() },
+      { __v: 0, createdAt: 0, updatedAt: 0 }
+    ).lean();
+
+    if (!doc) {
+      return res.status(404).json({ error: `No flashcards found for language: ${lang}` });
+    }
+
+    // Optionally filter to a single difficulty
+    if (diff) {
+      const validDiffs = ["easy", "medium", "hard"];
+      if (!validDiffs.includes(diff.toLowerCase())) {
+        return res.status(400).json({ error: "Invalid difficulty. Use: easy, medium, or hard." });
+      }
+      return res.json({
+        language:    doc.language,
+        displayName: doc.displayName,
+        difficulty:  diff.toLowerCase(),
+        questions:   doc[diff.toLowerCase()],
+      });
+    }
+
+    return res.json(doc);
+
+  } catch (err) {
+    console.error("GET /api/flashcards error:", err.message);
+    res.status(500).json({ error: "Failed to fetch flashcards from the database." });
+  }
+});
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   GET /api/roadmaps            → all tracks (sorted by order)
+   GET /api/roadmaps/:trackId   → single track with full phase/step detail
+───────────────────────────────────────────────────────────────────────────── */
+app.get("/api/roadmaps", async (req, res) => {
+  try {
+    const tracks = await Roadmap.find(
+      {},
+      { __v: 0, createdAt: 0, updatedAt: 0 }
+    ).sort({ order: 1 }).lean();
+
+    res.json({ roadmaps: tracks });
+  } catch (err) {
+    console.error("GET /api/roadmaps error:", err.message);
+    res.status(500).json({ error: "Failed to fetch roadmaps from the database." });
+  }
+});
+
+app.get("/api/roadmaps/:trackId", async (req, res) => {
+  try {
+    const track = await Roadmap.findOne(
+      { trackId: req.params.trackId },
+      { __v: 0, createdAt: 0, updatedAt: 0 }
+    ).lean();
+
+    if (!track) {
+      return res.status(404).json({ error: `No roadmap found for track: ${req.params.trackId}` });
+    }
+
+    res.json(track);
+  } catch (err) {
+    console.error("GET /api/roadmaps/:trackId error:", err.message);
+    res.status(500).json({ error: "Failed to fetch roadmap from the database." });
+  }
+});
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   GET /api/ai-tools  —  Returns all AI coding tools sorted by display order.
+───────────────────────────────────────────────────────────────────────────── */
+app.get("/api/ai-tools", async (req, res) => {
+  try {
+    const tools = await AiTool.find(
+      {},
+      { __v: 0, createdAt: 0, updatedAt: 0 }
+    ).sort({ order: 1 }).lean();
+
+    res.json({ tools });
+  } catch (err) {
+    console.error("GET /api/ai-tools error:", err.message);
+    res.status(500).json({ error: "Failed to fetch AI tools from the database." });
   }
 });
 

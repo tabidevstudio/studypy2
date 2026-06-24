@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "seed": "node seed.js",
+    "seed:flashcards": "node seed-flashcards.js",
+    "seed:roadmaps": "node seed-roadmaps.js",
+    "seed:ai-tools": "node seed-ai-tools.js",
+    "seed:all": "node seed.js && node seed-flashcards.js && node seed-roadmaps.js && node seed-ai-tools.js"
   },
   "keywords": [],
   "author": "",

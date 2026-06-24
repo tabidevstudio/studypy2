@@ -16,7 +16,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="StudyPY" />
     <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
-
 </head>
 <body>
 
@@ -42,7 +41,7 @@
             </div>
 
             <!-- Filter buttons -->
-            <div class="ide-filters">
+            <div class="ide-filters" id="ai-filters">
                 <button class="ide-filter-btn active" data-filter="all">All</button>
                 <button class="ide-filter-btn" data-filter="free">Free</button>
                 <button class="ide-filter-btn" data-filter="vscode">VS Code Plugin</button>
@@ -65,287 +64,12 @@
                         </tr>
                     </thead>
                     <tbody id="ai-tbody">
-
-                        <!-- Codeium -->
-                        <tr data-tags="free vscode autocomplete beginner">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo">
-                                        <img src="https://exafunction.github.io/public/images/codeium/codeium-logo-blue.svg" alt="Codeium" onerror="this.style.display='none'; this.parentElement.textContent='🤖'">
-                                    </div>
-                                    <div>
-                                        <div class="ide-name">Codeium <span class="beginner-star">⭐ Beginner Pick</span></div>
-                                        <div class="ide-maker">Exafunction</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ide-tags">
-                                    <span class="ide-tag cyan">Autocomplete</span>
-                                    <span class="ide-tag cyan">Chat</span>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="ide-desc">Free forever AI code completion and chat assistant. Supports 70+ languages and integrates with VS Code, JetBrains, and more. Zero cost — no credit card required.</p>
-                            </td>
-                            <td><span class="ai-pricing-badge free">✓ Free</span></td>
-                            <td>
-                                <a href="https://codeium.com" target="_blank" class="ide-btn try">
-                                    <i class='bx bx-link-external'></i> Try Free
-                                </a>
+                        <tr id="ai-loading-row">
+                            <td colspan="5" style="text-align:center; padding:2rem; color:rgba(255,255,255,0.4);">
+                                <i class='bx bx-loader-alt bx-spin' style="font-size:1.5rem;"></i>
+                                <span style="display:block; margin-top:0.5rem;">Loading AI tools…</span>
                             </td>
                         </tr>
-
-                        <!-- GitHub Copilot -->
-                        <tr data-tags="freemium vscode autocomplete chat beginner">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo">
-                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub Copilot" style="filter: brightness(5);">
-                                    </div>
-                                    <div>
-                                        <div class="ide-name">GitHub Copilot <span class="beginner-star">⭐ Beginner Pick</span></div>
-                                        <div class="ide-maker">Microsoft / GitHub</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ide-tags">
-                                    <span class="ide-tag purple">Autocomplete</span>
-                                    <span class="ide-tag purple">Chat</span>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="ide-desc">The industry-standard AI pair programmer. Suggests code line-by-line and whole functions as you type. Free tier available for verified students via GitHub Education.</p>
-                            </td>
-                            <td><span class="ai-pricing-badge freemium">Freemium</span></td>
-                            <td>
-                                <a href="https://github.com/features/copilot" target="_blank" class="ide-btn mirror">
-                                    <i class='bx bx-link-external'></i> Visit Site
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- Cursor -->
-                        <tr data-tags="freemium autocomplete chat">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo" style="font-size: 1.5rem; display:flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,255,255,0.07); border-radius:8px;">⌶</div>
-                                    <div>
-                                        <div class="ide-name">Cursor</div>
-                                        <div class="ide-maker">Anysphere</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ide-tags">
-                                    <span class="ide-tag amber">AI-First Editor</span>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="ide-desc">A VS Code fork rebuilt around AI. Chat with your entire codebase, apply multi-file edits in one command, and get next-level inline suggestions. Great once you understand the basics.</p>
-                            </td>
-                            <td><span class="ai-pricing-badge freemium">Freemium</span></td>
-                            <td>
-                                <a href="https://cursor.com" target="_blank" class="ide-btn try">
-                                    <i class='bx bx-link-external'></i> Try Free
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- Tabnine -->
-                        <tr data-tags="freemium vscode autocomplete">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo" style="font-size: 1.4rem; display:flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(145,218,235,0.1); border-radius:8px; color:rgb(145,218,235);">T</div>
-                                    <div>
-                                        <div class="ide-name">Tabnine</div>
-                                        <div class="ide-maker">Tabnine Ltd</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ide-tags">
-                                    <span class="ide-tag cyan">Autocomplete</span>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="ide-desc">AI code completion focused on privacy — can run models locally on your machine so your code never leaves your computer. Good free tier for individuals.</p>
-                            </td>
-                            <td><span class="ai-pricing-badge freemium">Freemium</span></td>
-                            <td>
-                                <a href="https://www.tabnine.com" target="_blank" class="ide-btn mirror">
-                                    <i class='bx bx-link-external'></i> Visit Site
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- Supermaven -->
-                        <tr data-tags="free vscode autocomplete">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo" style="font-size: 1.2rem; display:flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(255,159,67,0.1); border-radius:8px;">🚀</div>
-                                    <div>
-                                        <div class="ide-name">Supermaven</div>
-                                        <div class="ide-maker">Supermaven Inc</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ide-tags">
-                                    <span class="ide-tag amber">Autocomplete</span>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="ide-desc">Blazing fast autocomplete with a 300,000-token context window — one of the largest available. Exceptional at understanding large codebases and completing long code patterns.</p>
-                            </td>
-                            <td><span class="ai-pricing-badge free">✓ Free</span></td>
-                            <td>
-                                <a href="https://supermaven.com" target="_blank" class="ide-btn try">
-                                    <i class='bx bx-link-external'></i> Try Free
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- ChatGPT -->
-                        <tr data-tags="freemium chat beginner">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo" style="font-size: 1.2rem; display:flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(76,209,55,0.08); border-radius:8px;">🤖</div>
-                                    <div>
-                                        <div class="ide-name">ChatGPT <span class="beginner-star">⭐ Beginner Pick</span></div>
-                                        <div class="ide-maker">OpenAI</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ide-tags">
-                                    <span class="ide-tag green">Chat / Q&A</span>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="ide-desc">Explain any error message, concept, or piece of code in plain language. Invaluable for beginners — ask it "what does this error mean?" and get a clear answer instantly.</p>
-                            </td>
-                            <td><span class="ai-pricing-badge freemium">Freemium</span></td>
-                            <td>
-                                <a href="https://chat.openai.com" target="_blank" class="ide-btn try">
-                                    <i class='bx bx-link-external'></i> Open ChatGPT
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- Claude -->
-                        <tr data-tags="freemium chat">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo" style="font-size: 1.2rem; display:flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(253,203,110,0.1); border-radius:8px;">🟤</div>
-                                    <div>
-                                        <div class="ide-name">Claude</div>
-                                        <div class="ide-maker">Anthropic</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ide-tags">
-                                    <span class="ide-tag amber">Chat / Q&A</span>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="ide-desc">Excels at understanding large files and nuanced code problems. Paste your entire project file, ask it to find bugs or refactor code. Known for being accurate and less prone to hallucinating.</p>
-                            </td>
-                            <td><span class="ai-pricing-badge freemium">Freemium</span></td>
-                            <td>
-                                <a href="https://claude.ai" target="_blank" class="ide-btn try">
-                                    <i class='bx bx-link-external'></i> Open Claude
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- Perplexity -->
-                        <tr data-tags="freemium search chat beginner">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo" style="font-size: 1.2rem; display:flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(145,218,235,0.08); border-radius:8px;">🔍</div>
-                                    <div>
-                                        <div class="ide-name">Perplexity AI</div>
-                                        <div class="ide-maker">Perplexity AI Inc</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ide-tags">
-                                    <span class="ide-tag cyan">Search / Research</span>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="ide-desc">An AI-powered search engine that cites its sources. Use it to research documentation, find tutorials, or understand a concept — it summarizes the web for you with real links.</p>
-                            </td>
-                            <td><span class="ai-pricing-badge freemium">Freemium</span></td>
-                            <td>
-                                <a href="https://www.perplexity.ai" target="_blank" class="ide-btn try">
-                                    <i class='bx bx-link-external'></i> Open Perplexity
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- Amazon CodeWhisperer / Q -->
-                        <tr data-tags="free vscode autocomplete chat">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo">
-                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" onerror="this.style.display='none'; this.parentElement.textContent='☁️'">
-                                    </div>
-                                    <div>
-                                        <div class="ide-name">Amazon Q Developer</div>
-                                        <div class="ide-maker">Amazon Web Services</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ide-tags">
-                                    <span class="ide-tag green">Autocomplete</span>
-                                    <span class="ide-tag green">Chat</span>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="ide-desc">AWS's free AI coding companion (formerly CodeWhisperer). Integrates with VS Code, scans for security vulnerabilities, and is free for individual developers — no AWS account required for VS Code use.</p>
-                            </td>
-                            <td><span class="ai-pricing-badge free">✓ Free</span></td>
-                            <td>
-                                <a href="https://aws.amazon.com/q/developer/" target="_blank" class="ide-btn try">
-                                    <i class='bx bx-link-external'></i> Get Free
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- Pieces for Developers -->
-                        <tr data-tags="free vscode autocomplete">
-                            <td>
-                                <div class="ide-name-cell">
-                                    <div class="ide-logo" style="font-size: 1.2rem; display:flex; align-items:center; justify-content:center; width:36px; height:36px; background:rgba(162,155,254,0.1); border-radius:8px;">🧩</div>
-                                    <div>
-                                        <div class="ide-name">Pieces for Developers</div>
-                                        <div class="ide-maker">Mesh Intelligent Technologies</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ide-tags">
-                                    <span class="ide-tag purple">Snippet Manager</span>
-                                    <span class="ide-tag purple">Chat</span>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="ide-desc">An AI-powered snippet manager that saves code snippets with context (what it does, where it came from). Also includes a local AI assistant that works offline — no data sent to cloud.</p>
-                            </td>
-                            <td><span class="ai-pricing-badge free">✓ Free</span></td>
-                            <td>
-                                <a href="https://pieces.app" target="_blank" class="ide-btn try">
-                                    <i class='bx bx-link-external'></i> Get Pieces
-                                </a>
-                            </td>
-                        </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -355,23 +79,97 @@
 
     <script type="module" src="../../js/script.js"></script>
     <script>
-        // Filter functionality
-        document.querySelectorAll('.ide-filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.ide-filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+    // ── Backend URL detection ─────────────────────────────────────────────────
+    const API_BASE = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+        ? "http://localhost:3000"
+        : "";
+
+    // ── Fetch & render ────────────────────────────────────────────────────────
+    async function loadAiTools() {
+        try {
+            const res = await fetch(`${API_BASE}/api/ai-tools`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const { tools } = await res.json();
+            renderTools(tools);
+            setupFilters();
+        } catch (err) {
+            console.error("Failed to load AI tools:", err);
+            document.getElementById("ai-tbody").innerHTML = `
+                <tr><td colspan="5" style="text-align:center; padding:2rem; color:rgba(255,100,100,0.7);">
+                    Failed to load tools. Please refresh or try again later.
+                </td></tr>`;
+        }
+    }
+
+    function renderTools(tools) {
+        const tbody = document.getElementById("ai-tbody");
+
+        tbody.innerHTML = tools.map(tool => {
+            // Logo: use img if logoUrl, else fallback div
+            const logo = tool.logoUrl
+                ? `<img src="${tool.logoUrl}" alt="${tool.name}"${tool.logoStyle ? ` style="${tool.logoStyle}"` : ""} onerror="this.style.display='none'; this.parentElement.textContent='${tool.logoFallback}'">`
+                : `<div style="${tool.logoStyle}">${tool.logoFallback}</div>`;
+
+            // Category badges
+            const catBadges = tool.categories.map((cat, i) =>
+                `<span class="ide-tag ${tool.categoryColors[i] || 'cyan'}">${cat}</span>`
+            ).join("");
+
+            // Pricing badge
+            const pricingClass = tool.pricing === "free" ? "free" : tool.pricing === "freemium" ? "freemium" : "paid";
+            const pricingLabel = tool.pricing === "free" ? "✓ Free" : tool.pricing === "freemium" ? "Freemium" : "Paid";
+
+            // Beginner star
+            const star = tool.beginnerPick ? `<span class="beginner-star">⭐ Beginner Pick</span>` : "";
+
+            return `
+                <tr data-tags="${tool.tags.join(" ")}">
+                    <td>
+                        <div class="ide-name-cell">
+                            <div class="ide-logo">${logo}</div>
+                            <div>
+                                <div class="ide-name">${tool.name} ${star}</div>
+                                <div class="ide-maker">${tool.maker}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ide-tags">${catBadges}</div>
+                    </td>
+                    <td>
+                        <p class="ide-desc">${tool.description}</p>
+                    </td>
+                    <td><span class="ai-pricing-badge ${pricingClass}">${pricingLabel}</span></td>
+                    <td>
+                        <a href="${tool.url}" target="_blank" class="ide-btn ${tool.btnClass}">
+                            <i class='bx bx-link-external'></i> ${tool.btnLabel}
+                        </a>
+                    </td>
+                </tr>
+            `;
+        }).join("");
+    }
+
+    function setupFilters() {
+        document.querySelectorAll(".ide-filter-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".ide-filter-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
 
                 const filter = btn.dataset.filter;
-                document.querySelectorAll('#ai-tbody tr').forEach(row => {
-                    if (filter === 'all') {
-                        row.style.display = '';
+                document.querySelectorAll("#ai-tbody tr").forEach(row => {
+                    if (filter === "all") {
+                        row.style.display = "";
                     } else {
-                        const tags = row.dataset.tags || '';
-                        row.style.display = tags.includes(filter) ? '' : 'none';
+                        const tags = row.dataset.tags || "";
+                        row.style.display = tags.includes(filter) ? "" : "none";
                     }
                 });
             });
         });
+    }
+
+    loadAiTools();
     </script>
 </body>
 </html>

@@ -1,0 +1,440 @@
+[
+  {
+    "trackId": "frontend",
+    "title": "Frontend Web Development",
+    "description": "Build what users see and interact with in the browser. This track covers everything from your first webpage to modern JavaScript frameworks. Perfect first track for total beginners.",
+    "icon": "bx-code-alt",
+    "iconColor": "rgb(145,218,235)",
+    "iconBg": "rgba(145,218,235,0.1)",
+    "meta": ["🟢 Beginner Friendly", "⏱ 6–12 months", "💼 High Job Demand"],
+    "order": 1,
+    "phases": [
+      {
+        "label": "Phase 1 — The Basics",
+        "steps": [
+          {
+            "number": 1,
+            "title": "HTML — Structure of the Web",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "HTML is the skeleton of every webpage. You'll learn how to create headings, paragraphs, links, images, forms, and lists. This is literally step 1 of the entire web — no exceptions.",
+            "links": [
+              { "label": "Online Courses", "url": "/pages/Learning/online-courses.html", "icon": "bx-link", "external": false },
+              { "label": "Video Tutorials", "url": "/pages/Learning/video-tutorials.html", "icon": "bx-play", "external": false },
+              { "label": "MDN HTML Guide", "url": "https://developer.mozilla.org/en-US/docs/Learn/HTML", "icon": "bx-link-external", "external": true }
+            ]
+          },
+          {
+            "number": 2,
+            "title": "CSS — Styling & Layout",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "CSS controls how your HTML looks — colors, fonts, spacing, and layout. Learn Flexbox and Grid — they are the two layout systems every frontend developer uses daily. Don't skip them.",
+            "links": [
+              { "label": "CSS Playground", "url": "/pages/Interactive/css-playground.html", "icon": "bx-paint", "external": false },
+              { "label": "Video Tutorials", "url": "/pages/Learning/video-tutorials.html", "icon": "bx-play", "external": false },
+              { "label": "MDN CSS Guide", "url": "https://developer.mozilla.org/en-US/docs/Learn/CSS", "icon": "bx-link-external", "external": true }
+            ]
+          },
+          {
+            "number": 3,
+            "title": "JavaScript — Making Pages Interactive",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "JavaScript brings your pages to life. Learn variables, functions, arrays, events, and DOM manipulation. This is the programming language of the web — every frontend job requires it.",
+            "links": [
+              { "label": "JS Playground", "url": "/pages/languages/javascript.html", "icon": "bx-code", "external": false },
+              { "label": "Online Courses", "url": "/pages/Learning/online-courses.html", "icon": "bx-book", "external": false },
+              { "label": "javascript.info", "url": "https://javascript.info", "icon": "bx-link-external", "external": true }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Phase 2 — Going Deeper",
+        "steps": [
+          {
+            "number": 4,
+            "title": "Git & Version Control",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "Git lets you save snapshots of your code and collaborate with others. You'll use it at every job, in every project. Learn: init, add, commit, push, pull, branches, and merge.",
+            "links": [
+              { "label": "Interactive Git", "url": "/pages/Interactive/git-branching.html", "icon": "bx-git-branch", "external": false },
+              { "label": "Version Control Tools", "url": "/pages/Dev Tools/version-control.html", "icon": "bx-wrench", "external": false }
+            ]
+          },
+          {
+            "number": 5,
+            "title": "Responsive Design & Mobile-First",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "Your sites must work on phones, tablets, and desktops. Learn media queries, viewport units, and how to design mobile-first. This is expected in every frontend role.",
+            "links": [
+              { "label": "CSS Playground", "url": "/pages/Interactive/css-playground.html", "icon": "bx-paint", "external": false },
+              { "label": "Video Tutorials", "url": "/pages/Learning/video-tutorials.html", "icon": "bx-play", "external": false }
+            ]
+          },
+          {
+            "number": 6,
+            "title": "CSS Frameworks (Tailwind or Bootstrap)",
+            "optional": true,
+            "tags": [{ "label": "Optional", "type": "optional" }],
+            "description": "These utility toolkits let you build UIs faster by using pre-built class names instead of writing all CSS from scratch. Learn vanilla CSS first — then pick these up once you're comfortable.",
+            "links": [
+              { "label": "Tailwind Docs", "url": "https://tailwindcss.com/docs", "icon": "bx-link-external", "external": true },
+              { "label": "Bootstrap Docs", "url": "https://getbootstrap.com/docs", "icon": "bx-link-external", "external": true }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Phase 3 — Level Up",
+        "steps": [
+          {
+            "number": 7,
+            "title": "A JavaScript Framework (React or Vue)",
+            "optional": false,
+            "tags": [{ "label": "Industry Standard", "type": "good" }],
+            "description": "Modern frontend apps are built with frameworks. React is the most in-demand right now, followed by Vue. These tools let you build complex, fast UIs with reusable components. Only learn after mastering vanilla JS.",
+            "links": [
+              { "label": "React Docs", "url": "https://react.dev", "icon": "bx-link-external", "external": true },
+              { "label": "Vue Docs", "url": "https://vuejs.org/guide", "icon": "bx-link-external", "external": true },
+              { "label": "Online Courses", "url": "/pages/Learning/online-courses.html", "icon": "bx-book", "external": false }
+            ]
+          },
+          {
+            "number": 8,
+            "title": "TypeScript",
+            "optional": true,
+            "tags": [{ "label": "Nice to Have", "type": "optional" }],
+            "description": "TypeScript adds static types to JavaScript, catching bugs before your code even runs. Most large companies use it. Learn it after you're confident with JavaScript — not before.",
+            "links": [
+              { "label": "TypeScript Docs", "url": "https://www.typescriptlang.org/docs", "icon": "bx-link-external", "external": true }
+            ]
+          },
+          {
+            "number": 9,
+            "title": "Build & Deploy Your First Project",
+            "optional": false,
+            "tags": [{ "label": "Must Do", "type": "must" }],
+            "description": "The best way to learn is to build. Create a portfolio website, a to-do app, or a weather app and deploy it free on GitHub Pages, Vercel, or Netlify. This becomes your first portfolio piece.",
+            "links": [
+              { "label": "Practice Challenges", "url": "/pages/Challenges/coding-problems.html", "icon": "bx-code-block", "external": false },
+              { "label": "Deploy on Vercel", "url": "https://vercel.com", "icon": "bx-link-external", "external": true }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "trackId": "backend",
+    "title": "Backend Development",
+    "description": "Build the engines that power applications — databases, APIs, authentication, and server logic. Backend is invisible to users but runs everything behind the scenes.",
+    "icon": "bx-server",
+    "iconColor": "#4cd137",
+    "iconBg": "rgba(76,209,55,0.1)",
+    "meta": ["🟡 Some Prior Knowledge Helpful", "⏱ 8–14 months", "💼 High Job Demand"],
+    "order": 2,
+    "phases": [
+      {
+        "label": "Phase 1 — Programming Fundamentals",
+        "steps": [
+          {
+            "number": 1,
+            "title": "Pick a Backend Language (Python or JavaScript/Node)",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "For beginners: Python is the most readable and forgiving. For those who already know JavaScript: Node.js lets you use the same language on both sides. Pick one and stick with it — don't try to learn both at once.",
+            "links": [
+              { "label": "Python Playground", "url": "/pages/languages/python.html", "icon": "bxl-python", "external": false },
+              { "label": "JS Playground", "url": "/pages/languages/javascript.html", "icon": "bx-code", "external": false }
+            ]
+          },
+          {
+            "number": 2,
+            "title": "Git & Version Control",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "Same as frontend — you'll use Git everywhere. Learn the fundamentals early before your codebase gets complex.",
+            "links": [
+              { "label": "Interactive Git", "url": "/pages/Interactive/git-branching.html", "icon": "bx-git-branch", "external": false }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Phase 2 — APIs & Databases",
+        "steps": [
+          {
+            "number": 3,
+            "title": "How the Web Works (HTTP, APIs, REST)",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "Learn what happens when you open a website — DNS, HTTP requests, status codes (200, 404, 500). Then understand APIs: how clients and servers communicate using JSON over HTTP. This is foundational for all backend work.",
+            "links": [
+              { "label": "API References", "url": "/pages/Docs/api-references.html", "icon": "bx-file", "external": false }
+            ]
+          },
+          {
+            "number": 4,
+            "title": "SQL & Databases",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "Data is stored in databases. Learn SQL to query, insert, update, and delete data. Start with SQLite or PostgreSQL. Understand tables, relationships, and joins — they are the bread and butter of backend work.",
+            "links": [
+              { "label": "Interactive SQL Joins", "url": "/pages/Interactive/sql-joins.html", "icon": "bx-data", "external": false },
+              { "label": "Online Courses", "url": "/pages/Learning/online-courses.html", "icon": "bx-book", "external": false }
+            ]
+          },
+          {
+            "number": 5,
+            "title": "Build a Web Framework App (Express, Flask, or Django)",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "Frameworks make it easier to build servers. Flask (Python, minimal) or Express (Node.js) are great starting points. Django (Python, full-featured) is better for larger projects. Build a CRUD app: Create, Read, Update, Delete records via a REST API.",
+            "links": [
+              { "label": "Online Courses", "url": "/pages/Learning/online-courses.html", "icon": "bx-book", "external": false }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Phase 3 — Production Skills",
+        "steps": [
+          {
+            "number": 6,
+            "title": "Authentication & Security Basics",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "Learn JWT tokens, sessions, OAuth (login with Google/GitHub), password hashing with bcrypt, and basic input validation. Never trust user input — learn why and how to protect against SQL injection and XSS.",
+            "links": [
+              { "label": "Security CTF Challenges", "url": "/pages/Challenges/competition.html", "icon": "bx-shield", "external": false }
+            ]
+          },
+          {
+            "number": 7,
+            "title": "NoSQL Databases (MongoDB)",
+            "optional": true,
+            "tags": [{ "label": "Optional", "type": "optional" }],
+            "description": "MongoDB stores data as JSON-like documents instead of tables. Very popular in the Node.js ecosystem. Learn it after you understand SQL — it'll make more sense with context.",
+            "links": [
+              { "label": "MongoDB Docs", "url": "https://www.mongodb.com/docs/manual/tutorial/getting-started", "icon": "bx-link-external", "external": true }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "trackId": "fullstack",
+    "title": "Fullstack Development",
+    "description": "The combination of Frontend + Backend. You handle both what users see and the server logic behind it. The most versatile — and most in-demand — role for individual developers and startups.",
+    "icon": "bx-layer",
+    "iconColor": "#a29bfe",
+    "iconBg": "rgba(162,155,254,0.1)",
+    "meta": ["🔴 Requires Prior Basics", "⏱ 12–18 months", "💼 Highest Versatility"],
+    "order": 3,
+    "phases": [
+      {
+        "label": "Sequential — Complete Both Tracks First",
+        "steps": [
+          {
+            "number": 1,
+            "title": "Complete the Frontend Roadmap first",
+            "optional": false,
+            "tags": [{ "label": "Start Here", "type": "must" }],
+            "description": "Master HTML, CSS, JavaScript, and at least the basics of a framework (React or Vue) before attempting fullstack work. Trying to learn both sides at once without a foundation is the #1 reason beginners get overwhelmed and quit.",
+            "links": []
+          },
+          {
+            "number": 2,
+            "title": "Complete the Backend Roadmap second",
+            "optional": false,
+            "tags": [{ "label": "Then This", "type": "must" }],
+            "description": "Learn server-side programming, databases, REST APIs, and authentication. The backend track takes you through all of this systematically.",
+            "links": []
+          }
+        ]
+      },
+      {
+        "label": "Phase 3 — Combining Both",
+        "steps": [
+          {
+            "number": 3,
+            "title": "Connect Frontend to Your Own Backend API",
+            "optional": false,
+            "tags": [{ "label": "Key Milestone", "type": "must" }],
+            "description": "Build a project where a React/Vue frontend makes fetch requests to your own Express/Flask backend, which reads and writes to a database. This single project will teach you more than months of tutorials.",
+            "links": [
+              { "label": "Practice Problems", "url": "/pages/Challenges/coding-problems.html", "icon": "bx-code-block", "external": false }
+            ]
+          },
+          {
+            "number": 4,
+            "title": "Learn a Fullstack Framework (Next.js or Nuxt)",
+            "optional": true,
+            "tags": [{ "label": "Level Up", "type": "optional" }],
+            "description": "Next.js (React) and Nuxt (Vue) are meta-frameworks that handle both the frontend and backend in one project with file-based routing, server-side rendering, and built-in API routes. Very popular in the industry.",
+            "links": [
+              { "label": "Next.js Docs", "url": "https://nextjs.org/docs", "icon": "bx-link-external", "external": true }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "trackId": "python",
+    "title": "Python / Data Science Track",
+    "description": "Use Python to analyze data, build machine learning models, and automate tasks. A great track for those interested in AI, research, finance, biology, or automation rather than traditional app development.",
+    "icon": "bxl-python",
+    "iconColor": "#fdcb6e",
+    "iconBg": "rgba(253,203,110,0.1)",
+    "meta": ["🟢 Beginner Friendly", "⏱ 6–12 months to fundamentals", "📈 Fastest Growing Field"],
+    "order": 4,
+    "phases": [
+      {
+        "label": "Phase 1 — Python Core",
+        "steps": [
+          {
+            "number": 1,
+            "title": "Python Fundamentals",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "Variables, data types, loops, functions, lists, dictionaries, and file I/O. Python's syntax is one of the most readable — it reads almost like English. This is the foundation for everything in this track.",
+            "links": [
+              { "label": "Python Playground", "url": "/pages/languages/python.html", "icon": "bxl-python", "external": false },
+              { "label": "Online Courses", "url": "/pages/Learning/online-courses.html", "icon": "bx-book", "external": false },
+              { "label": "Practice Flashcards", "url": "/pages/Challenges/coding-problems.html", "icon": "bx-code-block", "external": false }
+            ]
+          },
+          {
+            "number": 2,
+            "title": "Mathematics for Data Science (Basic)",
+            "optional": false,
+            "tags": [{ "label": "Important", "type": "must" }],
+            "description": "You don't need a math degree, but learn the basics: statistics (mean, median, standard deviation), probability, and linear algebra (vectors, matrices). Khan Academy covers all of this for free.",
+            "links": [
+              { "label": "Khan Academy Stats", "url": "https://www.khanacademy.org/math/statistics-probability", "icon": "bx-link-external", "external": true }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Phase 2 — Data Libraries",
+        "steps": [
+          {
+            "number": 3,
+            "title": "NumPy & Pandas",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "NumPy handles fast numerical arrays. Pandas handles tabular data (like Excel spreadsheets in Python). Together they are the foundation of every data science workflow — you'll use them constantly.",
+            "links": [
+              { "label": "Pandas Getting Started", "url": "https://pandas.pydata.org/docs/getting_started/intro_tutorials", "icon": "bx-link-external", "external": true }
+            ]
+          },
+          {
+            "number": 4,
+            "title": "Data Visualization (Matplotlib & Seaborn)",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "Turn raw numbers into charts, graphs, and plots. Being able to visualize data is how you find patterns and communicate insights. These two libraries cover 90% of what you'll ever need.",
+            "links": [
+              { "label": "Matplotlib Tutorial", "url": "https://matplotlib.org/stable/tutorials", "icon": "bx-link-external", "external": true }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Phase 3 — Machine Learning",
+        "steps": [
+          {
+            "number": 5,
+            "title": "Scikit-learn (Machine Learning Basics)",
+            "optional": true,
+            "tags": [{ "label": "Level Up", "type": "optional" }],
+            "description": "Scikit-learn makes it easy to apply common ML algorithms (linear regression, decision trees, clustering) without writing them from scratch. Start here before touching deep learning.",
+            "links": [
+              { "label": "Scikit-learn Guide", "url": "https://scikit-learn.org/stable/getting_started.html", "icon": "bx-link-external", "external": true }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "trackId": "devops",
+    "title": "DevOps Track",
+    "description": "Deploy, automate, and scale applications. DevOps engineers bridge development and operations — they make sure code runs reliably in production. Best approached after learning the basics of backend development.",
+    "icon": "bx-cloud-upload",
+    "iconColor": "#ff7675",
+    "iconBg": "rgba(255,118,117,0.1)",
+    "meta": ["🔴 Backend Knowledge Required", "⏱ 12–18 months", "💼 High Salary Ceiling"],
+    "order": 5,
+    "phases": [
+      {
+        "label": "Phase 1 — Foundation",
+        "steps": [
+          {
+            "number": 1,
+            "title": "Linux & Command Line",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "Almost all servers run Linux. Learn how to navigate the filesystem, manage files, set permissions, and write bash scripts. This is non-negotiable for DevOps — every other step builds on it.",
+            "links": [
+              { "label": "Linux Journey (Free)", "url": "https://linuxjourney.com", "icon": "bx-link-external", "external": true }
+            ]
+          },
+          {
+            "number": 2,
+            "title": "Git & Advanced Version Control",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "Beyond basic Git — learn branching strategies (GitFlow), rebasing, cherry-picking, and GitHub Actions for automated workflows triggered on every code push.",
+            "links": [
+              { "label": "Interactive Git", "url": "/pages/Interactive/git-branching.html", "icon": "bx-git-branch", "external": false },
+              { "label": "Version Control Tools", "url": "/pages/Dev Tools/version-control.html", "icon": "bx-wrench", "external": false }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Phase 2 — Core DevOps Tools",
+        "steps": [
+          {
+            "number": 3,
+            "title": "Docker & Containers",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "Docker packages your app and all its dependencies into a container — a box that runs the same on any machine. It solves the \"works on my machine\" problem. Learn: images, containers, Dockerfiles, and Docker Compose.",
+            "links": [
+              { "label": "Docker Get Started", "url": "https://docs.docker.com/get-started", "icon": "bx-link-external", "external": true }
+            ]
+          },
+          {
+            "number": 4,
+            "title": "CI/CD Pipelines",
+            "optional": false,
+            "tags": [{ "label": "Must Learn", "type": "must" }],
+            "description": "CI/CD (Continuous Integration/Deployment) automatically builds, tests, and deploys your app when you push code. Use GitHub Actions as your starting point — it's free for public repos and integrates directly with GitHub.",
+            "links": [
+              { "label": "GitHub Actions Docs", "url": "https://docs.github.com/en/actions", "icon": "bx-link-external", "external": true }
+            ]
+          },
+          {
+            "number": 5,
+            "title": "Cloud Platforms (AWS, Azure, or GCP)",
+            "optional": true,
+            "tags": [{ "label": "Level Up", "type": "optional" }],
+            "description": "Learn one cloud provider's basics: VMs, object storage (S3), databases, and networking. AWS has the largest market share and most job listings — but all three providers offer free tiers to practice on.",
+            "links": [
+              { "label": "AWS Free Tier", "url": "https://aws.amazon.com/free", "icon": "bx-link-external", "external": true }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
