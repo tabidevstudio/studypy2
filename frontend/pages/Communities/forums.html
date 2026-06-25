@@ -16,22 +16,174 @@
             .modal-card{background:rgba(22,23,27,.98);border-radius:12px;padding:18px;max-width:640px;width:92%;box-shadow:0 10px 30px rgba(0,0,0,.5)}
             .modal-close-btn{position:absolute;right:14px;top:10px;background:transparent;border:none;color:rgba(255,255,255,.6);font-size:28px;cursor:pointer}
             .modal-body{color:#fff}
+
+            /* Forum App Spacing & Styling */
+            .forum-app {
+                max-width: 850px;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+            }
+            .new-post {
+                background: rgba(28, 29, 34, 0.65);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 12px;
+                padding: 20px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+                backdrop-filter: blur(10px);
+            }
+            #forum-form {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            #forum-form input[type="text"],
+            #forum-form textarea {
+                background: rgba(22, 23, 27, 0.6);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                border-radius: 8px;
+                padding: 12px 16px;
+                color: #fff;
+                font-family: inherit;
+                font-size: 0.95rem;
+                transition: border-color 0.25s, box-shadow 0.25s;
+            }
+            #forum-form input[type="text"]:focus,
+            #forum-form textarea:focus {
+                border-color: #149CEA;
+                box-shadow: 0 0 0 3px rgba(20, 156, 234, 0.18);
+                outline: none;
+            }
+            #forum-form textarea {
+                min-height: 100px;
+                resize: vertical;
+            }
+            #forum-form button[type="submit"] {
+                align-self: flex-end;
+                background: #149CEA;
+                color: #fff;
+                border: none;
+                border-radius: 8px;
+                padding: 10px 24px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background 0.2s, transform 0.2s;
+            }
+            #forum-form button[type="submit"]:hover {
+                background: #1185c8;
+                transform: translateY(-1px);
+            }
+            .forum-list {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            .forum-post {
+                background: rgba(28, 29, 34, 0.65);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 12px;
+                padding: 24px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+                backdrop-filter: blur(10px);
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                text-align: left;
+            }
+            .forum-post h3 {
+                margin: 0;
+                font-size: 1.3rem;
+                color: #fff;
+                font-weight: 600;
+            }
+            .forum-post .meta {
+                font-size: 0.8rem;
+                color: rgba(255, 255, 255, 0.55);
+            }
+            .forum-post p {
+                margin: 4px 0 12px 0;
+                color: rgba(255, 255, 255, 0.85);
+                line-height: 1.6;
+                font-size: 0.95rem;
+                white-space: pre-wrap;
+            }
+            .forum-post .replies {
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+                padding-top: 16px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .forum-post .reply {
+                background: rgba(22, 23, 27, 0.45);
+                padding: 10px 14px;
+                border-radius: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.04);
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            .forum-post .reply-form {
+                display: flex;
+                gap: 10px;
+                margin-top: 12px;
+            }
+            .forum-post .reply-form input {
+                flex: 1;
+                background: rgba(22, 23, 27, 0.6);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                border-radius: 8px;
+                padding: 10px 14px;
+                color: #fff;
+                font-family: inherit;
+                font-size: 0.9rem;
+            }
+            .forum-post .reply-form input:focus {
+                border-color: #149CEA;
+                outline: none;
+            }
+            .forum-post .reply-form button {
+                background: transparent;
+                border: 1px solid #149CEA;
+                color: #149CEA;
+                border-radius: 8px;
+                padding: 10px 20px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background 0.2s, color 0.2s;
+            }
+            .forum-post .reply-form button:hover {
+                background: #149CEA;
+                color: #fff;
+            }
         </style>
     </head>
     <body>
-        <div id="tools-container" data-page="forums">
-            <main id="forum-app" class="forum-app">
-                <section class="new-post">
-                    <form id="forum-form">
-                        <input type="text" name="title" placeholder="Post title" required />
-                        <textarea name="content" placeholder="Write your post..." required></textarea>
-                        <button type="submit">Create Post</button>
-                    </form>
-                </section>
+        <div id="navbar-placeholder"></div>
 
-                <section id="forum-list" class="forum-list">Loading...</section>
-            </main>
-        </div>
+        <main class="main">
+            <div class="community-page">
+                <div class="community-badge">
+                    <i class='bx bx-conversation'></i> Community Space
+                </div>
+                <h1 class="community-title">Discussion Forums</h1>
+                <p class="community-subtitle">Connect with other students, ask questions, share answers, and collaborate on projects.</p>
+
+                <div id="forum-app" class="forum-app">
+                    <section class="new-post">
+                        <form id="forum-form">
+                            <input type="text" name="title" placeholder="Post title" required />
+                            <textarea name="content" placeholder="Write your post..." required></textarea>
+                            <button type="submit">Create Post</button>
+                        </form>
+                    </section>
+
+                    <section id="forum-list" class="forum-list">Loading...</section>
+                </div>
+            </div>
+        </main>
+
         <!-- Login modal for unauthenticated users -->
         <div id="loginModal" class="modal-overlay">
             <div class="modal-card">
@@ -47,7 +199,7 @@
             </div>
         </div>
         <script type="module" src="../../js/forum.js"></script>
-        <script type="module" src="../../js/links.js"></script>
+        <script type="module" src="../../js/script.js"></script>
     </body>
 </html>
 
