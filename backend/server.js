@@ -17,6 +17,7 @@ const Flashcard = require("./models/Flashcard");   // coding flashcard questions
 const Roadmap   = require("./models/Roadmap");     // learning roadmap tracks
 const AiTool    = require("./models/AiTool");      // AI coding tools table
 const authRouter = require("./routes/auth");
+const forumRouter = require("./routes/forum");
 const Job = require("./models/Job.js");
 const app = express();
 
@@ -45,6 +46,8 @@ app.use(express.json());
 
 // Mount authentication router
 app.use("/api/auth", authRouter);
+// Mount forum router
+app.use("/api/forum", forumRouter);
 
 
 /* ─────────────────────────────────────────────────────────────────────────────
