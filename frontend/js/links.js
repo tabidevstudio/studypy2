@@ -384,7 +384,6 @@ async function loadLinks() {
         "interview-prep",
         "resume-building",
         "projectideas",
-        "forums",
         "study-groups"
     ];
     if(UNDER_CONSTRUCTION_PAGES.includes(pageName)) {
