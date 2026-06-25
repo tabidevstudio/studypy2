@@ -22,7 +22,7 @@ async function apiFetch(url, options = {}) {
 }
 
 export async function fetchAllPosts() {
-  const data = await apiFetch(`${API_BASE}/`);
+  const data = await apiFetch(`${API_BASE}`);
   return data.posts || [];
 }
 
