@@ -60,8 +60,8 @@ body {
   overflow-x: hidden;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
 
 /* ── headerAbout ───────────────────────────────────── */
@@ -229,6 +229,7 @@ a{
   border-radius: 50%;
 }
 
+/* ── quote (desktop: hidden tooltip on hover) ────── */
 #quotes {
   font-weight: 100;
   font-style: italic;
@@ -241,8 +242,9 @@ a{
   z-index: -1;
   transition: all 0.3s ease 0.2s;
   opacity: 0;
-  white-space: nowrap;
-  width: 20px;
+  white-space: normal;
+  max-width: 360px;
+  overflow-wrap: break-word;
 }
 
 .member:hover #quotes {
@@ -263,7 +265,6 @@ a{
   border: 1px solid var(--color-border-hover);
 }
 
-/* Images do NOT move on hover – keep fixed size */
 .member img {
   height: 150px;
   width: 300px;
@@ -273,7 +274,6 @@ a{
 
 .member:hover img {
   background-color: #46a8f3;
-  /* height remains 150px – no change */
 }
 
 .member:hover #identity {
@@ -288,7 +288,6 @@ a{
 
 .group img:hover {
   background-color: #28679749;
-  /* no height change */
   border: 1px solid var(--color-border-hover);
 }
 
@@ -427,9 +426,7 @@ a{
   background-color: rgba(181, 210, 255, 0.788);
 }
 
-/* ───────────────────────────────────────────────────── */
-/* ── MEDIA QUERIES (responsive overrides) ──────────── */
-/* ───────────────────────────────────────────────────── */
+/* ── MEDIA QUERIES ─────────────────────────────────── */
 
 /* Tablets & small laptops */
 @media (max-width: 1200px) {
@@ -449,24 +446,22 @@ a{
     margin-left: 0;
     padding-left: 30px;
   }
-   #builderContainer #circle1 {
-    display: none;
-  }
+  #builderContainer #circle1,
   #builderContainer #circle2 {
     display: none;
   }
 }
 
 @media (max-width: 1000px) {
+  #headerAbout {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
   #headerAbout h1 {
     font-size: 70px;
     margin-bottom: 30px;
     width: 100%;
     text-align: center;
-  }
-  #headerAbout {
-    flex-direction: column;
-    padding: 40px 20px;
   }
   #headerAbout p {
     height: auto;
@@ -502,9 +497,15 @@ a{
     font-size: 16px;
   }
 
+  #coders{
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+  }
+
   #builders {
     height: auto;
-    padding: 30px 20px 100px 20px;
+    padding: 30px 20px 60px 20px;
     overflow: visible;
   }
   #builders > h1 {
@@ -521,18 +522,17 @@ a{
   #builderContainer {
     height: auto;
     margin: 80px 0 50px 0;
-    flex-direction: column;
-    position: relative;
-    min-height: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    min-height: unset;
   }
 
-  #builderContainer #circle1 {
-    display: none;
-  }
+  #builderContainer #circle1,
   #builderContainer #circle2 {
     display: none;
   }
-
   #TabiDev {
     display: none !important;
   }
@@ -542,78 +542,77 @@ a{
   #Lance,
   #Brian,
   #Norielle {
+    border-radius: var(--radius-md);
     position: relative;
     transform: none !important;
-    margin: 20px auto;
+    margin: 0;
   }
 
   .member {
     width: 280px;
     margin: 0 auto;
+    cursor: default;
+    border-radius: var(--radius-md);
+    overflow: hidden;
   }
+
   .member img {
     width: 100%;
     height: auto;
     aspect-ratio: 2/1;
+    object-fit: cover;
+    border-radius: 0;
   }
   .member:hover img {
-    height: auto; 
+    height: auto;
+    background-color: transparent;
+  }
+  .member:hover {
+    border: 1px solid var(--color-border);
+  }
+  .member:hover #identity {
+    background-image: none;
   }
 
   #quotes {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-10px);
-    margin-top: 12px;
-    width: 260px;
-    font-size: 18px;
-    text-align: center;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none !important;
+    opacity: 1 !important;
     white-space: normal;
-    background-color: var(--color-bg-card);
-    border: 1px solid var(--color-border-hover);
-    padding: 15px;
-    border-radius: var(--radius-sm);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    z-index: 100;
-    pointer-events: none;
-    transition: all 0.3s ease 0.1s;
-    opacity: 0;
+    width: 100%;
+    margin: 0;
+    padding: 12px 16px;
+    background: rgb(2, 28, 46);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    text-align: center;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--color-text-muted);
+    z-index: auto;
+    pointer-events: auto;
+    transition: none;
+    border: none;
+    box-shadow: none;
+    font-weight: 400;
   }
-
-  #quotes::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid var(--color-border-hover);
-  }
+  #quotes::before,
   #quotes::after {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--color-bg-card);
+    display: none !important;
   }
-
   .member:hover #quotes {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
+    transform: none !important;
+    opacity: 1 !important;
   }
 
-  #builderContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+  #identity {
+    border: none;
+    border-top: 1px solid var(--color-sky-glow);
+    text-align: start;
+    padding: 10px 16px;
+    background-color: var(--color-bg-card);
   }
-
   #identity h1 {
     font-size: 22px;
   }
@@ -633,7 +632,7 @@ a{
     max-width: 50%;
   }
   #tabidevDesc {
-    margin: 0px 0 0 0;
+    margin: 0;
     padding: 20px 0 0 0;
     border-left: none;
     border-top: 2px solid white;
@@ -656,7 +655,6 @@ a{
   }
 }
 
-/* Mobile phones */
 @media (max-width: 600px) {
   #headerAbout h1 {
     font-size: 48px;
@@ -678,7 +676,6 @@ a{
     width: 100%;
     max-width: 320px;
     padding: 16px;
-    height: auto;
   }
   #featureGoalCard h1 {
     font-size: 20px;
@@ -697,32 +694,20 @@ a{
     letter-spacing: 2px;
   }
 
-  #builderContainer #circle1 {
-    height: 200px;
-    width: 200px;
-  }
-  #builderContainer #circle2 {
-    height: 400px;
-    width: 400px;
-  }
-
   .member {
     width: 100%;
     max-width: 260px;
   }
   .member img {
     height: 120px;
-    aspect-ratio: 2/1;
-    object-fit: cover;
   }
   .member:hover img {
-    height: 120px; /* no change */
+    height: 120px;
   }
 
   #quotes {
-    width: 220px;
     font-size: 15px;
-    padding: 12px;
+    padding: 10px 14px;
   }
 
   #identity h1 {
@@ -744,7 +729,6 @@ a{
   }
 }
 
-/* Extra small devices */
 @media (max-width: 400px) {
   #headerAbout h1 {
     font-size: 36px;
@@ -768,8 +752,7 @@ a{
     height: 100px;
   }
   #quotes {
-    width: 180px;
     font-size: 13px;
-    padding: 10px;
+    padding: 8px 12px;
   }
 }
