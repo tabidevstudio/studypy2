@@ -384,7 +384,6 @@ async function loadLinks() {
         "interview-prep",
         "resume-building",
         "projectideas",
-        "study-groups"
     ];
     if(UNDER_CONSTRUCTION_PAGES.includes(pageName)) {
         window.location.href = `/pages/503.html?page=${encodeURIComponent(pageName)}`;

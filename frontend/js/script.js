@@ -144,10 +144,10 @@ import { getProfile } from "./auth.js";
                 </a>
             </div>
             <ul class="sub-menu">
-                <li><a class="link_name" href="#">Communities</a></li>
+                <li><a class="link_name" href="#">Connect</a></li>
                 <li><a href="/pages/Communities/forums.html">Forums</a></li>
                 <li><a href="/pages/Communities/discord-servers.html">Discord Servers</a></li>
-                <li><a href="/pages/Communities/study-groups.html">Study Groups</a></li>
+                <li><a href="/pages/Communities/study-groups.html">Other Communities</a></li>
             </ul>
         </li>
         <li>
@@ -247,6 +247,9 @@ import { getProfile } from "./auth.js";
         const toggleMenu = (e) => {
             e.preventDefault();
             e.stopPropagation();
+            
+            if(sidebar.classList.contains("close")) return;
+
             const parentLi = iocnLink.closest("li");
             if (!parentLi) return;
 

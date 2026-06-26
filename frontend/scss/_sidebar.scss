@@ -7,8 +7,9 @@
   width: 260px;
   background: var(--color-bg);
   z-index: 1200;
-  transition: all 0.5s ease;
+  transition: width 0.4s ease;
 
+  /* Collapsed state */
   &.close {
     width: 78px;
 
@@ -17,25 +18,22 @@
 
       li {
         a {
-          width: 100%;
-          justify-content: center;
+          justify-content: flex-start;
+          padding: 0 0 0 16px;
           gap: 0;
-          padding: 0;
 
           i {
-            min-width: 78px;
-            width: 78px;
-
-            &:hover {
-              color: var(--color-sky);
-            }
+            min-width: 46px;
+            width: 46px;
+            flex-shrink: 0;
           }
 
           .link_name {
-            flex: 0 0 0;
-            width: 0;
             opacity: 0;
+            width: 0;
+            overflow: hidden;
             pointer-events: none;
+            transition: opacity 0.25s ease, width 0.4s ease;
           }
         }
 
@@ -50,17 +48,24 @@
           opacity: 0;
           display: block;
           pointer-events: none;
-          transition: opacity 0.3s ease, top 0.3s ease;
+          transition: opacity 0.2s ease;
           min-width: 160px;
           z-index: 1300;
 
           .link_name {
             font-size: 18px;
             opacity: 1;
+            width: auto;
             display: block;
+          }
+
+          a {
+            justify-content: flex-start;
+            padding: 5px 0;
           }
         }
 
+        &:hover .sub-menu,
         &.showMenu .sub-menu {
           opacity: 1;
           pointer-events: auto;
@@ -78,6 +83,14 @@
     }
   }
 
+  /* Expanded state */
+  .nav-links li a .link_name {
+    transition: opacity 0.25s ease, width 0.4s ease;
+    opacity: 1;
+    width: auto;
+  }
+
+  /* Header */
   .sidebar-header {
     height: 60px;
     width: 100%;
@@ -101,14 +114,9 @@
     cursor: pointer;
     transition: background 0.3s ease;
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.137);
-    }
+    &:hover { background: rgba(255, 255, 255, 0.137); }
 
-    i {
-      font-size: 28px;
-      line-height: 1;
-    }
+    i { font-size: 28px; line-height: 1; }
   }
 
   .sidebar-toggle .bx,
@@ -120,14 +128,13 @@
     text-transform: none;
   }
 
+  /* Nav links base */
   .nav-links {
     height: 100%;
     padding: 12px 0 150px 0;
     overflow: auto;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    &::-webkit-scrollbar { display: none; }
 
     li {
       position: relative;
@@ -170,13 +177,14 @@
 
         i {
           height: 46px;
-          min-width: 52px;
+          min-width: 46px;
           text-align: center;
           line-height: 46px;
           color: #fff;
           font-size: 18px;
           cursor: pointer;
-          transition: all 0.3s ease;
+          flex-shrink: 0;
+          transition: color 0.3s ease;
         }
 
         .link_name {
@@ -188,13 +196,8 @@
           overflow: hidden;
           text-overflow: ellipsis;
           min-width: 0;
-          transition: all 0.4s ease;
+          transition: opacity 0.25s ease, width 0.4s ease;
         }
-      }
-
-      &:not(.close) a i {
-        min-width: 40px;
-        margin-left: 4px;
       }
 
       .sub-menu {
@@ -210,33 +213,21 @@
           white-space: nowrap;
           opacity: 0.6;
           transition: all 0.3s ease;
+          justify-content: flex-start;
 
-          &:hover {
-            opacity: 1;
-            color: var(--color-accent);
-          }
+          &:hover { opacity: 1; color: var(--color-accent); }
         }
 
-        .link_name {
-          display: none;
-        }
+        .link_name { display: none; }
 
-        &.blank {
-          opacity: 0;
-          pointer-events: none;
-        }
+        &.blank { opacity: 0; pointer-events: none; }
       }
 
-      &.showMenu .sub-menu {
-        display: block;
-      }
+      &.showMenu .sub-menu { display: block; }
     }
   }
 }
 
 @media screen and (max-width: 900px) {
-  .main {
-    margin-left: 0;
-    width: 100%;
-  }
+  .main { margin-left: 0; width: 100%; }
 }
