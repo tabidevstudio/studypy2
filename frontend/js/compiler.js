@@ -1,6 +1,7 @@
-const BACKEND_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+const BACKEND_URL = isLocal
   ? "http://localhost:3000/run"
-  : "https://studypy-backend.onrender.com/run";
+  : "/run";
 
 const cmViews = {};
 

@@ -1,8 +1,9 @@
 import { getProfile, toggleBookmark, toggleWatched } from "./auth.js";
 
-const BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+const BASE_URL = isLocal
   ? "http://localhost:3000"
-  : "https://studypy-backend.onrender.com";
+  : "";
 
 let loggedInUser = null;
 
@@ -381,11 +382,8 @@ async function loadLinks() {
   }
     const UNDER_CONSTRUCTION_PAGES = [
         "interview-prep",
-        "job-boards",
         "resume-building",
-        "coding-problems",
         "projectideas",
-        "forums",
         "study-groups"
     ];
     if(UNDER_CONSTRUCTION_PAGES.includes(pageName)) {

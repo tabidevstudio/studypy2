@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Roadmaps | StudyPy</title>
+    <meta name="description" content="Structured learning paths for Frontend, Backend, Fullstack, Python, and DevOps. Follow step-by-step roadmaps with curated resources from StudyPy." />
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/learning.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="StudyPY" />
+    <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <div class="roadmap-page">
+
+            <!-- Hero -->
+            <div class="roadmap-hero">
+                <div class="roadmap-badge">
+                    <i class='bx bx-map-alt'></i>
+                    Structured Learning Paths
+                </div>
+                <h1>Learning Roadmaps</h1>
+                <p>Don't know where to start? Pick a track below and follow the steps in order. Each step tells you what to learn, why it matters, and where to learn it — with direct links to resources already on StudyPy.</p>
+            </div>
+
+            <!-- Legend -->
+            <div class="roadmap-legend">
+                <div class="legend-item">
+                    <div class="legend-dot must"></div>
+                    <span>Must Learn</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot optional"></div>
+                    <span>Optional / Nice to Have</span>
+                </div>
+                <div class="legend-item">
+                    <i class='bx bx-chevron-down' style="font-size:0.9rem; color:rgba(255,255,255,0.35);"></i>
+                    <span>Click a step to expand details</span>
+                </div>
+            </div>
+
+            <!-- Track Tabs — rendered dynamically -->
+            <div class="track-tabs" id="track-tabs">
+                <div class="roadmap-loading">
+                    <i class='bx bx-loader-alt bx-spin'></i>
+                    Loading roadmaps…
+                </div>
+            </div>
+
+            <!-- Roadmap Content — rendered dynamically -->
+            <div class="roadmap-content" id="roadmap-content"></div>
+
+        </div>
+    </main>
+
+    <script type="module" src="../../js/script.js"></script>
+    <script>
+    // ── Backend URL detection ─────────────────────────────────────────────────
+    const API_BASE = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+        ? "http://localhost:3000"
+        : "";
+
+    // ── Fetch & render ────────────────────────────────────────────────────────
+    async function loadRoadmaps() {
+        try {
+            const res = await fetch(`${API_BASE}/api/roadmaps`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const { roadmaps } = await res.json();
+            renderTabs(roadmaps);
+            renderTracks(roadmaps);
+        } catch (err) {
+            console.error("Failed to load roadmaps:", err);
+            document.getElementById("track-tabs").innerHTML =
+                `<p style="color:rgba(255,255,255,0.5);padding:1rem;">Failed to load roadmaps. Please refresh or try again later.</p>`;
+        }
+    }
+
+    function renderTabs(tracks) {
+        const tabsEl = document.getElementById("track-tabs");
+        tabsEl.innerHTML = tracks.map((track, i) => `
+            <button class="track-tab${i === 0 ? " active" : ""}" data-track="${track.trackId}">
+                <i class='bx ${track.icon}'></i> ${track.title.split(" ")[0]}${track.title.includes("/") ? " / " + track.title.split("/ ")[1] : ""}
+            </button>
+        `).join("");
+
+        tabsEl.querySelectorAll(".track-tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                tabsEl.querySelectorAll(".track-tab").forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+                document.querySelectorAll(".roadmap-track").forEach(t => t.classList.remove("active"));
+                const target = document.getElementById("track-" + tab.dataset.track);
+                if (target) target.classList.add("active");
+            });
+        });
+    }
+
+    function renderTracks(tracks) {
+        const content = document.getElementById("roadmap-content");
+        content.innerHTML = tracks.map((track, i) => `
+            <div class="roadmap-track${i === 0 ? " active" : ""}" id="track-${track.trackId}">
+                <div class="track-header">
+                    <div class="track-icon" style="background:${track.iconBg}; color:${track.iconColor};">
+                        <i class='bx ${track.icon}'></i>
+                    </div>
+                    <div class="track-header-text">
+                        <h2>${track.title}</h2>
+                        <p>${track.description}</p>
+                        <div class="track-meta">
+                            ${track.meta.map(pill => `<span class="track-meta-pill">${pill}</span>`).join("")}
+                        </div>
+                    </div>
+                </div>
+                <div class="roadmap-steps">
+                    ${renderPhases(track.phases)}
+                </div>
+            </div>
+        `).join("");
+
+        // Step expand/collapse
+        content.querySelectorAll(".step-card").forEach(card => {
+            card.addEventListener("click", () => card.classList.toggle("expanded"));
+        });
+    }
+
+    function renderPhases(phases) {
+        return phases.map(phase => `
+            <div class="roadmap-phase"><span class="roadmap-phase-label">${phase.label}</span></div>
+            ${phase.steps.map(step => renderStep(step)).join("")}
+        `).join("");
+    }
+
+    function renderStep(step) {
+        const isOptional = step.optional;
+        const tags = step.tags.map(tag =>
+            `<span class="step-tag ${tag.type}">${tag.label}</span>`
+        ).join("");
+
+        const links = step.links.length ? `
+            <div class="step-links">
+                ${step.links.map(link => `
+                    <a href="${link.url}"${link.external ? ' target="_blank"' : ""} class="step-link${link.external ? " ext" : ""}">
+                        <i class='bx ${link.icon}'></i> ${link.label}
+                    </a>
+                `).join("")}
+            </div>
+        ` : "";
+
+        return `
+            <div class="roadmap-step${isOptional ? " optional" : ""}">
+                <div class="step-card">
+                    <div class="step-card-header">
+                        <div class="step-card-left">
+                            <div class="step-number">${step.number}</div>
+                            <div class="step-title">${step.title}</div>
+                        </div>
+                        <div class="step-tags">${tags}</div>
+                        <i class='bx bx-chevron-down step-expand-icon'></i>
+                    </div>
+                    <div class="step-body">
+                        <p class="step-desc">${step.description}</p>
+                        ${links}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    loadRoadmaps();
+    </script>
+</body>
+</html>

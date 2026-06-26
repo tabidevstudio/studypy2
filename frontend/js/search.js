@@ -156,6 +156,12 @@ function initSearch() {
 
   // Determine if we are on a dynamic page that has not loaded cards yet
   if (container && container.dataset.page) {
+    // Check if cards are already in the DOM (e.g. from cached links rendered synchronously)
+    const existingCards = container.querySelectorAll('.Tools, .tool-card, .video-card');
+    if (existingCards.length > 0) {
+      setupTools();
+    }
+    
     container.addEventListener('linksRendered', () => {
       setupTools();
     });

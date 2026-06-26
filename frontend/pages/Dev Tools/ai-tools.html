@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Coding Tools | StudyPY</title>
+    <meta name="description" content="Discover the best AI-powered coding assistants, chat tools, and developer productivity boosters. Curated for students learning to code." />
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/dev-tools.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="StudyPY" />
+    <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="main">
+        <div class="ide-page">
+
+            <!-- Header -->
+            <div class="ide-badge">
+                <i class='bx bx-brain'></i>
+                AI-Powered Development
+            </div>
+            <h1 class="ide-title">AI Coding Tools</h1>
+            <p class="ide-subtitle">
+                Supercharge your coding workflow with AI assistants. From autocomplete to full chat-based debugging — these tools help you write better code faster.
+            </p>
+
+            <!-- Beginner tip -->
+            <div class="ai-beginner-tip">
+                <i class='bx bx-info-circle'></i>
+                <span><strong>New to AI tools?</strong> Start with <strong>Codeium</strong> or <strong>GitHub Copilot (Free)</strong> — both are free, plug into VS Code, and help you write code as you type. Think of them as an autocomplete on steroids. You don't need to understand how they work to benefit from them.</span>
+            </div>
+
+            <!-- Filter buttons -->
+            <div class="ide-filters" id="ai-filters">
+                <button class="ide-filter-btn active" data-filter="all">All</button>
+                <button class="ide-filter-btn" data-filter="free">Free</button>
+                <button class="ide-filter-btn" data-filter="vscode">VS Code Plugin</button>
+                <button class="ide-filter-btn" data-filter="chat">Chat / Q&A</button>
+                <button class="ide-filter-btn" data-filter="autocomplete">Autocomplete</button>
+                <button class="ide-filter-btn" data-filter="search">Search / Research</button>
+                <button class="ide-filter-btn" data-filter="beginner">Beginner Pick</button>
+            </div>
+
+            <!-- Table -->
+            <div class="ide-table-wrap">
+                <table class="ide-table">
+                    <thead>
+                        <tr>
+                            <th>Tool</th>
+                            <th>Category</th>
+                            <th>What it does</th>
+                            <th>Pricing</th>
+                            <th>Get It</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ai-tbody">
+                        <tr id="ai-loading-row">
+                            <td colspan="5" style="text-align:center; padding:2rem; color:rgba(255,255,255,0.4);">
+                                <i class='bx bx-loader-alt bx-spin' style="font-size:1.5rem;"></i>
+                                <span style="display:block; margin-top:0.5rem;">Loading AI tools…</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+
+    <script type="module" src="../../js/script.js"></script>
+    <script>
+    // ── Backend URL detection ─────────────────────────────────────────────────
+    const API_BASE = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+        ? "http://localhost:3000"
+        : "";
+
+    // ── Fetch & render ────────────────────────────────────────────────────────
+    async function loadAiTools() {
+        try {
+            const res = await fetch(`${API_BASE}/api/ai-tools`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const { tools } = await res.json();
+            renderTools(tools);
+            setupFilters();
+        } catch (err) {
+            console.error("Failed to load AI tools:", err);
+            document.getElementById("ai-tbody").innerHTML = `
+                <tr><td colspan="5" style="text-align:center; padding:2rem; color:rgba(255,100,100,0.7);">
+                    Failed to load tools. Please refresh or try again later.
+                </td></tr>`;
+        }
+    }
+
+    function renderTools(tools) {
+        const tbody = document.getElementById("ai-tbody");
+
+        tbody.innerHTML = tools.map(tool => {
+            // Logo: use img if logoUrl, else fallback div
+            const logo = tool.logoUrl
+                ? `<img src="${tool.logoUrl}" alt="${tool.name}"${tool.logoStyle ? ` style="${tool.logoStyle}"` : ""} onerror="this.style.display='none'; this.parentElement.textContent='${tool.logoFallback}'">`
+                : `<div style="${tool.logoStyle}">${tool.logoFallback}</div>`;
+
+            // Category badges
+            const catBadges = tool.categories.map((cat, i) =>
+                `<span class="ide-tag ${tool.categoryColors[i] || 'cyan'}">${cat}</span>`
+            ).join("");
+
+            // Pricing badge
+            const pricingClass = tool.pricing === "free" ? "free" : tool.pricing === "freemium" ? "freemium" : "paid";
+            const pricingLabel = tool.pricing === "free" ? "✓ Free" : tool.pricing === "freemium" ? "Freemium" : "Paid";
+
+            // Beginner star
+            const star = tool.beginnerPick ? `<span class="beginner-star">⭐ Beginner Pick</span>` : "";
+
+            return `
+                <tr data-tags="${tool.tags.join(" ")}">
+                    <td>
+                        <div class="ide-name-cell">
+                            <div class="ide-logo">${logo}</div>
+                            <div>
+                                <div class="ide-name">${tool.name} ${star}</div>
+                                <div class="ide-maker">${tool.maker}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ide-tags">${catBadges}</div>
+                    </td>
+                    <td>
+                        <p class="ide-desc">${tool.description}</p>
+                    </td>
+                    <td><span class="ai-pricing-badge ${pricingClass}">${pricingLabel}</span></td>
+                    <td>
+                        <a href="${tool.url}" target="_blank" class="ide-btn ${tool.btnClass}">
+                            <i class='bx bx-link-external'></i> ${tool.btnLabel}
+                        </a>
+                    </td>
+                </tr>
+            `;
+        }).join("");
+    }
+
+    function setupFilters() {
+        document.querySelectorAll(".ide-filter-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".ide-filter-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                const filter = btn.dataset.filter;
+                document.querySelectorAll("#ai-tbody tr").forEach(row => {
+                    if (filter === "all") {
+                        row.style.display = "";
+                    } else {
+                        const tags = row.dataset.tags || "";
+                        row.style.display = tags.includes(filter) ? "" : "none";
+                    }
+                });
+            });
+        });
+    }
+
+    loadAiTools();
+    </script>
+</body>
+</html>

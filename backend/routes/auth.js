@@ -9,8 +9,29 @@ const router = express.Router();
 
 // Fallbacks for environment variables in development
 const JWT_SECRET = process.env.JWT_SECRET || "studypy_super_secret_session_key_98765";
-const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5500";
-const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3000";
+
+// Helper to resolve URLs dynamically based on request context
+function getUrls(req) {
+  let backendUrl = process.env.BACKEND_URL || "https://studypy-backend.onrender.com";
+  
+  // If the request was proxied (e.g. Vercel), determine the proxy host and protocol
+  if (req && req.headers["x-forwarded-host"]) {
+    const forwardedHost = req.headers["x-forwarded-host"];
+    const forwardedProto = req.headers["x-forwarded-proto"] || "https";
+    backendUrl = `${forwardedProto}://${forwardedHost}`;
+  }
+
+  const frontendUrl = process.env.FRONTEND_URL || "https://studypy.vercel.app";
+  
+  // Determine if it is a local request (direct or proxied)
+  const isLocal = req 
+    ? (req.headers.host.includes("localhost") || 
+       req.headers.host.includes("127.0.0.1") || 
+       (req.headers["x-forwarded-host"] && (req.headers["x-forwarded-host"].includes("localhost") || req.headers["x-forwarded-host"].includes("127.0.0.1"))))
+    : false;
+
+  return { backendUrl, frontendUrl, isLocal };
+}
 
 // Helper to calculate days between two YYYY-MM-DD dates
 function getDaysBetween(dateStr1, dateStr2) {
@@ -47,13 +68,14 @@ async function requireAuth(req, res, next) {
 // 1. Redirect to Google Consent Screen
 router.get("/google", (req, res) => {
   const googleClientId = process.env.GOOGLE_CLIENT_ID;
+  const { backendUrl } = getUrls(req);
   
   if (!googleClientId) {
     console.warn("⚠️ GOOGLE_CLIENT_ID not set. Redirecting to Mock Google Auth callback for development.");
-    return res.redirect(`${BACKEND_URL}/api/auth/google/callback?code=mock_google_code`);
+    return res.redirect(`${backendUrl}/api/auth/google/callback?code=mock_google_code`);
   }
 
-  const redirectUri = `${BACKEND_URL}/api/auth/google/callback`;
+  const redirectUri = `${backendUrl}/api/auth/google/callback`;
   const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${googleClientId}&redirect_uri=${encodeURIComponent(
     redirectUri
   )}&response_type=code&scope=${encodeURIComponent("openid profile email")}`;
@@ -64,8 +86,9 @@ router.get("/google", (req, res) => {
 // 2. Google Callback
 router.get("/google/callback", async (req, res) => {
   const { code } = req.query;
+  const { backendUrl, frontendUrl, isLocal } = getUrls(req);
   if (!code) {
-    return res.redirect(`${FRONTEND_URL}/pages/login.html?error=no_code`);
+    return res.redirect(`${frontendUrl}/pages/login.html?error=no_code`);
   }
 
   try {
@@ -88,7 +111,7 @@ router.get("/google/callback", async (req, res) => {
           code,
           client_id: process.env.GOOGLE_CLIENT_ID,
           client_secret: process.env.GOOGLE_CLIENT_SECRET,
-          redirect_uri: `${BACKEND_URL}/api/auth/google/callback`,
+          redirect_uri: `${backendUrl}/api/auth/google/callback`,
           grant_type: "authorization_code"
         })
       });
@@ -96,7 +119,7 @@ router.get("/google/callback", async (req, res) => {
       const tokenData = await tokenRes.json();
       if (!tokenRes.ok || tokenData.error) {
         console.error("Google token exchange error:", tokenData);
-        return res.redirect(`${FRONTEND_URL}/pages/login.html?error=token_exchange_failed`);
+        return res.redirect(`${frontendUrl}/pages/login.html?error=token_exchange_failed`);
       }
 
       // Fetch user profile info
@@ -107,7 +130,7 @@ router.get("/google/callback", async (req, res) => {
       const userData = await userRes.json();
       if (!userRes.ok) {
         console.error("Google user profile fetch error:", userData);
-        return res.redirect(`${FRONTEND_URL}/pages/login.html?error=profile_fetch_failed`);
+        return res.redirect(`${frontendUrl}/pages/login.html?error=profile_fetch_failed`);
       }
 
       profile = {
@@ -119,7 +142,7 @@ router.get("/google/callback", async (req, res) => {
     }
 
     if (!profile.email) {
-      return res.redirect(`${FRONTEND_URL}/pages/login.html?error=no_email_provided`);
+      return res.redirect(`${frontendUrl}/pages/login.html?error=no_email_provided`);
     }
 
     // Upsert User in MongoDB
@@ -137,7 +160,8 @@ router.get("/google/callback", async (req, res) => {
       if (!user.googleId) {
         user.googleId = profile.id;
       }
-      if (profile.picture && !user.avatar) {
+      // Always sync latest OAuth avatar (removes stale/expired URLs)
+      if (profile.picture) {
         user.avatar = profile.picture;
       }
     }
@@ -147,19 +171,18 @@ router.get("/google/callback", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "7d" });
 
     // Set cookie on client
-    const isLocalhost = FRONTEND_URL.includes("localhost") || FRONTEND_URL.includes("127.0.0.1");
     res.cookie("studypy_token", token, {
       httpOnly: true,
-      secure: !isLocalhost,
-      sameSite: isLocalhost ? "lax" : "none",
+      secure: !isLocal,
+      sameSite: isLocal ? "lax" : "none",
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
     // Redirect to frontend (dashboard/settings or homepage)
-    res.redirect(`${FRONTEND_URL}/pages/settings.html?auth=success`);
+    res.redirect(`${frontendUrl}/pages/profile.html?auth=success`);
   } catch (err) {
     console.error("Google OAuth error:", err);
-    res.redirect(`${FRONTEND_URL}/pages/login.html?error=auth_failed`);
+    res.redirect(`${frontendUrl}/pages/login.html?error=auth_failed`);
   }
 });
 
@@ -170,13 +193,14 @@ router.get("/google/callback", async (req, res) => {
 // 1. Redirect to GitHub Authorization
 router.get("/github", (req, res) => {
   const githubClientId = process.env.GITHUB_CLIENT_ID;
+  const { backendUrl } = getUrls(req);
 
   if (!githubClientId) {
     console.warn("⚠️ GITHUB_CLIENT_ID not set. Redirecting to Mock GitHub Auth callback for development.");
-    return res.redirect(`${BACKEND_URL}/api/auth/github/callback?code=mock_github_code`);
+    return res.redirect(`${backendUrl}/api/auth/github/callback?code=mock_github_code`);
   }
 
-  const redirectUri = `${BACKEND_URL}/api/auth/github/callback`;
+  const redirectUri = `${backendUrl}/api/auth/github/callback`;
   const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${githubClientId}&redirect_uri=${encodeURIComponent(
     redirectUri
   )}&scope=user:email`;
@@ -187,8 +211,9 @@ router.get("/github", (req, res) => {
 // 2. GitHub Callback
 router.get("/github/callback", async (req, res) => {
   const { code } = req.query;
+  const { backendUrl, frontendUrl, isLocal } = getUrls(req);
   if (!code) {
-    return res.redirect(`${FRONTEND_URL}/pages/login.html?error=no_code`);
+    return res.redirect(`${frontendUrl}/pages/login.html?error=no_code`);
   }
 
   try {
@@ -214,14 +239,14 @@ router.get("/github/callback", async (req, res) => {
           client_id: process.env.GITHUB_CLIENT_ID,
           client_secret: process.env.GITHUB_CLIENT_SECRET,
           code,
-          redirect_uri: `${BACKEND_URL}/api/auth/github/callback`
+          redirect_uri: `${backendUrl}/api/auth/github/callback`
         })
       });
 
       const tokenData = await tokenRes.json();
       if (!tokenRes.ok || tokenData.error) {
         console.error("GitHub token exchange error:", tokenData);
-        return res.redirect(`${FRONTEND_URL}/pages/login.html?error=token_exchange_failed`);
+        return res.redirect(`${frontendUrl}/pages/login.html?error=token_exchange_failed`);
       }
 
       const accessToken = tokenData.access_token;
@@ -237,7 +262,7 @@ router.get("/github/callback", async (req, res) => {
 
       if (!userRes.ok) {
         console.error("GitHub user info fetch error:", userData);
-        return res.redirect(`${FRONTEND_URL}/pages/login.html?error=profile_fetch_failed`);
+        return res.redirect(`${frontendUrl}/pages/login.html?error=profile_fetch_failed`);
       }
 
       // If email is null (private), fetch list of emails
@@ -284,7 +309,8 @@ router.get("/github/callback", async (req, res) => {
       if (!user.githubId) {
         user.githubId = profile.id;
       }
-      if (profile.picture && !user.avatar) {
+      // Always sync latest OAuth avatar (removes stale/expired URLs)
+      if (profile.picture) {
         user.avatar = profile.picture;
       }
     }
@@ -294,18 +320,17 @@ router.get("/github/callback", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "7d" });
 
     // Set cookie on client
-    const isLocalhost = FRONTEND_URL.includes("localhost") || FRONTEND_URL.includes("127.0.0.1");
     res.cookie("studypy_token", token, {
       httpOnly: true,
-      secure: !isLocalhost,
-      sameSite: isLocalhost ? "lax" : "none",
+      secure: !isLocal,
+      sameSite: isLocal ? "lax" : "none",
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
-    res.redirect(`${FRONTEND_URL}/pages/settings.html?auth=success`);
+    res.redirect(`${frontendUrl}/pages/profile.html?auth=success`);
   } catch (err) {
     console.error("GitHub OAuth error:", err);
-    res.redirect(`${FRONTEND_URL}/pages/login.html?error=auth_failed`);
+    res.redirect(`${frontendUrl}/pages/login.html?error=auth_failed`);
   }
 });
 
@@ -364,16 +389,49 @@ router.get("/me", requireAuth, async (req, res) => {
 
 // 2. Logout Endpoint
 router.post("/logout", (req, res) => {
-  const isLocalhost = FRONTEND_URL.includes("localhost") || FRONTEND_URL.includes("127.0.0.1");
+  const { isLocal } = getUrls(req);
   res.clearCookie("studypy_token", {
     httpOnly: true,
-    secure: !isLocalhost,
-    sameSite: isLocalhost ? "lax" : "none"
+    secure: !isLocal,
+    sameSite: isLocal ? "lax" : "none"
   });
   res.json({ message: "Logged out successfully" });
 });
 
-// 3. Toggle Bookmark
+// 3. Update Profile (username only)
+router.put("/profile", requireAuth, async (req, res) => {
+  const { username } = req.body;
+
+  if (!username || typeof username !== "string") {
+    return res.status(400).json({ error: "Username is required." });
+  }
+
+  const trimmed = username.trim();
+  if (trimmed.length < 2 || trimmed.length > 30) {
+    return res.status(400).json({ error: "Username must be between 2 and 30 characters." });
+  }
+
+  // Allow letters, numbers, spaces, underscores, hyphens
+  if (!/^[a-zA-Z0-9 _\-]+$/.test(trimmed)) {
+    return res.status(400).json({ error: "Username can only contain letters, numbers, spaces, underscores, and hyphens." });
+  }
+
+  const user = req.user;
+  user.username = trimmed;
+  await user.save();
+
+  res.json({
+    success: true,
+    user: {
+      username: user.username,
+      email: user.email,
+      avatar: user.avatar,
+      streak: user.streak
+    }
+  });
+});
+
+// 4. Toggle Bookmark
 router.post("/bookmark", requireAuth, async (req, res) => {
   const { path } = req.body;
   if (!path) {
@@ -393,7 +451,7 @@ router.post("/bookmark", requireAuth, async (req, res) => {
   res.json({ bookmarks: user.bookmarks, bookmarked: index === -1 });
 });
 
-// 4. Toggle Watched Video status
+// 5. Toggle Watched Video status
 router.post("/watched", requireAuth, async (req, res) => {
   const { videoUrl } = req.body;
   if (!videoUrl) {
@@ -413,7 +471,7 @@ router.post("/watched", requireAuth, async (req, res) => {
   res.json({ watchedVideos: user.watchedVideos, watched: index === -1 });
 });
 
-// 5. Update Streak manually (or via challenge check)
+// 6. Update Streak manually (or via challenge check)
 router.post("/streak/increment", requireAuth, async (req, res) => {
   const user = req.user;
   const { date } = req.body; // Expecting "YYYY-MM-DD"

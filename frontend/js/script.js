@@ -54,6 +54,7 @@ import { getProfile } from "./auth.js";
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Learning</a></li>
+                <li><a href="/pages/Learning/roadmaps.html">Roadmaps</a></li>
                 <li><a href="/pages/Learning/online-courses.html">Online Courses</a></li>
                 <li><a href="/pages/Learning/interactive-coding.html">Interactive Coding</a></li>
                 <li><a href="/pages/Learning/video-tutorials.html">Video Tutorials</a></li>
@@ -102,6 +103,7 @@ import { getProfile } from "./auth.js";
                 <li><a class="link_name" href="#">Dev Tools</a></li>
                 <li><a href="/pages/Dev Tools/IDES.html">IDEs &amp; Editors</a></li>
                 <li><a href="/pages/Dev Tools/version-control.html">Version Control</a></li>
+                <li><a href="/pages/Dev Tools/ai-tools.html">AI Tools</a></li>
                 <li><a href="/pages/Dev Tools/debugging-tools.html">Debugging Tools</a></li>
                 <li><a href="/pages/Dev Tools/fun-tools.html">Fun Tools</a></li>
             </ul>
@@ -169,15 +171,6 @@ import { getProfile } from "./auth.js";
             </a>
             <ul class="sub-menu blank">
                 <li><a class="link_name" href="/pages/settings.html">Setting</a></li>
-            </ul>
-        </li>
-        <li id="sidebar-auth-item">
-            <a href="/pages/login.html" id="auth-sidebar-link">
-                <i class='bx bx-log-in' id="auth-sidebar-icon"></i>
-                <span class="link_name" id="auth-sidebar-text">Login</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="/pages/login.html" id="auth-submenu-link">Login</a></li>
             </ul>
         </li>
     </ul>
@@ -286,20 +279,20 @@ import { getProfile } from "./auth.js";
         if (res && res.authenticated) {
             const user = res.user;
             if (navAuthItem) {
+                // Show avatar circle only — clicking goes to profile dashboard
                 navAuthItem.innerHTML = `
-                    <a href="/pages/settings.html" style="display:flex; align-items:center; gap:8px;">
-                        <img src="${user.avatar || '/assets/images/lugu-bg.png'}" alt="Avatar" style="width:24px; height:24px; border-radius:50%; object-fit:cover; border:1px solid rgb(145, 218, 235);">
-                        <span>${user.username}</span>
+                    <a href="/pages/profile.html" class="nav-avatar-btn" title="${user.username}" style="display:flex; align-items:center; justify-content:center;">
+                        <img src="${user.avatar || '/assets/images/lugu-bg.png'}" alt="${user.username}" style="width:32px; height:32px; border-radius:50%; object-fit:cover; border:2px solid rgb(145, 218, 235); transition: box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 0 0 3px rgba(145,218,235,0.35)'" onmouseout="this.style.boxShadow='none'">
                     </a>
                 `;
             }
-            if (authSidebarLink) authSidebarLink.href = "/pages/settings.html";
+            if (authSidebarLink) authSidebarLink.href = "/pages/profile.html";
             if (authSidebarIcon) {
                 authSidebarIcon.className = "bx bx-user-circle";
             }
             if (authSidebarText) authSidebarText.textContent = "Profile";
             if (authSubmenuLink) {
-                authSubmenuLink.href = "/pages/settings.html";
+                authSubmenuLink.href = "/pages/profile.html";
                 authSubmenuLink.textContent = "Profile";
             }
         } else {

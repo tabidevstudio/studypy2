@@ -1,9 +1,8 @@
-const BACKEND_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
-  ? "http://localhost:3000"
-  : "https://studypy-backend.onrender.com";
-
 // Backend API Base URL
-export const API_BASE = `${BACKEND_BASE}/api/auth`;
+const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+export const API_BASE = isLocal
+  ? "http://localhost:3000/api/auth"
+  : "/api/auth";
 
 /**
  * Helper to wrap fetch calls with credentials (supporting HTTP-Only cookies)
@@ -72,5 +71,15 @@ export async function toggleWatched(videoUrl) {
   return await apiFetch(`${API_BASE}/watched`, {
     method: "POST",
     body: { videoUrl }
+  });
+}
+
+/**
+ * Update the authenticated user's username.
+ */
+export async function updateProfile(username) {
+  return await apiFetch(`${API_BASE}/profile`, {
+    method: "PUT",
+    body: { username }
   });
 }
