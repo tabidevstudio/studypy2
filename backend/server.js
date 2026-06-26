@@ -16,8 +16,10 @@ const Resource  = require("./models/Resource");    // resource link categories
 const Flashcard = require("./models/Flashcard");   // coding flashcard questions
 const Roadmap   = require("./models/Roadmap");     // learning roadmap tracks
 const AiTool    = require("./models/AiTool");      // AI coding tools table
+
 const authRouter = require("./routes/auth");
 const forumRouter = require("./routes/forum");
+const communitiesRouter = require("./routes/Community");
 const Job = require("./models/Job.js");
 const app = express();
 
@@ -48,7 +50,8 @@ app.use(express.json());
 app.use("/api/auth", authRouter);
 // Mount forum router
 app.use("/api/forum", forumRouter);
-
+// Mount communities router
+app.use("/api/communities", communitiesRouter);
 
 /* ─────────────────────────────────────────────────────────────────────────────
    POST /run  —  Compiler proxy: forwards code to external OnlineCompiler API.

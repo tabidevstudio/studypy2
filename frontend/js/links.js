@@ -17,7 +17,7 @@ function getCardPrefix(pageName) {
     "projectideas": "challenge",
     "discord-servers": "community",
     "forums": "community",
-    "study-groups": "community",
+    "other": "community",
     "debugging-tools": "tools",
     "version-control": "tools",
     "fun-tools": "tools",

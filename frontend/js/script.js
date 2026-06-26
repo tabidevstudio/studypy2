@@ -147,7 +147,7 @@ import { getProfile } from "./auth.js";
                 <li><a class="link_name" href="#">Connect</a></li>
                 <li><a href="/pages/Communities/forums.html">Forums</a></li>
                 <li><a href="/pages/Communities/discord-servers.html">Discord Servers</a></li>
-                <li><a href="/pages/Communities/study-groups.html">Other Communities</a></li>
+                <li><a href="/pages/Communities/other.html">Other Communities</a></li>
             </ul>
         </li>
         <li>
