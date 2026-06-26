@@ -137,6 +137,14 @@
   max-width: 1400px;
   margin: 0 auto 30px;
 }
+
+.projectideas-pills {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  padding: 0 0 10px;
+  margin-bottom: 1.5rem;
+}
 .section-bar .tabs {
   display: flex;
   flex-wrap: wrap;
@@ -149,9 +157,10 @@
   font-size: 12px;
   padding: 8px 16px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.08);
-  color: #dff7fb;
+  /* stronger blue border and richer background for pills */
+  border: 1px solid rgba(72, 152, 239, 0.7);
+  background: rgba(72, 152, 239, 0.18);
+  color: #eaf6ff;
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s, color 0.2s;
   white-space: nowrap;
@@ -161,12 +170,15 @@
   font-family: inherit;
 }
 .section-bar .tab.active {
-  background: rgba(72, 152, 239, 0.6);
-  border-color: rgba(72, 152, 239, 0.8);
+  /* active pill uses saturated blue at near-max opacity */
+  background: rgba(72, 152, 239, 0.98);
+  border-color: rgba(72, 152, 239, 1);
   color: #fff;
+  box-shadow: 0 8px 24px rgba(72,152,239,0.14);
 }
 .section-bar .tab:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(72, 152, 239, 0.9);
+  transform: translateY(-2px);
 }
 
 .tools-section {
@@ -250,6 +262,50 @@
 .tool-thumb {
   display: none;
 }
+
+/* Carousel styles for projectideas */
+.carousel-section {
+  max-width: 1400px;
+  margin: 2.5rem auto;
+}
+.carousel-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 18px 6px;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  transition: transform 0.3s ease;
+}
+.carousel:active {
+  cursor: grabbing;
+}
+.carousel::-webkit-scrollbar { display: none; }
+.carousel .tool-card {
+  min-width: 280px;
+  max-width: 320px;
+  flex: 0 0 300px;
+  animation: floaty 7s ease-in-out infinite alternate;
+}
+@keyframes floaty {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.01);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
 
 /* Fun Tools Search Bar styling */
 .tools-search-container {

@@ -33,6 +33,11 @@ function initSearch() {
     'performance': 'performance',
     'testing': 'testing',
     'accessibility': 'accessibility',
+    'macro architecture': 'macro architecture',
+    'micro clean code': 'micro clean code',
+    'business tech': 'business tech',
+    'real-world outages': 'real-world outages',
+    'the mind view': 'the mind view',
     'all': 'all'
   };
 
