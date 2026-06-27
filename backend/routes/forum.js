@@ -4,6 +4,7 @@ const express = require("express");
 const ForumPost = require("../models/ForumPost");
 const requireAuth = require("../middleware/requireAuth");
 const sanitizeHtml = require("sanitize-html");
+const filter = require("leo-profanity");
 
 const router = express.Router();
 
@@ -43,8 +44,12 @@ router.post("/create", requireAuth, async (req, res) => {
   }
 
   // Sanitize inputs
-  const title = sanitizeHtml(String(rawTitle), { allowedTags: [], allowedAttributes: {} }).trim();
-  const content = sanitizeHtml(String(rawContent), sanitizeContentOptions).trim();
+  const sanitizedTitle = sanitizeHtml(String(rawTitle), { allowedTags: [], allowedAttributes: {} }).trim();
+  const sanitizedContent = sanitizeHtml(String(rawContent), sanitizeContentOptions).trim();
+
+  // Censor profanity
+  const title = filter.clean(sanitizedTitle);
+  const content = filter.clean(sanitizedContent);
 
   // Validate lengths
   if (!title || title.length > MAX_TITLE_LENGTH) {
@@ -72,7 +77,8 @@ router.post("/:id/reply", requireAuth, async (req, res) => {
     return res.status(400).json({ error: "Missing reply content." });
   }
 
-  const content = sanitizeHtml(String(rawContent), sanitizeContentOptions).trim();
+  const sanitizedContent = sanitizeHtml(String(rawContent), sanitizeContentOptions).trim();
+  const content = filter.clean(sanitizedContent);
   if (!content || content.length > MAX_CONTENT_LENGTH) {
     return res.status(400).json({ error: "Invalid reply content." });
   }

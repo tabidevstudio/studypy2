@@ -4,6 +4,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const fetch = require("node-fetch");
 const User = require("../models/User");
+const filter = require("leo-profanity");
 
 const router = express.Router();
 
@@ -415,6 +416,11 @@ router.put("/profile", requireAuth, async (req, res) => {
   // Allow letters, numbers, spaces, underscores, hyphens
   if (!/^[a-zA-Z0-9 _\-]+$/.test(trimmed)) {
     return res.status(400).json({ error: "Username can only contain letters, numbers, spaces, underscores, and hyphens." });
+  }
+
+  // Check for profanity
+  if (filter.check(trimmed)) {
+    return res.status(400).json({ error: "Username contains inappropriate language." });
   }
 
   const user = req.user;
