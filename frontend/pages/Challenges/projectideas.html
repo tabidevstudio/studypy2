@@ -1,14 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-
-                    scale=1.0">
-        <title>Project Ideas | Studypy</title>
-    </head>
-    <body>
-        <div id="tools-container" data-page="projectideas"></div>
-        <script type="module" src="../../js/links.js"></script>
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Ideas | StudyPY</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/dev-tools.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="StudyPY" />
+    <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="main">
+        <div class="ide-page">
+
+            <div class="ide-badge">
+                <i class='bx bx-lightbulb'></i>
+                Project Inspiration
+            </div>
+            <h1 class="ide-title">Project Ideas</h1>
+            <p class="ide-subtitle">
+                Browse curated project prompts, open-source collections, and real-world ideas to build practical skills and craft a standout portfolio.
+            </p>
+            <div id="global-search-container">
+                <i class='bx bx-search search-icon' aria-hidden="true"></i>
+                <input type="search" id="search-input" placeholder="Search articles, topics, websites..." aria-label="Search project ideas">
+            </div>
+            <br>
+            <div class="section-bar projectideas-pills">
+                <div class="tabs">
+                    <button class="tab active">All</button>
+                    <button class="tab">Macro Architecture</button>
+                    <button class="tab">Micro Clean Code</button>
+                    <button class="tab">Business Tech</button>
+                    <button class="tab">Real-World Outages</button>
+                    <button class="tab">The Mind View</button>
+                </div>
+            </div>
+            <div class="ide-table-wrap">
+                <div id="tools-container" data-page="projectideas"></div>
+                <template id="projectideas-article-card-template">
+                    <div class="tool-card project-article-card">
+                        <div class="tool-card-content">
+                            <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-bottom:8px;">
+                                <div class="tool-tag">Article</div>
+                            </div>
+                            <a class="card-link" href="#" target="_blank" rel="noopener noreferrer">
+                                <h2>Article title</h2>
+                            </a>
+                            <p class="template-description">A concise summary of the article will appear here.</p>
+                            <img src="../../assets/website-previews/article-placeholder.png" alt="Article preview" class="tool-image" onerror="this.style.display='none'">
+                        </div>
+                    </div>
+                </template>
+                    <div class="carousel-section">
+                    <div class="arena-section-title"><i class='bx bx-layer'></i> Dedicated Design Pattern & Architecture Archives</div>
+                    <div class="carousel-wrap">
+                        <div class="carousel" id="patterns-inner" aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+            <br> 
+            <div class="ide-table-wrap">
+                    <div class="carousel-section">
+                        <div class="arena-section-title"><i class='bx bx-news'></i> Industry-Standard Engineering Blogs</div>
+                        <div class="carousel-wrap">
+                            <div class="carousel" id="blogs-inner" aria-live="polite"></div>
+                        </div>
+                </div>
+            </div>
+            <br> 
+            <div class="ide-table-wrap">
+                    <div class="carousel-section">
+                    <div class="arena-section-title"><i class='bx bx-brain'></i> Developer Mental Models & Philosophy Collections</div>
+                    <div class="carousel-wrap">
+                        <div class="carousel" id="mental-inner" aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script type="module" src="../../js/script.js"></script>
+    <script type="module" src="../../js/links.js"></script>
+    <script type="module" src="../../js/search.js"></script>
+</body>
 </html>
 

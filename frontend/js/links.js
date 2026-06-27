@@ -247,6 +247,174 @@ function renderPageLinks(container, allLinks, pageName) {
     });
 
     container.appendChild(grid);
+  } else if (pageName === "projectideas") {
+    // Create three carousels and populate them by simple keyword heuristics
+    const patternsInner = document.getElementById('patterns-inner');
+    const blogsInner = document.getElementById('blogs-inner');
+    const mentalInner = document.getElementById('mental-inner');
+
+    function guessProjectIdeaTopics(link) {
+      const text = `${link.title} ${link.description}`.toLowerCase();
+      const topicMatches = [];
+
+      const topicRules = {
+        'macro architecture': ['architecture', 'system design', 'scaling', 'distributed', 'microservices', 'platform', 'enterprise', 'high level', 'macro'],
+        'micro clean code': ['clean code', 'refactor', 'readable', 'maintainable', 'code smell', 'unit test', 'best practice', 'clean architecture', 'small details', 'micro'],
+        'business tech': ['business', 'product', 'strategy', 'finance', 'startup', 'market', 'technology strategy', 'customer', 'operational', 'digital transformation'],
+        'real-world outages': ['outage', 'incident', 'postmortem', 'downtime', 'failure', 'incident report', 'root cause', 'incident response', 'crash', 'downtime'],
+        'the mind view': ['mindset', 'philosophy', 'mental', 'thinking', 'psychology', 'habits', 'focus', 'decision', 'cognitive', 'motivation']
+      };
+
+      Object.entries(topicRules).forEach(([topic, keywords]) => {
+        if (keywords.some(keyword => text.includes(keyword))) {
+          topicMatches.push(topic);
+        }
+      });
+
+      return topicMatches.length > 0 ? topicMatches.join(',') : 'macro architecture';
+    }
+
+    function makeCard(link) {
+      const topic = guessProjectIdeaTopics(link).split(',')[0] || 'Article';
+      const template = document.getElementById('projectideas-article-card-template');
+      if (template && template.content.firstElementChild) {
+        const card = template.content.firstElementChild.cloneNode(true);
+        const linkAnchor = card.querySelector('a.card-link');
+        const titleEl = card.querySelector('h2');
+        const descEl = card.querySelector('.template-description');
+        const imageEl = card.querySelector('img.tool-image');
+        const tagEl = card.querySelector('.tool-tag');
+
+        if (linkAnchor) {
+          linkAnchor.href = link.url;
+          linkAnchor.title = link.title;
+        }
+        if (titleEl) titleEl.textContent = link.title;
+        if (descEl) descEl.textContent = link.description;
+        if (tagEl) tagEl.textContent = topic.replace(/\b\w/g, c => c.toUpperCase());
+        if (imageEl) {
+          const filename = link.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+          imageEl.src = `../../assets/website-previews/${filename}.png`;
+          imageEl.alt = `${link.title} preview`;
+        }
+        card.dataset.genres = guessProjectIdeaTopics(link);
+        return card;
+      }
+
+      const card = document.createElement('div');
+      card.className = 'tool-card';
+      const filename = link.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+      card.innerHTML = `
+        <div class="tool-card-content">
+          <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-bottom:8px;">
+            <div class="tool-tag">${topic.replace(/\b\w/g, c => c.toUpperCase())}</div>
+          </div>
+          <a class="card-link" href="${link.url}" target="_blank" rel="noopener noreferrer">
+            <h2>${link.title}</h2>
+          </a>
+          <p>${link.description}</p>
+          <img src="../../assets/website-previews/${filename}.png" alt="${link.title} preview" class="tool-image" onerror="this.style.display='none'">
+        </div>
+      `;
+      card.dataset.genres = guessProjectIdeaTopics(link);
+      return card;
+    }
+
+    const text = link => (link.title + ' ' + link.description).toLowerCase();
+
+    const patternsKeywords = ['pattern','architecture','design','microservices','ddd','hexagonal','mvc','cqrs','architecture patterns'];
+    const blogsKeywords = ['blog','medium','dev.to','almanac','engineering','thought','blogger','articles','article','insights'];
+    const mentalKeywords = ['mental','model','philosophy','mindset','thinking','principles','heuristic','theory','framework'];
+
+    const added = new Set();
+
+    function pickFor(keywords, targetInner, maxItems=12) {
+      let count = 0;
+      allLinks.forEach(link => {
+        if (count >= maxItems) return;
+        const t = text(link);
+        if (keywords.some(k => t.includes(k)) && !added.has(link.url)) {
+          targetInner.appendChild(makeCard(link));
+          added.add(link.url);
+          count++;
+        }
+      });
+    }
+
+    // Fill carousels
+    pickFor(patternsKeywords, patternsInner, 10);
+    pickFor(blogsKeywords, blogsInner, 10);
+    pickFor(mentalKeywords, mentalInner, 10);
+
+    // If any carousel is empty, fill with remaining links
+    function fillRemaining(targetInner, maxItems=10) {
+      let count = targetInner.childElementCount;
+      allLinks.forEach(link => {
+        if (count >= maxItems) return;
+        if (!added.has(link.url)) {
+          targetInner.appendChild(makeCard(link));
+          added.add(link.url);
+          count++;
+        }
+      });
+    }
+
+    if (patternsInner.childElementCount === 0) fillRemaining(patternsInner, 6);
+    if (blogsInner.childElementCount === 0) fillRemaining(blogsInner, 6);
+    if (mentalInner.childElementCount === 0) fillRemaining(mentalInner, 6);
+
+    function makeCarouselDraggable(carousel) {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      carousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        carousel.classList.add('active-drag');
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+      });
+
+      carousel.addEventListener('mouseleave', () => {
+        isDown = false;
+        carousel.classList.remove('active-drag');
+      });
+
+      carousel.addEventListener('mouseup', () => {
+        isDown = false;
+        carousel.classList.remove('active-drag');
+      });
+
+      carousel.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        carousel.scrollLeft = scrollLeft - walk;
+      });
+
+      carousel.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+      }, { passive: true });
+
+      carousel.addEventListener('touchend', () => {
+        isDown = false;
+      });
+
+      carousel.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        carousel.scrollLeft = scrollLeft - walk;
+      }, { passive: true });
+    }
+
+    [patternsInner, blogsInner, mentalInner].forEach(inner => {
+      if (inner) makeCarouselDraggable(inner);
+    });
+
   } else {
     // Regular card rendering for other pages
     const prefix = getCardPrefix(pageName);
@@ -383,7 +551,7 @@ async function loadLinks() {
     const UNDER_CONSTRUCTION_PAGES = [
         "interview-prep",
         "resume-building",
-        "projectideas",
+        "coding-problems",
         "study-groups"
     ];
     if(UNDER_CONSTRUCTION_PAGES.includes(pageName)) {
