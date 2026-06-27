@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* ── root ─────────────────────────────────────────── */
 :root {
   /* Colours */
@@ -10,17 +9,21 @@
   --color-blue-muted: rgb(35, 76, 114);
   --color-accent: #46a8f3;
   --color-accent-glow: rgba(97, 163, 244, 0.4);
+
   --color-bg: #16171B;
   --color-bg-card: #060e11;
   --color-bg-overlay: rgba(255, 255, 255, 0.05);
   --color-bg-footer: rgba(0, 0, 0, 0.3);
+
   --color-text: #ffffff;
   --color-text-muted: rgba(255, 255, 255, 0.8);
   --color-text-dim: rgba(255, 255, 255, 0.5);
   --color-text-label: #909091;
+
   --color-border: rgb(14, 73, 100);
   --color-border-hover: var(--color-sky);
   --color-border-subtle: rgba(255, 255, 255, 0.1);
+
   /* Spacing */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
@@ -28,13 +31,16 @@
   --space-lg: 2.5rem;
   --space-xl: 5rem;
   --space-2xl: 8rem;
+
   /* Radius */
   --radius-sm: 10px;
   --radius-md: 20px;
   --radius-lg: 25px;
   --radius-pill: 50px;
+
   /* Typography */
   --font-main: "Poppins", sans-serif;
+
   /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-base: 0.3s ease;
@@ -68,31 +74,34 @@ a {
   background: linear-gradient(-80deg, rgba(28, 89, 255, 0.185), var(--color-bg-card));
   align-items: center;
   border-bottom: 3px solid var(--color-border-subtle);
-}
-#headerAbout h1 {
-  line-height: 0.9;
-  width: 700px;
-  font-family: var(--font-main);
-  font-weight: 900;
-  color: white;
-  font-size: 170px;
-}
-#headerAbout h1 strong {
-  color: var(--color-accent);
-}
-#headerAbout p {
-  height: 400px;
-  align-content: center;
-  align-items: center;
-  margin: 0px 0px 0px 100px;
-  padding: 0px 0px 0px 50px;
-  border-left: 1px solid white;
-  width: 800px;
-  font-family: var(--font-main);
-  font-weight: 100;
-  color: var(--color-text-muted);
-  font-size: 25px;
-  line-height: 30px;
+
+  h1 {
+    line-height: 0.9;
+    width: 700px;
+    font-family: var(--font-main);
+    font-weight: 900;
+    color: white;
+    font-size: 170px;
+
+    strong {
+      color: var(--color-accent);
+    }
+  }
+
+  p {
+    height: 400px;
+    align-content: center;
+    align-items: center;
+    margin: 0px 0px 0px 100px;
+    padding: 0px 0px 0px 50px;
+    border-left: 1px solid white;
+    width: 800px;
+    font-family: var(--font-main);
+    font-weight: 100;
+    color: var(--color-text-muted);
+    font-size: 25px;
+    line-height: 30px;
+  }
 }
 
 /* ── featuresGoalsSection ──────────────────────────── */
@@ -100,14 +109,15 @@ a {
   background-image: radial-gradient(rgba(0, 67, 105, 0.144), var(--color-bg-card));
   padding: 70px 0px 70px 0px;
   border-bottom: 2px solid var(--color-border);
-}
-#featuresGoalsSection > h1 {
-  text-align: center;
-  font-size: 70px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 100;
-  letter-spacing: 15px;
-  color: var(--color-accent);
+
+  & > h1 {
+    text-align: center;
+    font-size: 70px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 100;
+    letter-spacing: 15px;
+    color: var(--color-accent);
+  }
 }
 
 #featuresgoals {
@@ -129,57 +139,64 @@ a {
   width: 350px;
   height: 450px;
   transition: all 0.5s ease-in-out;
-}
-#featureGoalCard h1 {
-  font-weight: 900;
-  font-size: 30px;
-  font-family: var(--font-main);
-  color: var(--color-accent);
-  padding-bottom: 30px;
-  border-bottom: 1px solid var(--color-border);
-}
-#featureGoalCard p {
-  letter-spacing: 2px;
-  word-spacing: 1px;
-  width: 250px;
-  font-size: 20px;
-  margin-top: 30px;
-  font-family: var(--font-main);
-  color: white;
-}
-#featureGoalCard:hover {
-  background-image: linear-gradient(rgba(255, 0, 0, 0), rgba(69, 160, 245, 0.151));
-  border: 1px solid var(--color-border-hover);
-  background-color: rgb(0, 0, 0);
-  transform: translateY(-10px);
+
+  h1 {
+    font-weight: 900;
+    font-size: 30px;
+    font-family: var(--font-main);
+    color: var(--color-accent);
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  p {
+    letter-spacing: 2px;
+    word-spacing: 1px;
+    width: 250px;
+    font-size: 20px;
+    margin-top: 30px;
+    font-family: var(--font-main);
+    color: white;
+  }
+
+  &:hover {
+    background-image: linear-gradient(rgba(255, 0, 0, 0), rgba(69, 160, 245, 0.151));
+    border: 1px solid var(--color-border-hover);
+    background-color: rgb(0, 0, 0);
+    transform: translateY(-10px);
+  }
 }
 
 /* ── builders (DevTeam) ───────────────────────────── */
 #builders {
   background-size: 40px 40px;
-  background-image: linear-gradient(to right, rgba(0, 90, 150, 0.123) 2px, transparent 2px), linear-gradient(to bottom, rgba(0, 95, 139, 0.1) 2px, transparent 2px);
+  background-image: 
+    linear-gradient(to right, rgba(0, 90, 150, 0.123) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(0, 95, 139, 0.1) 2px, transparent 2px);
   padding: 40px;
   text-align: center;
   align-items: center;
   height: 1500px;
   position: relative;
   overflow: hidden;
-}
-#builders > h1 {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 100px;
-  word-spacing: 20px;
-  letter-spacing: 20px;
-  font-weight: 1;
-  color: var(--color-sky);
-}
-#builders > p {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 30px;
-  word-spacing: 20px;
-  letter-spacing: 10px;
-  font-weight: 1;
-  color: white;
+
+  & > h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 100px;
+    word-spacing: 20px;
+    letter-spacing: 20px;
+    font-weight: 1;
+    color: var(--color-sky);
+  }
+
+  & > p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 30px;
+    word-spacing: 20px;
+    letter-spacing: 10px;
+    font-weight: 1;
+    color: white;
+  }
 }
 
 #builderContainer {
@@ -190,24 +207,26 @@ a {
   align-items: center;
   align-content: center;
   position: relative;
-}
-#builderContainer #circle1 {
-  align-self: center;
-  z-index: 0;
-  position: absolute;
-  height: 500px;
-  width: 500px;
-  border: 1px solid var(--color-sky);
-  border-radius: 50%;
-}
-#builderContainer #circle2 {
-  align-self: center;
-  z-index: 0;
-  position: absolute;
-  height: 1000px;
-  width: 1000px;
-  border: 1px solid var(--color-sky);
-  border-radius: 50%;
+
+  #circle1 {
+    align-self: center;
+    z-index: 0;
+    position: absolute;
+    height: 500px;
+    width: 500px;
+    border: 1px solid var(--color-sky);
+    border-radius: 50%;
+  }
+
+  #circle2 {
+    align-self: center;
+    z-index: 0;
+    position: absolute;
+    height: 1000px;
+    width: 1000px;
+    border: 1px solid var(--color-sky);
+    border-radius: 50%;
+  }
 }
 
 /* ── quote (desktop: hidden tooltip on hover) ────── */
@@ -216,7 +235,7 @@ a {
   font-style: italic;
   text-align: start;
   position: absolute;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 25px;
   color: white;
   transform: translate(50px, 70px);
@@ -235,76 +254,82 @@ a {
   cursor: pointer;
   transition: border 0.2s ease;
   position: relative;
-}
-.member:hover {
-  border: 1px solid var(--color-border-hover);
-}
-.member:hover #quotes {
-  transform: translate(330px, 70px);
-  opacity: 1;
-}
-.member:hover img {
-  background-color: #46a8f3;
-}
-.member:hover #identity {
-  background-image: linear-gradient(rgba(255, 0, 0, 0), var(--color-sky-dim));
-}
-.member img {
-  height: 150px;
-  width: 300px;
-  object-fit: cover;
-  transition: background-color 0.2s ease;
+
+  &:hover {
+    border: 1px solid var(--color-border-hover);
+
+    #quotes {
+      transform: translate(330px, 70px);
+      opacity: 1;
+    }
+
+    img {
+      background-color: #46a8f3;
+    }
+
+    #identity {
+      background-image: linear-gradient(rgba(255, 0, 0, 0), var(--color-sky-dim));
+    }
+  }
+
+  img {
+    height: 150px;
+    width: 300px;
+    object-fit: cover;
+    transition: background-color 0.2s ease;
+  }
 }
 
 .group img {
   border-radius: 50%;
   height: 200px;
   transition: background-color 0.2s ease, border 0.2s ease;
-}
-.group img:hover {
-  background-color: rgba(40, 103, 151, 0.2862745098);
-  border: 1px solid var(--color-border-hover);
+
+  &:hover {
+    background-color: #28679749;
+    border: 1px solid var(--color-border-hover);
+  }
 }
 
 /* ── Member Positions (desktop) ───────────────────── */
 #Carl {
   position: absolute;
   transform: translate(0px, -550px);
-}
-#Carl img {
-  object-position: 0 -55px;
+  img {
+    object-position: 0 -55px;
+  }
 }
 
 #Zarr {
   position: absolute;
   transform: translate(-650px, -230px);
-}
-#Zarr img {
-  object-position: 0 -120px;
+  img {
+    object-position: 0 -120px;
+  }
 }
 
 #Lance {
   position: absolute;
   transform: translate(330px, -130px);
-}
-#Lance img {
-  object-position: 0 -60px;
+  img {
+    object-position: 0 -60px;
+  }
 }
 
 #Brian {
   position: absolute;
   transform: translate(130px, 270px);
-}
-#Brian img {
-  object-position: 0 -30px;
+  img {
+    object-position: 0 -30px;
+  }
 }
 
 #Norielle {
   position: absolute;
   transform: translate(-500px, 190px);
-}
-#Norielle img {
-  object-position: 0 -20px;
+  img {
+    object-position: 0 -20px;
+  }
 }
 
 #TabiDev {
@@ -321,21 +346,23 @@ a {
   margin: 0;
   background-color: var(--color-bg-card);
   transition: all 0.2s ease-in-out;
-}
-#identity h1 {
-  font-family: var(--font-main);
-  color: white;
-  font-weight: 100;
-  font-size: 25px;
-}
-#identity p {
-  margin: 10px 0px 0px 0px;
-  width: 150px;
-  padding: 10px 0px 0px 0px;
-  border-top: 1px solid white;
-  font-family: var(--font-main);
-  color: var(--color-sky);
-  font-size: 15px;
+
+  h1 {
+    font-family: var(--font-main);
+    color: white;
+    font-weight: 100;
+    font-size: 25px;
+  }
+
+  p {
+    margin: 10px 0px 0px 0px;
+    width: 150px;
+    padding: 10px 0px 0px 0px;
+    border-top: 1px solid white;
+    font-family: var(--font-main);
+    color: var(--color-sky);
+    font-size: 15px;
+  }
 }
 
 /* ── aboutTabidev ──────────────────────────────────── */
@@ -355,10 +382,11 @@ a {
   align-content: center;
   justify-content: center;
   gap: 30px;
-}
-#tabidevHeaderContainer img {
-  height: 450px;
-  max-width: 100%;
+
+  img {
+    height: 450px;
+    max-width: 100%;
+  }
 }
 
 #tabidevDesc {
@@ -367,16 +395,18 @@ a {
   padding: 0px 0px 0px 50px;
   border-left: 2px solid white;
   width: 1200px;
-}
-#tabidevDesc h1 {
-  color: white;
-  font-weight: 900;
-  font-size: 70px;
-}
-#tabidevDesc p {
-  color: white;
-  font-weight: 100;
-  font-size: 25px;
+
+  h1 {
+    color: white;
+    font-weight: 900;
+    font-size: 70px;
+  }
+
+  p {
+    color: white;
+    font-weight: 100;
+    font-size: 25px;
+  }
 }
 
 #learnMorebtn {
@@ -389,25 +419,29 @@ a {
   transition: all 0.2s ease-in-out;
   background-color: white;
   cursor: pointer;
-}
-#learnMorebtn:hover {
-  color: #ffffff;
-  background-color: rgba(181, 210, 255, 0.788);
+
+  &:hover {
+    color: #ffffff;
+    background-color: rgba(181, 210, 255, 0.788);
+  }
 }
 
 /* ── MEDIA QUERIES ─────────────────────────────────── */
+
 /* Tablets & small laptops */
 @media (max-width: 1200px) {
-  #headerAbout h1 {
-    font-size: 120px;
-    width: auto;
-  }
-  #headerAbout p {
-    width: auto;
-    margin-left: 0;
-    padding-left: 30px;
-    height: auto;
-    border-left: 1px solid white;
+  #headerAbout {
+    h1 {
+      font-size: 120px;
+      width: auto;
+    }
+    p {
+      width: auto;
+      margin-left: 0;
+      padding-left: 30px;
+      height: auto;
+      border-left: 1px solid white;
+    }
   }
   #tabidevDesc {
     width: 90%;
@@ -419,31 +453,36 @@ a {
     display: none;
   }
 }
+
 @media (max-width: 1000px) {
   #headerAbout {
     flex-direction: column;
     padding: 40px 20px;
+
+    h1 {
+      font-size: 70px;
+      margin-bottom: 30px;
+      width: 100%;
+      text-align: center;
+    }
+    p {
+      height: auto;
+      margin: 0;
+      padding: 30px 0 0 0;
+      border-top: 2px solid white;
+      border-left: none;
+      width: 100%;
+      font-size: 20px;
+      line-height: 1.6;
+      text-align: center;
+    }
   }
-  #headerAbout h1 {
-    font-size: 70px;
-    margin-bottom: 30px;
-    width: 100%;
-    text-align: center;
-  }
-  #headerAbout p {
-    height: auto;
-    margin: 0;
-    padding: 30px 0 0 0;
-    border-top: 2px solid white;
-    border-left: none;
-    width: 100%;
-    font-size: 20px;
-    line-height: 1.6;
-    text-align: center;
-  }
-  #featuresGoalsSection > h1 {
-    font-size: 50px;
-    letter-spacing: 10px;
+
+  #featuresGoalsSection {
+    & > h1 {
+      font-size: 50px;
+      letter-spacing: 10px;
+    }
   }
   #featuresgoals {
     gap: 30px;
@@ -453,35 +492,40 @@ a {
     width: 280px;
     height: auto;
     padding: 20px;
+
+    h1 {
+      font-size: 24px;
+      padding-bottom: 20px;
+    }
+    p {
+      width: 100%;
+      font-size: 16px;
+    }
   }
-  #featureGoalCard h1 {
-    font-size: 24px;
-    padding-bottom: 20px;
-  }
-  #featureGoalCard p {
-    width: 100%;
-    font-size: 16px;
-  }
-  #coders {
+
+  #coders{
     display: flex;
     flex-direction: column;
     gap: 35px;
   }
+
   #builders {
     height: auto;
     padding: 30px 20px 60px 20px;
     overflow: visible;
+
+    & > h1 {
+      font-size: 60px;
+      letter-spacing: 10px;
+      word-spacing: 10px;
+    }
+    & > p {
+      font-size: 24px;
+      letter-spacing: 5px;
+      word-spacing: 10px;
+    }
   }
-  #builders > h1 {
-    font-size: 60px;
-    letter-spacing: 10px;
-    word-spacing: 10px;
-  }
-  #builders > p {
-    font-size: 24px;
-    letter-spacing: 5px;
-    word-spacing: 10px;
-  }
+
   #builderContainer {
     height: auto;
     margin: 80px 0 50px 0;
@@ -491,6 +535,7 @@ a {
     gap: 30px;
     min-height: unset;
   }
+
   #builderContainer #circle1,
   #builderContainer #circle2 {
     display: none;
@@ -498,6 +543,7 @@ a {
   #TabiDev {
     display: none !important;
   }
+
   #Carl,
   #Zarr,
   #Lance,
@@ -508,34 +554,40 @@ a {
     transform: none !important;
     margin: 0;
   }
+
   .member {
     width: 280px;
     margin: 0 auto;
     cursor: default;
     border-radius: var(--radius-md);
     overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 2/1;
+      object-fit: cover;
+      border-radius: 0;
+
+      &:hover {
+        height: auto;
+        background-color: transparent;
+      }
+    }
+
+    &:hover {
+      border: 1px solid var(--color-border);
+      
+      #identity {
+        background-image: none;
+      }
+      #quotes {
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
   }
-  .member img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 2/1;
-    object-fit: cover;
-    border-radius: 0;
-  }
-  .member img:hover {
-    height: auto;
-    background-color: transparent;
-  }
-  .member:hover {
-    border: 1px solid var(--color-border);
-  }
-  .member:hover #identity {
-    background-image: none;
-  }
-  .member:hover #quotes {
-    transform: none !important;
-    opacity: 1 !important;
-  }
+
   #quotes {
     position: relative;
     top: auto;
@@ -558,33 +610,39 @@ a {
     border: none;
     box-shadow: none;
     font-weight: 400;
+
+    &::before,
+    &::after {
+      display: none !important;
+    }
   }
-  #quotes::before, #quotes::after {
-    display: none !important;
-  }
+
   #identity {
     border: none;
     border-top: 1px solid var(--color-sky-glow);
     text-align: start;
     padding: 10px 16px;
     background-color: var(--color-bg-card);
+
+    h1 {
+      font-size: 22px;
+    }
+    p {
+      width: auto;
+    }
   }
-  #identity h1 {
-    font-size: 22px;
-  }
-  #identity p {
-    width: auto;
-  }
+
   #aboutTabidev {
     padding: 40px 20px;
   }
   #tabidevHeaderContainer {
     flex-direction: column;
     align-items: center;
-  }
-  #tabidevHeaderContainer img {
-    height: auto;
-    max-width: 50%;
+
+    img {
+      height: auto;
+      max-width: 50%;
+    }
   }
   #tabidevDesc {
     margin: 0;
@@ -593,14 +651,15 @@ a {
     border-top: 2px solid white;
     width: 100%;
     text-align: center;
-  }
-  #tabidevDesc h1 {
-    font-size: 40px;
-    margin-bottom: 15px;
-  }
-  #tabidevDesc p {
-    font-size: 20px;
-    margin-bottom: 25px;
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
   }
   #learnMorebtn {
     width: 100%;
@@ -609,17 +668,23 @@ a {
     padding: 16px;
   }
 }
+
 @media (max-width: 600px) {
-  #headerAbout h1 {
-    font-size: 48px;
+  #headerAbout {
+    h1 {
+      font-size: 48px;
+    }
+    p {
+      font-size: 18px;
+      padding: 20px 0 0 0;
+    }
   }
-  #headerAbout p {
-    font-size: 18px;
-    padding: 20px 0 0 0;
-  }
-  #featuresGoalsSection > h1 {
-    font-size: 32px;
-    letter-spacing: 5px;
+
+  #featuresGoalsSection {
+    & > h1 {
+      font-size: 32px;
+      letter-spacing: 5px;
+    }
   }
   #featuresgoals {
     padding: 20px 10px;
@@ -629,79 +694,99 @@ a {
     width: 100%;
     max-width: 320px;
     padding: 16px;
+
+    h1 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 15px;
+      width: 100%;
+    }
   }
-  #featureGoalCard h1 {
-    font-size: 20px;
+
+  #builders {
+    & > h1 {
+      font-size: 40px;
+      letter-spacing: 5px;
+    }
+    & > p {
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
   }
-  #featureGoalCard p {
-    font-size: 15px;
-    width: 100%;
-  }
-  #builders > h1 {
-    font-size: 40px;
-    letter-spacing: 5px;
-  }
-  #builders > p {
-    font-size: 18px;
-    letter-spacing: 2px;
-  }
+
   .member {
     width: 100%;
     max-width: 260px;
+
+    img {
+      height: 120px;
+
+      &:hover {
+        height: 120px;
+      }
+    }
   }
-  .member img {
-    height: 120px;
-  }
-  .member img:hover {
-    height: 120px;
-  }
+
   #quotes {
     font-size: 15px;
     padding: 10px 14px;
   }
-  #identity h1 {
-    font-size: 18px;
+
+  #identity {
+    h1 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 12px;
+    }
   }
-  #identity p {
-    font-size: 12px;
-  }
-  #tabidevDesc h1 {
-    font-size: 30px;
-  }
-  #tabidevDesc p {
-    font-size: 17px;
+
+  #tabidevDesc {
+    h1 {
+      font-size: 30px;
+    }
+    p {
+      font-size: 17px;
+    }
   }
   #learnMorebtn {
     font-size: 16px;
     padding: 14px;
   }
 }
+
 @media (max-width: 400px) {
-  #headerAbout h1 {
-    font-size: 36px;
+  #headerAbout {
+    h1 {
+      font-size: 36px;
+    }
+    p {
+      font-size: 15px;
+    }
   }
-  #headerAbout p {
-    font-size: 15px;
+  #featuresGoalsSection {
+    & > h1 {
+      font-size: 26px;
+    }
   }
-  #featuresGoalsSection > h1 {
-    font-size: 26px;
-  }
-  #featureGoalCard h1 {
-    font-size: 18px;
-  }
-  #featureGoalCard p {
-    font-size: 14px;
+  #featureGoalCard {
+    h1 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 14px;
+    }
   }
   .member img {
     height: 100px;
-  }
-  .member img:hover {
-    height: 100px;
+
+    &:hover {
+      height: 100px;
+    }
   }
   #quotes {
     font-size: 13px;
     padding: 8px 12px;
   }
 }
-
-/*# sourceMappingURL=studypyPage.css.map */
