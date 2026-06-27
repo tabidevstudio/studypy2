@@ -549,7 +549,6 @@ async function loadLinks() {
     return;
   }
     const UNDER_CONSTRUCTION_PAGES = [
-        "interview-prep",
         "resume-building",
         "coding-problems"
     ];
