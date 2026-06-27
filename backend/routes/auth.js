@@ -382,7 +382,8 @@ router.get("/me", requireAuth, async (req, res) => {
       avatar: user.avatar,
       bookmarks: user.bookmarks,
       watchedVideos: user.watchedVideos,
-      streak: user.streak
+      streak: user.streak,
+      resume: user.resume
     }
   });
 });
@@ -499,4 +500,52 @@ router.post("/streak/increment", requireAuth, async (req, res) => {
   res.json({ streak: user.streak });
 });
 
+
+
+// 7. Get saved resume
+router.get("/resume", requireAuth, async (req, res) => {
+  res.json({ resume: req.user.resume || null });
+});
+
+// 8. Save / update resume
+router.post("/resume/save", requireAuth, async (req, res) => {
+  const { resumeData } = req.body;
+
+  if (!resumeData || typeof resumeData !== "object") {
+    return res.status(400).json({ error: "Missing or invalid resume data." });
+  }
+
+  try {
+    req.user.resume = {
+      templateId:   resumeData.templateId   || "",
+      accentColor:  resumeData.accentColor  || "#91DAEB",
+      font:         resumeData.font         || "poppins",
+      pageSize:     resumeData.pageSize     || "A4",
+      personalInfo: {
+        name:      resumeData.personalInfo?.name      || "",
+        email:     resumeData.personalInfo?.email     || "",
+        phone:     resumeData.personalInfo?.phone     || "",
+        linkedin:  resumeData.personalInfo?.linkedin  || "",
+        github:    resumeData.personalInfo?.github    || "",
+        portfolio: resumeData.personalInfo?.portfolio || ""
+      },
+      summary:        resumeData.summary        || "",
+      education:      Array.isArray(resumeData.education)      ? resumeData.education      : [],
+      skills:         Array.isArray(resumeData.skills)         ? resumeData.skills         : [],
+      projects:       Array.isArray(resumeData.projects)       ? resumeData.projects       : [],
+      experience:     Array.isArray(resumeData.experience)     ? resumeData.experience     : [],
+      certifications: Array.isArray(resumeData.certifications) ? resumeData.certifications : [],
+      lastSaved: new Date().toISOString()
+    };
+
+    await req.user.save();
+
+    res.json({ success: true, resume: req.user.resume });
+  } catch (err) {
+    console.error("Resume save error:", err.message);
+    res.status(500).json({ error: "Failed to save resume." });
+  }
+});
+
 module.exports = router;
+

@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Profile | Studypy</title>
-    <meta name="description" content="Your StudyPy profile dashboard — view your streak, daily challenge, bookmarks, and watched tutorials." />
-    <link rel="stylesheet" href="../css/main.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
-    <link rel="icon" type="image/png" href="../assets/favicon/favicon-96x96.png" sizes="96x96" />
-    <style>
-        /* ── Edit Username Modal ─────────────────────────────── */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.25s ease;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Profile | Studypy</title>
+        <meta name="description" content="Your StudyPy profile dashboard — view your streak, daily challenge, bookmarks, and watched tutorials." />
+        <link rel="stylesheet" href="../css/main.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+        <link rel="icon" type="image/png" href="../assets/favicon/favicon-96x96.png" sizes="96x96" />
+        <style>
+/* ── Edit Username Modal ─────────────────────────────── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
         .modal-overlay.open {
             opacity: 1;
             pointer-events: all;
@@ -193,112 +193,120 @@
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
-    </style>
-</head>
-<body>
+        </style>
+    </head>
+    <body>
 
-    <div id="navbar-placeholder"></div>
+        <div id="navbar-placeholder"></div>
 
-    <!-- Edit Username Modal -->
-    <div class="modal-overlay" id="edit-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text">
-        <div class="modal-card">
-            <button class="modal-close-btn" id="modal-close-btn" aria-label="Close"><i class='bx bx-x'></i></button>
-            <div class="modal-title" id="modal-title-text">Edit Username</div>
-            <div class="modal-subtitle">Choose a new display name for your account.</div>
-            <div class="modal-field">
-                <label for="username-input">Username</label>
-                <input type="text" id="username-input" class="modal-input" maxlength="30" autocomplete="off" spellcheck="false" placeholder="Enter new username" />
-                <div class="modal-char-count"><span id="char-count">0</span> / 30</div>
-                <div class="modal-error" id="modal-error"></div>
-            </div>
-            <div class="modal-actions">
-                <button class="btn-modal-cancel" id="modal-cancel-btn">Cancel</button>
-                <button class="btn-modal-save" id="modal-save-btn" disabled>
-                    <i class='bx bx-check'></i>
-                    Save Changes
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Success toast -->
-    <div class="profile-toast" id="profile-toast"></div>
-
-    <div class="settings-container">
-        <div class="settings-layout">
-            
-            <!-- SIDEBAR DETAILS -->
-            <div class="left-column">
-                <!-- Profile card -->
-                <div class="dashboard-card profile-header">
-                    <img src="/assets/images/lugu-bg.png" alt="Avatar" id="user-avatar" class="profile-avatar">
-                    <h2 id="user-name" class="profile-name">...</h2>
-                    <p id="user-email" class="profile-email">...</p>
-                    <button class="btn-edit-username" id="btn-edit-username">
-                        <i class='bx bx-edit-alt'></i>
-                        Edit Username
-                    </button>
-                    <button id="logout-btn" class="btn-logout">
-                        <i class='bx bx-log-out'></i>
-                        Sign Out
+        <!-- Edit Username Modal -->
+        <div class="modal-overlay" id="edit-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text">
+            <div class="modal-card">
+                <button class="modal-close-btn" id="modal-close-btn" aria-label="Close"><i class='bx bx-x'></i></button>
+                <div class="modal-title" id="modal-title-text">Edit Username</div>
+                <div class="modal-subtitle">Choose a new display name for your account.</div>
+                <div class="modal-field">
+                    <label for="username-input">Username</label>
+                    <input type="text" id="username-input" class="modal-input" maxlength="30" autocomplete="off" spellcheck="false" placeholder="Enter new username" />
+                    <div class="modal-char-count"><span id="char-count">0</span> / 30</div>
+                    <div class="modal-error" id="modal-error"></div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-modal-cancel" id="modal-cancel-btn">Cancel</button>
+                    <button class="btn-modal-save" id="modal-save-btn" disabled>
+                        <i class='bx bx-check'></i>
+                        Save Changes
                     </button>
                 </div>
-
-                <!-- Daily Streak flame -->
-                <div class="dashboard-card streak-card">
-                    <div class="streak-flame">🔥</div>
-                    <div class="streak-count" id="streak-count">0</div>
-                    <div class="streak-title">Days Streak</div>
-                    <div id="streak-status" class="streak-status">...</div>
-                </div>
             </div>
-
-            <!-- MAIN WORKSPACE -->
-            <div class="right-column">
-                <!-- Daily challenge panel -->
-                <div class="dashboard-card">
-                    <h2 class="card-title">
-                        <i class='bx bx-code-block'></i>
-                        Daily Coding Challenge
-                    </h2>
-                    <div class="challenge-box">
-                        <div class="challenge-title" id="challenge-title">...</div>
-                        <p class="challenge-desc" id="challenge-desc">...</p>
-                        <textarea id="challenge-code" class="code-textarea" spellcheck="false"></textarea>
-                        <button id="verify-challenge-btn" class="btn-verify">Run &amp; Verify Challenge</button>
-                        <div id="verify-result" class="verify-result"></div>
-                    </div>
-                </div>
-
-                <!-- Bookmarked Resources -->
-                <div class="dashboard-card">
-                    <h2 class="card-title">
-                        <i class='bx bx-bookmark'></i>
-                        Bookmarked Resources
-                    </h2>
-                    <div id="bookmarks-list" class="list-container">
-                        <div class="empty-placeholder">No bookmarks saved yet.</div>
-                    </div>
-                </div>
-
-                <!-- Watched video tutorials progress -->
-                <div class="dashboard-card">
-                    <h2 class="card-title">
-                        <i class='bx bx-video'></i>
-                        Watched Video Tutorials
-                    </h2>
-                    <div id="watched-list" class="list-container">
-                        <div class="empty-placeholder">No videos completed yet.</div>
-                    </div>
-                </div>
-            </div>
-
         </div>
-    </div>
 
-    <script type="module" src="../js/script.js"></script>
-    <script type="module">
-        import { getProfile, logoutUser, toggleBookmark, toggleWatched, updateProfile } from "../js/auth.js";
+        <!-- Success toast -->
+        <div class="profile-toast" id="profile-toast"></div>
+
+        <div class="settings-container">
+            <div class="settings-layout">
+
+                <!-- SIDEBAR DETAILS -->
+                <div class="left-column">
+                    <!-- Profile card -->
+                    <div class="dashboard-card profile-header">
+                        <img src="/assets/images/lugu-bg.png" alt="Avatar" id="user-avatar" class="profile-avatar">
+                        <h2 id="user-name" class="profile-name">...</h2>
+                        <p id="user-email" class="profile-email">...</p>
+                        <button class="btn-edit-username" id="btn-edit-username">
+                            <i class='bx bx-edit-alt'></i>
+                            Edit Username
+                        </button>
+                        <button id="logout-btn" class="btn-logout">
+                            <i class='bx bx-log-out'></i>
+                            Sign Out
+                        </button>
+                    </div>
+
+                    <!-- Daily Streak flame -->
+                    <div class="dashboard-card streak-card">
+                        <div class="streak-flame">🔥</div>
+                        <div class="streak-count" id="streak-count">0</div>
+                        <div class="streak-title">Days Streak</div>
+                        <div id="streak-status" class="streak-status">...</div>
+                    </div>
+                </div>
+
+                <!-- MAIN WORKSPACE -->
+                <div class="right-column">
+                    <!-- Daily challenge panel -->
+                    <div class="dashboard-card">
+                        <h2 class="card-title">
+                            <i class='bx bx-code-block'></i>
+                            Daily Coding Challenge
+                        </h2>
+                        <div class="challenge-box">
+                            <div class="challenge-title" id="challenge-title">...</div>
+                            <p class="challenge-desc" id="challenge-desc">...</p>
+                            <textarea id="challenge-code" class="code-textarea" spellcheck="false"></textarea>
+                            <button id="verify-challenge-btn" class="btn-verify">Run &amp; Verify Challenge</button>
+                            <div id="verify-result" class="verify-result"></div>
+                        </div>
+                    </div>
+                    <!-- My Resume -->
+                    <div class="dashboard-card" id="resume-card">
+                        <h2 class="card-title">
+                            <i class='bx bx-file'></i>
+                            My Resume
+                        </h2>
+                        <div id="resume-card-body"></div>
+                    </div>
+
+                    <!-- Bookmarked Resources -->
+                    <div class="dashboard-card">
+                        <h2 class="card-title">
+                            <i class='bx bx-bookmark'></i>
+                            Bookmarked Resources
+                        </h2>
+                        <div id="bookmarks-list" class="list-container">
+                            <div class="empty-placeholder">No bookmarks saved yet.</div>
+                        </div>
+                    </div>
+
+                    <!-- Watched video tutorials progress -->
+                    <div class="dashboard-card">
+                        <h2 class="card-title">
+                            <i class='bx bx-video'></i>
+                            Watched Video Tutorials
+                        </h2>
+                        <div id="watched-list" class="list-container">
+                            <div class="empty-placeholder">No videos completed yet.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script type="module" src="../js/script.js"></script>
+        <script type="module">
+            import { getProfile, logoutUser, toggleBookmark, toggleWatched, updateProfile } from "../js/auth.js";
 
         // ── Guard: redirect to login if not authenticated ────────────────────
         // Runs before rendering anything
@@ -349,22 +357,6 @@
             }
         };
 
-        // ── Dashboard Init ───────────────────────────────────────────────────
-        async function initDashboard() {
-            const profileRes = await getProfile();
-
-            if (!profileRes.authenticated) {
-                window.location.href = "/pages/login.html";
-                return;
-            }
-
-            currentUser = profileRes.user;
-            renderProfile();
-            renderStreak();
-            renderChallenge();
-            renderBookmarks();
-            renderWatchedVideos();
-        }
 
         function renderProfile() {
             document.getElementById("user-avatar").src = currentUser.avatar || "/assets/images/lugu-bg.png";
@@ -444,60 +436,60 @@
                 if (result.errors) {
                     verifyResult.className = "verify-result error";
                     verifyResult.innerHTML = `<strong>Error:</strong><pre style="margin-top:5px; font-family:monospace; font-size:0.75rem;">${result.errors}</pre>`;
-                } else if (result.output && result.output.includes("All tests passed!")) {
+                    } else if (result.output && result.output.includes("All tests passed!")) {
                     verifyResult.className = "verify-result success";
                     verifyResult.innerHTML = "<i class='bx bxs-check-circle'></i> <strong>Success!</strong> All assertions passed! Updating streak...";
 
                     const todayStr = getTodayStr();
                     const streakRes = await fetch(`${BACKEND_BASE}/api/auth/streak/increment`, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ date: todayStr }),
-                        credentials: "include"
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ date: todayStr }),
+                    credentials: "include"
                     });
 
                     if (streakRes.ok) {
-                        const streakData = await streakRes.json();
-                        currentUser.streak = streakData.streak;
-                        renderStreak();
-                        renderChallenge();
+                    const streakData = await streakRes.json();
+                    currentUser.streak = streakData.streak;
+                    renderStreak();
+                    renderChallenge();
                     } else {
-                        verifyResult.innerHTML = "<i class='bx bxs-check-circle'></i> <strong>Success!</strong> Code passed, but failed to update streak in the database.";
+                    verifyResult.innerHTML = "<i class='bx bxs-check-circle'></i> <strong>Success!</strong> Code passed, but failed to update streak in the database.";
                     }
-                } else {
+                    } else {
                     verifyResult.className = "verify-result error";
                     verifyResult.innerHTML = `<strong>Result:</strong> Output did not verify assertions.<pre style="margin-top:5px; font-family:monospace; font-size:0.75rem;">${result.output || "No output returned."}</pre>`;
-                }
-            } catch (err) {
-                verifyResult.className = "verify-result error";
-                verifyResult.innerHTML = `<strong>Failed to compile:</strong> ${err.message}`;
-            }
-        }
+                    }
+                    } catch (err) {
+                    verifyResult.className = "verify-result error";
+                    verifyResult.innerHTML = `<strong>Failed to compile:</strong> ${err.message}`;
+                    }
+                    }
 
-        function renderBookmarks() {
-            const container = document.getElementById("bookmarks-list");
-            const bookmarks = currentUser.bookmarks || [];
+                    function renderBookmarks() {
+                    const container = document.getElementById("bookmarks-list");
+                    const bookmarks = currentUser.bookmarks || [];
 
-            if (bookmarks.length === 0) {
-                container.innerHTML = `<div class="empty-placeholder">No bookmarks saved yet. Explore <a href="/pages/Learning/online-courses.html">Online Courses</a> or <a href="/pages/Docs/official-docs.html">Cheat Sheets</a> to save resources!</div>`;
-                return;
-            }
+                    if (bookmarks.length === 0) {
+                    container.innerHTML = `<div class="empty-placeholder">No bookmarks saved yet. Explore <a href="/pages/Learning/online-courses.html">Online Courses</a> or <a href="/pages/Docs/official-docs.html">Cheat Sheets</a> to save resources!</div>`;
+                    return;
+                    }
 
-            container.innerHTML = "";
-            bookmarks.forEach(urlPath => {
-                let cleanTitle = urlPath;
-                try {
+                    container.innerHTML = "";
+                    bookmarks.forEach(urlPath => {
+                    let cleanTitle = urlPath;
+                    try {
                     const url = new URL(urlPath, window.location.origin);
                     const pathParts = url.pathname.split("/").filter(Boolean);
                     if (pathParts.length > 0) {
-                        const lastPart = pathParts[pathParts.length - 1].replace(".html", "");
-                        cleanTitle = lastPart.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+                    const lastPart = pathParts[pathParts.length - 1].replace(".html", "");
+                    cleanTitle = lastPart.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
                     }
-                } catch(e) {}
+                    } catch(e) {}
 
-                const card = document.createElement("div");
-                card.className = "resource-card";
-                card.innerHTML = `
+                    const card = document.createElement("div");
+                    card.className = "resource-card";
+                    card.innerHTML = `
                     <div class="resource-info">
                         <h3>${cleanTitle}</h3>
                         <p>${urlPath}</p>
@@ -506,38 +498,38 @@
                         <a href="${urlPath}" class="btn-go" title="Visit Resource"><i class='bx bx-right-top-arrow-circle'></i></a>
                         <button class="btn-remove remove-bookmark" data-path="${urlPath}" title="Delete Bookmark"><i class='bx bx-trash'></i></button>
                     </div>
-                `;
-                container.appendChild(card);
-            });
+                    `;
+                    container.appendChild(card);
+                    });
 
-            container.querySelectorAll(".remove-bookmark").forEach(btn => {
-                btn.addEventListener("click", async () => {
+                    container.querySelectorAll(".remove-bookmark").forEach(btn => {
+                    btn.addEventListener("click", async () => {
                     const res = await toggleBookmark(btn.dataset.path);
                     currentUser.bookmarks = res.bookmarks;
                     renderBookmarks();
-                });
-            });
-        }
+                    });
+                    });
+                    }
 
-        function renderWatchedVideos() {
-            const container = document.getElementById("watched-list");
-            const videos = currentUser.watchedVideos || [];
+                    function renderWatchedVideos() {
+                    const container = document.getElementById("watched-list");
+                    const videos = currentUser.watchedVideos || [];
 
-            if (videos.length === 0) {
-                container.innerHTML = `<div class="empty-placeholder">No videos marked as watched yet. Start learning in <a href="/pages/Learning/video-tutorials.html">Video Tutorials</a>!</div>`;
-                return;
-            }
+                    if (videos.length === 0) {
+                    container.innerHTML = `<div class="empty-placeholder">No videos marked as watched yet. Start learning in <a href="/pages/Learning/video-tutorials.html">Video Tutorials</a>!</div>`;
+                    return;
+                    }
 
-            container.innerHTML = "";
-            videos.forEach(videoUrl => {
-                let videoTitle = "Video Tutorial";
-                if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
+                    container.innerHTML = "";
+                    videos.forEach(videoUrl => {
+                    let videoTitle = "Video Tutorial";
+                    if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
                     videoTitle = "YouTube Lecture / Tutorial";
-                }
+                    }
 
-                const card = document.createElement("div");
-                card.className = "resource-card";
-                card.innerHTML = `
+                    const card = document.createElement("div");
+                    card.className = "resource-card";
+                    card.innerHTML = `
                     <div class="resource-info">
                         <h3>${videoTitle}</h3>
                         <p>${videoUrl}</p>
@@ -546,121 +538,188 @@
                         <a href="${videoUrl}" target="_blank" class="btn-go" title="Play Video"><i class='bx bx-play-circle'></i></a>
                         <button class="btn-remove remove-watched" data-url="${videoUrl}" title="Remove Progress"><i class='bx bx-trash'></i></button>
                     </div>
-                `;
-                container.appendChild(card);
-            });
+                    `;
+                    container.appendChild(card);
+                    });
 
-            container.querySelectorAll(".remove-watched").forEach(btn => {
-                btn.addEventListener("click", async () => {
+                    container.querySelectorAll(".remove-watched").forEach(btn => {
+                    btn.addEventListener("click", async () => {
                     const res = await toggleWatched(btn.dataset.url);
                     currentUser.watchedVideos = res.watchedVideos;
                     renderWatchedVideos();
-                });
-            });
-        }
+                    });
+                    });
+                    }
+                    function renderResumeCard() {
+                    const container = document.getElementById("resume-card-body");
+                    const resume = currentUser.resume;
 
-        // ── Helpers ──────────────────────────────────────────────────────────
-        function getTodayStr() {
-            const d = new Date();
-            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-        }
+                    if (!resume || !resume.templateId) {
+                    container.innerHTML = `
+                    <div class="empty-placeholder">
+                        You haven't built a resume yet. Create one in minutes — pick a template, fill in your details, and download it as a PDF.
+                    </div>
+                    <a href="/pages/Career/resume-building.html" class="btn-verify" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none; margin-top:12px;">
+                        <i class='bx bx-plus'></i> Build Your Resume
+                    </a>
+                    `;
+                    return;
+                    }
 
-        function showToast(message, isError = false) {
-            const toast = document.getElementById("profile-toast");
-            toast.textContent = message;
-            toast.style.background = isError ? "rgba(235,94,85,0.15)" : "rgba(76,209,55,0.15)";
-            toast.style.borderColor = isError ? "rgba(235,94,85,0.35)" : "rgba(76,209,55,0.35)";
-            toast.style.color = isError ? "#eb5e55" : "#4cd137";
-            toast.classList.add("show");
-            setTimeout(() => toast.classList.remove("show"), 3000);
-        }
+                    const pct = computeResumeCompleteness(resume);
+                    const lastSaved = resume.lastSaved
+                    ? new Date(resume.lastSaved).toLocaleDateString("en-PH", { dateStyle: "medium" })
+                    : "Never";
 
-        // ── Modal Logic ──────────────────────────────────────────────────────
-        const modal = document.getElementById("edit-modal");
-        const usernameInput = document.getElementById("username-input");
-        const charCount = document.getElementById("char-count");
-        const modalError = document.getElementById("modal-error");
-        const modalSaveBtn = document.getElementById("modal-save-btn");
+                    container.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                        <span style="font-size:0.82rem; color:rgba(255,255,255,0.5);">
+                            Template: <strong style="color:#fff; text-transform:capitalize;">${resume.templateId}</strong>
+                        </span>
+                        <span style="font-size:0.78rem; color:rgba(255,255,255,0.4);">${pct}% complete</span>
+                    </div>
+                    <div style="height:5px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; margin-bottom:14px;">
+                        <div style="height:100%; width:${pct}%; background:linear-gradient(90deg, rgb(145,218,235), #4cd137); border-radius:3px;"></div>
+                    </div>
+                    <p style="font-size:0.78rem; color:rgba(255,255,255,0.35); margin-bottom:14px;">Last saved: ${lastSaved}</p>
+                    <a href="/pages/Career/resume-building.html" class="btn-verify" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; text-decoration:none;">
+                        <i class='bx bx-edit-alt'></i> Edit Resume
+                    </a>
+                    `;
+                    }
 
-        function openModal() {
-            usernameInput.value = currentUser.username || "";
-            charCount.textContent = usernameInput.value.length;
-            modalError.textContent = "";
-            modalSaveBtn.disabled = false;
-            modal.classList.add("open");
-            setTimeout(() => usernameInput.focus(), 100);
-        }
+                    function computeResumeCompleteness(r) {
+                    let score = 0, total = 8;
+                    const pi = r.personalInfo || {};
+                    if (pi.name) score++;
+                    if (pi.email) score++;
+                    if (pi.phone) score++;
+                    if (pi.github || pi.linkedin) score++;
+                    if (r.summary) score++;
+                    if ((r.skills || []).length >= 3) score++;
+                    if ((r.education || [])[0]?.school) score++;
+                    if ((r.projects || []).length || (r.experience || []).length) score++;
+                    return Math.round((score / total) * 100);
+                    }
+                    // ── Helpers ──────────────────────────────────────────────────────────
+                    function getTodayStr() {
+                    const d = new Date();
+                    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+                    }
 
-        function closeModal() {
-            modal.classList.remove("open");
-        }
+                    function showToast(message, isError = false) {
+                    const toast = document.getElementById("profile-toast");
+                    toast.textContent = message;
+                    toast.style.background = isError ? "rgba(235,94,85,0.15)" : "rgba(76,209,55,0.15)";
+                    toast.style.borderColor = isError ? "rgba(235,94,85,0.35)" : "rgba(76,209,55,0.35)";
+                    toast.style.color = isError ? "#eb5e55" : "#4cd137";
+                    toast.classList.add("show");
+                    setTimeout(() => toast.classList.remove("show"), 3000);
+                    }
 
-        usernameInput.addEventListener("input", () => {
-            charCount.textContent = usernameInput.value.length;
-            modalError.textContent = "";
-            modalSaveBtn.disabled = usernameInput.value.trim().length < 2;
-        });
+                    // ── Modal Logic ──────────────────────────────────────────────────────
+                    const modal = document.getElementById("edit-modal");
+                    const usernameInput = document.getElementById("username-input");
+                    const charCount = document.getElementById("char-count");
+                    const modalError = document.getElementById("modal-error");
+                    const modalSaveBtn = document.getElementById("modal-save-btn");
 
-        document.getElementById("btn-edit-username").addEventListener("click", openModal);
-        document.getElementById("modal-close-btn").addEventListener("click", closeModal);
-        document.getElementById("modal-cancel-btn").addEventListener("click", closeModal);
+                    function openModal() {
+                    usernameInput.value = currentUser.username || "";
+                    charCount.textContent = usernameInput.value.length;
+                    modalError.textContent = "";
+                    modalSaveBtn.disabled = false;
+                    modal.classList.add("open");
+                    setTimeout(() => usernameInput.focus(), 100);
+                    }
 
-        // Close on overlay click (outside card)
-        modal.addEventListener("click", (e) => {
-            if (e.target === modal) closeModal();
-        });
+                    function closeModal() {
+                    modal.classList.remove("open");
+                    }
 
-        // Close on Escape key
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
-        });
+                    usernameInput.addEventListener("input", () => {
+                    charCount.textContent = usernameInput.value.length;
+                    modalError.textContent = "";
+                    modalSaveBtn.disabled = usernameInput.value.trim().length < 2;
+                    });
 
-        modalSaveBtn.addEventListener("click", async () => {
-            const newUsername = usernameInput.value.trim();
-            if (!newUsername || newUsername.length < 2) {
-                modalError.textContent = "Username must be at least 2 characters.";
-                return;
-            }
+                    document.getElementById("btn-edit-username").addEventListener("click", openModal);
+                    document.getElementById("modal-close-btn").addEventListener("click", closeModal);
+                    document.getElementById("modal-cancel-btn").addEventListener("click", closeModal);
 
-            modalSaveBtn.disabled = true;
-            modalSaveBtn.innerHTML = `<i class='bx bx-loader-alt bx-spin'></i> Saving...`;
-            modalError.textContent = "";
+                    // Close on overlay click (outside card)
+                    modal.addEventListener("click", (e) => {
+                    if (e.target === modal) closeModal();
+                    });
 
-            try {
-                const res = await updateProfile(newUsername);
-                currentUser.username = res.user.username;
+                    // Close on Escape key
+                    document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
+                    });
 
-                // Update all username displays
-                document.getElementById("user-name").textContent = currentUser.username;
+                    modalSaveBtn.addEventListener("click", async () => {
+                    const newUsername = usernameInput.value.trim();
+                    if (!newUsername || newUsername.length < 2) {
+                    modalError.textContent = "Username must be at least 2 characters.";
+                    return;
+                    }
 
-                // Also update navbar avatar tooltip
-                const navAvatarLink = document.querySelector(".nav-avatar-btn");
-                if (navAvatarLink) navAvatarLink.title = currentUser.username;
+                    modalSaveBtn.disabled = true;
+                    modalSaveBtn.innerHTML = `<i class='bx bx-loader-alt bx-spin'></i> Saving...`;
+                    modalError.textContent = "";
 
-                closeModal();
-                showToast("✓ Username updated successfully!");
-            } catch (err) {
-                modalError.textContent = err.message || "Failed to update username. Please try again.";
-                showToast(err.message || "Update failed.", true);
-            } finally {
-                modalSaveBtn.disabled = false;
-                modalSaveBtn.innerHTML = `<i class='bx bx-check'></i> Save Changes`;
-            }
-        });
+                    try {
+                    const res = await updateProfile(newUsername);
+                    currentUser.username = res.user.username;
 
-        // ── Global Events ────────────────────────────────────────────────────
-        document.getElementById("logout-btn").addEventListener("click", async () => {
-            await logoutUser();
-            window.location.href = "/pages/login.html";
-        });
+                    // Update all username displays
+                    document.getElementById("user-name").textContent = currentUser.username;
 
-        document.getElementById("verify-challenge-btn").addEventListener("click", verifyChallenge);
+                    // Also update navbar avatar tooltip
+                    const navAvatarLink = document.querySelector(".nav-avatar-btn");
+                    if (navAvatarLink) navAvatarLink.title = currentUser.username;
 
-        // ── Boot ─────────────────────────────────────────────────────────────
-        initDashboard().catch(err => {
-            console.error("Profile dashboard failed to initialize:", err);
-            window.location.href = "/pages/login.html";
-        });
-    </script>
-</body>
+                    closeModal();
+                    showToast("✓ Username updated successfully!");
+                    } catch (err) {
+                    modalError.textContent = err.message || "Failed to update username. Please try again.";
+                    showToast(err.message || "Update failed.", true);
+                    } finally {
+                    modalSaveBtn.disabled = false;
+                    modalSaveBtn.innerHTML = `<i class='bx bx-check'></i> Save Changes`;
+                    }
+                    });
+
+                    // ── Global Events ────────────────────────────────────────────────────
+                    document.getElementById("logout-btn").addEventListener("click", async () => {
+                    await logoutUser();
+                    window.location.href = "/pages/login.html";
+                    });
+
+                    document.getElementById("verify-challenge-btn").addEventListener("click", verifyChallenge);
+
+                    // ── Boot ─────────────────────────────────────────────────────────────
+                    initDashboard().catch(err => {
+                    console.error("Profile dashboard failed to initialize:", err);
+                    window.location.href = "/pages/login.html";
+                    });
+
+                    async function initDashboard() {
+                    const profileRes = await getProfile();
+
+                    if (!profileRes.authenticated) {
+                    window.location.href = "/pages/login.html";
+                    return;
+                    }
+
+                    currentUser = profileRes.user;
+                    renderProfile();
+                    renderStreak();
+                    renderChallenge();
+                    renderBookmarks();
+                    renderWatchedVideos();
+                    renderResumeCard();   // ← add this line
+                    }
+        </script>
+    </body>
 </html>

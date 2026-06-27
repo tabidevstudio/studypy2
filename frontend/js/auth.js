@@ -83,3 +83,21 @@ export async function updateProfile(username) {
     body: { username }
   });
 }
+
+/**
+ * Fetch the authenticated user's saved resume data.
+ */
+export async function getResume() {
+  return await apiFetch(`${API_BASE}/resume`);
+}
+
+/**
+ * Save / update the authenticated user's resume data.
+ */
+export async function saveResume(resumeData) {
+  return await apiFetch(`${API_BASE}/resume/save`, {
+    method: "POST",
+    body: { resumeData }
+  });
+}
+

@@ -549,7 +549,6 @@ async function loadLinks() {
     return;
   }
     const UNDER_CONSTRUCTION_PAGES = [
-        "resume-building",
         "coding-problems"
     ];
     if(UNDER_CONSTRUCTION_PAGES.includes(pageName)) {

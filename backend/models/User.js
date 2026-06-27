@@ -9,11 +9,33 @@ const UserSchema = new mongoose.Schema(
     googleId: { type: String, unique: true, sparse: true },
     githubId: { type: String, unique: true, sparse: true },
     avatar: { type: String },
-    bookmarks: { type: [String], default: [] }, 
+    bookmarks: { type: [String], default: [] },
     watchedVideos: { type: [String], default: [] },
     streak: {
       count: { type: Number, default: 0 },
-      lastActiveDate: { type: String, default: "" } 
+      lastActiveDate: { type: String, default: "" }
+    },
+    // ── Resume Builder ───────────────────────────────────────
+    resume: {
+      templateId:  { type: String, default: "" },
+      accentColor: { type: String, default: "#91DAEB" },
+      font:        { type: String, default: "poppins" },
+      pageSize:    { type: String, default: "A4" },
+      personalInfo: {
+        name:      { type: String, default: "" },
+        email:     { type: String, default: "" },
+        phone:     { type: String, default: "" },
+        linkedin:  { type: String, default: "" },
+        github:    { type: String, default: "" },
+        portfolio: { type: String, default: "" }
+      },
+      summary:        { type: String, default: "" },
+      education:      { type: Array,    default: [] },
+      skills:         { type: [String], default: [] },
+      projects:       { type: Array,    default: [] },
+      experience:     { type: Array,    default: [] },
+      certifications: { type: Array,    default: [] },
+      lastSaved:      { type: String,   default: "" }
     }
   },
   {

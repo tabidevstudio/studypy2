@@ -1,14 +1,544 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-
-                    scale=1.0">
-        <title>Resume Building | Studypy</title>
-    </head>
-    <body>
-        <div id="tools-container" data-page="resume-building"></div>
-        <script type="module" src="../../js/links.js"></script>
-    </body>
-</html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Builder | StudyPy</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/career.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="StudyPY" />
+    <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <div class="resume-toast" id="resume-toast"></div>
+    <div id="print-target" style="display:none;"></div>
 
+    <main class="main">
+        <div class="resume-page">
+
+            <!-- Page Header -->
+            <div class="career-badge"><i class='bx bx-file'></i> Career Tools</div>
+            <h1 class="career-title">Resume Builder</h1>
+            <p class="career-subtitle">Build a clean, ATS-friendly resume in minutes. Pick a template, fill in your details, and download — your progress saves to your profile.</p>
+
+            <!-- Page Tabs -->
+            <div class="page-tab-bar">
+                <button class="page-tab-btn active" data-tab="builder">
+                    <i class='bx bx-edit'></i> Builder
+                </button>
+                <button class="page-tab-btn" data-tab="resources">
+                    <i class='bx bx-book-open'></i> Resume Resources
+                </button>
+            </div>
+
+            <!-- ── BUILDER TAB ── -->
+            <div class="page-tab-content active" id="tab-builder">
+
+                <!-- Step Indicator -->
+                <div class="step-indicator">
+                    <div class="step-wrap">
+                        <div class="step-dot active" id="sdot-1">1</div>
+                        <div class="step-label active" id="slabel-1">Template</div>
+                    </div>
+                    <div class="step-line" id="sline-1"></div>
+                    <div class="step-wrap">
+                        <div class="step-dot" id="sdot-2">2</div>
+                        <div class="step-label" id="slabel-2">Fill Details</div>
+                    </div>
+                    <div class="step-line" id="sline-2"></div>
+                    <div class="step-wrap">
+                        <div class="step-dot" id="sdot-3">3</div>
+                        <div class="step-label" id="slabel-3">Save & Download</div>
+                    </div>
+                </div>
+
+                <!-- ── STEP 1: Pick Template ── -->
+                <div class="builder-step active" id="step-1">
+                    <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:6px;">Choose your template</h2>
+                    <p style="font-size:0.84rem; color:rgba(255,255,255,0.45); margin-bottom:0;">Both templates are ATS-safe — no columns that confuse applicant tracking systems.</p>
+
+                    <div class="template-grid">
+                        <!-- Classic -->
+                        <div class="template-card" data-template="classic">
+                            <div class="template-preview">
+                                <div style="width:100%; display:flex; flex-direction:column;">
+                                    <div class="tpl-classic">
+                                        <div class="tpl-header">
+                                            <div class="tpl-header-name">Your Name</div>
+                                            <div class="tpl-header-title">Software Developer</div>
+                                            <div class="tpl-contact-row">
+                                                <span class="tpl-contact-item">email@mail.com</span>
+                                                <span class="tpl-contact-item">github.com/you</span>
+                                            </div>
+                                        </div>
+                                        <div class="tpl-body">
+                                            <div class="tpl-section-label">Summary</div>
+                                            <div class="tpl-line med"></div>
+                                            <div class="tpl-line short"></div>
+                                            <div class="tpl-section-label">Education</div>
+                                            <div class="tpl-line accent"></div>
+                                            <div class="tpl-line short"></div>
+                                            <div class="tpl-section-label">Skills</div>
+                                            <div style="display:flex; gap:4px; flex-wrap:wrap;">
+                                                <div style="background:#e8e8e8; border-radius:2px; width:28px; height:7px;"></div>
+                                                <div style="background:#e8e8e8; border-radius:2px; width:22px; height:7px;"></div>
+                                                <div style="background:#e8e8e8; border-radius:2px; width:32px; height:7px;"></div>
+                                            </div>
+                                            <div class="tpl-section-label">Projects</div>
+                                            <div class="tpl-line med"></div>
+                                            <div class="tpl-line short"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-info">
+                                <div class="template-name">Classic</div>
+                                <div class="template-desc">Clean single-column layout. Best for most corporate jobs and companies using ATS software.</div>
+                                <span class="template-tag tag-ats">✓ ATS Friendly</span>
+                            </div>
+                        </div>
+
+                        <!-- Tech -->
+                        <div class="template-card" data-template="tech">
+                            <div class="template-preview">
+                                <div class="tpl-tech-wrap">
+                                    <div class="tpl-tech-sidebar">
+                                        <div class="tpl-avatar"></div>
+                                        <div style="font-size:7px; font-weight:700; color:#fff; text-align:center;">Your Name</div>
+                                        <div class="tpl-sidebar-label">Contact</div>
+                                        <div class="tpl-sidebar-line"></div>
+                                        <div class="tpl-sidebar-line" style="width:80%;"></div>
+                                        <div class="tpl-sidebar-label">Skills</div>
+                                        <div class="tpl-skill-tags">
+                                            <div class="tpl-skill-tag"></div>
+                                            <div class="tpl-skill-tag"></div>
+                                            <div class="tpl-skill-tag"></div>
+                                            <div class="tpl-skill-tag" style="width:24px;"></div>
+                                        </div>
+                                        <div class="tpl-sidebar-label">Education</div>
+                                        <div class="tpl-sidebar-line"></div>
+                                        <div class="tpl-sidebar-line" style="width:70%;"></div>
+                                    </div>
+                                    <div class="tpl-tech-main">
+                                        <div style="height:8px; background:#0f2027; border-radius:1px; width:60%; margin-bottom:4px;"></div>
+                                        <div style="height:5px; background:#e8e8e8; border-radius:1px; width:80%; margin-bottom:8px;"></div>
+                                        <div style="font-size:6px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#333; border-left:2px solid #0f2027; padding-left:4px; margin-bottom:5px;">Experience</div>
+                                        <div class="tpl-line med"></div>
+                                        <div class="tpl-line short"></div>
+                                        <div style="font-size:6px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#333; border-left:2px solid #0f2027; padding-left:4px; margin:7px 0 5px;">Projects</div>
+                                        <div class="tpl-line med"></div>
+                                        <div class="tpl-line short"></div>
+                                        <div class="tpl-line" style="width:70%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="template-info">
+                                <div class="template-name">Tech / Developer</div>
+                                <div class="template-desc">Skills-forward layout with a sidebar. Ideal for dev roles at startups and tech companies.</div>
+                                <span class="template-tag tag-dev">⚡ Dev Optimized</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-nav">
+                        <div></div>
+                        <button class="btn-step btn-step-next" id="btn-step1-next" disabled>
+                            Use this template <i class='bx bx-right-arrow-alt'></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ── STEP 2: Fill Details ── -->
+                <div class="builder-step" id="step-2">
+                    <!-- Customization Bar -->
+                    <div class="customization-bar">
+                        <div class="custom-group">
+                            <span class="custom-label">Accent color</span>
+                            <div class="color-picker-wrap" id="color-swatch-wrap">
+                                <div class="color-swatch" id="color-swatch-display"></div>
+                                <input type="color" id="accent-color-picker" value="#91DAEB">
+                            </div>
+                        </div>
+                        <div class="custom-group">
+                            <span class="custom-label">Font</span>
+                            <select class="font-select" id="font-select">
+                                <option value="poppins">Poppins</option>
+                                <option value="inter">Inter</option>
+                                <option value="georgia">Georgia (Serif)</option>
+                            </select>
+                        </div>
+                        <div class="custom-group">
+                            <span class="custom-label">Page size</span>
+                            <select class="size-select" id="size-select">
+                                <option value="A4">A4</option>
+                                <option value="Letter">Letter (US)</option>
+                            </select>
+                        </div>
+                        <div style="margin-left:auto; font-size:0.72rem; color:rgba(255,255,255,0.25);">
+                            <i class='bx bx-info-circle'></i> Changes appear live in the preview
+                        </div>
+                    </div>
+
+                    <div class="builder-layout">
+                        <!-- Left: Form -->
+                        <div class="form-panel">
+
+                            <!-- Personal Info -->
+                            <div class="form-section open" id="section-personal">
+                                <div class="form-section-header" onclick="toggleSection('section-personal')">
+                                    <div class="form-section-title">
+                                        <i class='bx bx-user'></i> Personal Info
+                                        <span class="form-section-badge badge-required">Required</span>
+                                    </div>
+                                    <i class='bx bx-chevron-down form-section-arrow'></i>
+                                </div>
+                                <div class="form-section-body">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">Full Name</label>
+                                            <input type="text" class="form-input" id="f-name" placeholder="e.g. Juan Dela Cruz">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-input" id="f-email" placeholder="you@email.com">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">Phone</label>
+                                            <input type="text" class="form-input" id="f-phone" placeholder="+63 912 345 6789">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">LinkedIn URL</label>
+                                            <input type="text" class="form-input" id="f-linkedin" placeholder="linkedin.com/in/yourname">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">GitHub URL</label>
+                                            <input type="text" class="form-input" id="f-github" placeholder="github.com/yourname">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Portfolio URL <span style="opacity:0.4;">(optional)</span></label>
+                                            <input type="text" class="form-input" id="f-portfolio" placeholder="yourportfolio.com">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Summary -->
+                            <div class="form-section" id="section-summary">
+                                <div class="form-section-header" onclick="toggleSection('section-summary')">
+                                    <div class="form-section-title">
+                                        <i class='bx bx-align-left'></i> Objective / Summary
+                                        <span class="form-section-badge badge-optional">Optional</span>
+                                    </div>
+                                    <i class='bx bx-chevron-down form-section-arrow'></i>
+                                </div>
+                                <div class="form-section-body">
+                                    <div class="form-row single" style="margin-top:14px;">
+                                        <div class="form-group">
+                                            <label class="form-label">2–3 sentences about your goals and what you bring</label>
+                                            <textarea class="form-textarea" id="f-summary" placeholder="e.g. 2nd year Computer Science student passionate about web development and Python. Seeking opportunities to apply my skills in real-world projects and grow as a developer."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Education -->
+                            <div class="form-section open" id="section-education">
+                                <div class="form-section-header" onclick="toggleSection('section-education')">
+                                    <div class="form-section-title">
+                                        <i class='bx bx-buildings'></i> Education
+                                        <span class="form-section-badge badge-required">Required</span>
+                                    </div>
+                                    <i class='bx bx-chevron-down form-section-arrow'></i>
+                                </div>
+                                <div class="form-section-body">
+                                    <div class="entry-list" id="education-list"></div>
+                                    <button class="btn-add-entry" onclick="addEntry('education')">
+                                        <i class='bx bx-plus'></i> Add Education
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Skills -->
+                            <div class="form-section open" id="section-skills">
+                                <div class="form-section-header" onclick="toggleSection('section-skills')">
+                                    <div class="form-section-title">
+                                        <i class='bx bx-code-alt'></i> Skills
+                                        <span class="form-section-badge badge-required">Required</span>
+                                    </div>
+                                    <i class='bx bx-chevron-down form-section-arrow'></i>
+                                </div>
+                                <div class="form-section-body">
+                                    <div style="margin-top:14px;">
+                                        <label class="form-label">Type a skill and press Enter or comma</label>
+                                        <div class="skills-input-wrap" id="skills-wrap">
+                                            <input type="text" class="skills-real-input" id="skill-input" placeholder="e.g. Python, React, Git...">
+                                        </div>
+                                        <div class="skills-hint">Press <strong>Enter</strong> or <strong>,</strong> to add each skill</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Projects -->
+                            <div class="form-section" id="section-projects">
+                                <div class="form-section-header" onclick="toggleSection('section-projects')">
+                                    <div class="form-section-title">
+                                        <i class='bx bx-rocket'></i> Projects
+                                        <span class="form-section-badge badge-optional">Optional</span>
+                                    </div>
+                                    <i class='bx bx-chevron-down form-section-arrow'></i>
+                                </div>
+                                <div class="form-section-body">
+                                    <div class="entry-list" id="projects-list"></div>
+                                    <button class="btn-add-entry" onclick="addEntry('projects')">
+                                        <i class='bx bx-plus'></i> Add Project
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Experience -->
+                            <div class="form-section" id="section-experience">
+                                <div class="form-section-header" onclick="toggleSection('section-experience')">
+                                    <div class="form-section-title">
+                                        <i class='bx bx-briefcase'></i> Work / Internship Experience
+                                        <span class="form-section-badge badge-optional">Optional</span>
+                                    </div>
+                                    <i class='bx bx-chevron-down form-section-arrow'></i>
+                                </div>
+                                <div class="form-section-body">
+                                    <div class="entry-list" id="experience-list"></div>
+                                    <button class="btn-add-entry" onclick="addEntry('experience')">
+                                        <i class='bx bx-plus'></i> Add Experience
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Certifications -->
+                            <div class="form-section" id="section-certs">
+                                <div class="form-section-header" onclick="toggleSection('section-certs')">
+                                    <div class="form-section-title">
+                                        <i class='bx bx-award'></i> Certifications & Courses
+                                        <span class="form-section-badge badge-optional">Optional</span>
+                                    </div>
+                                    <i class='bx bx-chevron-down form-section-arrow'></i>
+                                </div>
+                                <div class="form-section-body">
+                                    <div class="entry-list" id="certs-list"></div>
+                                    <button class="btn-add-entry" onclick="addEntry('certs')">
+                                        <i class='bx bx-plus'></i> Add Certification
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Right: Live Preview -->
+                        <div class="preview-panel">
+                            <div class="preview-panel-header">
+                                <span class="preview-label"><i class='bx bx-show' style="margin-right:4px;"></i> Live Preview</span>
+                                <div class="preview-actions">
+                                    <button class="btn-preview-action" onclick="downloadPDF()">
+                                        <i class='bx bx-download'></i> PDF
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="overflow-warning" id="overflow-warning">
+                                <i class='bx bx-error'></i> Content may overflow one page — try shortening descriptions.
+                            </div>
+                            <div class="resume-frame-wrap">
+                                <div class="resume-page-frame" id="resume-frame">
+                                    <!-- Rendered by JS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-nav">
+                        <button class="btn-step btn-step-back" onclick="goToStep(1)">
+                            <i class='bx bx-left-arrow-alt'></i> Back
+                        </button>
+                        <button class="btn-step btn-step-next" onclick="goToStep(3)">
+                            Save & Download <i class='bx bx-right-arrow-alt'></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ── STEP 3: Save & Download ── -->
+                <div class="builder-step" id="step-3">
+                    <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:20px;">Your resume is ready</h2>
+
+                    <!-- Completeness bar -->
+                    <div class="completeness-wrap">
+                        <div class="completeness-label">
+                            <span>Profile completeness</span>
+                            <span id="completeness-pct">0%</span>
+                        </div>
+                        <div class="completeness-bar">
+                            <div class="completeness-fill" id="completeness-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="save-layout">
+                        <!-- Save to Profile -->
+                        <div class="save-card">
+                            <div class="save-card-title">
+                                <i class='bx bx-cloud-upload'></i> Save to Profile
+                            </div>
+                            <div class="save-card-desc">
+                                Your resume data is saved to your StudyPy account. Come back any time to edit and update it as you gain new skills and experience.
+                            </div>
+                            <div id="login-prompt-wrap"></div>
+                            <button class="btn-save-action btn-save-profile" id="btn-save-profile" onclick="saveToProfile()">
+                                <i class='bx bx-save'></i> Save to My Profile
+                            </button>
+                            <div class="last-saved-text" id="last-saved-text"></div>
+                        </div>
+
+                        <!-- Download -->
+                        <div class="save-card">
+                            <div class="save-card-title">
+                                <i class='bx bx-download'></i> Download
+                            </div>
+                            <div class="save-card-desc">
+                                Download your resume as a PDF. Use your browser's print dialog — select "Save as PDF" and set margins to "None" for the cleanest output.
+                            </div>
+                            <button class="btn-save-action btn-download-pdf" onclick="downloadPDF()">
+                                <i class='bx bxs-file-pdf'></i> Download as PDF
+                            </button>
+                            <button class="btn-save-action btn-download-pdf" onclick="goToStep(2)" style="margin-top:4px; opacity:0.6;">
+                                <i class='bx bx-edit'></i> Back to editing
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── RESOURCES TAB ── -->
+            <div class="page-tab-content" id="tab-resources">
+
+                <div class="tips-box">
+                    <div class="tips-box-title"><i class='bx bx-bulb'></i> ATS Resume Quick Tips</div>
+                    <ul class="tips-list">
+                        <li>Use standard section headings — "Experience", "Education", "Skills". ATS can't read creative labels.</li>
+                        <li>Save and send as PDF unless the job posting specifically asks for DOCX.</li>
+                        <li>Keep it to 1 page if you have less than 5 years of experience.</li>
+                        <li>Quantify achievements where possible — "Built an app used by 200+ students" beats "Built an app".</li>
+                        <li>Mirror keywords from the job description — ATS systems scan for exact matches.</li>
+                        <li>No photos, no skill bar graphs, no two-column layouts — these all break ATS parsing.</li>
+                    </ul>
+                </div>
+
+                <div class="resource-section-title"><i class='bx bx-video'></i> Video Guides</div>
+                <div class="resources-grid">
+                    <a href="https://www.youtube.com/watch?v=Tt08KmFfIYQ" target="_blank" class="res-card">
+                        <div class="res-card-top">
+                            <div class="res-card-icon" style="background:rgba(231,76,60,0.12); color:#e74c3c;"><i class='bx bx-play-circle'></i></div>
+                            <span class="res-type-badge type-video">Video</span>
+                        </div>
+                        <div class="res-card-name">How to Write a Resume With No Experience</div>
+                        <div class="res-card-desc">Step-by-step guide for students and fresh grads building their very first resume.</div>
+                        <div class="res-card-source"><i class='bx bxl-youtube'></i> YouTube</div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=y8YH0QlD4Rc" target="_blank" class="res-card">
+                        <div class="res-card-top">
+                            <div class="res-card-icon" style="background:rgba(231,76,60,0.12); color:#e74c3c;"><i class='bx bx-play-circle'></i></div>
+                            <span class="res-type-badge type-video">Video</span>
+                        </div>
+                        <div class="res-card-name">Software Engineer Resume Tips (Google Recruiter)</div>
+                        <div class="res-card-desc">A Google recruiter walks through exactly what they look for in developer resumes.</div>
+                        <div class="res-card-source"><i class='bx bxl-youtube'></i> YouTube</div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=BYUy1yvjHxE" target="_blank" class="res-card">
+                        <div class="res-card-top">
+                            <div class="res-card-icon" style="background:rgba(231,76,60,0.12); color:#e74c3c;"><i class='bx bx-play-circle'></i></div>
+                            <span class="res-type-badge type-video">Video</span>
+                        </div>
+                        <div class="res-card-name">Resume Workshop for CS Students</div>
+                        <div class="res-card-desc">MIT Career Services workshop covering resume structure, common mistakes, and how to stand out.</div>
+                        <div class="res-card-source"><i class='bx bxl-youtube'></i> MIT OpenCourseWare</div>
+                    </a>
+                </div>
+
+                <div class="resource-section-title"><i class='bx bx-file-blank'></i> Articles & Guides</div>
+                <div class="resources-grid">
+                    <a href="https://www.techinterviewhandbook.org/resume/" target="_blank" class="res-card">
+                        <div class="res-card-top">
+                            <div class="res-card-icon" style="background:rgba(52,152,219,0.12); color:#3498db;"><i class='bx bx-link-external'></i></div>
+                            <span class="res-type-badge type-guide">Guide</span>
+                        </div>
+                        <div class="res-card-name">Tech Interview Handbook — Resume Guide</div>
+                        <div class="res-card-desc">The most cited free guide for developer resumes. Written by ex-FAANG engineers.</div>
+                        <div class="res-card-source"><i class='bx bx-globe'></i> techinterviewhandbook.org</div>
+                    </a>
+                    <a href="https://novoresume.com/career-blog/how-to-write-a-resume" target="_blank" class="res-card">
+                        <div class="res-card-top">
+                            <div class="res-card-icon" style="background:rgba(52,152,219,0.12); color:#3498db;"><i class='bx bx-book'></i></div>
+                            <span class="res-type-badge type-article">Article</span>
+                        </div>
+                        <div class="res-card-name">How to Write a Resume — Complete Guide</div>
+                        <div class="res-card-desc">Covers every section in detail with real examples. Great starting point for beginners.</div>
+                        <div class="res-card-source"><i class='bx bx-globe'></i> novoresume.com</div>
+                    </a>
+                    <a href="https://www.reddit.com/r/cscareerquestions/wiki/resume/" target="_blank" class="res-card">
+                        <div class="res-card-top">
+                            <div class="res-card-icon" style="background:rgba(255,87,34,0.12); color:#ff5722;"><i class='bx bxl-reddit'></i></div>
+                            <span class="res-type-badge type-article">Article</span>
+                        </div>
+                        <div class="res-card-name">r/cscareerquestions Resume Wiki</div>
+                        <div class="res-card-desc">Community-vetted resume advice specifically for CS students and software engineers.</div>
+                        <div class="res-card-source"><i class='bx bxl-reddit'></i> Reddit</div>
+                    </a>
+                </div>
+
+                <div class="resource-section-title"><i class='bx bx-wrench'></i> Tools</div>
+                <div class="resources-grid">
+                    <a href="https://www.jobscan.co/" target="_blank" class="res-card">
+                        <div class="res-card-top">
+                            <div class="res-card-icon" style="background:rgba(76,209,55,0.12); color:#4cd137;"><i class='bx bx-scan'></i></div>
+                            <span class="res-type-badge type-tool">Tool</span>
+                        </div>
+                        <div class="res-card-name">Jobscan — ATS Resume Checker</div>
+                        <div class="res-card-desc">Paste your resume and a job description — Jobscan scores how well you match the ATS requirements.</div>
+                        <div class="res-card-source"><i class='bx bx-globe'></i> jobscan.co</div>
+                    </a>
+                    <a href="https://resumeworded.com/" target="_blank" class="res-card">
+                        <div class="res-card-top">
+                            <div class="res-card-icon" style="background:rgba(76,209,55,0.12); color:#4cd137;"><i class='bx bx-analyse'></i></div>
+                            <span class="res-type-badge type-tool">Tool</span>
+                        </div>
+                        <div class="res-card-name">Resume Worded — AI Resume Scorer</div>
+                        <div class="res-card-desc">Get instant feedback and a score on your resume's impact and phrasing from an AI reviewer.</div>
+                        <div class="res-card-source"><i class='bx bx-globe'></i> resumeworded.com</div>
+                    </a>
+                    <a href="https://app.grammarly.com/" target="_blank" class="res-card">
+                        <div class="res-card-top">
+                            <div class="res-card-icon" style="background:rgba(76,209,55,0.12); color:#4cd137;"><i class='bx bx-check-shield'></i></div>
+                            <span class="res-type-badge type-tool">Tool</span>
+                        </div>
+                        <div class="res-card-name">Grammarly</div>
+                        <div class="res-card-desc">Run your resume descriptions through Grammarly to catch grammar issues and improve clarity.</div>
+                        <div class="res-card-source"><i class='bx bx-globe'></i> grammarly.com</div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="../../js/script.js"></script>
+    <script type="module" src="../../js/resume-building.js"></script>
+</body>
+</html>
