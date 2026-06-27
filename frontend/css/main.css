@@ -121,7 +121,8 @@ body:not(.sidebar-collapsed) .main {
   width: 260px;
   background: var(--color-bg);
   z-index: 1200;
-  transition: all 0.5s ease;
+  transition: width 0.4s ease;
+  /* Collapsed state */
 }
 .sidebar.close {
   width: 78px;
@@ -130,23 +131,21 @@ body:not(.sidebar-collapsed) .main {
   overflow: visible;
 }
 .sidebar.close .nav-links li a {
-  width: 100%;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 0 0 0 16px;
   gap: 0;
-  padding: 0;
 }
 .sidebar.close .nav-links li a i {
-  min-width: 78px;
-  width: 78px;
-}
-.sidebar.close .nav-links li a i:hover {
-  color: var(--color-sky);
+  min-width: 46px;
+  width: 46px;
+  flex-shrink: 0;
 }
 .sidebar.close .nav-links li a .link_name {
-  flex: 0 0 0;
-  width: 0;
   opacity: 0;
+  width: 0;
+  overflow: hidden;
   pointer-events: none;
+  transition: opacity 0.25s ease, width 0.4s ease;
 }
 .sidebar.close .nav-links li .sub-menu {
   position: absolute;
@@ -159,16 +158,21 @@ body:not(.sidebar-collapsed) .main {
   opacity: 0;
   display: block;
   pointer-events: none;
-  transition: opacity 0.3s ease, top 0.3s ease;
+  transition: opacity 0.2s ease;
   min-width: 160px;
   z-index: 1300;
 }
 .sidebar.close .nav-links li .sub-menu .link_name {
   font-size: 18px;
   opacity: 1;
+  width: auto;
   display: block;
 }
-.sidebar.close .nav-links li.showMenu .sub-menu {
+.sidebar.close .nav-links li .sub-menu a {
+  justify-content: flex-start;
+  padding: 5px 0;
+}
+.sidebar.close .nav-links li:hover .sub-menu, .sidebar.close .nav-links li.showMenu .sub-menu {
   opacity: 1;
   pointer-events: auto;
 }
@@ -178,6 +182,17 @@ body:not(.sidebar-collapsed) .main {
 }
 .sidebar.close .nav-links li .iocn-link .arrow {
   display: none !important;
+}
+.sidebar {
+  /* Expanded state */
+}
+.sidebar .nav-links li a .link_name {
+  transition: opacity 0.25s ease, width 0.4s ease;
+  opacity: 1;
+  width: auto;
+}
+.sidebar {
+  /* Header */
 }
 .sidebar .sidebar-header {
   height: 60px;
@@ -215,6 +230,9 @@ body:not(.sidebar-collapsed) .main {
   font-weight: 400;
   font-variant: normal;
   text-transform: none;
+}
+.sidebar {
+  /* Nav links base */
 }
 .sidebar .nav-links {
   height: 100%;
@@ -262,13 +280,14 @@ body:not(.sidebar-collapsed) .main {
 }
 .sidebar .nav-links li a i {
   height: 46px;
-  min-width: 52px;
+  min-width: 46px;
   text-align: center;
   line-height: 46px;
   color: #fff;
   font-size: 18px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
 }
 .sidebar .nav-links li a .link_name {
   flex: 1;
@@ -279,11 +298,7 @@ body:not(.sidebar-collapsed) .main {
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 0;
-  transition: all 0.4s ease;
-}
-.sidebar .nav-links li:not(.close) a i {
-  min-width: 40px;
-  margin-left: 4px;
+  transition: opacity 0.25s ease, width 0.4s ease;
 }
 .sidebar .nav-links li .sub-menu {
   padding: 6px 6px 14px 80px;
@@ -298,6 +313,7 @@ body:not(.sidebar-collapsed) .main {
   white-space: nowrap;
   opacity: 0.6;
   transition: all 0.3s ease;
+  justify-content: flex-start;
 }
 .sidebar .nav-links li .sub-menu a:hover {
   opacity: 1;

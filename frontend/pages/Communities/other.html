@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Other Communities | Studypy</title>
+    <meta name="description" content="Connect with Python learners and developers on Reddit, Facebook, LinkedIn, Telegram, and more." />
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/communities.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <div class="settings-container">
+        <div class="settings-layout" style="display:block; max-width:960px;">
+
+            <!-- Page header -->
+            <br><br>
+            <div class="communities-hero">
+                <h1><i class='bx bx-world'></i>Other Communities</h1>
+                <p>Connect with Python learners and developers beyond Discord — forums, social groups, Q&A, and developer blogs.</p>
+            </div>
+
+            <!-- Filter bar -->
+            <div class="filter-bar" id="filter-bar">
+                <button class="filter-btn active" data-platform="all">
+                    <i class='bx bx-category'></i> All
+                </button>
+                <button class="filter-btn" data-platform="reddit">
+                    <i class='bx bxl-reddit'></i> Reddit
+                </button>
+                <button class="filter-btn" data-platform="facebook">
+                    <i class='bx bxl-facebook'></i> Facebook
+                </button>
+                <button class="filter-btn" data-platform="linkedin">
+                    <i class='bx bxl-linkedin'></i> LinkedIn
+                </button>
+                <button class="filter-btn" data-platform="telegram">
+                    <i class='bx bxl-telegram'></i> Telegram
+                </button>
+                <button class="filter-btn" data-platform="stackoverflow">
+                    <i class='bx bx-code-curly'></i> Q&amp;A
+                </button>
+                <button class="filter-btn" data-platform="devto">
+                    <i class='bx bx-pencil'></i> Blogs
+                </button>
+            </div>
+
+            <div id="communities-root"></div>
+
+        </div>
+    </div>
+
+    <script type="module" src="../../js/script.js"></script>
+    <script src="../../js/connect.js"></script>
+</body>
+</html>

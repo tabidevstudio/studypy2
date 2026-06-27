@@ -17,7 +17,7 @@ function getCardPrefix(pageName) {
     "projectideas": "challenge",
     "discord-servers": "community",
     "forums": "community",
-    "study-groups": "community",
+    "other": "community",
     "debugging-tools": "tools",
     "version-control": "tools",
     "fun-tools": "tools",
@@ -551,8 +551,7 @@ async function loadLinks() {
     const UNDER_CONSTRUCTION_PAGES = [
         "interview-prep",
         "resume-building",
-        "coding-problems",
-        "study-groups"
+        "coding-problems"
     ];
     if(UNDER_CONSTRUCTION_PAGES.includes(pageName)) {
         window.location.href = `/pages/503.html?page=${encodeURIComponent(pageName)}`;

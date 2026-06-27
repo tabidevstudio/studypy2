@@ -255,5 +255,283 @@
     grid-template-columns: 1fr;
   }
 }
+/* ── Other Communities (connect.html) ───────────────────────────────── */
+/* Add this block at the bottom of frontend/scss/pages/_communities.scss     */
+.communities-hero {
+  margin-bottom: 28px;
+}
+.communities-hero h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.communities-hero h1 i {
+  color: rgb(145, 218, 235);
+  margin-right: 10px;
+  vertical-align: -2px;
+}
+.communities-hero p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ── Filter bar ───────────────────────────────────────────────────────────── */
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.filter-btn.active {
+  background: rgba(145, 218, 235, 0.15);
+  color: rgb(145, 218, 235);
+  border-color: rgba(145, 218, 235, 0.35);
+}
+
+/* ── Section label ────────────────────────────────────────────────────────── */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+.section-label i {
+  vertical-align: -1px;
+  margin-right: 6px;
+}
+
+.platform-section {
+  margin-bottom: 32px;
+}
+
+/* ── Communities grid ─────────────────────────────────────────────────────── */
+.communities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+/* ── Single community card ────────────────────────────────────────────────── */
+.community-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 18px 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.community-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.platform-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.platform-icon.icon-reddit {
+  background: rgba(255, 69, 0, 0.15);
+  color: #ff4500;
+}
+.platform-icon.icon-facebook {
+  background: rgba(24, 119, 242, 0.15);
+  color: #1877f2;
+}
+.platform-icon.icon-linkedin {
+  background: rgba(10, 102, 194, 0.15);
+  color: #0a66c2;
+}
+.platform-icon.icon-telegram {
+  background: rgba(42, 171, 238, 0.15);
+  color: #2aabee;
+}
+.platform-icon.icon-stackoverflow {
+  background: rgba(245, 128, 37, 0.15);
+  color: #f58025;
+}
+.platform-icon.icon-devto {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+.platform-icon.icon-hashnode {
+  background: rgba(41, 98, 255, 0.15);
+  color: #2962ff;
+}
+.platform-icon.icon-slack {
+  background: rgba(74, 21, 75, 0.3);
+  color: #e01e5a;
+}
+.platform-icon.icon-other {
+  background: rgba(145, 218, 235, 0.1);
+  color: rgb(145, 218, 235);
+}
+
+.card-name-wrap {
+  min-width: 0;
+}
+
+.card-name {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-platform-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 1px;
+  text-transform: capitalize;
+}
+
+.badge-featured {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: rgba(145, 218, 235, 0.12);
+  color: rgb(145, 218, 235);
+  border: 1px solid rgba(145, 218, 235, 0.25);
+}
+
+.card-desc {
+  font-size: 0.83rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.member-count {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+.member-count i {
+  font-size: 0.9rem;
+}
+
+.btn-visit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  background: rgba(145, 218, 235, 0.1);
+  color: rgb(145, 218, 235);
+  border: 1px solid rgba(145, 218, 235, 0.2);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.btn-visit:hover {
+  background: rgba(145, 218, 235, 0.2);
+  border-color: rgba(145, 218, 235, 0.4);
+}
+.btn-visit i {
+  font-size: 0.85rem;
+}
+
+/* ── States: loading / empty / error ──────────────────────────────────────── */
+.state-box {
+  text-align: center;
+  padding: 48px 24px;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.88rem;
+}
+.state-box i {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 12px;
+  opacity: 0.4;
+}
+
+/* ── Skeleton loader ──────────────────────────────────────────────────────── */
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.skeleton-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 18px;
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+}
+.skeleton-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.04) 50%, transparent 100%);
+  animation: shimmer 1.4s infinite;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .communities-grid,
+  .skeleton-grid {
+    grid-template-columns: 1fr;
+  }
+  .communities-hero h1 {
+    font-size: 1.3rem;
+  }
+}
 
 /*# sourceMappingURL=communities.css.map */
