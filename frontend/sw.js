@@ -1,4 +1,4 @@
-const CACHE_NAME = "studypy-cache-v4";
+const CACHE_NAME = "studypy-cache-v5";
 const ASSETS_TO_CACHE = [
     "/",
     "/css/main.css",
@@ -37,18 +37,45 @@ self.addEventListener("activate", (event) => {
 })
 
 self.addEventListener("fetch", (event) => {
-    if(event.request.method !== "GET") return;
+    if (event.request.method !== "GET") return;
+
+    const url = new URL(event.request.url);
+    const isApiRequest = url.pathname.startsWith('/api') || 
+                         url.pathname === '/run' || 
+                         url.pathname === '/links' || 
+                         url.pathname === '/search';
+
+    if (isApiRequest) {
+        event.respondWith(fetch(event.request));
+        return;
+    }
+
     event.respondWith(
-        caches.match(event.request).then((cachedResponse) => {
-            return cachedResponse || fetch(event.request).catch(() => {
-                const acceptHeader = event.request.headers.get("accept");
-                if (acceptHeader && acceptHeader.includes("text/html")) {
-                    return caches.match("/");
+        fetch(event.request)
+            .then((networkResponse) => {
+                // If the response is valid, update the cache
+                if (networkResponse && networkResponse.status === 200) {
+                    const responseClone = networkResponse.clone();
+                    caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(event.request, responseClone);
+                    });
                 }
-                // Return a fallback response for other assets to avoid ERR_FAILED
-                return new Response("Offline", { status: 503, statusText: "Offline" });
-            });
-        })
+                return networkResponse;
+            })
+            .catch(() => {
+                // If offline or network fails, fall back to cache
+                return caches.match(event.request).then((cachedResponse) => {
+                    if (cachedResponse) {
+                        return cachedResponse;
+                    }
+                    // Fallback for HTML pages
+                    const acceptHeader = event.request.headers.get("accept");
+                    if (acceptHeader && acceptHeader.includes("text/html")) {
+                        return caches.match("/");
+                    }
+                    return new Response("Offline", { status: 503, statusText: "Offline" });
+                });
+            })
     );
 });
 
