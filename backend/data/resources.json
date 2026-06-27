@@ -388,6 +388,51 @@
               "title": "Real Python Projects",
               "description": "Step-by-step project tutorials for Python developers of all levels.",
               "url": "https://realpython.com/tutorials/projects/"
+            },
+            {
+              "title": "Refactoring.Guru: Design Patterns",
+              "description": "Clear explanations and implementations of design patterns in various languages.",
+              "url": "https://refactoring.guru/design-patterns"
+            },
+            {
+              "title": "System Design Primer",
+              "description": "An open-source guide to learning how to design large-scale systems.",
+              "url": "https://github.com/donnemartin/system-design-primer"
+            },
+            {
+              "title": "Architecture Patterns in Python",
+              "description": "A book on domain-driven design, clean architecture, and lightweight design patterns.",
+              "url": "https://github.com/cosmicpython/book"
+            },
+            {
+              "title": "Uber Engineering Blog",
+              "description": "Insights and articles from the team building systems at massive global scale.",
+              "url": "https://www.uber.com/blog/engineering/"
+            },
+            {
+              "title": "Netflix Tech Blog",
+              "description": "Learn about Netflix's cloud architecture, engineering practices, and open-source tools.",
+              "url": "https://netflixtechblog.com/"
+            },
+            {
+              "title": "Pragmatic Engineer",
+              "description": "Highly relevant articles, essays, and advice on software engineering culture and technology.",
+              "url": "https://blog.pragmaticengineer.com/"
+            },
+            {
+              "title": "Mental Models for Software Engineers",
+              "description": "A compilation of useful cognitive frameworks and mental models for thinking about code and architecture.",
+              "url": "https://medium.com/@albertogp/mental-models-for-software-engineers-81861050eb55"
+            },
+            {
+              "title": "Clean Coder: Professionalism and Pragmatism",
+              "description": "Uncle Bob's essays and principles on software craftsmanship, practices, and tooling.",
+              "url": "https://blog.cleancoder.com/"
+            },
+            {
+              "title": "Joel on Software",
+              "description": "Classic engineering thought and philosophy essays on software development, management, and code quality.",
+              "url": "https://www.joelonsoftware.com/"
             }
           ]
         }
