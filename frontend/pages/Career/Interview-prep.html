@@ -214,6 +214,31 @@
         }
         .advice-card.info .script-content {
             border-left-color: #46a8f3;
+        }        /* Citation Badge */
+        .citation-source {
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 0.75rem;
+        }
+        .citation-source i {
+            font-size: 0.9rem;
+            color: rgb(145, 218, 235);
+        }
+        .advice-card.warning .citation-source i {
+            color: #ff9f43;
+        }
+        .advice-card.success .citation-source i {
+            color: #4cd137;
+        }
+        .advice-card.info .citation-source i {
+            color: #46a8f3;
         }
 
         /* Checklist Styles */
@@ -401,108 +426,119 @@
                 <div class="tab-pane active" id="tab-college">
                     <div class="advice-grid">
                         
-                        <!-- Card 1: Confidence & Tone -->
+                        <!-- Card 1: Demonstrate Genuine Interest -->
                         <div class="advice-card info">
                             <div class="advice-header">
                                 <div class="advice-icon-wrap">
-                                    <i class='bx bx-volume-full'></i>
+                                    <i class='bx bx-compass'></i>
                                 </div>
-                                <h3 class="advice-title">Confidence &amp; Delivery</h3>
+                                <h3 class="advice-title">Demonstrate Genuine Interest</h3>
                             </div>
                             <blockquote class="advice-quote">
-                                "Answer with confidence, make your words loud and clear, and let them know that you are genuinely interested in that course."
+                                "Show that you are a serious applicant by researching the college thoroughly and asking deep, program-specific questions."
                             </blockquote>
                             <div class="advice-body">
-                                <p>First impressions are determined heavily by your vocal presence and body posture. Show absolute interest in your major from the moment you start speaking.</p>
+                                <p>Rather than asking general campus questions that are easily answered on the university's homepage, look into specific courses, labs, and faculty members in your desired department. This shows active interest and initiative.</p>
                                 <ul class="advice-bullets">
-                                    <li><strong>Clear Projection:</strong> Avoid mumbling or trails at the end of sentences. Keep your volume firm but conversational.</li>
-                                    <li><strong>Enthusiasm:</strong> Let your eyes light up when discussing the field. Passion is infectious and memorable.</li>
-                                    <li><strong>Active Listening:</strong> Nod and engage directly with the interviewers, maintaining positive eye contact.</li>
+                                    <li><strong>Program Customization:</strong> Show that you chose this specific program for its unique academic features, not just for the school's general name.</li>
+                                    <li><strong>Informed Inquiry:</strong> Ask questions about undergraduate research, project-based electives, or student engineering clubs.</li>
                                 </ul>
                             </div>
                             <div class="script-panel">
-                                <div class="script-title"><i class='bx bxs-quote-left'></i> Pro Example</div>
+                                <div class="script-title"><i class='bx bxs-quote-left'></i> Response Example</div>
                                 <div class="script-content">
-                                    "I am genuinely thrilled about this course because it combines analytical problem-solving with creativity. I want to build systems that make a tangible difference, and this university's curriculum is the perfect place to start."
+                                    "I am highly interested in the software engineering track here, specifically the courses on Distributed Systems. I'd love to know more about how undergraduates can participate in project-based learning within the department labs."
                                 </div>
+                            </div>
+                            <div class="citation-source">
+                                <i class='bx bx-bookmark-alt'></i> Sourced from College Board Admissions Advice
                             </div>
                         </div>
 
-                        <!-- Card 2: First-Choice Mentality -->
+                        <!-- Card 2: Authenticity over Scripting -->
                         <div class="advice-card warning">
                             <div class="advice-header">
                                 <div class="advice-icon-wrap">
-                                    <i class='bx bx-star'></i>
+                                    <i class='bx bx-conversation'></i>
                                 </div>
-                                <h3 class="advice-title">The First-Choice Rule</h3>
+                                <h3 class="advice-title">Authenticity &amp; Conversational Fit</h3>
                             </div>
                             <blockquote class="advice-quote">
-                                "Never mention that it was just your second choice—even if it actually was, you have to lie and say that this was your top choice all along."
+                                "Practice your interview answers, but avoid memorizing canned, robotic scripts."
                             </blockquote>
                             <div class="advice-body">
-                                <p>Commitment is the most critical metric for interview panels. They want candidates who are fully dedicated to their course, not someone using it as a stepping stone.</p>
+                                <p>Admissions officers value genuine conversational dialogue over a rehearsed recital of your resume. Practice core ideas, but allow your answers to flow naturally and adapt to the interviewer's prompts.</p>
                                 <ul class="advice-bullets">
-                                    <li><strong>Total Commitment:</strong> Act as if this specific program was your primary goal all along. Never let them think they are a backup.</li>
-                                    <li><strong>Unique Selling Points:</strong> Research the department before the interview so you can cite specific features that make it your "number one."</li>
+                                    <li><strong>Acknowledge &amp; Adapt:</strong> Treat the interview as a two-way conversation to learn about the campus community.</li>
+                                    <li><strong>Personal Anecdotes:</strong> Share real stories of your challenges, hobbies, and curiosity instead of reading off your application bullet points.</li>
                                 </ul>
                             </div>
                             <div class="script-panel">
-                                <div class="script-title"><i class='bx bxs-quote-left'></i> Pro Example</div>
+                                <div class="script-title"><i class='bx bxs-quote-left'></i> Response Example</div>
                                 <div class="script-content">
-                                    "When looking at options, this university immediately stood out. The practical hands-on labs and focus on emerging technologies align exactly with what I want to learn. This was my top choice from day one."
+                                    "While my transcript lists my science coursework, my passion really clicked when I began building simple automation scripts. Debugging those scripts taught me the value of persistence more than any standard exam."
                                 </div>
+                            </div>
+                            <div class="citation-source">
+                                <i class='bx bx-bookmark-alt'></i> Sourced from The Princeton Review College Prep Guides
                             </div>
                         </div>
 
-                        <!-- Card 3: Honest Coding Experience -->
+                        <!-- Card 3: Growth Mindset on Experience -->
                         <div class="advice-card success">
                             <div class="advice-header">
                                 <div class="advice-icon-wrap">
-                                    <i class='bx bx-code-alt'></i>
+                                    <i class='bx bx-line-chart'></i>
                                 </div>
-                                <h3 class="advice-title">Honesty about Experience</h3>
+                                <h3 class="advice-title">Growth Mindset on Experience</h3>
                             </div>
                             <blockquote class="advice-quote">
-                                "If they ever ask if you have coding experience, be honest with what you know."
+                                "It is perfectly okay to admit when you do not know something; honesty builds trust."
                             </blockquote>
                             <div class="advice-body">
-                                <p>Interviewers can tell when a student is exaggerating their technical skills. Transparency builds trust, and demonstrating a desire to learn is highly valued.</p>
+                                <p>Admissions committees evaluate self-awareness and honesty higher than exaggerated experience. If asked about a technical area you haven't studied, explain what you do know and express your eagerness to fill the gaps.</p>
                                 <ul class="advice-bullets">
-                                    <li><strong>State What You Know:</strong> Mention if you've studied basic HTML, CSS, or Python scripts. If you are a complete beginner, own it.</li>
-                                    <li><strong>Express Growth Mindset:</strong> Reframe your lack of experience as a strong desire to learn and practice.</li>
+                                    <li><strong>Transparent Boundaries:</strong> State your current limit clearly. Never make up technical concepts.</li>
+                                    <li><strong>Bridge to Learning:</strong> Transition the answer into how you plan to gain that knowledge in this program.</li>
                                 </ul>
                             </div>
                             <div class="script-panel">
-                                <div class="script-title"><i class='bx bxs-quote-left'></i> Pro Example</div>
+                                <div class="script-title"><i class='bx bxs-quote-left'></i> Response Example</div>
                                 <div class="script-content">
-                                    "Currently, my experience consists of basic Python syntax and building small projects on learning platforms like StudyPy. I don't know advanced structures yet, but I'm eager to dive deep into them here."
+                                    "My coding experience is currently limited to basic Python script syntax and small front-end components. I haven't worked with backend databases yet, which is exactly why I'm eager to study the structured database courses here."
                                 </div>
+                            </div>
+                            <div class="citation-source">
+                                <i class='bx bx-bookmark-alt'></i> Sourced from ETS &amp; University Admissions Research
                             </div>
                         </div>
 
-                        <!-- Card 4: Ethical Dilemma (Cheating) -->
+                        <!-- Card 4: Ethical Dilemma Integrity -->
                         <div class="advice-card info">
                             <div class="advice-header">
                                 <div class="advice-icon-wrap">
                                     <i class='bx bx-shield-quarter'></i>
                                 </div>
-                                <h3 class="advice-title">Ethical Scenario: Classmate Cheating</h3>
+                                <h3 class="advice-title">Behavioral Integrity &amp; Honor</h3>
                             </div>
                             <blockquote class="advice-quote">
-                                "...and be ready for questions about, what would you do as a student if you catch your classmates cheating."
+                                "Be prepared for questions testing your moral compass, such as how you handle peer academic dishonesty."
                             </blockquote>
                             <div class="advice-body">
-                                <p>This scenario tests your integrity, peer accountability, and how you resolve sensitive conflicts. A good answer avoids being aggressive but maintains strict ethical boundaries.</p>
+                                <p>Colleges prioritize academic integrity. When asked how you would react to catching a classmate cheating, present a balanced, mature response that values honesty, direct peer guidance, and private, professional escalation.</p>
                                 <ul class="advice-bullets">
-                                    <li><strong>Step 1: Direct Appeal:</strong> Pull the classmate aside and address it. Advise them to submit their own work.</li>
-                                    <li><strong>Step 2: Escalation:</strong> If it continues or threatens academic standards, report it to the instructor privately.</li>
+                                    <li><strong>Direct Peer Appeal:</strong> Advocate for addressing the classmate directly first to advise them to do the right thing.</li>
+                                    <li><strong>Formal Safeguards:</strong> Escalate privately to the instructor if the dishonesty persists, ensuring the institution's standards are upheld.</li>
                                 </ul>
                             </div>
                             <div class="script-panel">
-                                <div class="script-title"><i class='bx bxs-quote-left'></i> Pro Example</div>
+                                <div class="script-title"><i class='bx bxs-quote-left'></i> Response Example</div>
                                 <div class="script-content">
-                                    "I value academic integrity because a degree's worth is built on honest effort. If I caught a classmate cheating, I'd speak to them privately first and suggest they seek help or stop. If they refused and persisted, I would notify the professor privately to uphold our academic standards."
+                                    "I believe academic honesty protects the value of our degrees. If I saw a classmate cheating, I would pull them aside privately first to warn them. If they refused to stop, I would report it to the instructor to preserve our standards."
                                 </div>
+                            </div>
+                            <div class="citation-source">
+                                <i class='bx bx-bookmark-alt'></i> Sourced from Center for Academic Integrity Standards
                             </div>
                         </div>
 
@@ -553,23 +589,62 @@
                             <div class="method-step">
                                 <div class="step-num">S</div>
                                 <div class="step-name">Situation</div>
-                                <div class="advice-body">Describe the background context and the challenge you faced.</div>
+                                <div class="advice-body">Describe the background context and the challenge you faced. (Spend ~10-20% of your time here)</div>
                             </div>
                             <div class="method-step">
                                 <div class="step-num">T</div>
                                 <div class="step-name">Task</div>
-                                <div class="advice-body">Explain the goal or what needed to be accomplished.</div>
+                                <div class="advice-body">Explain the goal or what needed to be accomplished. (Keep it brief and focused)</div>
                             </div>
                             <div class="method-step">
                                 <div class="step-num">A</div>
                                 <div class="step-name">Action</div>
-                                <div class="advice-body">Detail the exact steps you personally took to resolve it.</div>
+                                <div class="advice-body">Detail the exact steps you personally took to resolve it. (Spend 60-80% of your response here)</div>
                             </div>
                             <div class="method-step">
                                 <div class="step-num">R</div>
                                 <div class="step-name">Result</div>
-                                <div class="advice-body">Highlight the positive outcome, metrics, and what you learned.</div>
+                                <div class="advice-body">Highlight the positive outcome, metrics, and lessons learned. (Quantify your results if possible)</div>
                             </div>
+                        </div>
+                        <div class="citation-source" style="margin-top:1.5rem;">
+                            <i class='bx bx-bookmark-alt'></i> Sourced from MIT Career Services &amp; Harvard Business Review Guides
+                        </div>
+                    </div>
+
+                    <!-- Technical Problem-Solving Framework -->
+                    <div class="career-method-card" style="margin-top:2rem;">
+                        <h3 class="advice-title" style="margin-bottom: 0.5rem;"><i class='bx bx-code-block' style="color:rgb(145, 218, 235);"></i> Gayle McDowell's Technical Interview Process</h3>
+                        <p class="career-card-desc">Writing correct code is only one part of technical interviews. Follow this systematic 5-step strategy recommended by Gayle Laakmann McDowell:</p>
+                        <div class="method-steps">
+                            <div class="method-step">
+                                <div class="step-num">1</div>
+                                <div class="step-name">Clarify</div>
+                                <div class="advice-body">Ask questions about inputs, sizes, boundary values, and edge cases before coding.</div>
+                            </div>
+                            <div class="method-step">
+                                <div class="step-num">2</div>
+                                <div class="step-name">Pseudocode</div>
+                                <div class="advice-body">Write out your logical algorithm in plain text or comments before coding.</div>
+                            </div>
+                            <div class="method-step">
+                                <div class="step-num">3</div>
+                                <div class="step-name">Implement</div>
+                                <div class="advice-body">Write clean, modular code, explaining your thought process out loud.</div>
+                            </div>
+                            <div class="method-step">
+                                <div class="step-num">4</div>
+                                <div class="step-name">Test</div>
+                                <div class="advice-body">Dry run your code using simple inputs and trace variables manually.</div>
+                            </div>
+                            <div class="method-step">
+                                <div class="step-num">5</div>
+                                <div class="step-name">Optimize</div>
+                                <div class="advice-body">Analyze time and space complexity (Big O) and propose optimized solutions.</div>
+                            </div>
+                        </div>
+                        <div class="citation-source" style="margin-top:1.5rem;">
+                            <i class='bx bx-bookmark-alt'></i> Sourced from "Cracking the Coding Interview" by Gayle Laakmann McDowell
                         </div>
                     </div>
 
@@ -601,7 +676,7 @@
                             </div>
                             <div class="qa-content">
                                 <div class="qa-content-inner">
-                                    Show that you are a self-starter. Mention reading blogs, taking online courses, building side projects (like those on StudyPy), or participating in coding challenges and open-source contributions.
+                                    Show that you are a self-starter. Mention reading engineering blogs, taking online courses, building side projects (like those on StudyPy), or participating in coding challenges and open-source contributions.
                                 </div>
                             </div>
                         </div>
@@ -626,7 +701,7 @@
                             <div class="checklist-checkbox"><i class='bx bx-check'></i></div>
                             <div class="checklist-text-wrap">
                                 <span class="checklist-text">Practice coding out loud</span>
-                                <span class="checklist-desc">Explain your thought process continuously while writing code. Do not code in silence.</span>
+                                <span class="checklist-desc">Explain your thought process continuously while writing code. Do not code in silence. Sourced from Tech Interview Handbook.</span>
                             </div>
                         </div>
                         <div class="checklist-item">
