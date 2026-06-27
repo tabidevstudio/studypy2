@@ -359,9 +359,9 @@ function renderPageLinks(container, allLinks, pageName) {
       });
     }
 
-    if (patternsInner.childElementCount === 0) fillRemaining(patternsInner, 6);
-    if (blogsInner.childElementCount === 0) fillRemaining(blogsInner, 6);
-    if (mentalInner.childElementCount === 0) fillRemaining(mentalInner, 6);
+    fillRemaining(patternsInner, 8);
+    fillRemaining(blogsInner, 8);
+    fillRemaining(mentalInner, 8);
 
     function makeCarouselDraggable(carousel) {
       let isDown = false;
