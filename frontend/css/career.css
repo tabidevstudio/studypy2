@@ -1245,15 +1245,15 @@
 }
 .resize-handle .resize-grabber {
   width: 22px;
-  height: 38px;
+  height: 64px;
   background: #1a1b20;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 6px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: rgba(255, 255, 255, 0.45);
-  font-size: 0.95rem;
+  font-size: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   transition: all 0.2s ease-in-out;
   z-index: 2;
