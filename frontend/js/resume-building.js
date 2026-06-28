@@ -1130,7 +1130,15 @@ window.downloadPDF = function () {
         sidebarContent.push({ text: 'CONTACT', fontSize: 9, bold: true, color: d.headerTextColor, opacity: 0.8, margin: [0, 15, 0, 5] });
         const contacts = [pi.email, pi.phone, pi.linkedin, pi.github, pi.portfolio].filter(Boolean);
         contacts.forEach(c => {
-            sidebarContent.push({ text: c, fontSize: 8, color: d.headerTextColor, opacity: 0.9, margin: [0, 2, 0, 2] });
+            let link = "";
+            if (c === pi.email) {
+                link = `mailto:${c}`;
+            } else if (c === pi.phone) {
+                link = `tel:${c}`;
+            } else {
+                link = c.startsWith("http") ? c : `https://${c}`;
+            }
+            sidebarContent.push({ text: c, link: link, fontSize: 8, color: d.headerTextColor, opacity: 0.9, margin: [0, 2, 0, 2] });
         });
 
         // Skills section
@@ -1209,7 +1217,7 @@ window.downloadPDF = function () {
                 mainContent.push({
                     columns: [
                         { text: p.title, fontSize: 9.5, bold: true, color: d.textColor },
-                        { text: p.link || "", fontSize: 8.5, alignment: 'right', color: d.textColor }
+                        { text: p.link || "", link: p.link ? (p.link.startsWith("http") ? p.link : `https://${p.link}`) : "", fontSize: 8.5, alignment: 'right', color: d.textColor, decoration: 'underline' }
                     ],
                     margin: [0, 8, 0, 4]
                 });
@@ -1257,6 +1265,22 @@ window.downloadPDF = function () {
         const content = [];
         const contactItems = [pi.email, pi.phone, pi.linkedin, pi.github, pi.portfolio].filter(Boolean);
 
+        const contactInlines = [];
+        contactItems.forEach((c, idx) => {
+            let link = "";
+            if (c === pi.email) {
+                link = `mailto:${c}`;
+            } else if (c === pi.phone) {
+                link = `tel:${c}`;
+            } else {
+                link = c.startsWith("http") ? c : `https://${c}`;
+            }
+            contactInlines.push({ text: c, link: link });
+            if (idx < contactItems.length - 1) {
+                contactInlines.push({ text: "   •   " });
+            }
+        });
+
         // Header block
         content.push({
             table: {
@@ -1268,7 +1292,7 @@ window.downloadPDF = function () {
                             margin: [20, 20, 20, 20],
                             stack: [
                                 { text: (pi.name || "YOUR NAME").toUpperCase(), fontSize: 22, bold: true, color: d.headerTextColor, alignment: 'center' },
-                                { text: contactItems.join("   •   "), fontSize: 9, color: d.headerTextColor, margin: [0, 8, 0, 0], alignment: 'center' }
+                                { text: contactInlines, fontSize: 9, color: d.headerTextColor, margin: [0, 8, 0, 0], alignment: 'center' }
                             ]
                         }
                     ]
@@ -1361,7 +1385,7 @@ window.downloadPDF = function () {
                 projBlocks.push({
                     columns: [
                         { text: p.title, fontSize: 9.5, bold: true, color: d.textColor },
-                        { text: p.link || "", fontSize: 8.5, alignment: 'right', color: d.textColor }
+                        { text: p.link || "", link: p.link ? (p.link.startsWith("http") ? p.link : `https://${p.link}`) : "", fontSize: 8.5, alignment: 'right', color: d.textColor, decoration: 'underline' }
                     ],
                     margin: [0, 6, 0, 4]
                 });
