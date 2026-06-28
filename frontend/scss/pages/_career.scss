@@ -1568,11 +1568,12 @@
 }
 .resume-page-frame {
     background: #fff;
-    width: 100%;
-    aspect-ratio: 210 / 297;
+    width: 794px; /* default A4 — overridden by JS per page size */
+    height: 1123px;
     overflow: hidden;
     position: relative;
     border-radius: 2px;
+    flex-shrink: 0;
 }
 
 /* ── Resume Templates (rendered output) ─────────────────── */

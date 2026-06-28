@@ -759,6 +759,15 @@ function renderPreview() {
     frame.style.setProperty("--resume-text", d.textColor);
     frame.style.setProperty("--resume-header-text", d.headerTextColor);
 
+    // Resize preview to match selected page size (96dpi screen equivalents)
+    const pageSizes = {
+        A4:     { width: "794px", height: "1123px" },
+        Letter: { width: "816px", height: "1056px" }
+    };
+    const size = pageSizes[d.pageSize] || pageSizes.A4;
+    frame.style.width  = size.width;
+    frame.style.height = size.height;
+
     const inner = frame.firstElementChild;
     if (inner) {
         const overflowing = inner.scrollHeight > frame.clientHeight + 10;
