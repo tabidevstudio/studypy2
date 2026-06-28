@@ -535,7 +535,8 @@ router.post("/resume/save", requireAuth, async (req, res) => {
         phone:     resumeData.personalInfo?.phone     || "",
         linkedin:  resumeData.personalInfo?.linkedin  || "",
         github:    resumeData.personalInfo?.github    || "",
-        portfolio: resumeData.personalInfo?.portfolio || ""
+        portfolio: resumeData.personalInfo?.portfolio || "",
+        photo:     resumeData.personalInfo?.photo     || ""
       },
       summary:        resumeData.summary        || "",
       education:      Array.isArray(resumeData.education)      ? resumeData.education      : [],

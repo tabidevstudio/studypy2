@@ -13,6 +13,7 @@ let certEntries = [];
 let accentColor = "#91DAEB";
 let textColor = "#222222";
 let headerTextColor = "#ffffff";
+let resumePhoto = "";
 
 // ── Boot ──────────────────────────────────────────────────
 async function init() {
@@ -62,6 +63,17 @@ function loadSavedResume(resume) {
     setVal("f-github", pi.github);
     setVal("f-portfolio", pi.portfolio);
     setVal("f-summary", resume.summary);
+
+    resumePhoto = pi.photo || "";
+    const photoStatus = document.getElementById("photo-status");
+    const removePhotoBtn = document.getElementById("btn-remove-photo");
+    if (resumePhoto) {
+        photoStatus.textContent = "Photo uploaded";
+        removePhotoBtn.style.display = "flex";
+    } else {
+        photoStatus.textContent = "No file selected";
+        removePhotoBtn.style.display = "none";
+    }
 
     skills = resume.skills || [];
     renderSkillTags();
@@ -169,6 +181,52 @@ function loadSavedResume(resume) {
             document.getElementById("f-phone").value = pasted;
             renderPreview();
         });
+        // Photo upload
+        const photoInput = document.getElementById("f-photo");
+        const photoStatus = document.getElementById("photo-status");
+        const removePhotoBtn = document.getElementById("btn-remove-photo");
+
+        photoInput.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement("canvas");
+                    const ctx = canvas.getContext("2d");
+                    
+                    canvas.width = 150;
+                    canvas.height = 150;
+                    
+                    const size = Math.min(img.width, img.height);
+                    const sx = (img.width - size) / 2;
+                    const sy = (img.height - size) / 2;
+                    
+                    ctx.drawImage(img, sx, sy, size, size, 0, 0, 150, 150);
+                    
+                    resumePhoto = canvas.toDataURL("image/jpeg", 0.7);
+                    photoStatus.textContent = "Photo uploaded";
+                    removePhotoBtn.style.display = "flex";
+                    
+                    renderPreview();
+                    updateCompleteness();
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        removePhotoBtn.addEventListener("click", () => {
+            resumePhoto = "";
+            photoInput.value = "";
+            photoStatus.textContent = "No file selected";
+            removePhotoBtn.style.display = "none";
+            renderPreview();
+            updateCompleteness();
+        });
+
         // Customization
         document.getElementById("accent-color-picker").addEventListener("input", (e) => {
             accentColor = e.target.value;
@@ -444,7 +502,8 @@ function loadSavedResume(resume) {
             email:     document.getElementById("f-email").value.trim(),
             phone:     `${phoneCode} ${phoneFormatted}`,            linkedin:  document.getElementById("f-linkedin").value.trim(),
             github:    document.getElementById("f-github").value.trim(),
-            portfolio: document.getElementById("f-portfolio").value.trim()
+            portfolio: document.getElementById("f-portfolio").value.trim(),
+            photo:     resumePhoto
         },
         summary:        document.getElementById("f-summary").value.trim(),
         skills:         [...skills],
@@ -540,9 +599,12 @@ function renderClassicTemplate(d, pi, font) {
     ).join("");
 
     return `<div id="resume-classic" style="font-family:${font}; --resume-accent:${d.accentColor};">
-        <div class="rc-header">
-            <div class="rc-name">${esc(pi.name) || "Your Name"}</div>
-            <div class="rc-contact-row">${contactItems}</div>
+        <div class="rc-header" style="display: flex; justify-content: space-between; align-items: center; gap: 1.5em;">
+            <div>
+                <div class="rc-name">${esc(pi.name) || "Your Name"}</div>
+                <div class="rc-contact-row">${contactItems}</div>
+            </div>
+            ${pi.photo ? `<div class="rc-header-photo-wrap"><img src="${pi.photo}" class="rc-header-photo"></div>` : ""}
         </div>
         <div class="rc-body">
             ${d.summary   ? `<div class="rc-section"><div class="rc-section-title">Summary</div><div class="rc-summary">${esc(d.summary)}</div></div>` : ""}
@@ -593,6 +655,7 @@ function renderTechTemplate(d, pi, font) {
 
     return `<div id="resume-tech" style="font-family:${font}; --resume-accent:${d.accentColor};">
         <div class="rt-sidebar">
+            ${pi.photo ? `<div class="rt-sidebar-photo-wrap"><img src="${pi.photo}" class="rt-sidebar-photo"></div>` : ""}
             <div class="rt-sidebar-name">${esc(pi.name) || "Your Name"}</div>
             <div class="rt-sidebar-section-title">Contact</div>
             ${contactLines}

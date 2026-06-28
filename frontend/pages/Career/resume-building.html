@@ -266,6 +266,20 @@
                                             <label class="form-label">Portfolio URL <span style="opacity:0.4;">(optional)</span></label>
                                             <input type="text" class="form-input" id="f-portfolio" placeholder="yourportfolio.com">
                                         </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">Profile Photo <span style="opacity:0.4;">(optional)</span></label>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <input type="file" id="f-photo" accept="image/*" style="display: none;">
+                                                <button type="button" class="btn-primary" id="btn-upload-photo" onclick="document.getElementById('f-photo').click()" style="padding: 8px 16px; border-radius: 4px; display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                                                    <i class='bx bx-camera'></i> Upload
+                                                </button>
+                                                <button type="button" class="btn-danger" id="btn-remove-photo" style="display: none; padding: 8px 16px; border-radius: 4px; background: #e84118; color: #fff; border: none; cursor: pointer; align-items: center; gap: 6px;">
+                                                    <i class='bx bx-trash'></i> Remove
+                                                </button>
+                                                <span id="photo-status" style="font-size: 12px; opacity: 0.6;">No file selected</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
