@@ -1268,7 +1268,7 @@
 }
 
 .resize-handle {
-    width: 12px;
+    width: 14px;
     height: 100%;
     min-height: 600px;
     cursor: col-resize;
@@ -1280,22 +1280,49 @@
     align-self: stretch;
     background: transparent;
     z-index: 10;
+    transition: background-color 0.2s;
 
     &::after {
         content: '';
-        width: 2px;
-        height: 60px;
-        background: rgba(255, 255, 255, 0.12);
-        border-radius: 1px;
-        transition: background-color 0.2s, height 0.2s, width 0.2s;
+        width: 1px;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.08);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        transition: background-color 0.2s;
+    }
+
+    .resize-grabber {
+        width: 22px;
+        height: 38px;
+        background: #1a1b20;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.45);
+        font-size: 0.95rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        transition: all 0.2s ease-in-out;
+        z-index: 2;
+        cursor: col-resize;
     }
 
     &:hover, &.dragging {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(255, 255, 255, 0.02);
+        
         &::after {
-            background: rgb(145, 218, 235);
-            width: 4px;
-            height: 90px;
+            background: rgba(145, 218, 235, 0.35);
+        }
+
+        .resize-grabber {
+            border-color: rgb(145, 218, 235);
+            color: rgb(145, 218, 235);
+            box-shadow: 0 4px 16px rgba(145, 218, 235, 0.25);
+            transform: scale(1.08);
         }
     }
 
@@ -2088,11 +2115,23 @@
     }
 }
 
-/* ── Preview Panel Toggle (Collapse / Expand) ──────────── */
 .btn-preview-toggle {
-    gap: 4px;
+    gap: 6px;
     font-size: 0.72rem;
     white-space: nowrap;
+    background: rgba(145, 218, 235, 0.08);
+    border: 1px solid rgba(145, 218, 235, 0.25);
+    color: rgb(145, 218, 235);
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        background: rgba(145, 218, 235, 0.16);
+        color: #fff;
+        border-color: rgb(145, 218, 235);
+        box-shadow: 0 0 10px rgba(145, 218, 235, 0.15);
+    }
 }
 
 /* When preview is collapsed: form takes full space */
