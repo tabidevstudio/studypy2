@@ -54,6 +54,7 @@ function loadSavedResume(resume) {
     document.getElementById("header-text-swatch-display").style.background = headerTextColor;
     document.getElementById("font-select").value = resume.font || "poppins";
     document.getElementById("size-select").value = resume.pageSize || "A4";
+    document.getElementById("spacing-select").value = resume.spacing || "normal";
 
     const pi = resume.personalInfo || {};
     setVal("f-name", pi.name);
@@ -124,6 +125,37 @@ function loadSavedResume(resume) {
         return num >= 1.0 && num <= 5.0;
     }
 
+    // ── Smart URL Sanitizer ───────────────────────────────────
+    function cleanSocialLink(val, type) {
+        if (!val) return "";
+        let clean = val.trim();
+        
+        // Strip protocols and www
+        clean = clean.replace(/^(https?:\/\/)?(www\.)?/, "");
+        
+        // Handle country-specific subdomains for LinkedIn (e.g. ph.linkedin.com, uk.linkedin.com)
+        if (type === "linkedin") {
+            clean = clean.replace(/^[a-z]{2}\.linkedin\.com/i, "linkedin.com");
+            // Ensure it has linkedin.com/in/ prefix
+            if (clean.toLowerCase().startsWith("linkedin.com/in/")) {
+                // OK
+            } else if (clean.toLowerCase().startsWith("linkedin.com/")) {
+                clean = clean.replace(/linkedin\.com\//i, "linkedin.com/in/");
+            } else {
+                // Just the username typed
+                clean = "linkedin.com/in/" + clean;
+            }
+        } else if (type === "github") {
+            if (!clean.toLowerCase().startsWith("github.com/")) {
+                clean = "github.com/" + clean;
+            }
+        }
+        
+        // Remove trailing slashes and query parameters
+        clean = clean.split("?")[0].replace(/\/+$/, "");
+        return clean;
+    }
+
     // ── Event Binding ─────────────────────────────────────────
     function bindEvents() {
         // Page Tabs
@@ -177,6 +209,19 @@ function loadSavedResume(resume) {
         ["f-name", "f-email", "f-phone", "f-linkedin", "f-github", "f-portfolio", "f-summary"].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.addEventListener("input", () => { renderPreview(); updateCompleteness(); });
+        });
+
+        // URL Sanitization on blur
+        ["f-linkedin", "f-github", "f-portfolio"].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener("blur", () => {
+                    const type = id.replace("f-", "");
+                    el.value = cleanSocialLink(el.value, type);
+                    renderPreview();
+                    updateCompleteness();
+                });
+            }
         });
 
         // ── country code change triggers preview update ──
@@ -255,6 +300,7 @@ function loadSavedResume(resume) {
         });
         document.getElementById("font-select").addEventListener("change", renderPreview);
         document.getElementById("size-select").addEventListener("change", renderPreview);
+        document.getElementById("spacing-select").addEventListener("change", renderPreview);
     }
 
     // ── Step Navigation ───────────────────────────────────────
@@ -438,7 +484,14 @@ function loadSavedResume(resume) {
                     inputHTML = `<input type="text" class="form-input" id="${inputId}" placeholder="${f.placeholder}" value="${esc(val)}" data-type="${type}" data-idx="${idx}" data-field="${f.id}">`;
                 }
 
-                const fieldHTML = `<div class="form-group"><label class="form-label">${f.label}</label>${inputHTML}</div>`;
+                const labelHTML = f.textarea
+                    ? `<div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+                         <label class="form-label" style="margin-bottom:0;">${f.label}</label>
+                         <span class="btn-help-verb" style="font-size:0.72rem; color:#91DAEB; cursor:pointer; font-weight:600;"><i class='bx bx-bulb'></i> Need help?</span>
+                       </div>`
+                    : `<label class="form-label">${f.label}</label>`;
+
+                const fieldHTML = `<div class="form-group">${labelHTML}${inputHTML}</div>`;
 
                 if (f.full) {
                     if (inRow) { rowsHTML += "</div>"; inRow = false; }
@@ -452,6 +505,20 @@ function loadSavedResume(resume) {
 
             card.innerHTML = headerHTML + rowsHTML;
             list.appendChild(card);
+        });
+
+        // Bind action verb triggers
+        list.querySelectorAll(".btn-help-verb").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const tipsTabBtn = document.querySelector(".page-tab-btn[data-tab='tips']");
+                if (tipsTabBtn) {
+                    tipsTabBtn.click();
+                    const dictSection = document.getElementById("tab-tips");
+                    if (dictSection) {
+                        dictSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
         });
 
         // Remove entry buttons
@@ -566,6 +633,7 @@ function loadSavedResume(resume) {
         headerTextColor,
         font: document.getElementById("font-select").value,
         pageSize: document.getElementById("size-select").value,
+        spacing: document.getElementById("spacing-select").value,
         personalInfo: {
             name:      document.getElementById("f-name").value.trim(),
             email:     document.getElementById("f-email").value.trim(),
@@ -599,6 +667,91 @@ function updateCompleteness() {
     const pct = Math.round((score / total) * 100);
     document.getElementById("completeness-fill").style.width = pct + "%";
     document.getElementById("completeness-pct").textContent = pct + "%";
+
+    // Update the visual Strength Checklist
+    updateStrengthChecklist(d, pi);
+}
+
+function updateStrengthChecklist(d, pi) {
+    const list = document.getElementById("strength-checklist");
+    if (!list) return;
+
+    let score = 0;
+
+    // 1. Photo Check
+    const chkPhoto = document.getElementById("chk-photo");
+    if (chkPhoto) {
+        const isSet = !!pi.photo;
+        if (isSet) score++;
+        chkPhoto.innerHTML = isSet
+            ? `<i class='bx bx-check' style="color: #2ed573; font-size: 1.1rem; flex-shrink: 0;"></i> Profile Photo uploaded`
+            : `<i class='bx bx-x' style="color: #ff4757; font-size: 1.1rem; flex-shrink: 0;"></i> Profile Photo uploaded`;
+        chkPhoto.style.color = isSet ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.5)";
+    }
+
+    // 2. Summary Check
+    const chkSummary = document.getElementById("chk-summary");
+    if (chkSummary) {
+        const isSet = d.summary && d.summary.length >= 80;
+        if (isSet) score++;
+        chkSummary.innerHTML = isSet
+            ? `<i class='bx bx-check' style="color: #2ed573; font-size: 1.1rem; flex-shrink: 0;"></i> About me / Summary filled (>= 80 chars)`
+            : `<i class='bx bx-x' style="color: #ff4757; font-size: 1.1rem; flex-shrink: 0;"></i> About me / Summary filled (>= 80 chars)`;
+        chkSummary.style.color = isSet ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.5)";
+    }
+
+    // 3. Skills Check
+    const chkSkills = document.getElementById("chk-skills");
+    if (chkSkills) {
+        const isSet = d.skills.length >= 3;
+        if (isSet) score++;
+        chkSkills.innerHTML = isSet
+            ? `<i class='bx bx-check' style="color: #2ed573; font-size: 1.1rem; flex-shrink: 0;"></i> Added at least 3 skills`
+            : `<i class='bx bx-x' style="color: #ff4757; font-size: 1.1rem; flex-shrink: 0;"></i> Added at least 3 skills`;
+        chkSkills.style.color = isSet ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.5)";
+    }
+
+    // 4. Experience Check
+    const chkExperience = document.getElementById("chk-experience");
+    if (chkExperience) {
+        const isSet = d.experience.some(e => e.company && e.role && e.description);
+        if (isSet) score++;
+        chkExperience.innerHTML = isSet
+            ? `<i class='bx bx-check' style="color: #2ed573; font-size: 1.1rem; flex-shrink: 0;"></i> Added at least 1 Work Experience`
+            : `<i class='bx bx-x' style="color: #ff4757; font-size: 1.1rem; flex-shrink: 0;"></i> Added at least 1 Work Experience`;
+        chkExperience.style.color = isSet ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.5)";
+    }
+
+    // 5. Projects Check
+    const chkProjects = document.getElementById("chk-projects");
+    if (chkProjects) {
+        const isSet = d.projects.some(p => p.title && p.description);
+        if (isSet) score++;
+        chkProjects.innerHTML = isSet
+            ? `<i class='bx bx-check' style="color: #2ed573; font-size: 1.1rem; flex-shrink: 0;"></i> Added at least 1 Project`
+            : `<i class='bx bx-x' style="color: #ff4757; font-size: 1.1rem; flex-shrink: 0;"></i> Added at least 1 Project`;
+        chkProjects.style.color = isSet ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.5)";
+    }
+
+    // Update strength badge in card header
+    const badge = document.getElementById("strength-badge");
+    if (badge) {
+        let label = "Weak";
+        let color = "#ff4757"; // red
+        let bg = "rgba(255,71,87,0.15)";
+        if (score >= 4) {
+            label = "Excellent!";
+            color = "#2ed573"; // green
+            bg = "rgba(46,213,115,0.15)";
+        } else if (score >= 2) {
+            label = "Good";
+            color = "#ff9f43"; // orange
+            bg = "rgba(255,159,67,0.15)";
+        }
+        badge.textContent = `${label} (${score}/5)`;
+        badge.style.color = color;
+        badge.style.background = bg;
+    }
 }
 
 // ── Render Preview ────────────────────────────────────────
@@ -788,6 +941,42 @@ window.downloadPDF = function () {
         return;
     }
 
+    // Configure core PDF system fonts mapping (Roboto vs Times-Roman)
+    pdfMake.fonts = {
+        Roboto: {
+            normal: 'Roboto-Regular.ttf',
+            bold: 'Roboto-Medium.ttf',
+            italics: 'Roboto-Italic.ttf',
+            bolditalics: 'Roboto-MediumItalic.ttf'
+        },
+        Times: {
+            normal: 'Times-Roman',
+            bold: 'Times-Bold',
+            italics: 'Times-Italic',
+            bolditalics: 'Times-BoldItalic'
+        }
+    };
+
+    const activeFont = d.font === "georgia" ? "Times" : "Roboto";
+
+    // Setup margins dynamic values based on Spacing parameter
+    let m = 40; // normal
+    let sidebarMargin = [20, 30, 20, 30];
+    let mainMargin = [25, 30, 25, 30];
+
+    if (d.spacing === "compact") {
+        m = 25;
+        sidebarMargin = [15, 20, 15, 20];
+        mainMargin = [20, 20, 20, 20];
+    } else if (d.spacing === "spacious") {
+        m = 55;
+        sidebarMargin = [25, 40, 25, 40];
+        mainMargin = [30, 40, 30, 40];
+    }
+
+    const classicLineWidth = 595 - (2 * m);
+    const techMainLineWidth = 400 - mainMargin[0] - mainMargin[2] - 10;
+
     let docDefinition;
 
     if (d.templateId === "tech") {
@@ -851,7 +1040,7 @@ window.downloadPDF = function () {
         // About / Summary
         if (d.summary) {
             mainContent.push({ text: 'ABOUT ME', fontSize: 11, bold: true, color: d.textColor, margin: [0, 0, 0, 4] });
-            mainContent.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 320, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            mainContent.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: techMainLineWidth, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
             mainContent.push({ text: d.summary, fontSize: 9.5, color: d.textColor, margin: [0, 6, 0, 16] });
         }
 
@@ -859,7 +1048,7 @@ window.downloadPDF = function () {
         const validExp = d.experience.filter(e => e.company);
         if (validExp.length) {
             mainContent.push({ text: 'EXPERIENCE', fontSize: 11, bold: true, color: d.textColor, margin: [0, 0, 0, 4] });
-            mainContent.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 320, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            mainContent.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: techMainLineWidth, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
             
             validExp.forEach(e => {
                 mainContent.push({
@@ -885,7 +1074,7 @@ window.downloadPDF = function () {
         const validProj = d.projects.filter(p => p.title);
         if (validProj.length) {
             mainContent.push({ text: 'PROJECTS', fontSize: 11, bold: true, color: d.textColor, margin: [0, 8, 0, 4] });
-            mainContent.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 320, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            mainContent.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: techMainLineWidth, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
             
             validProj.forEach(p => {
                 mainContent.push({
@@ -908,6 +1097,9 @@ window.downloadPDF = function () {
 
         docDefinition = {
             pageMargins: [0, 0, 0, 0],
+            defaultStyle: {
+                font: activeFont
+            },
             content: [
                 {
                     table: {
@@ -917,11 +1109,11 @@ window.downloadPDF = function () {
                             [
                                 {
                                     fillColor: d.accentColor,
-                                    margin: [20, 30, 20, 30],
+                                    margin: sidebarMargin,
                                     stack: sidebarContent
                                 },
                                 {
-                                    margin: [25, 30, 25, 30],
+                                    margin: mainMargin,
                                     stack: mainContent
                                 }
                             ]
@@ -954,13 +1146,13 @@ window.downloadPDF = function () {
                 ]
             },
             layout: 'noBorders',
-            margin: [-40, -40, -40, 20]
+            margin: [-m, -m, -m, 20]
         });
 
         // Summary
         if (d.summary) {
             content.push({ text: 'SUMMARY', fontSize: 11, bold: true, color: d.accentColor, margin: [0, 10, 0, 4] });
-            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: classicLineWidth, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
             content.push({ text: d.summary, fontSize: 9, color: d.textColor, margin: [0, 6, 0, 12] });
         }
 
@@ -968,7 +1160,7 @@ window.downloadPDF = function () {
         const validEdu = d.education.filter(e => e.school);
         if (validEdu.length) {
             content.push({ text: 'EDUCATION', fontSize: 11, bold: true, color: d.accentColor, margin: [0, 8, 0, 4] });
-            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: classicLineWidth, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
             
             const eduBlocks = [];
             validEdu.forEach(e => {
@@ -993,7 +1185,7 @@ window.downloadPDF = function () {
         // Skills
         if (d.skills && d.skills.length) {
             content.push({ text: 'SKILLS', fontSize: 11, bold: true, color: d.accentColor, margin: [0, 8, 0, 4] });
-            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: classicLineWidth, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
             content.push({
                 text: d.skills.join("   ,   "),
                 fontSize: 9,
@@ -1006,7 +1198,7 @@ window.downloadPDF = function () {
         const validExp = d.experience.filter(e => e.company);
         if (validExp.length) {
             content.push({ text: 'EXPERIENCE', fontSize: 11, bold: true, color: d.accentColor, margin: [0, 8, 0, 4] });
-            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: classicLineWidth, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
             
             const expBlocks = [];
             validExp.forEach(e => {
@@ -1033,7 +1225,7 @@ window.downloadPDF = function () {
         const validProj = d.projects.filter(p => p.title);
         if (validProj.length) {
             content.push({ text: 'PROJECTS', fontSize: 11, bold: true, color: d.accentColor, margin: [0, 8, 0, 4] });
-            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: classicLineWidth, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
             
             const projBlocks = [];
             validProj.forEach(p => {
@@ -1060,7 +1252,7 @@ window.downloadPDF = function () {
         const validCerts = d.certifications.filter(c => c.name);
         if (validCerts.length) {
             content.push({ text: 'CERTIFICATIONS', fontSize: 11, bold: true, color: d.accentColor, margin: [0, 8, 0, 4] });
-            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: classicLineWidth, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
             
             const certBlocks = [];
             validCerts.forEach(c => {
@@ -1075,7 +1267,10 @@ window.downloadPDF = function () {
         }
 
         docDefinition = {
-            pageMargins: [40, 40, 40, 40],
+            pageMargins: [m, m, m, m],
+            defaultStyle: {
+                font: activeFont
+            },
             content: content
         };
     }
