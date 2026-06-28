@@ -678,18 +678,7 @@ function updateStrengthChecklist(d, pi) {
 
     let score = 0;
 
-    // 1. Photo Check
-    const chkPhoto = document.getElementById("chk-photo");
-    if (chkPhoto) {
-        const isSet = !!pi.photo;
-        if (isSet) score++;
-        chkPhoto.innerHTML = isSet
-            ? `<i class='bx bx-check' style="color: #2ed573; font-size: 1.1rem; flex-shrink: 0;"></i> Profile Photo uploaded`
-            : `<i class='bx bx-x' style="color: #ff4757; font-size: 1.1rem; flex-shrink: 0;"></i> Profile Photo uploaded`;
-        chkPhoto.style.color = isSet ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.5)";
-    }
-
-    // 2. Summary Check
+    // 1. Summary Check
     const chkSummary = document.getElementById("chk-summary");
     if (chkSummary) {
         const isSet = d.summary && d.summary.length >= 80;
@@ -700,7 +689,7 @@ function updateStrengthChecklist(d, pi) {
         chkSummary.style.color = isSet ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.5)";
     }
 
-    // 3. Skills Check
+    // 2. Skills Check
     const chkSkills = document.getElementById("chk-skills");
     if (chkSkills) {
         const isSet = d.skills.length >= 3;
@@ -711,7 +700,7 @@ function updateStrengthChecklist(d, pi) {
         chkSkills.style.color = isSet ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.5)";
     }
 
-    // 4. Experience Check
+    // 3. Experience Check
     const chkExperience = document.getElementById("chk-experience");
     if (chkExperience) {
         const isSet = d.experience.some(e => e.company && e.role && e.description);
@@ -722,7 +711,7 @@ function updateStrengthChecklist(d, pi) {
         chkExperience.style.color = isSet ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.5)";
     }
 
-    // 5. Projects Check
+    // 4. Projects Check
     const chkProjects = document.getElementById("chk-projects");
     if (chkProjects) {
         const isSet = d.projects.some(p => p.title && p.description);
@@ -733,13 +722,13 @@ function updateStrengthChecklist(d, pi) {
         chkProjects.style.color = isSet ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.5)";
     }
 
-    // Update strength badge in card header
+    // Update strength badge in card header (out of 4)
     const badge = document.getElementById("strength-badge");
     if (badge) {
         let label = "Weak";
         let color = "#ff4757"; // red
         let bg = "rgba(255,71,87,0.15)";
-        if (score >= 4) {
+        if (score >= 3) {
             label = "Excellent!";
             color = "#2ed573"; // green
             bg = "rgba(46,213,115,0.15)";
@@ -748,7 +737,7 @@ function updateStrengthChecklist(d, pi) {
             color = "#ff9f43"; // orange
             bg = "rgba(255,159,67,0.15)";
         }
-        badge.textContent = `${label} (${score}/5)`;
+        badge.textContent = `${label} (${score}/4)`;
         badge.style.color = color;
         badge.style.background = bg;
     }
