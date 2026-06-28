@@ -472,6 +472,18 @@ function loadSavedResume(resume) {
                 const t = input.dataset.type;
                 const i = parseInt(input.dataset.idx);
                 const f = input.dataset.field;
+
+                // Restrict GPA input to numbers and a single decimal dot only
+                if (input.dataset.gpaVal) {
+                    let val = input.value;
+                    val = val.replace(/[^0-9.]/g, ""); // strip non-numeric/non-dot characters
+                    const parts = val.split(".");
+                    if (parts.length > 2) {
+                        val = parts[0] + "." + parts.slice(1).join(""); // force maximum of one dot
+                    }
+                    input.value = val;
+                }
+
                 ENTRY_CONFIGS[t].getList()[i][f] = input.value;
 
                 // Clear school year error while typing
