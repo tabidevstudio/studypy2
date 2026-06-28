@@ -1341,17 +1341,44 @@ window.downloadPDF = function () {
 window.togglePreviewPanel = function () {
     const layout      = document.querySelector(".builder-layout");
     const label       = document.getElementById("toggle-preview-label");
+    const icon        = document.getElementById("toggle-preview-icon");
     const inputsBtn   = document.getElementById("btn-toggle-inputs");
+    const toolbarFull = document.getElementById("btn-toolbar-fullview");
+    const previewBtn  = document.getElementById("btn-toggle-preview");
     const collapsed   = layout.classList.toggle("preview-collapsed");
     
     label.textContent = collapsed ? "Show Preview" : "Hide Preview";
+    if (icon) {
+        icon.className = collapsed ? "bx bx-show" : "bx bx-layout";
+    }
     
+    // Hide side fullview button when preview is hidden, and show toolbar fullview button instead
     if (inputsBtn) {
         inputsBtn.style.display = collapsed ? "none" : "inline-flex";
+    }
+    if (toolbarFull) {
+        toolbarFull.style.display = collapsed ? "inline-flex" : "none";
+    }
+    if (previewBtn) {
+        previewBtn.style.marginLeft = collapsed ? "0" : "auto";
     }
 
     // Re-render so overflow detection recalculates with new width
     setTimeout(renderPreview, 50);
+};
+
+// ── Toolbar Full View Trigger (Desktop) ───────────────────
+window.triggerToolbarFullView = function () {
+    const layout = document.querySelector(".builder-layout");
+    if (!layout) return;
+
+    // Show preview panel first (restore to split mode)
+    if (layout.classList.contains("preview-collapsed")) {
+        togglePreviewPanel();
+    }
+
+    // Immediately toggle the inputs panel off so preview fills the screen
+    toggleInputsPanel();
 };
 
 // ── Inputs Panel Toggle (Full Preview Mode on Desktop) ────
@@ -1362,8 +1389,10 @@ window.toggleInputsPanel = function () {
     const previewBtn  = document.getElementById("btn-toggle-preview");
     const collapsed   = layout.classList.toggle("inputs-collapsed");
 
-    label.textContent = collapsed ? "Show Inputs" : "Full Preview";
-    icon.className    = collapsed ? "bx bx-exit-fullscreen" : "bx bx-fullscreen";
+    label.textContent = collapsed ? "Show Inputs" : "Full View";
+    if (icon) {
+        icon.className = collapsed ? "bx bx-exit-fullscreen" : "bx bx-fullscreen";
+    }
 
     if (previewBtn) {
         previewBtn.style.display = collapsed ? "none" : "inline-flex";

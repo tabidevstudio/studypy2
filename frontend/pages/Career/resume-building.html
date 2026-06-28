@@ -208,11 +208,11 @@
                                     <option value="spacious">Spacious</option>
                                 </select>
                             </div>
-                            <button class="btn-preview-action btn-preview-toggle" id="btn-toggle-inputs" onclick="toggleInputsPanel()" title="Toggle full preview" style="margin-left:auto; margin-right:8px;">
-                                <i class='bx bx-fullscreen' id="toggle-inputs-icon"></i>
-                                <span id="toggle-inputs-label">Full Preview</span>
+                            <button class="btn-preview-action btn-preview-toggle" id="btn-toolbar-fullview" onclick="triggerToolbarFullView()" title="Toggle full preview" style="display:none; margin-left:auto; margin-right:8px;">
+                                <i class='bx bx-fullscreen'></i>
+                                <span>Full View</span>
                             </button>
-                            <button class="btn-preview-action btn-preview-toggle" id="btn-toggle-preview" onclick="togglePreviewPanel()" title="Toggle preview panel">
+                            <button class="btn-preview-action btn-preview-toggle" id="btn-toggle-preview" onclick="togglePreviewPanel()" title="Toggle preview panel" style="margin-left:auto;">
                                 <i class='bx bx-layout' id="toggle-preview-icon"></i>
                                 <span id="toggle-preview-label">Hide Preview</span>
                             </button>
@@ -431,6 +431,10 @@
                             <div class="preview-panel-header">
                                 <span class="preview-label"><i class='bx bx-show' style="margin-right:4px;"></i> Live Preview</span>
                                 <div class="preview-actions">
+                                    <button class="btn-preview-action btn-preview-toggle" id="btn-toggle-inputs" onclick="toggleInputsPanel()" title="Full View (Hide Inputs)" style="margin-right:8px;">
+                                        <i class='bx bx-fullscreen' id="toggle-inputs-icon"></i>
+                                        <span id="toggle-inputs-label">Full View</span>
+                                    </button>
                                     <button class="btn-preview-action" onclick="downloadPDF()" title="Download PDF">
                                         <i class='bx bx-download'></i> PDF
                                     </button>
