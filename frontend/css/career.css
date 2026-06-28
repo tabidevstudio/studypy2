@@ -2396,30 +2396,62 @@
   box-shadow: 0 0 10px rgba(145, 218, 235, 0.15);
 }
 
-/* When preview is collapsed: form takes full space */
+/* When preview is snapped-collapsed: form fills, thin edge on right so user can drag back */
 .builder-layout.preview-collapsed {
-  grid-template-columns: 1fr !important;
-}
-.builder-layout.preview-collapsed .resize-handle {
-  display: none !important;
+  grid-template-columns: 1fr 20px !important;
 }
 .builder-layout.preview-collapsed .preview-panel {
   display: none !important;
 }
+.builder-layout.preview-collapsed .resize-handle {
+  width: 20px;
+  background: rgba(145, 218, 235, 0.05);
+  border-left: 1px solid rgba(145, 218, 235, 0.15);
+  border-radius: 0 6px 6px 0;
+}
+.builder-layout.preview-collapsed .resize-handle::after {
+  background: rgba(145, 218, 235, 0.3);
+}
+.builder-layout.preview-collapsed .resize-handle .resize-grabber {
+  border-color: rgba(145, 218, 235, 0.35);
+  color: rgb(145, 218, 235);
+}
+.builder-layout.preview-collapsed .resize-handle .resize-grabber i::before {
+  content: "\eb90"; /* bx-chevron-right */
+}
+.builder-layout.preview-collapsed .resize-handle:hover {
+  background: rgba(145, 218, 235, 0.1);
+}
 
-/* When inputs are collapsed: preview takes full space */
+/* When inputs are snapped-collapsed: preview fills, thin edge on left so user can drag back */
 .builder-layout.inputs-collapsed {
-  grid-template-columns: 1fr !important;
+  grid-template-columns: 20px 1fr !important;
 }
 .builder-layout.inputs-collapsed .form-panel {
-  display: none !important;
-}
-.builder-layout.inputs-collapsed .resize-handle {
   display: none !important;
 }
 .builder-layout.inputs-collapsed .preview-panel {
   display: block !important;
   width: 100% !important;
+}
+.builder-layout.inputs-collapsed .resize-handle {
+  width: 20px;
+  background: rgba(145, 218, 235, 0.05);
+  border-right: 1px solid rgba(145, 218, 235, 0.15);
+  border-radius: 6px 0 0 6px;
+}
+.builder-layout.inputs-collapsed .resize-handle::after {
+  background: rgba(145, 218, 235, 0.3);
+}
+.builder-layout.inputs-collapsed .resize-handle .resize-grabber {
+  border-color: rgba(145, 218, 235, 0.35);
+  color: rgb(145, 218, 235);
+}
+.builder-layout.inputs-collapsed .resize-handle .resize-grabber i::before {
+  content: "\eb8d"; /* bx-chevron-left */
+}
+.builder-layout.inputs-collapsed .resize-handle:hover {
+  background: rgba(145, 218, 235, 0.1);
 }
 
 /* ── Mobile FAB Preview Toggle ─────────────────────────── */

@@ -2140,34 +2140,74 @@
     }
 }
 
-/* When preview is collapsed: form takes full space */
+/* When preview is snapped-collapsed: form fills, thin edge on right so user can drag back */
 .builder-layout.preview-collapsed {
-    grid-template-columns: 1fr !important;
-
-    .resize-handle {
-        display: none !important;
-    }
+    grid-template-columns: 1fr 20px !important;
 
     .preview-panel {
         display: none !important;
     }
-}
-
-/* When inputs are collapsed: preview takes full space */
-.builder-layout.inputs-collapsed {
-    grid-template-columns: 1fr !important;
-
-    .form-panel {
-        display: none !important;
-    }
 
     .resize-handle {
+        width: 20px;
+        background: rgba(145, 218, 235, 0.05);
+        border-left: 1px solid rgba(145, 218, 235, 0.15);
+        border-radius: 0 6px 6px 0;
+
+        &::after {
+            background: rgba(145, 218, 235, 0.3);
+        }
+
+        .resize-grabber {
+            border-color: rgba(145, 218, 235, 0.35);
+            color: rgb(145, 218, 235);
+
+            i::before {
+                content: "\eb90"; /* bx-chevron-right */
+            }
+        }
+
+        &:hover {
+            background: rgba(145, 218, 235, 0.1);
+        }
+    }
+}
+
+/* When inputs are snapped-collapsed: preview fills, thin edge on left so user can drag back */
+.builder-layout.inputs-collapsed {
+    grid-template-columns: 20px 1fr !important;
+
+    .form-panel {
         display: none !important;
     }
 
     .preview-panel {
         display: block !important;
         width: 100% !important;
+    }
+
+    .resize-handle {
+        width: 20px;
+        background: rgba(145, 218, 235, 0.05);
+        border-right: 1px solid rgba(145, 218, 235, 0.15);
+        border-radius: 6px 0 0 6px;
+
+        &::after {
+            background: rgba(145, 218, 235, 0.3);
+        }
+
+        .resize-grabber {
+            border-color: rgba(145, 218, 235, 0.35);
+            color: rgb(145, 218, 235);
+
+            i::before {
+                content: "\eb8d"; /* bx-chevron-left */
+            }
+        }
+
+        &:hover {
+            background: rgba(145, 218, 235, 0.1);
+        }
     }
 }
 

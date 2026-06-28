@@ -302,47 +302,90 @@ function loadSavedResume(resume) {
         document.getElementById("size-select").addEventListener("change", renderPreview);
         document.getElementById("spacing-select").addEventListener("change", renderPreview);
 
-        // Draggable Resizer Panel (Claude style)
+        // ── Draggable Resizer with Snap-to-Edge ─────────────────
         const resizeHandle = document.getElementById("resize-handle");
         const builderLayout = document.querySelector(".builder-layout");
         if (resizeHandle && builderLayout) {
             let isDragging = false;
+            // Snap thresholds: drag past these percentages to collapse a panel
+            const SNAP_LEFT  = 15;  // drag left past 15% → hide form, full preview
+            const SNAP_RIGHT = 85;  // drag right past 85% → hide preview, full form
+
+            function applySnap(formPercent) {
+                if (formPercent <= SNAP_LEFT) {
+                    // Snap: full preview — hide form panel
+                    builderLayout.classList.remove("preview-collapsed");
+                    builderLayout.classList.add("inputs-collapsed");
+                    builderLayout.style.removeProperty("--form-width");
+                    builderLayout.style.removeProperty("--preview-width");
+                    resizeHandle.title = "Drag right to show inputs";
+                } else if (formPercent >= SNAP_RIGHT) {
+                    // Snap: full form — hide preview panel
+                    builderLayout.classList.remove("inputs-collapsed");
+                    builderLayout.classList.add("preview-collapsed");
+                    builderLayout.style.removeProperty("--form-width");
+                    builderLayout.style.removeProperty("--preview-width");
+                    resizeHandle.title = "Drag left to show preview";
+                } else {
+                    // Normal split mode — restore both panels
+                    builderLayout.classList.remove("inputs-collapsed");
+                    builderLayout.classList.remove("preview-collapsed");
+                    builderLayout.style.setProperty("--form-width", `${formPercent}%`);
+                    builderLayout.style.setProperty("--preview-width", `${100 - formPercent}%`);
+                    resizeHandle.title = "Drag to resize panels";
+                }
+                setTimeout(renderPreview, 30);
+            }
 
             resizeHandle.addEventListener("mousedown", (e) => {
+                // Only start drag if both panels are visible (not already snapped)
+                // If snapped, allow drag to un-snap
                 isDragging = true;
                 resizeHandle.classList.add("dragging");
                 document.body.style.cursor = "col-resize";
                 document.body.style.userSelect = "none";
+                e.preventDefault();
             });
 
             document.addEventListener("mousemove", (e) => {
                 if (!isDragging) return;
-
                 const containerRect = builderLayout.getBoundingClientRect();
-                const containerWidth = containerRect.width;
                 const offsetLeft = e.clientX - containerRect.left;
+                const rawPercent = (offsetLeft / containerRect.width) * 100;
+                // Clamp between 0–100, snap logic will handle the rest
+                const clamped = Math.max(0, Math.min(100, rawPercent));
 
-                // Restrict resizing so panels don't get ridiculously small (min 25%, max 75%)
-                let formPercent = (offsetLeft / containerWidth) * 100;
-                if (formPercent < 25) formPercent = 25;
-                if (formPercent > 75) formPercent = 75;
-
-                const previewPercent = 100 - formPercent;
-
-                builderLayout.style.setProperty("--form-width", `${formPercent}%`);
-                builderLayout.style.setProperty("--preview-width", `${previewPercent}%`);
-
-                // Re-render so layout elements can recalculate/fit if needed
-                renderPreview();
+                // Live preview during drag (only update position, snap on mouseup)
+                if (clamped > SNAP_LEFT && clamped < SNAP_RIGHT) {
+                    builderLayout.classList.remove("inputs-collapsed");
+                    builderLayout.classList.remove("preview-collapsed");
+                    builderLayout.style.setProperty("--form-width", `${clamped}%`);
+                    builderLayout.style.setProperty("--preview-width", `${100 - clamped}%`);
+                    renderPreview();
+                }
             });
 
-            document.addEventListener("mouseup", () => {
-                if (isDragging) {
-                    isDragging = false;
-                    resizeHandle.classList.remove("dragging");
-                    document.body.style.cursor = "";
-                    document.body.style.userSelect = "";
-                }
+            document.addEventListener("mouseup", (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                resizeHandle.classList.remove("dragging");
+                document.body.style.cursor = "";
+                document.body.style.userSelect = "";
+
+                const containerRect = builderLayout.getBoundingClientRect();
+                const offsetLeft = e.clientX - containerRect.left;
+                const rawPercent = (offsetLeft / containerRect.width) * 100;
+                applySnap(rawPercent);
+            });
+
+            // Double-click to reset to 50/50
+            resizeHandle.addEventListener("dblclick", () => {
+                builderLayout.classList.remove("inputs-collapsed");
+                builderLayout.classList.remove("preview-collapsed");
+                builderLayout.style.setProperty("--form-width", "50%");
+                builderLayout.style.setProperty("--preview-width", "50%");
+                resizeHandle.title = "Drag to resize panels";
+                setTimeout(renderPreview, 30);
             });
         }
 
