@@ -345,6 +345,9 @@ function loadSavedResume(resume) {
                 }
             });
         }
+
+        // Re-scale preview when browser window resizes
+        window.addEventListener("resize", renderPreview);
     }
 
     // ── Step Navigation ───────────────────────────────────────
@@ -811,6 +814,18 @@ function renderPreview() {
     const size = pageSizes[d.pageSize] || pageSizes.A4;
     frame.style.width  = size.width;
     frame.style.height = size.height;
+
+    // Scale preview frame to fit wrapper width dynamically
+    const wrap = document.getElementById("resume-frame-wrap");
+    if (wrap) {
+        const wrapWidth = wrap.clientWidth - 24; // 12px padding on each side
+        const frameWidth = parseFloat(size.width) || 794;
+        const scale = wrapWidth / frameWidth;
+        frame.style.transform = `scale(${scale})`;
+        
+        const frameHeight = parseFloat(size.height) || 1123;
+        wrap.style.height = `${frameHeight * scale + 24}px`; // Scaled height + padding
+    }
 
     const inner = frame.firstElementChild;
     if (inner) {

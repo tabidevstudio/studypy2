@@ -1649,6 +1649,10 @@
   border-radius: 8px;
   padding: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
 }
 
 .resume-page-frame {
@@ -1659,6 +1663,8 @@
   position: relative;
   border-radius: 2px;
   flex-shrink: 0;
+  transform-origin: top center;
+  will-change: transform;
 }
 
 /* ── Resume Templates (rendered output) ─────────────────── */
