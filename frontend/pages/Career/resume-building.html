@@ -38,6 +38,9 @@
                     <button class="page-tab-btn" data-tab="resources">
                         <i class='bx bx-book-open'></i> Resume Resources
                     </button>
+                    <button class="page-tab-btn" data-tab="tips">
+                        <i class='bx bx-bulb'></i> Writing Tips & Action Verbs
+                    </button>
                 </div>
 
                 <!-- ── BUILDER TAB ── -->
@@ -575,9 +578,125 @@
                         </div>
                         <div class="res-card-name">Grammarly</div>
                         <div class="res-card-desc">Run your resume descriptions through Grammarly to catch grammar issues and improve clarity.</div>
-                        <div class="res-card-source"><i class='bx bx-globe'></i> grammarly.com</div>
                     </a>
                 </div>
+
+            </div>
+
+            <!-- ── TIPS & TRICKS TAB ── -->
+            <div class="page-tab-content" id="tab-tips">
+                
+                <!-- Google XYZ Section -->
+                <div class="tips-box" style="margin-bottom: 24px;">
+                    <div class="tips-box-title" style="font-size: 1.05rem;"><i class='bx bx-party'></i> Google's Formula for High-Impact Bullet Points</div>
+                    <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 12px;">
+                        Tech recruiters scan resumes for impact, not just responsibilities. Use Google's official formula to structure your experience descriptions:
+                    </p>
+                    <div style="background: rgba(145,218,235,0.08); border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-weight: 600; text-align: center; font-size: 0.95rem; color: #fff;">
+                        Accomplished <span style="color: #91DAEB;">[X]</span>, as measured by <span style="color: #91DAEB;">[Y]</span>, by doing <span style="color: #91DAEB;">[Z]</span>
+                    </div>
+                    <ul class="tips-list" style="margin-top: 8px;">
+                        <li><strong>[X] (The Goal)</strong>: What you achieved (e.g. reduced database response times, automated testing).</li>
+                        <li><strong>[Y] (The Metric)</strong>: How you quantified it (e.g. by 40%, saved 5 hours/week).</li>
+                        <li><strong>[Z] (The Action)</strong>: How you did it (e.g. optimized SQL query indices, wrote Python automation scripts).</li>
+                    </ul>
+                </div>
+
+                <!-- Comparison Examples -->
+                <div class="resource-section-title"><i class='bx bx-shuffle'></i> Before & After Phrasing Examples</div>
+                <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 30px;">
+                    <!-- Example 1 -->
+                    <div style="background: #0f1923; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+                        <div style="font-size: 0.88rem; font-weight: 700; color: #91DAEB; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 6px;">Example 1: Backend Developer (OJT / Project)</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <div style="font-size: 0.72rem; text-transform: uppercase; color: #ff4757; font-weight: 700; margin-bottom: 4px;">❌ Weak (No metrics or tech stack detail)</div>
+                                <div style="font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.4;">"I helped make the app's databases faster for users."</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.72rem; text-transform: uppercase; color: #2ed573; font-weight: 700; margin-bottom: 4px;">✅ Strong (XYZ Formatted)</div>
+                                <div style="font-size: 0.82rem; color: rgba(255,255,255,0.85); line-height: 1.4;">"Optimized database indices and query patterns (Z), reducing response times by 35% (Y) and resolving dashboard performance lags for 200+ active users (X)."</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Example 2 -->
+                    <div style="background: #0f1923; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+                        <div style="font-size: 0.88rem; font-weight: 700; color: #91DAEB; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 6px;">Example 2: Automating Tests</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <div style="font-size: 0.72rem; text-transform: uppercase; color: #ff4757; font-weight: 700; margin-bottom: 4px;">❌ Weak (Passive phrasing)</div>
+                                <div style="font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.4;">"Responsible for writing test scripts in Python."</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.72rem; text-transform: uppercase; color: #2ed573; font-weight: 700; margin-bottom: 4px;">✅ Strong (Action-first phrasing)</div>
+                                <div style="font-size: 0.82rem; color: rgba(255,255,255,0.85); line-height: 1.4;">"Engineered and executed automated testing pipelines in Python (Z), expanding QA coverage from 40% to 92% (Y) and preventing critical release regressions."</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Verbs Section -->
+                <div class="resource-section-title"><i class='bx bx-book-content'></i> Essential Action Verbs Dictionary</div>
+                
+                <h3 style="font-size: 0.95rem; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;"><i class='bx bx-code-alt' style="color:#91DAEB;"></i> Development & Creation</h3>
+                <div class="resources-grid" style="margin-bottom: 24px;">
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Engineered</div>
+                        <div class="res-card-desc">Ideal for backend, logic structures, and core software solutions.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Engineered custom API middleware..."</div>
+                    </div>
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Architected</div>
+                        <div class="res-card-desc">Use when you designed the schema, folder structure, or system setup.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Architected a scalable relational database schema..."</div>
+                    </div>
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Implemented</div>
+                        <div class="res-card-desc">Perfect for describing the execution of features, designs, or endpoints.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Implemented JWT authorization gates..."</div>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 0.95rem; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;"><i class='bx bx-trending-up' style="color:#91DAEB;"></i> Optimization & Scale</h3>
+                <div class="resources-grid" style="margin-bottom: 24px;">
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Optimized</div>
+                        <div class="res-card-desc">Use when you made something run faster, use less memory, or write less code.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Optimized lazy loaded routing patterns..."</div>
+                    </div>
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Streamlined</div>
+                        <div class="res-card-desc">Perfect for simplifying a complicated process or removing redundant code blocks.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Streamlined user authentication pipelines..."</div>
+                    </div>
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Accelerated</div>
+                        <div class="res-card-desc">Use when you directly boosted execution speeds or system throughput.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Accelerated backend image assets processing..."</div>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 0.95rem; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;"><i class='bx bx-check-double' style="color:#91DAEB;"></i> Automation & Reliability</h3>
+                <div class="resources-grid" style="margin-bottom: 24px;">
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Automated</div>
+                        <div class="res-card-desc">Use when you replaced a manual process (e.g. testing, deploying, backing up) with scripts.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Automated script deployments using GitHub Actions..."</div>
+                    </div>
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Migrated</div>
+                        <div class="res-card-desc">Perfect for moving systems, databases, or libraries without causing downtime.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Migrated old MongoDB connections to Mongoose..."</div>
+                    </div>
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Refactored</div>
+                        <div class="res-card-desc">Use when you restructured legacy code to improve readability and future maintenance.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Refactored UI helper methods to functional modules..."</div>
+                    </div>
+                </div>
+
+            </div>
 
             </div>
         </div>
