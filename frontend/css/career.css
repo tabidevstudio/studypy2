@@ -2315,14 +2315,53 @@
 .btn-preview-toggle {
   gap: 4px;
   font-size: 0.72rem;
+  white-space: nowrap;
 }
 
-/* When builder-layout has collapsed preview, form gets full width */
+/* Collapsed tab — hidden by default, shown when preview is hidden */
+.preview-collapsed-tab {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 36px;
+  background: rgba(145, 218, 235, 0.06);
+  border: 1px solid rgba(145, 218, 235, 0.15);
+  border-radius: 10px;
+  padding: 20px 0;
+  cursor: pointer;
+  color: rgba(145, 218, 235, 0.7);
+  transition: background 0.2s, color 0.2s;
+  align-self: flex-start;
+  position: sticky;
+  top: 100px;
+}
+.preview-collapsed-tab span {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.preview-collapsed-tab i {
+  font-size: 1rem;
+}
+.preview-collapsed-tab:hover {
+  background: rgba(145, 218, 235, 0.12);
+  color: rgb(145, 218, 235);
+}
+
+/* When preview is collapsed: form takes most space, tab appears */
 .builder-layout.preview-collapsed {
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 36px;
 }
 .builder-layout.preview-collapsed .preview-panel {
   display: none;
+}
+.builder-layout.preview-collapsed .preview-collapsed-tab {
+  display: flex;
 }
 
 /* ── Mobile FAB Preview Toggle ─────────────────────────── */

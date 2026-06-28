@@ -1280,13 +1280,11 @@ window.downloadPDF = function () {
 // ── Toast ─────────────────────────────────────────────────
 // ── Preview Panel Toggle (Desktop) ────────────────────────
 window.togglePreviewPanel = function () {
-    const layout = document.querySelector(".builder-layout");
-    const label  = document.getElementById("toggle-preview-label");
-    const icon   = document.getElementById("toggle-preview-icon");
+    const layout    = document.querySelector(".builder-layout");
+    const label     = document.getElementById("toggle-preview-label");
     const collapsed = layout.classList.toggle("preview-collapsed");
-    label.textContent = collapsed ? "Show" : "Hide";
-    icon.className    = collapsed ? "bx bx-layout" : "bx bx-layout";
-    // Re-render so overflow detection recalculates
+    label.textContent = collapsed ? "Show Preview" : "Hide Preview";
+    // Re-render so overflow detection recalculates with new width
     setTimeout(renderPreview, 50);
 };
 

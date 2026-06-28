@@ -208,9 +208,10 @@
                                     <option value="spacious">Spacious</option>
                                 </select>
                             </div>
-                            <div style="margin-left:auto; font-size:0.72rem; color:rgba(255,255,255,0.25);">
-                                <i class='bx bx-info-circle'></i> Changes appear live in the preview
-                            </div>
+                            <button class="btn-preview-action btn-preview-toggle" id="btn-toggle-preview" onclick="togglePreviewPanel()" title="Toggle preview panel" style="margin-left:auto;">
+                                <i class='bx bx-layout' id="toggle-preview-icon"></i>
+                                <span id="toggle-preview-label">Hide Preview</span>
+                            </button>
                         </div>
 
                         <div class="builder-layout">
@@ -422,10 +423,6 @@
                                     <button class="btn-preview-action" onclick="downloadPDF()" title="Download PDF">
                                         <i class='bx bx-download'></i> PDF
                                     </button>
-                                    <button class="btn-preview-action btn-preview-toggle" id="btn-toggle-preview" onclick="togglePreviewPanel()" title="Hide preview">
-                                        <i class='bx bx-layout' id="toggle-preview-icon"></i>
-                                        <span id="toggle-preview-label">Hide</span>
-                                    </button>
                                 </div>
                             </div>
                             <div class="overflow-warning" id="overflow-warning">
@@ -437,6 +434,13 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Collapsed preview tab — visible only when preview is hidden -->
+                        <div class="preview-collapsed-tab" id="preview-collapsed-tab" onclick="togglePreviewPanel()" title="Show preview">
+                            <i class='bx bx-show'></i>
+                            <span>Show Preview</span>
+                        </div>
+
                     </div>
 
                     <!-- Mobile: floating preview toggle FAB -->
