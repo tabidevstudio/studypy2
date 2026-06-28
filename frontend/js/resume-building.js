@@ -114,6 +114,16 @@ function loadSavedResume(resume) {
         return end > start && (end - start) <= 10; // allows 1–10 year gaps
     }
 
+    // ── GPA Validation (PH Scale: 1.0 - 5.0) ──────────────────
+    function validateGPA(value) {
+        if (!value) return true;
+        const num = parseFloat(value);
+        if (isNaN(num)) return false;
+        const pattern = /^[1-5](\.\d{1,2})?$/;
+        if (!pattern.test(value)) return false;
+        return num >= 1.0 && num <= 5.0;
+    }
+
     // ── Event Binding ─────────────────────────────────────────
     function bindEvents() {
         // Page Tabs
@@ -330,7 +340,7 @@ function loadSavedResume(resume) {
                 { id: "degree",     label: "Degree / Course",     placeholder: "e.g. BS Computer Science" },
                 // ── schoolYear field with validation flag ──
                 { id: "schoolYear", label: "School Year",         placeholder: "e.g. 2023-2024", schoolYear: true, half: true },
-                { id: "gpa",        label: "GPA (optional)",      placeholder: "e.g. 1.75" }
+                { id: "gpa",        label: "GPA (optional)",      placeholder: "e.g. 1.75", gpaValidation: true }
             ]
         },
         projects: {
@@ -407,6 +417,23 @@ function loadSavedResume(resume) {
                     <span id="${inputId}-error" style="color:red; font-size:11px; display:none;">
                         Invalid format. Use YYYY-YYYY (e.g. 2023-2024)
                     </span>`;
+                } else if (f.gpaValidation) {
+                    inputHTML = `
+                    <input
+                        type="text"
+                        class="form-input"
+                        id="${inputId}"
+                        placeholder="${f.placeholder}"
+                        value="${esc(val)}"
+                        maxlength="4"
+                        data-type="${type}"
+                        data-idx="${idx}"
+                        data-field="${f.id}"
+                        data-gpa-val="true"
+                    >
+                    <span id="${inputId}-error" style="color:red; font-size:11px; display:none;">
+                        Enter a valid GPA (1.0 to 5.0, e.g. 1.25)
+                    </span>`;
                 } else {
                     inputHTML = `<input type="text" class="form-input" id="${inputId}" placeholder="${f.placeholder}" value="${esc(val)}" data-type="${type}" data-idx="${idx}" data-field="${f.id}">`;
                 }
@@ -454,6 +481,13 @@ function loadSavedResume(resume) {
                     input.style.border = "";
                 }
 
+                // Clear GPA error while typing
+                if (input.dataset.gpaVal) {
+                    const errEl = document.getElementById(`${input.id}-error`);
+                    if (errEl) errEl.style.display = "none";
+                    input.style.border = "";
+                }
+
                 renderPreview();
                 updateCompleteness();
             });
@@ -472,6 +506,29 @@ function loadSavedResume(resume) {
                     }
 
                     if (!validateSchoolYear(value)) {
+                        errEl.style.display = "block";
+                        input.style.border = "1px solid red";
+                    } else {
+                        errEl.style.display = "none";
+                        input.style.border = "1px solid green";
+                    }
+                });
+            }
+
+            // ── GPA blur validation ──
+            if (input.dataset.gpaVal) {
+                input.addEventListener("blur", () => {
+                    const value = input.value.trim();
+                    const errEl = document.getElementById(`${input.id}-error`);
+                    if (!errEl) return;
+
+                    if (value === "") {
+                        errEl.style.display = "none";
+                        input.style.border = "";
+                        return;
+                    }
+
+                    if (!validateGPA(value)) {
                         errEl.style.display = "block";
                         input.style.border = "1px solid red";
                     } else {
@@ -694,6 +751,7 @@ window.saveToProfile = async function () {
 // ── Download PDF ──────────────────────────────────────────
 window.downloadPDF = function () {
     const d = collectData();
+    const pi = d.personalInfo;
     const frame = document.getElementById("resume-frame");
     const printTarget = document.getElementById("print-target");
 
@@ -715,11 +773,38 @@ window.downloadPDF = function () {
 
     printTarget.appendChild(wrapper);
 
-    setTimeout(() => {
+    if (typeof html2pdf === "undefined") {
+        setTimeout(() => {
+            window.print();
+            printTarget.style.display = "none";
+            printTarget.innerHTML = "";
+        }, 200);
+        return;
+    }
+
+    const opt = {
+        margin:       0,
+        filename:     `${(pi.name || "Resume").trim().replace(/\s+/g, "_")}_Resume.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { 
+            scale: 2, 
+            useCORS: true, 
+            logging: false, 
+            letterRendering: true,
+            allowTaint: true
+        },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().from(wrapper).set(opt).save().then(() => {
+        printTarget.style.display = "none";
+        printTarget.innerHTML = "";
+    }).catch(err => {
+        console.error("PDF generation failed, falling back to print:", err);
         window.print();
         printTarget.style.display = "none";
         printTarget.innerHTML = "";
-    }, 200);
+    });
 };
 
 // ── Toast ─────────────────────────────────────────────────
