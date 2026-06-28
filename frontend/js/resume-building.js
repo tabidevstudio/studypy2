@@ -283,17 +283,46 @@ function loadSavedResume(resume) {
         });
 
         // Customization
+        // Curated Tech Theme Presets
+        document.querySelectorAll(".theme-preset-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".theme-preset-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                accentColor = btn.dataset.accent;
+                textColor = btn.dataset.text;
+                headerTextColor = btn.dataset.header;
+
+                document.getElementById("accent-color-picker").value = accentColor;
+                document.getElementById("text-color-picker").value = textColor;
+                document.getElementById("header-text-picker").value = headerTextColor;
+
+                document.getElementById("color-swatch-display").style.background = accentColor;
+                document.getElementById("text-color-swatch-display").style.background = textColor;
+                document.getElementById("header-text-swatch-display").style.background = headerTextColor;
+
+                renderPreview();
+            });
+        });
+
+        const clearActivePreset = () => {
+            document.querySelectorAll(".theme-preset-btn").forEach(b => b.classList.remove("active"));
+        };
+
         document.getElementById("accent-color-picker").addEventListener("input", (e) => {
+            clearActivePreset();
             accentColor = e.target.value;
             document.getElementById("color-swatch-display").style.background = accentColor;
             renderPreview();
         });
         document.getElementById("text-color-picker").addEventListener("input", (e) => {
+            clearActivePreset();
             textColor = e.target.value;
             document.getElementById("text-color-swatch-display").style.background = textColor;
             renderPreview();
         });
         document.getElementById("header-text-picker").addEventListener("input", (e) => {
+            clearActivePreset();
             headerTextColor = e.target.value;
             document.getElementById("header-text-swatch-display").style.background = headerTextColor;
             renderPreview();
