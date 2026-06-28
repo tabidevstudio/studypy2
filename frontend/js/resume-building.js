@@ -336,39 +336,11 @@ function loadSavedResume(resume) {
         const builderLayout = document.querySelector(".builder-layout");
         if (resizeHandle && builderLayout) {
             let isDragging = false;
-            // Snap thresholds: drag past these percentages to collapse a panel
-            const SNAP_LEFT  = 15;  // drag left past 15% → hide form, full preview
-            const SNAP_RIGHT = 85;  // drag right past 85% → hide preview, full form
-
-            function applySnap(formPercent) {
-                if (formPercent <= SNAP_LEFT) {
-                    // Snap: full preview — hide form panel
-                    builderLayout.classList.remove("preview-collapsed");
-                    builderLayout.classList.add("inputs-collapsed");
-                    builderLayout.style.removeProperty("--form-width");
-                    builderLayout.style.removeProperty("--preview-width");
-                    resizeHandle.title = "Drag right to show inputs";
-                } else if (formPercent >= SNAP_RIGHT) {
-                    // Snap: full form — hide preview panel
-                    builderLayout.classList.remove("inputs-collapsed");
-                    builderLayout.classList.add("preview-collapsed");
-                    builderLayout.style.removeProperty("--form-width");
-                    builderLayout.style.removeProperty("--preview-width");
-                    resizeHandle.title = "Drag left to show preview";
-                } else {
-                    // Normal split mode — restore both panels
-                    builderLayout.classList.remove("inputs-collapsed");
-                    builderLayout.classList.remove("preview-collapsed");
-                    builderLayout.style.setProperty("--form-width", `${formPercent}%`);
-                    builderLayout.style.setProperty("--preview-width", `${100 - formPercent}%`);
-                    resizeHandle.title = "Drag to resize panels";
-                }
-                setTimeout(renderPreview, 30);
-            }
+            // Snap thresholds: drag past these percentages to collapse a panel in real-time
+            const SNAP_LEFT  = 20;  // drag left past 20% → hide form, full preview
+            const SNAP_RIGHT = 80;  // drag right past 80% → hide preview, full form
 
             resizeHandle.addEventListener("mousedown", (e) => {
-                // Only start drag if both panels are visible (not already snapped)
-                // If snapped, allow drag to un-snap
                 isDragging = true;
                 resizeHandle.classList.add("dragging");
                 document.body.style.cursor = "col-resize";
@@ -381,30 +353,41 @@ function loadSavedResume(resume) {
                 const containerRect = builderLayout.getBoundingClientRect();
                 const offsetLeft = e.clientX - containerRect.left;
                 const rawPercent = (offsetLeft / containerRect.width) * 100;
-                // Clamp between 0–100, snap logic will handle the rest
                 const clamped = Math.max(0, Math.min(100, rawPercent));
 
-                // Live preview during drag (only update position, snap on mouseup)
-                if (clamped > SNAP_LEFT && clamped < SNAP_RIGHT) {
+                if (clamped <= SNAP_LEFT) {
+                    // Snaps to full preview
+                    builderLayout.classList.remove("preview-collapsed");
+                    builderLayout.classList.add("inputs-collapsed");
+                    builderLayout.style.removeProperty("--form-width");
+                    builderLayout.style.removeProperty("--preview-width");
+                    resizeHandle.title = "Drag right to show inputs";
+                    renderPreview();
+                } else if (clamped >= SNAP_RIGHT) {
+                    // Snaps to full form
+                    builderLayout.classList.remove("inputs-collapsed");
+                    builderLayout.classList.add("preview-collapsed");
+                    builderLayout.style.removeProperty("--form-width");
+                    builderLayout.style.removeProperty("--preview-width");
+                    resizeHandle.title = "Drag left to show preview";
+                    renderPreview();
+                } else {
+                    // Normal split view
                     builderLayout.classList.remove("inputs-collapsed");
                     builderLayout.classList.remove("preview-collapsed");
                     builderLayout.style.setProperty("--form-width", `${clamped}%`);
                     builderLayout.style.setProperty("--preview-width", `${100 - clamped}%`);
+                    resizeHandle.title = "Drag to resize panels";
                     renderPreview();
                 }
             });
 
-            document.addEventListener("mouseup", (e) => {
+            document.addEventListener("mouseup", () => {
                 if (!isDragging) return;
                 isDragging = false;
                 resizeHandle.classList.remove("dragging");
                 document.body.style.cursor = "";
                 document.body.style.userSelect = "";
-
-                const containerRect = builderLayout.getBoundingClientRect();
-                const offsetLeft = e.clientX - containerRect.left;
-                const rawPercent = (offsetLeft / containerRect.width) * 100;
-                applySnap(rawPercent);
             });
 
             // Double-click to reset to 50/50
