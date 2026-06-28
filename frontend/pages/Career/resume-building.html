@@ -415,23 +415,46 @@
                         </div>
 
                         <!-- Right: Live Preview -->
-                        <div class="preview-panel">
+                        <div class="preview-panel" id="preview-panel">
                             <div class="preview-panel-header">
                                 <span class="preview-label"><i class='bx bx-show' style="margin-right:4px;"></i> Live Preview</span>
                                 <div class="preview-actions">
-                                    <button class="btn-preview-action" onclick="downloadPDF()">
+                                    <button class="btn-preview-action" onclick="downloadPDF()" title="Download PDF">
                                         <i class='bx bx-download'></i> PDF
+                                    </button>
+                                    <button class="btn-preview-action btn-preview-toggle" id="btn-toggle-preview" onclick="togglePreviewPanel()" title="Hide preview">
+                                        <i class='bx bx-layout' id="toggle-preview-icon"></i>
+                                        <span id="toggle-preview-label">Hide</span>
                                     </button>
                                 </div>
                             </div>
                             <div class="overflow-warning" id="overflow-warning">
                                 <i class='bx bx-error'></i> Content may overflow one page — try shortening descriptions.
                             </div>
-                            <div class="resume-frame-wrap">
+                            <div class="resume-frame-wrap" id="resume-frame-wrap">
                                 <div class="resume-page-frame" id="resume-frame">
                                     <!-- Rendered by JS -->
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile: floating preview toggle FAB -->
+                    <button class="fab-preview-toggle" id="fab-preview-toggle" onclick="toggleMobilePreview()" aria-label="Toggle preview">
+                        <i class='bx bx-show' id="fab-preview-icon"></i>
+                        <span>Preview</span>
+                    </button>
+
+                    <!-- Mobile: preview bottom sheet -->
+                    <div class="mobile-preview-sheet" id="mobile-preview-sheet">
+                        <div class="mobile-preview-sheet-header">
+                            <span style="font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.6);">Live Preview</span>
+                            <button class="btn-preview-action" onclick="toggleMobilePreview()" style="padding:4px 10px;">
+                                <i class='bx bx-x'></i> Close
+                            </button>
+                        </div>
+                        <div class="mobile-preview-sheet-body" id="mobile-preview-body">
+                            <!-- Preview mirrored here on mobile -->
                         </div>
                     </div>
 

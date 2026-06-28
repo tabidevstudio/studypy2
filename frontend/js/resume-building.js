@@ -1278,6 +1278,58 @@ window.downloadPDF = function () {
 };
 
 // ── Toast ─────────────────────────────────────────────────
+// ── Preview Panel Toggle (Desktop) ────────────────────────
+window.togglePreviewPanel = function () {
+    const layout = document.querySelector(".builder-layout");
+    const label  = document.getElementById("toggle-preview-label");
+    const icon   = document.getElementById("toggle-preview-icon");
+    const collapsed = layout.classList.toggle("preview-collapsed");
+    label.textContent = collapsed ? "Show" : "Hide";
+    icon.className    = collapsed ? "bx bx-layout" : "bx bx-layout";
+    // Re-render so overflow detection recalculates
+    setTimeout(renderPreview, 50);
+};
+
+// ── Mobile Preview Bottom Sheet ───────────────────────────
+let mobilePreviewOpen = false;
+
+window.toggleMobilePreview = function () {
+    const sheet   = document.getElementById("mobile-preview-sheet");
+    const body    = document.getElementById("mobile-preview-body");
+    const fabIcon = document.getElementById("fab-preview-icon");
+
+    mobilePreviewOpen = !mobilePreviewOpen;
+
+    if (mobilePreviewOpen) {
+        // Clone current rendered resume into the sheet
+        const frame = document.getElementById("resume-frame");
+        if (frame) {
+            // Create a scaled-down wrapper so the full page fits on screen
+            body.innerHTML = `
+                <div style="transform-origin: top center; transform: scale(0.45); width: 794px; margin: 0 auto;">
+                    ${frame.innerHTML}
+                </div>`;
+            // Set CSS vars on the cloned content wrapper
+            const wrapper = body.firstElementChild;
+            if (wrapper) {
+                wrapper.style.setProperty("--resume-accent", frame.style.getPropertyValue("--resume-accent"));
+                wrapper.style.setProperty("--resume-text",   frame.style.getPropertyValue("--resume-text"));
+                wrapper.style.setProperty("--resume-header-text", frame.style.getPropertyValue("--resume-header-text"));
+            }
+        }
+        sheet.classList.add("open");
+        fabIcon.className = "bx bx-x";
+        document.body.style.overflow = "hidden";
+    } else {
+        sheet.classList.remove("open");
+        fabIcon.className = "bx bx-show";
+        document.body.style.overflow = "";
+        // Clear after animation
+        setTimeout(() => { body.innerHTML = ""; }, 400);
+    }
+};
+
+// ── Toast ─────────────────────────────────────────────────
 function showToast(msg, isError = false) {
     const toast = document.getElementById("resume-toast");
     toast.textContent = msg;
