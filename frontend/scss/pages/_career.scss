@@ -1628,6 +1628,17 @@
     font-weight: 600;
     letter-spacing: 0.5px;
 }
+.preview-tip-badge {
+    font-size: 0.7rem;
+    color: rgba(145, 218, 235, 0.6);
+    background: rgba(145, 218, 235, 0.05);
+    border: 1px solid rgba(145, 218, 235, 0.12);
+    padding: 3px 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
 .preview-actions { display: flex; gap: 8px; }
 
 .overflow-warning {
