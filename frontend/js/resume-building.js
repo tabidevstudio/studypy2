@@ -301,6 +301,50 @@ function loadSavedResume(resume) {
         document.getElementById("font-select").addEventListener("change", renderPreview);
         document.getElementById("size-select").addEventListener("change", renderPreview);
         document.getElementById("spacing-select").addEventListener("change", renderPreview);
+
+        // Draggable Resizer Panel (Claude style)
+        const resizeHandle = document.getElementById("resize-handle");
+        const builderLayout = document.querySelector(".builder-layout");
+        if (resizeHandle && builderLayout) {
+            let isDragging = false;
+
+            resizeHandle.addEventListener("mousedown", (e) => {
+                isDragging = true;
+                resizeHandle.classList.add("dragging");
+                document.body.style.cursor = "col-resize";
+                document.body.style.userSelect = "none";
+            });
+
+            document.addEventListener("mousemove", (e) => {
+                if (!isDragging) return;
+
+                const containerRect = builderLayout.getBoundingClientRect();
+                const containerWidth = containerRect.width;
+                const offsetLeft = e.clientX - containerRect.left;
+
+                // Restrict resizing so panels don't get ridiculously small (min 25%, max 75%)
+                let formPercent = (offsetLeft / containerWidth) * 100;
+                if (formPercent < 25) formPercent = 25;
+                if (formPercent > 75) formPercent = 75;
+
+                const previewPercent = 100 - formPercent;
+
+                builderLayout.style.setProperty("--form-width", `${formPercent}%`);
+                builderLayout.style.setProperty("--preview-width", `${previewPercent}%`);
+
+                // Re-render so layout elements can recalculate/fit if needed
+                renderPreview();
+            });
+
+            document.addEventListener("mouseup", () => {
+                if (isDragging) {
+                    isDragging = false;
+                    resizeHandle.classList.remove("dragging");
+                    document.body.style.cursor = "";
+                    document.body.style.userSelect = "";
+                }
+            });
+        }
     }
 
     // ── Step Navigation ───────────────────────────────────────

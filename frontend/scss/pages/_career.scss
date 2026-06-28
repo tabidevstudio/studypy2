@@ -1257,12 +1257,50 @@
 /* ── Step 2: Form + Preview ─────────────────────────────── */
 .builder-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
+    grid-template-columns: var(--form-width, 1fr) 12px var(--preview-width, 1fr);
+    gap: 0;
     align-items: start;
 
     @media (max-width: 960px) {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 28px;
+    }
+}
+
+.resize-handle {
+    width: 12px;
+    height: 100%;
+    min-height: 600px;
+    cursor: col-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    user-select: none;
+    align-self: stretch;
+    background: transparent;
+    z-index: 10;
+
+    &::after {
+        content: '';
+        width: 2px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 1px;
+        transition: background-color 0.2s, height 0.2s, width 0.2s;
+    }
+
+    &:hover, &.dragging {
+        background: rgba(255, 255, 255, 0.03);
+        &::after {
+            background: rgb(145, 218, 235);
+            width: 4px;
+            height: 90px;
+        }
+    }
+
+    @media (max-width: 960px) {
+        display: none !important;
     }
 }
 
@@ -2057,52 +2095,16 @@
     white-space: nowrap;
 }
 
-/* Collapsed tab — hidden by default, shown when preview is hidden */
-.preview-collapsed-tab {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 36px;
-    background: rgba(145, 218, 235, 0.06);
-    border: 1px solid rgba(145, 218, 235, 0.15);
-    border-radius: 10px;
-    padding: 20px 0;
-    cursor: pointer;
-    color: rgba(145, 218, 235, 0.7);
-    transition: background 0.2s, color 0.2s;
-    align-self: flex-start;
-    position: sticky;
-    top: 100px;
-
-    span {
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        font-size: 0.68rem;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-    }
-
-    i { font-size: 1rem; }
-
-    &:hover {
-        background: rgba(145, 218, 235, 0.12);
-        color: rgb(145, 218, 235);
-    }
-}
-
-/* When preview is collapsed: form takes most space, tab appears */
+/* When preview is collapsed: form takes full space */
 .builder-layout.preview-collapsed {
-    grid-template-columns: 1fr 36px;
+    grid-template-columns: 1fr !important;
+
+    .resize-handle {
+        display: none !important;
+    }
 
     .preview-panel {
-        display: none;
-    }
-
-    .preview-collapsed-tab {
-        display: flex;
+        display: none !important;
     }
 }
 
