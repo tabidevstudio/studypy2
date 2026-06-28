@@ -208,7 +208,11 @@
                                     <option value="spacious">Spacious</option>
                                 </select>
                             </div>
-                            <button class="btn-preview-action btn-preview-toggle" id="btn-toggle-preview" onclick="togglePreviewPanel()" title="Toggle preview panel" style="margin-left:auto;">
+                            <button class="btn-preview-action btn-preview-toggle" id="btn-toggle-inputs" onclick="toggleInputsPanel()" title="Toggle full preview" style="margin-left:auto; margin-right:8px;">
+                                <i class='bx bx-fullscreen' id="toggle-inputs-icon"></i>
+                                <span id="toggle-inputs-label">Full Preview</span>
+                            </button>
+                            <button class="btn-preview-action btn-preview-toggle" id="btn-toggle-preview" onclick="togglePreviewPanel()" title="Toggle preview panel">
                                 <i class='bx bx-layout' id="toggle-preview-icon"></i>
                                 <span id="toggle-preview-label">Hide Preview</span>
                             </button>

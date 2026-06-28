@@ -1339,11 +1339,37 @@ window.downloadPDF = function () {
 // ── Toast ─────────────────────────────────────────────────
 // ── Preview Panel Toggle (Desktop) ────────────────────────
 window.togglePreviewPanel = function () {
-    const layout    = document.querySelector(".builder-layout");
-    const label     = document.getElementById("toggle-preview-label");
-    const collapsed = layout.classList.toggle("preview-collapsed");
+    const layout      = document.querySelector(".builder-layout");
+    const label       = document.getElementById("toggle-preview-label");
+    const inputsBtn   = document.getElementById("btn-toggle-inputs");
+    const collapsed   = layout.classList.toggle("preview-collapsed");
+    
     label.textContent = collapsed ? "Show Preview" : "Hide Preview";
+    
+    if (inputsBtn) {
+        inputsBtn.style.display = collapsed ? "none" : "inline-flex";
+    }
+
     // Re-render so overflow detection recalculates with new width
+    setTimeout(renderPreview, 50);
+};
+
+// ── Inputs Panel Toggle (Full Preview Mode on Desktop) ────
+window.toggleInputsPanel = function () {
+    const layout      = document.querySelector(".builder-layout");
+    const label       = document.getElementById("toggle-inputs-label");
+    const icon        = document.getElementById("toggle-inputs-icon");
+    const previewBtn  = document.getElementById("btn-toggle-preview");
+    const collapsed   = layout.classList.toggle("inputs-collapsed");
+
+    label.textContent = collapsed ? "Show Inputs" : "Full Preview";
+    icon.className    = collapsed ? "bx bx-exit-fullscreen" : "bx bx-fullscreen";
+
+    if (previewBtn) {
+        previewBtn.style.display = collapsed ? "none" : "inline-flex";
+    }
+
+    // Re-render to scale preview page to 100% container width
     setTimeout(renderPreview, 50);
 };
 
