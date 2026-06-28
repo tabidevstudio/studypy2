@@ -643,7 +643,7 @@ window.downloadPDF = function () {
 
     const innerEl = wrapper.querySelector("[id^='resume-']");
     if (innerEl) {
-        innerEl.style.fontSize = "10px";
+        innerEl.style.fontSize = "15px";
         innerEl.style.height = "297mm";
     }
     wrapper.style.setProperty("--resume-accent", d.accentColor);
