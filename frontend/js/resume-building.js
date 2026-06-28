@@ -749,31 +749,25 @@ window.saveToProfile = async function () {
 };
 
 // ── Download PDF ──────────────────────────────────────────
+// Helper to format descriptions into clean bullet lists
+function makeBullets(text) {
+    if (!text) return [];
+    return text.split("\n")
+        .map(l => l.trim())
+        .filter(Boolean)
+        .map(line => line.replace(/^[-•*]\s*/, ""));
+}
+
+// ── Download PDF (PDFMake Selectable Text Generation) ──────
 window.downloadPDF = function () {
     const d = collectData();
     const pi = d.personalInfo;
-    const frame = document.getElementById("resume-frame");
-    const printTarget = document.getElementById("print-target");
 
-    printTarget.style.display = "block";
-    printTarget.innerHTML = "";
-
-    const wrapper = document.createElement("div");
-    wrapper.style.cssText = "width:210mm; min-height:297mm; background:#fff; padding:0; margin:0 auto;";
-    wrapper.innerHTML = frame.innerHTML;
-
-    const innerEl = wrapper.querySelector("[id^='resume-']");
-    if (innerEl) {
-        innerEl.style.fontSize = "15px";
-        innerEl.style.height = "297mm";
-    }
-    wrapper.style.setProperty("--resume-accent", d.accentColor);
-    wrapper.style.setProperty("--resume-text", d.textColor);
-    wrapper.style.setProperty("--resume-header-text", d.headerTextColor);
-
-    printTarget.appendChild(wrapper);
-
-    if (typeof html2pdf === "undefined") {
+    if (typeof pdfMake === "undefined") {
+        console.warn("PDFMake not loaded. Falling back to native browser print.");
+        const printTarget = document.getElementById("print-target");
+        printTarget.style.display = "block";
+        printTarget.innerHTML = document.getElementById("resume-frame").innerHTML;
         setTimeout(() => {
             window.print();
             printTarget.style.display = "none";
@@ -782,29 +776,300 @@ window.downloadPDF = function () {
         return;
     }
 
-    const opt = {
-        margin:       0,
-        filename:     `${(pi.name || "Resume").trim().replace(/\s+/g, "_")}_Resume.pdf`,
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { 
-            scale: 2, 
-            useCORS: true, 
-            logging: false, 
-            letterRendering: true,
-            allowTaint: true
-        },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+    let docDefinition;
 
-    html2pdf().from(wrapper).set(opt).save().then(() => {
-        printTarget.style.display = "none";
-        printTarget.innerHTML = "";
-    }).catch(err => {
-        console.error("PDF generation failed, falling back to print:", err);
-        window.print();
-        printTarget.style.display = "none";
-        printTarget.innerHTML = "";
-    });
+    if (d.templateId === "tech") {
+        // ── TECH TEMPLATE ──────────────────────────────────────
+        const sidebarContent = [];
+
+        // Render photo in sidebar if present
+        if (pi.photo) {
+            sidebarContent.push({
+                image: pi.photo,
+                width: 70,
+                height: 70,
+                alignment: 'center',
+                margin: [0, 0, 0, 15]
+            });
+        }
+
+        // Profile details
+        sidebarContent.push({ text: (pi.name || "YOUR NAME").toUpperCase(), fontSize: 14, bold: true, color: d.headerTextColor, margin: [0, 0, 0, 2] });
+        
+        // Contact details
+        sidebarContent.push({ text: 'CONTACT', fontSize: 9, bold: true, color: d.headerTextColor, opacity: 0.8, margin: [0, 15, 0, 5] });
+        const contacts = [pi.email, pi.phone, pi.linkedin, pi.github, pi.portfolio].filter(Boolean);
+        contacts.forEach(c => {
+            sidebarContent.push({ text: c, fontSize: 8, color: d.headerTextColor, opacity: 0.9, margin: [0, 2, 0, 2] });
+        });
+
+        // Skills section
+        if (d.skills && d.skills.length) {
+            sidebarContent.push({ text: 'SKILLS', fontSize: 9, bold: true, color: d.headerTextColor, opacity: 0.8, margin: [0, 18, 0, 6] });
+            d.skills.forEach(s => {
+                sidebarContent.push({ text: `• ${s}`, fontSize: 8, color: d.headerTextColor, opacity: 0.9, margin: [0, 2, 0, 2] });
+            });
+        }
+
+        // Education section
+        const validEdu = d.education.filter(e => e.school);
+        if (validEdu.length) {
+            sidebarContent.push({ text: 'EDUCATION', fontSize: 9, bold: true, color: d.headerTextColor, opacity: 0.8, margin: [0, 18, 0, 6] });
+            validEdu.forEach(e => {
+                sidebarContent.push({ text: e.school, fontSize: 8.5, bold: true, color: d.headerTextColor, margin: [0, 4, 0, 1] });
+                sidebarContent.push({ text: e.degree, fontSize: 8, color: d.headerTextColor, opacity: 0.9 });
+                if (e.schoolYear) {
+                    sidebarContent.push({ text: e.schoolYear, fontSize: 7.5, color: d.headerTextColor, opacity: 0.6, margin: [0, 1, 0, 6] });
+                }
+            });
+        }
+
+        // Certifications section
+        const validCerts = d.certifications.filter(c => c.name);
+        if (validCerts.length) {
+            sidebarContent.push({ text: 'CERTIFICATIONS', fontSize: 9, bold: true, color: d.headerTextColor, opacity: 0.8, margin: [0, 18, 0, 6] });
+            validCerts.forEach(c => {
+                sidebarContent.push({ text: c.name, fontSize: 8, color: d.headerTextColor, margin: [0, 2, 0, 2] });
+            });
+        }
+
+        // Main content pane
+        const mainContent = [];
+
+        // About / Summary
+        if (d.summary) {
+            mainContent.push({ text: 'ABOUT ME', fontSize: 11, bold: true, color: d.textColor, margin: [0, 0, 0, 4] });
+            mainContent.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 320, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            mainContent.push({ text: d.summary, fontSize: 9.5, color: d.textColor, margin: [0, 6, 0, 16] });
+        }
+
+        // Experience
+        const validExp = d.experience.filter(e => e.company);
+        if (validExp.length) {
+            mainContent.push({ text: 'EXPERIENCE', fontSize: 11, bold: true, color: d.textColor, margin: [0, 0, 0, 4] });
+            mainContent.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 320, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            
+            validExp.forEach(e => {
+                mainContent.push({
+                    columns: [
+                        { text: e.role, fontSize: 9.5, bold: true, color: d.textColor },
+                        { text: e.duration || "", fontSize: 8.5, alignment: 'right', color: d.textColor }
+                    ],
+                    margin: [0, 8, 0, 2]
+                });
+                mainContent.push({ text: e.company, fontSize: 8.5, italic: true, color: d.textColor, margin: [0, 0, 0, 4] });
+                if (e.description) {
+                    mainContent.push({
+                        ul: makeBullets(e.description),
+                        fontSize: 9,
+                        color: d.textColor,
+                        margin: [5, 0, 0, 12]
+                    });
+                }
+            });
+        }
+
+        // Projects
+        const validProj = d.projects.filter(p => p.title);
+        if (validProj.length) {
+            mainContent.push({ text: 'PROJECTS', fontSize: 11, bold: true, color: d.textColor, margin: [0, 8, 0, 4] });
+            mainContent.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 320, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            
+            validProj.forEach(p => {
+                mainContent.push({
+                    columns: [
+                        { text: p.title, fontSize: 9.5, bold: true, color: d.textColor },
+                        { text: p.link || "", fontSize: 8.5, alignment: 'right', color: d.textColor }
+                    ],
+                    margin: [0, 8, 0, 4]
+                });
+                if (p.description) {
+                    mainContent.push({
+                        text: p.description,
+                        fontSize: 9,
+                        color: d.textColor,
+                        margin: [0, 0, 0, 10]
+                    });
+                }
+            });
+        }
+
+        docDefinition = {
+            pageMargins: [0, 0, 0, 0],
+            content: [
+                {
+                    table: {
+                        widths: [195, '*'],
+                        heights: [842],
+                        body: [
+                            [
+                                {
+                                    fillColor: d.accentColor,
+                                    margin: [20, 30, 20, 30],
+                                    stack: sidebarContent
+                                },
+                                {
+                                    margin: [25, 30, 25, 30],
+                                    stack: mainContent
+                                }
+                            ]
+                        ]
+                    },
+                    layout: 'noBorders'
+                }
+            ]
+        };
+    } else {
+        // ── CLASSIC TEMPLATE ───────────────────────────────────
+        const content = [];
+        const contactItems = [pi.email, pi.phone, pi.linkedin, pi.github, pi.portfolio].filter(Boolean);
+
+        // Header block
+        content.push({
+            table: {
+                widths: ['*'],
+                body: [
+                    [
+                        {
+                            fillColor: d.accentColor,
+                            margin: [20, 20, 20, 20],
+                            stack: [
+                                { text: (pi.name || "YOUR NAME").toUpperCase(), fontSize: 22, bold: true, color: d.headerTextColor, alignment: 'center' },
+                                { text: contactItems.join("   •   "), fontSize: 9, color: d.headerTextColor, margin: [0, 8, 0, 0], alignment: 'center' }
+                            ]
+                        }
+                    ]
+                ]
+            },
+            layout: 'noBorders',
+            margin: [-40, -40, -40, 20]
+        });
+
+        // Summary
+        if (d.summary) {
+            content.push({ text: 'SUMMARY', fontSize: 11, bold: true, color: d.accentColor, margin: [0, 10, 0, 4] });
+            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            content.push({ text: d.summary, fontSize: 9, color: d.textColor, margin: [0, 6, 0, 12] });
+        }
+
+        // Education
+        const validEdu = d.education.filter(e => e.school);
+        if (validEdu.length) {
+            content.push({ text: 'EDUCATION', fontSize: 11, bold: true, color: d.accentColor, margin: [0, 8, 0, 4] });
+            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            
+            const eduBlocks = [];
+            validEdu.forEach(e => {
+                eduBlocks.push({
+                    columns: [
+                        { text: e.school, fontSize: 9.5, bold: true, color: d.textColor },
+                        { text: e.schoolYear || "", fontSize: 8.5, alignment: 'right', color: d.textColor }
+                    ],
+                    margin: [0, 6, 0, 2]
+                });
+                eduBlocks.push({
+                    text: `${e.degree}${e.gpa ? `  •  GPA: ${e.gpa}` : ""}`,
+                    fontSize: 9,
+                    color: d.textColor,
+                    opacity: 0.8,
+                    margin: [0, 0, 0, 8]
+                });
+            });
+            content.push({ stack: eduBlocks, margin: [0, 0, 0, 6] });
+        }
+
+        // Skills
+        if (d.skills && d.skills.length) {
+            content.push({ text: 'SKILLS', fontSize: 11, bold: true, color: d.accentColor, margin: [0, 8, 0, 4] });
+            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            content.push({
+                text: d.skills.join("   ,   "),
+                fontSize: 9,
+                color: d.textColor,
+                margin: [0, 8, 0, 14]
+            });
+        }
+
+        // Experience
+        const validExp = d.experience.filter(e => e.company);
+        if (validExp.length) {
+            content.push({ text: 'EXPERIENCE', fontSize: 11, bold: true, color: d.accentColor, margin: [0, 8, 0, 4] });
+            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            
+            const expBlocks = [];
+            validExp.forEach(e => {
+                expBlocks.push({
+                    columns: [
+                        { text: `${e.role}  •  ${e.company}`, fontSize: 9.5, bold: true, color: d.textColor },
+                        { text: e.duration || "", fontSize: 8.5, alignment: 'right', color: d.textColor }
+                    ],
+                    margin: [0, 6, 0, 4]
+                });
+                if (e.description) {
+                    expBlocks.push({
+                        ul: makeBullets(e.description),
+                        fontSize: 9,
+                        color: d.textColor,
+                        margin: [5, 0, 0, 10]
+                    });
+                }
+            });
+            content.push({ stack: expBlocks, margin: [0, 0, 0, 6] });
+        }
+
+        // Projects
+        const validProj = d.projects.filter(p => p.title);
+        if (validProj.length) {
+            content.push({ text: 'PROJECTS', fontSize: 11, bold: true, color: d.accentColor, margin: [0, 8, 0, 4] });
+            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            
+            const projBlocks = [];
+            validProj.forEach(p => {
+                projBlocks.push({
+                    columns: [
+                        { text: p.title, fontSize: 9.5, bold: true, color: d.textColor },
+                        { text: p.link || "", fontSize: 8.5, alignment: 'right', color: d.textColor }
+                    ],
+                    margin: [0, 6, 0, 4]
+                });
+                if (p.description) {
+                    projBlocks.push({
+                        text: p.description,
+                        fontSize: 9,
+                        color: d.textColor,
+                        margin: [0, 0, 0, 10]
+                    });
+                }
+            });
+            content.push({ stack: projBlocks, margin: [0, 0, 0, 6] });
+        }
+
+        // Certifications
+        const validCerts = d.certifications.filter(c => c.name);
+        if (validCerts.length) {
+            content.push({ text: 'CERTIFICATIONS', fontSize: 11, bold: true, color: d.accentColor, margin: [0, 8, 0, 4] });
+            content.push({ canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1.5, strokeColor: d.accentColor }] });
+            
+            const certBlocks = [];
+            validCerts.forEach(c => {
+                certBlocks.push({
+                    text: `•  ${c.name}${c.issuer ? ` - ${c.issuer}` : ""}${c.year ? ` (${c.year})` : ""}`,
+                    fontSize: 9,
+                    color: d.textColor,
+                    margin: [0, 4, 0, 2]
+                });
+            });
+            content.push({ stack: certBlocks, margin: [0, 4, 0, 6] });
+        }
+
+        docDefinition = {
+            pageMargins: [40, 40, 40, 40],
+            content: content
+        };
+    }
+
+    const filename = `${(pi.name || "Resume").trim().replace(/\s+/g, "_")}_Resume.pdf`;
+    pdfMake.createPdf(docDefinition).download(filename);
 };
 
 // ── Toast ─────────────────────────────────────────────────
