@@ -525,6 +525,8 @@ router.post("/resume/save", requireAuth, async (req, res) => {
     req.user.resume = {
       templateId:   resumeData.templateId   || "",
       accentColor:  resumeData.accentColor  || "#91DAEB",
+      textColor:    resumeData.textColor    || "#222222",
+      headerTextColor: resumeData.headerTextColor || "#ffffff",
       font:         resumeData.font         || "poppins",
       pageSize:     resumeData.pageSize     || "A4",
       personalInfo: {

@@ -1,221 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Resume Builder | StudyPy</title>
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/career.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="StudyPY" />
-    <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
-</head>
-<body>
-    <div id="navbar-placeholder"></div>
-    <div class="resume-toast" id="resume-toast"></div>
-    <div id="print-target" style="display:none;"></div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Resume Builder | StudyPy</title>
+        <link rel="stylesheet" href="../../css/main.css">
+        <link rel="stylesheet" href="../../css/career.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+        <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
+        <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="StudyPY" />
+        <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
+    </head>
+    <body>
+        <div id="navbar-placeholder"></div>
+        <div class="resume-toast" id="resume-toast"></div>
+        <div id="print-target" style="display:none;"></div>
 
-    <main class="main">
-        <div class="resume-page">
+        <main class="main">
+            <div class="resume-page">
 
-            <!-- Page Header -->
-            <div class="career-badge"><i class='bx bx-file'></i> Career Tools</div>
-            <h1 class="career-title">Resume Builder</h1>
-            <p class="career-subtitle">Build a clean, ATS-friendly resume in minutes. Pick a template, fill in your details, and download — your progress saves to your profile.</p>
+                <!-- Page Header -->
+                <div class="career-badge"><i class='bx bx-file'></i> Career Tools</div>
+                <h1 class="career-title">Resume Builder</h1>
+                <p class="career-subtitle">Build a clean, ATS-friendly resume in minutes. Pick a template, fill in your details, and download — your progress saves to your profile.</p>
 
-            <!-- Page Tabs -->
-            <div class="page-tab-bar">
-                <button class="page-tab-btn active" data-tab="builder">
-                    <i class='bx bx-edit'></i> Builder
-                </button>
-                <button class="page-tab-btn" data-tab="resources">
-                    <i class='bx bx-book-open'></i> Resume Resources
-                </button>
-            </div>
-
-            <!-- ── BUILDER TAB ── -->
-            <div class="page-tab-content active" id="tab-builder">
-
-                <!-- Step Indicator -->
-                <div class="step-indicator">
-                    <div class="step-wrap">
-                        <div class="step-dot active" id="sdot-1">1</div>
-                        <div class="step-label active" id="slabel-1">Template</div>
-                    </div>
-                    <div class="step-line" id="sline-1"></div>
-                    <div class="step-wrap">
-                        <div class="step-dot" id="sdot-2">2</div>
-                        <div class="step-label" id="slabel-2">Fill Details</div>
-                    </div>
-                    <div class="step-line" id="sline-2"></div>
-                    <div class="step-wrap">
-                        <div class="step-dot" id="sdot-3">3</div>
-                        <div class="step-label" id="slabel-3">Save & Download</div>
-                    </div>
+                <!-- Page Tabs -->
+                <div class="page-tab-bar">
+                    <button class="page-tab-btn active" data-tab="builder">
+                        <i class='bx bx-edit'></i> Builder
+                    </button>
+                    <button class="page-tab-btn" data-tab="resources">
+                        <i class='bx bx-book-open'></i> Resume Resources
+                    </button>
                 </div>
 
-                <!-- ── STEP 1: Pick Template ── -->
-                <div class="builder-step active" id="step-1">
-                    <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:6px;">Choose your template</h2>
-                    <p style="font-size:0.84rem; color:rgba(255,255,255,0.45); margin-bottom:0;">Both templates are ATS-safe — no columns that confuse applicant tracking systems.</p>
+                <!-- ── BUILDER TAB ── -->
+                <div class="page-tab-content active" id="tab-builder">
 
-                    <div class="template-grid">
-                        <!-- Classic -->
-                        <div class="template-card" data-template="classic">
-                            <div class="template-preview">
-                                <div style="width:100%; display:flex; flex-direction:column;">
-                                    <div class="tpl-classic">
-                                        <div class="tpl-header">
-                                            <div class="tpl-header-name">Your Name</div>
-                                            <div class="tpl-header-title">Software Developer</div>
-                                            <div class="tpl-contact-row">
-                                                <span class="tpl-contact-item">email@mail.com</span>
-                                                <span class="tpl-contact-item">github.com/you</span>
+                    <!-- Step Indicator -->
+                    <div class="step-indicator">
+                        <div class="step-wrap">
+                            <div class="step-dot active" id="sdot-1">1</div>
+                            <div class="step-label active" id="slabel-1">Template</div>
+                        </div>
+                        <div class="step-line" id="sline-1"></div>
+                        <div class="step-wrap">
+                            <div class="step-dot" id="sdot-2">2</div>
+                            <div class="step-label" id="slabel-2">Fill Details</div>
+                        </div>
+                        <div class="step-line" id="sline-2"></div>
+                        <div class="step-wrap">
+                            <div class="step-dot" id="sdot-3">3</div>
+                            <div class="step-label" id="slabel-3">Save & Download</div>
+                        </div>
+                    </div>
+
+                    <!-- ── STEP 1: Pick Template ── -->
+                    <div class="builder-step active" id="step-1">
+                        <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:6px;">Choose your template</h2>
+                        <p style="font-size:0.84rem; color:rgba(255,255,255,0.45); margin-bottom:0;">Both templates are ATS-safe — no columns that confuse applicant tracking systems.</p>
+
+                        <div class="template-grid">
+                            <!-- Classic -->
+                            <div class="template-card" data-template="classic">
+                                <div class="template-preview">
+                                    <div style="width:100%; display:flex; flex-direction:column;">
+                                        <div class="tpl-classic">
+                                            <div class="tpl-header">
+                                                <div class="tpl-header-name">Your Name</div>
+                                                <div class="tpl-header-title">Software Developer</div>
+                                                <div class="tpl-contact-row">
+                                                    <span class="tpl-contact-item">email@mail.com</span>
+                                                    <span class="tpl-contact-item">github.com/you</span>
+                                                </div>
+                                            </div>
+                                            <div class="tpl-body">
+                                                <div class="tpl-section-label">Summary</div>
+                                                <div class="tpl-line med"></div>
+                                                <div class="tpl-line short"></div>
+                                                <div class="tpl-section-label">Education</div>
+                                                <div class="tpl-line accent"></div>
+                                                <div class="tpl-line short"></div>
+                                                <div class="tpl-section-label">Skills</div>
+                                                <div style="display:flex; gap:4px; flex-wrap:wrap;">
+                                                    <div style="background:#e8e8e8; border-radius:2px; width:28px; height:7px;"></div>
+                                                    <div style="background:#e8e8e8; border-radius:2px; width:22px; height:7px;"></div>
+                                                    <div style="background:#e8e8e8; border-radius:2px; width:32px; height:7px;"></div>
+                                                </div>
+                                                <div class="tpl-section-label">Projects</div>
+                                                <div class="tpl-line med"></div>
+                                                <div class="tpl-line short"></div>
                                             </div>
                                         </div>
-                                        <div class="tpl-body">
-                                            <div class="tpl-section-label">Summary</div>
-                                            <div class="tpl-line med"></div>
-                                            <div class="tpl-line short"></div>
-                                            <div class="tpl-section-label">Education</div>
-                                            <div class="tpl-line accent"></div>
-                                            <div class="tpl-line short"></div>
-                                            <div class="tpl-section-label">Skills</div>
-                                            <div style="display:flex; gap:4px; flex-wrap:wrap;">
-                                                <div style="background:#e8e8e8; border-radius:2px; width:28px; height:7px;"></div>
-                                                <div style="background:#e8e8e8; border-radius:2px; width:22px; height:7px;"></div>
-                                                <div style="background:#e8e8e8; border-radius:2px; width:32px; height:7px;"></div>
+                                    </div>
+                                </div>
+                                <div class="template-info">
+                                    <div class="template-name">Classic</div>
+                                    <div class="template-desc">Clean single-column layout. Best for most corporate jobs and companies using ATS software.</div>
+                                    <span class="template-tag tag-ats">✓ ATS Friendly</span>
+                                </div>
+                            </div>
+
+                            <!-- Tech -->
+                            <div class="template-card" data-template="tech">
+                                <div class="template-preview">
+                                    <div class="tpl-tech-wrap">
+                                        <div class="tpl-tech-sidebar">
+                                            <div class="tpl-avatar"></div>
+                                            <div style="font-size:7px; font-weight:700; color:#fff; text-align:center;">Your Name</div>
+                                            <div class="tpl-sidebar-label">Contact</div>
+                                            <div class="tpl-sidebar-line"></div>
+                                            <div class="tpl-sidebar-line" style="width:80%;"></div>
+                                            <div class="tpl-sidebar-label">Skills</div>
+                                            <div class="tpl-skill-tags">
+                                                <div class="tpl-skill-tag"></div>
+                                                <div class="tpl-skill-tag"></div>
+                                                <div class="tpl-skill-tag"></div>
+                                                <div class="tpl-skill-tag" style="width:24px;"></div>
                                             </div>
-                                            <div class="tpl-section-label">Projects</div>
+                                            <div class="tpl-sidebar-label">Education</div>
+                                            <div class="tpl-sidebar-line"></div>
+                                            <div class="tpl-sidebar-line" style="width:70%;"></div>
+                                        </div>
+                                        <div class="tpl-tech-main">
+                                            <div style="height:8px; background:#0f2027; border-radius:1px; width:60%; margin-bottom:4px;"></div>
+                                            <div style="height:5px; background:#e8e8e8; border-radius:1px; width:80%; margin-bottom:8px;"></div>
+                                            <div style="font-size:6px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#333; border-left:2px solid #0f2027; padding-left:4px; margin-bottom:5px;">Experience</div>
                                             <div class="tpl-line med"></div>
                                             <div class="tpl-line short"></div>
+                                            <div style="font-size:6px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#333; border-left:2px solid #0f2027; padding-left:4px; margin:7px 0 5px;">Projects</div>
+                                            <div class="tpl-line med"></div>
+                                            <div class="tpl-line short"></div>
+                                            <div class="tpl-line" style="width:70%;"></div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="template-info">
-                                <div class="template-name">Classic</div>
-                                <div class="template-desc">Clean single-column layout. Best for most corporate jobs and companies using ATS software.</div>
-                                <span class="template-tag tag-ats">✓ ATS Friendly</span>
-                            </div>
-                        </div>
-
-                        <!-- Tech -->
-                        <div class="template-card" data-template="tech">
-                            <div class="template-preview">
-                                <div class="tpl-tech-wrap">
-                                    <div class="tpl-tech-sidebar">
-                                        <div class="tpl-avatar"></div>
-                                        <div style="font-size:7px; font-weight:700; color:#fff; text-align:center;">Your Name</div>
-                                        <div class="tpl-sidebar-label">Contact</div>
-                                        <div class="tpl-sidebar-line"></div>
-                                        <div class="tpl-sidebar-line" style="width:80%;"></div>
-                                        <div class="tpl-sidebar-label">Skills</div>
-                                        <div class="tpl-skill-tags">
-                                            <div class="tpl-skill-tag"></div>
-                                            <div class="tpl-skill-tag"></div>
-                                            <div class="tpl-skill-tag"></div>
-                                            <div class="tpl-skill-tag" style="width:24px;"></div>
-                                        </div>
-                                        <div class="tpl-sidebar-label">Education</div>
-                                        <div class="tpl-sidebar-line"></div>
-                                        <div class="tpl-sidebar-line" style="width:70%;"></div>
-                                    </div>
-                                    <div class="tpl-tech-main">
-                                        <div style="height:8px; background:#0f2027; border-radius:1px; width:60%; margin-bottom:4px;"></div>
-                                        <div style="height:5px; background:#e8e8e8; border-radius:1px; width:80%; margin-bottom:8px;"></div>
-                                        <div style="font-size:6px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#333; border-left:2px solid #0f2027; padding-left:4px; margin-bottom:5px;">Experience</div>
-                                        <div class="tpl-line med"></div>
-                                        <div class="tpl-line short"></div>
-                                        <div style="font-size:6px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#333; border-left:2px solid #0f2027; padding-left:4px; margin:7px 0 5px;">Projects</div>
-                                        <div class="tpl-line med"></div>
-                                        <div class="tpl-line short"></div>
-                                        <div class="tpl-line" style="width:70%;"></div>
-                                    </div>
+                                <div class="template-info">
+                                    <div class="template-name">Tech / Developer</div>
+                                    <div class="template-desc">Skills-forward layout with a sidebar. Ideal for dev roles at startups and tech companies.</div>
+                                    <span class="template-tag tag-dev">⚡ Dev Optimized</span>
                                 </div>
                             </div>
-                            <div class="template-info">
-                                <div class="template-name">Tech / Developer</div>
-                                <div class="template-desc">Skills-forward layout with a sidebar. Ideal for dev roles at startups and tech companies.</div>
-                                <span class="template-tag tag-dev">⚡ Dev Optimized</span>
-                            </div>
+                        </div>
+
+                        <div class="step-nav">
+                            <div></div>
+                            <button class="btn-step btn-step-next" id="btn-step1-next" disabled>
+                                Use this template <i class='bx bx-right-arrow-alt'></i>
+                            </button>
                         </div>
                     </div>
 
-                    <div class="step-nav">
-                        <div></div>
-                        <button class="btn-step btn-step-next" id="btn-step1-next" disabled>
-                            Use this template <i class='bx bx-right-arrow-alt'></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- ── STEP 2: Fill Details ── -->
-                <div class="builder-step" id="step-2">
-                    <!-- Customization Bar -->
-                    <div class="customization-bar">
-                        <div class="custom-group">
-                            <span class="custom-label">Accent color</span>
-                            <div class="color-picker-wrap" id="color-swatch-wrap">
-                                <div class="color-swatch" id="color-swatch-display"></div>
-                                <input type="color" id="accent-color-picker" value="#91DAEB">
-                            </div>
-                        </div>
-                        <div class="custom-group">
-                            <span class="custom-label">Font</span>
-                            <select class="font-select" id="font-select">
-                                <option value="poppins">Poppins</option>
-                                <option value="inter">Inter</option>
-                                <option value="georgia">Georgia (Serif)</option>
-                            </select>
-                        </div>
-                        <div class="custom-group">
-                            <span class="custom-label">Page size</span>
-                            <select class="size-select" id="size-select">
-                                <option value="A4">A4</option>
-                                <option value="Letter">Letter (US)</option>
-                            </select>
-                        </div>
-                        <div style="margin-left:auto; font-size:0.72rem; color:rgba(255,255,255,0.25);">
-                            <i class='bx bx-info-circle'></i> Changes appear live in the preview
-                        </div>
-                    </div>
-
-                    <div class="builder-layout">
-                        <!-- Left: Form -->
-                        <div class="form-panel">
-
-                            <!-- Personal Info -->
-                            <div class="form-section open" id="section-personal">
-                                <div class="form-section-header" onclick="toggleSection('section-personal')">
-                                    <div class="form-section-title">
-                                        <i class='bx bx-user'></i> Personal Info
-                                        <span class="form-section-badge badge-required">Required</span>
-                                    </div>
-                                    <i class='bx bx-chevron-down form-section-arrow'></i>
+                    <!-- ── STEP 2: Fill Details ── -->
+                    <div class="builder-step" id="step-2">
+                        <!-- Customization Bar -->
+                        <div class="customization-bar">
+                            <div class="custom-group">
+                                <span class="custom-label">Accent color</span>
+                                <div class="color-picker-wrap" id="color-swatch-wrap">
+                                    <div class="color-swatch" id="color-swatch-display"></div>
+                                    <input type="color" id="accent-color-picker" value="#91DAEB">
                                 </div>
-                                <div class="form-section-body">
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label class="form-label">Full Name</label>
-                                            <input type="text" class="form-input" id="f-name" placeholder="e.g. Juan Dela Cruz">
+                            </div>
+                            <div class="custom-group">
+                                <span class="custom-label">Text color</span>
+                                <div class="color-picker-wrap" id="text-color-swatch-wrap">
+                                    <div class="color-swatch" id="text-color-swatch-display" style="background:#222222;"></div>
+                                    <input type="color" id="text-color-picker" value="#222222">
+                                </div>
+                            </div>
+                            <div class="custom-group">
+                                <span class="custom-label">Header text</span>
+                                <div class="color-picker-wrap" id="header-text-swatch-wrap">
+                                    <div class="color-swatch" id="header-text-swatch-display" style="background:#ffffff;"></div>
+                                    <input type="color" id="header-text-picker" value="#ffffff">
+                                </div>
+                            </div>
+                            <div class="custom-group">
+                                <span class="custom-label">Font</span>
+                                <select class="font-select" id="font-select">
+                                    <option value="poppins">Poppins</option>
+                                    <option value="inter">Inter</option>
+                                    <option value="georgia">Georgia (Serif)</option>
+                                </select>
+                            </div>
+                            <div class="custom-group">
+                                <span class="custom-label">Page size</span>
+                                <select class="size-select" id="size-select">
+                                    <option value="A4">A4</option>
+                                    <option value="Letter">Letter (US)</option>
+                                </select>
+                            </div>
+                            <div style="margin-left:auto; font-size:0.72rem; color:rgba(255,255,255,0.25);">
+                                <i class='bx bx-info-circle'></i> Changes appear live in the preview
+                            </div>
+                        </div>
+
+                        <div class="builder-layout">
+                            <!-- Left: Form -->
+                            <div class="form-panel">
+
+                                <!-- Personal Info -->
+                                <div class="form-section open" id="section-personal">
+                                    <div class="form-section-header" onclick="toggleSection('section-personal')">
+                                        <div class="form-section-title">
+                                            <i class='bx bx-user'></i> Personal Info
+                                            <span class="form-section-badge badge-required">Required</span>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Email</label>
-                                            <input type="email" class="form-input" id="f-email" placeholder="you@email.com">
-                                        </div>
+                                        <i class='bx bx-chevron-down form-section-arrow'></i>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label class="form-label">Phone</label>
-                                            <input type="text" class="form-input" id="f-phone" placeholder="+63 912 345 6789">
+                                    <div class="form-section-body">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label class="form-label">Full Name</label>
+                                                <input type="text" class="form-input" id="f-name" placeholder="e.g. Juan Dela Cruz">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" class="form-input" id="f-email" placeholder="you@email.com">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <!-- ── UPDATED: phone field with country code select ── -->
+                                            <div class="form-group">
+                                                <label class="form-label">Phone</label>
+                                                <div style="display:flex; gap:6px;">
+                                                    <select class="form-input" id="f-phone-code" style="
+                                                                   width: 80px;
+                                                                   flex-shrink: 0;
+                                                                   background: #0f1923;
+                                                                   color: #91DAEB;
+                                                                   border: 1px solid #91DAEB;
+                                                                   ">                                                    <option value="+63">🇵🇭 +63</option>
+                                                                   <option value="+81">🇯🇵 +81</option>
+                                                                   <option value="+1">🇺🇸 +1</option>
+                                                    <option value="+44">🇬🇧 +44</option>
+                                                    <option value="+65">🇸🇬 +65</option>
+                                                    <option value="+61">🇦🇺 +61</option>
+                                                    <option value="+82">🇰🇷 +82</option>
+                                                    <option value="+86">🇨🇳 +86</option>
+                                                    <option value="+91">🇮🇳 +91</option>
+                                                    <option value="+60">🇲🇾 +60</option>
+                                                </select>
+                                                <input type="tel" class="form-input" id="f-phone" placeholder="9171234567" maxlength="15">
+                                            </div>
+                                            <span id="phone-error" style="color:red; font-size:11px; display:none;">Invalid phone number</span>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">LinkedIn URL</label>
@@ -255,6 +290,7 @@
                             </div>
 
                             <!-- Education -->
+                            <!-- NOTE: School Year field is injected here dynamically by resume-building.js -->
                             <div class="form-section open" id="section-education">
                                 <div class="form-section-header" onclick="toggleSection('section-education')">
                                     <div class="form-section-title">

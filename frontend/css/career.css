@@ -1603,7 +1603,7 @@
 /* CLASSIC TEMPLATE */
 #resume-classic {
   font-family: "Inter", sans-serif;
-  color: #222;
+  color: var(--resume-text, #222);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -1615,7 +1615,7 @@
 
 .rc-header {
   background: var(--resume-accent, #1a1a2e);
-  color: #fff;
+  color: var(--resume-header-text, #fff);
   padding: 1.4em 1.8em 1.2em;
 }
 
@@ -1669,7 +1669,7 @@
 
 .rc-summary {
   font-size: 0.72em;
-  color: #444;
+  opacity: 0.8;
   line-height: 1.5;
 }
 
@@ -1688,23 +1688,22 @@
 .rc-item-title {
   font-size: 0.78em;
   font-weight: 600;
-  color: #222;
 }
 
 .rc-item-date {
   font-size: 0.65em;
-  color: #777;
+  opacity: 0.55;
 }
 
 .rc-item-sub {
   font-size: 0.68em;
-  color: #555;
+  opacity: 0.75;
   margin-top: 0.1em;
 }
 
 .rc-item-desc {
   font-size: 0.65em;
-  color: #555;
+  opacity: 0.75;
   margin-top: 0.2em;
   line-height: 1.4;
 }
@@ -1720,19 +1719,19 @@
   border-radius: 3px;
   padding: 0.15em 0.5em;
   font-size: 0.65em;
-  color: #333;
+  opacity: 0.9;
 }
 
 .rc-cert-item {
   font-size: 0.68em;
-  color: #444;
+  opacity: 0.8;
   margin-bottom: 0.2em;
 }
 
 /* TECH TEMPLATE */
 #resume-tech {
   font-family: "Inter", sans-serif;
-  color: #222;
+  color: var(--resume-text, #222);
   height: 100%;
   display: flex;
   font-size: clamp(5px, 1.2vw, 10px);
@@ -1744,7 +1743,7 @@
 .rt-sidebar {
   width: 36%;
   background: var(--resume-accent, #0f2027);
-  color: #fff;
+  color: var(--resume-header-text, #fff);
   padding: 1.4em 1em 1em;
   flex-shrink: 0;
   overflow: hidden;
@@ -1754,14 +1753,14 @@
 .rt-sidebar-name {
   font-size: 1.1em;
   font-weight: 700;
-  color: #fff;
+  color: var(--resume-header-text, #fff);
   margin-bottom: 0.15em;
   line-height: 1.2;
 }
 
 .rt-sidebar-role {
   font-size: 0.65em;
-  color: rgba(255, 255, 255, 0.55);
+  opacity: 0.55;
   margin-bottom: 1em;
 }
 
@@ -1777,7 +1776,7 @@
 
 .rt-sidebar-line {
   font-size: 0.65em;
-  color: rgba(255, 255, 255, 0.65);
+  opacity: 0.65;
   margin-bottom: 0.18em;
   word-break: break-all;
 }
@@ -1814,7 +1813,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: #333;
+  color: var(--resume-text, #333);
   border-left: 3px solid var(--resume-accent, #0f2027);
   padding-left: 0.5em;
   margin-bottom: 0.5em;
@@ -1835,30 +1834,29 @@
 .rt-item-title {
   font-size: 0.75em;
   font-weight: 600;
-  color: #222;
 }
 
 .rt-item-date {
   font-size: 0.62em;
-  color: #999;
+  opacity: 0.55;
 }
 
 .rt-item-sub {
   font-size: 0.65em;
-  color: #666;
+  opacity: 0.75;
   margin-top: 0.1em;
 }
 
 .rt-item-desc {
   font-size: 0.62em;
-  color: #555;
+  opacity: 0.75;
   margin-top: 0.2em;
   line-height: 1.4;
 }
 
 .rt-summary {
   font-size: 0.7em;
-  color: #444;
+  opacity: 0.8;
   line-height: 1.5;
 }
 
