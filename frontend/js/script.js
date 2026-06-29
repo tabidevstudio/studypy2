@@ -248,7 +248,7 @@ import { getProfile } from "./auth.js";
             e.preventDefault();
             e.stopPropagation();
             
-            if(sidebar.classList.contains("close")) return;
+            if (sidebar.classList.contains("close") && !sidebar.classList.contains("mobile-open")) return;
 
             const parentLi = iocnLink.closest("li");
             if (!parentLi) return;
