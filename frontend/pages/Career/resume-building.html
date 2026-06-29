@@ -20,7 +20,7 @@
     <body>
         <div id="navbar-placeholder"></div>
         <div class="resume-toast" id="resume-toast"></div>
-        <div id="print-target" style="display:none;"></div>
+        <div id="print-target"></div>
 
         <main class="main">
             <div class="resume-page">
@@ -66,14 +66,14 @@
 
                     <!-- ── STEP 1: Pick Template ── -->
                     <div class="builder-step active" id="step-1">
-                        <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:6px;">Choose your template</h2>
-                        <p style="font-size:0.84rem; color:rgba(255,255,255,0.45); margin-bottom:0;">Both templates are ATS-safe — no columns that confuse applicant tracking systems.</p>
+                        <h2 class="step-title">Choose your template</h2>
+                        <p class="step-subtitle">Both templates are ATS-safe — no columns that confuse applicant tracking systems.</p>
 
                         <div class="template-grid">
                             <!-- Classic -->
                             <div class="template-card" data-template="classic">
                                 <div class="template-preview">
-                                    <div style="width:100%; display:flex; flex-direction:column;">
+                                    <div class="tpl-classic-container">
                                         <div class="tpl-classic">
                                             <div class="tpl-header">
                                                 <div class="tpl-header-name">Your Name</div>
@@ -91,10 +91,10 @@
                                                 <div class="tpl-line accent"></div>
                                                 <div class="tpl-line short"></div>
                                                 <div class="tpl-section-label">Skills</div>
-                                                <div style="display:flex; gap:4px; flex-wrap:wrap;">
-                                                    <div style="background:#e8e8e8; border-radius:2px; width:28px; height:7px;"></div>
-                                                    <div style="background:#e8e8e8; border-radius:2px; width:22px; height:7px;"></div>
-                                                    <div style="background:#e8e8e8; border-radius:2px; width:32px; height:7px;"></div>
+                                                <div class="tpl-skills-preview-list">
+                                                    <div class="tpl-skill-bar bar-1"></div>
+                                                    <div class="tpl-skill-bar bar-2"></div>
+                                                    <div class="tpl-skill-bar bar-3"></div>
                                                 </div>
                                                 <div class="tpl-section-label">Projects</div>
                                                 <div class="tpl-line med"></div>
@@ -116,31 +116,31 @@
                                     <div class="tpl-tech-wrap">
                                         <div class="tpl-tech-sidebar">
                                             <div class="tpl-avatar"></div>
-                                            <div style="font-size:7px; font-weight:700; color:#fff; text-align:center;">Your Name</div>
+                                            <div class="tpl-avatar-name">Your Name</div>
                                             <div class="tpl-sidebar-label">Contact</div>
                                             <div class="tpl-sidebar-line"></div>
-                                            <div class="tpl-sidebar-line" style="width:80%;"></div>
+                                            <div class="tpl-sidebar-line width-80"></div>
                                             <div class="tpl-sidebar-label">Skills</div>
                                             <div class="tpl-skill-tags">
                                                 <div class="tpl-skill-tag"></div>
                                                 <div class="tpl-skill-tag"></div>
                                                 <div class="tpl-skill-tag"></div>
-                                                <div class="tpl-skill-tag" style="width:24px;"></div>
+                                                <div class="tpl-skill-tag width-24"></div>
                                             </div>
                                             <div class="tpl-sidebar-label">Education</div>
                                             <div class="tpl-sidebar-line"></div>
-                                            <div class="tpl-sidebar-line" style="width:70%;"></div>
+                                            <div class="tpl-sidebar-line width-70"></div>
                                         </div>
                                         <div class="tpl-tech-main">
-                                            <div style="height:8px; background:#0f2027; border-radius:1px; width:60%; margin-bottom:4px;"></div>
-                                            <div style="height:5px; background:#e8e8e8; border-radius:1px; width:80%; margin-bottom:8px;"></div>
-                                            <div style="font-size:6px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#333; border-left:2px solid #0f2027; padding-left:4px; margin-bottom:5px;">Experience</div>
+                                            <div class="tpl-main-header-title"></div>
+                                            <div class="tpl-main-header-subtitle"></div>
+                                            <div class="tpl-main-section-title">Experience</div>
                                             <div class="tpl-line med"></div>
                                             <div class="tpl-line short"></div>
-                                            <div style="font-size:6px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#333; border-left:2px solid #0f2027; padding-left:4px; margin:7px 0 5px;">Projects</div>
+                                            <div class="tpl-main-section-title margin-top-7">Projects</div>
                                             <div class="tpl-line med"></div>
                                             <div class="tpl-line short"></div>
-                                            <div class="tpl-line" style="width:70%;"></div>
+                                            <div class="tpl-line width-70"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -167,11 +167,11 @@
                             <div class="custom-group">
                                 <span class="custom-label">Tech Themes</span>
                                 <div class="theme-presets">
-                                    <button type="button" class="theme-preset-btn active" data-accent="#222222" data-text="#2d3748" data-header="#1a202c" title="Mono / Minimalist" style="background: #222222;"></button>
-                                    <button type="button" class="theme-preset-btn" data-accent="#1b365d" data-text="#2d3748" data-header="#11223f" title="Developer Navy" style="background: #1b365d;"></button>
-                                    <button type="button" class="theme-preset-btn" data-accent="#1e3a8a" data-text="#1f2937" data-header="#111827" title="Cyber Cobalt" style="background: #1e3a8a;"></button>
-                                    <button type="button" class="theme-preset-btn" data-accent="#0d9488" data-text="#374151" data-header="#111827" title="Modern Teal" style="background: #0d9488;"></button>
-                                    <button type="button" class="theme-preset-btn" data-accent="#991b1b" data-text="#1f2937" data-header="#111827" title="Academic Crimson" style="background: #991b1b;"></button>
+                                    <button type="button" class="theme-preset-btn active" data-accent="#222222" data-text="#2d3748" data-header="#1a202c" title="Mono / Minimalist"></button>
+                                    <button type="button" class="theme-preset-btn" data-accent="#1b365d" data-text="#2d3748" data-header="#11223f" title="Developer Navy"></button>
+                                    <button type="button" class="theme-preset-btn" data-accent="#1e3a8a" data-text="#1f2937" data-header="#111827" title="Cyber Cobalt"></button>
+                                    <button type="button" class="theme-preset-btn" data-accent="#0d9488" data-text="#374151" data-header="#111827" title="Modern Teal"></button>
+                                    <button type="button" class="theme-preset-btn" data-accent="#991b1b" data-text="#1f2937" data-header="#111827" title="Academic Crimson"></button>
                                 </div>
                             </div>
                             <div class="custom-group">
@@ -184,14 +184,14 @@
                             <div class="custom-group">
                                 <span class="custom-label">Text</span>
                                 <div class="color-picker-wrap" id="text-color-swatch-wrap">
-                                    <div class="color-swatch" id="text-color-swatch-display" style="background:#222222;"></div>
+                                    <div class="color-swatch" id="text-color-swatch-display"></div>
                                     <input type="color" id="text-color-picker" value="#222222">
                                 </div>
                             </div>
                             <div class="custom-group">
                                 <span class="custom-label">Header Text</span>
                                 <div class="color-picker-wrap" id="header-text-swatch-wrap">
-                                    <div class="color-swatch" id="header-text-swatch-display" style="background:#ffffff;"></div>
+                                    <div class="color-swatch" id="header-text-swatch-display"></div>
                                     <input type="color" id="header-text-picker" value="#ffffff">
                                 </div>
                             </div>
@@ -225,16 +225,16 @@
                             <div class="form-panel">
 
                                 <!-- Resume Strength Checklist Card -->
-                                <div class="tips-box" style="margin-bottom: 24px; border-left: 3px solid #ff9f43; background: rgba(255, 159, 67, 0.03); border-color: rgba(255, 159, 67, 0.25);">
-                                    <div class="tips-box-title" style="color: #ff9f43; font-size: 0.85rem; display: flex; align-items: center; justify-content: space-between;">
+                                <div class="tips-box strength-box">
+                                    <div class="tips-box-title strength-box-title">
                                         <span><i class='bx bx-check-shield'></i> Resume Strength Checklist</span>
-                                        <span id="strength-badge" style="background: rgba(255, 159, 67, 0.15); padding: 2px 6px; border-radius: 4px; font-size: 0.68rem; font-weight: 700;">Weak (0/4)</span>
+                                        <span id="strength-badge">Weak (0/4)</span>
                                     </div>
-                                    <ul id="strength-checklist" style="display: flex; flex-direction: column; gap: 8px; list-style: none; padding-left: 0; margin-top: 8px;">
-                                        <li id="chk-summary" style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;"><i class='bx bx-x' style="color: #ff4757; font-size: 1.1rem; flex-shrink: 0;"></i> About me / Summary filled (>= 80 chars)</li>
-                                        <li id="chk-skills" style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;"><i class='bx bx-x' style="color: #ff4757; font-size: 1.1rem; flex-shrink: 0;"></i> Added at least 3 skills</li>
-                                        <li id="chk-experience" style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;"><i class='bx bx-x' style="color: #ff4757; font-size: 1.1rem; flex-shrink: 0;"></i> Added at least 1 Work Experience</li>
-                                        <li id="chk-projects" style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;"><i class='bx bx-x' style="color: #ff4757; font-size: 1.1rem; flex-shrink: 0;"></i> Added at least 1 Project</li>
+                                    <ul id="strength-checklist">
+                                        <li id="chk-summary"><i class='bx bx-x'></i> About me / Summary filled (>= 80 chars)</li>
+                                        <li id="chk-skills"><i class='bx bx-x'></i> Added at least 3 skills</li>
+                                        <li id="chk-experience"><i class='bx bx-x'></i> Added at least 1 Work Experience</li>
+                                        <li id="chk-projects"><i class='bx bx-x'></i> Added at least 1 Project</li>
                                     </ul>
                                 </div>
 
@@ -262,21 +262,15 @@
                                             <!-- ── UPDATED: phone field with country code select ── -->
                                             <div class="form-group">
                                                 <label class="form-label">Phone</label>
-                                                <div style="display:flex; gap:6px;">
-                                                    <select class="form-input" id="f-phone-code" style="
-                                                                   width: 80px;
-                                                                   flex-shrink: 0;
-                                                                   background: #0f1923;
-                                                                   color: #91DAEB;
-                                                                   border: 1px solid #91DAEB;
-                                                                   ">
+                                                <div class="phone-input-row">
+                                                    <select class="form-input" id="f-phone-code">
                                                     <option value="+63">🇵🇭 +63</option>
                                                     <option value="+1">🇺🇸 +1</option>
                                                     <option value="+65">🇸🇬 +65</option>
                                                 </select>
                                                 <input type="tel" class="form-input" id="f-phone" placeholder="9171234567" maxlength="15">
                                             </div>
-                                            <span id="phone-error" style="color:red; font-size:11px; display:none;">Invalid phone number</span>
+                                            <span id="phone-error" class="validation-error">Invalid phone number</span>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">LinkedIn URL</label>
@@ -289,22 +283,22 @@
                                             <input type="text" class="form-input" id="f-github" placeholder="github.com/yourname">
                                         </div>
                                         <div class="form-group">
-                                            <label class="form-label">Portfolio URL <span style="opacity:0.4;">(optional)</span></label>
+                                            <label class="form-label">Portfolio URL <span class="label-optional-text">(optional)</span></label>
                                             <input type="text" class="form-input" id="f-portfolio" placeholder="yourportfolio.com">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group">
-                                            <label class="form-label">Profile Photo <span style="opacity:0.4;">(optional)</span></label>
-                                            <div style="display: flex; align-items: center; gap: 10px;">
-                                                <input type="file" id="f-photo" accept="image/*" style="display: none;">
-                                                <button type="button" class="btn-primary" id="btn-upload-photo" onclick="document.getElementById('f-photo').click()" style="padding: 8px 16px; border-radius: 4px; display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                                            <label class="form-label">Profile Photo <span class="label-optional-text">(optional)</span></label>
+                                            <div class="photo-upload-row">
+                                                <input type="file" id="f-photo" accept="image/*" class="display-none">
+                                                <button type="button" class="btn-primary" id="btn-upload-photo" onclick="document.getElementById('f-photo').click()">
                                                     <i class='bx bx-camera'></i> Upload
                                                 </button>
-                                                <button type="button" class="btn-danger" id="btn-remove-photo" style="display: none; padding: 8px 16px; border-radius: 4px; background: #e84118; color: #fff; border: none; cursor: pointer; align-items: center; gap: 6px;">
+                                                <button type="button" class="btn-danger" id="btn-remove-photo">
                                                     <i class='bx bx-trash'></i> Remove
                                                 </button>
-                                                <span id="photo-status" style="font-size: 12px; opacity: 0.6;">No file selected</span>
+                                                <span id="photo-status">No file selected</span>
                                             </div>
                                         </div>
                                     </div>
@@ -321,7 +315,7 @@
                                     <i class='bx bx-chevron-down form-section-arrow'></i>
                                 </div>
                                 <div class="form-section-body">
-                                    <div class="form-row single" style="margin-top:14px;">
+                                    <div class="form-row single margin-top-14">
                                         <div class="form-group">
                                             <label class="form-label">2–3 sentences about your goals and what you bring</label>
                                             <textarea class="form-textarea" id="f-summary" placeholder="e.g. 2nd year Computer Science student passionate about web development and Python. Seeking opportunities to apply my skills in real-world projects and grow as a developer."></textarea>
@@ -358,7 +352,7 @@
                                     <i class='bx bx-chevron-down form-section-arrow'></i>
                                 </div>
                                 <div class="form-section-body">
-                                    <div style="margin-top:14px;">
+                                    <div class="margin-top-14">
                                         <label class="form-label">Type a skill and press Enter or comma</label>
                                         <div class="skills-input-wrap" id="skills-wrap">
                                             <input type="text" class="skills-real-input" id="skill-input" placeholder="e.g. Python, React, Git...">
@@ -431,7 +425,7 @@
                         <!-- Right: Live Preview -->
                         <div class="preview-panel" id="preview-panel">
                             <div class="preview-panel-header">
-                                <span class="preview-label"><i class='bx bx-show' style="margin-right:4px;"></i> Live Preview</span>
+                                <span class="preview-label"><i class='bx bx-show margin-right-4'></i> Live Preview</span>
                                 <span class="preview-tip-badge"><i class='bx bx-info-circle'></i> Drag handle or double-click to resize</span>
                             </div>
                             <div class="overflow-warning" id="overflow-warning">
@@ -456,7 +450,7 @@
                     <div class="mobile-preview-sheet" id="mobile-preview-sheet">
                         <div class="mobile-preview-sheet-header">
                             <span style="font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.6);">Live Preview</span>
-                            <button class="btn-preview-action" onclick="toggleMobilePreview()" style="padding:4px 10px;">
+                            <button class="btn-preview-action padding-4-10" onclick="toggleMobilePreview()">
                                 <i class='bx bx-x'></i> Close
                             </button>
                         </div>
@@ -477,7 +471,7 @@
 
                 <!-- ── STEP 3: Save & Download ── -->
                 <div class="builder-step" id="step-3">
-                    <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:20px;">Your resume is ready</h2>
+                    <h2 class="step-3-title">Your resume is ready</h2>
 
                     <!-- Completeness bar -->
                     <div class="completeness-wrap">
@@ -517,7 +511,7 @@
                             <button class="btn-save-action btn-download-pdf" onclick="downloadPDF()">
                                 <i class='bx bxs-file-pdf'></i> Download as PDF
                             </button>
-                            <button class="btn-save-action btn-download-pdf" onclick="goToStep(2)" style="margin-top:4px; opacity:0.6;">
+                            <button class="btn-save-action btn-download-pdf btn-back-editing" onclick="goToStep(2)">
                                 <i class='bx bx-edit'></i> Back to editing
                             </button>
                         </div>
@@ -530,15 +524,15 @@
             <div class="page-tab-content" id="tab-tips">
                 
                 <!-- Google XYZ Section -->
-                <div class="tips-box" style="margin-bottom: 24px;">
-                    <div class="tips-box-title" style="font-size: 1.05rem;"><i class='bx bx-party'></i> Google's Formula for High-Impact Bullet Points</div>
-                    <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 12px;">
+                <div class="tips-box margin-bottom-24">
+                    <div class="tips-box-title font-size-1-05"><i class='bx bx-party'></i> Google's Formula for High-Impact Bullet Points</div>
+                    <p class="tips-box-p">
                         Tech recruiters scan resumes for impact, not just responsibilities. Use Google's official formula to structure your experience descriptions:
                     </p>
-                    <div style="background: rgba(145,218,235,0.08); border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-weight: 600; text-align: center; font-size: 0.95rem; color: #fff;">
-                        Accomplished <span style="color: #91DAEB;">[X]</span>, as measured by <span style="color: #91DAEB;">[Y]</span>, by doing <span style="color: #91DAEB;">[Z]</span>
+                    <div class="formula-box">
+                        Accomplished <span class="formula-var">[X]</span>, as measured by <span class="formula-var">[Y]</span>, by doing <span class="formula-var">[Z]</span>
                     </div>
-                    <ul class="tips-list" style="margin-top: 8px;">
+                    <ul class="tips-list margin-top-8">
                         <li><strong>[X] (The Goal)</strong>: What you achieved (e.g. reduced database response times, automated testing).</li>
                         <li><strong>[Y] (The Metric)</strong>: How you quantified it (e.g. by 40%, saved 5 hours/week).</li>
                         <li><strong>[Z] (The Action)</strong>: How you did it (e.g. optimized SQL query indices, wrote Python automation scripts).</li>
@@ -547,33 +541,33 @@
 
                 <!-- Comparison Examples -->
                 <div class="resource-section-title"><i class='bx bx-shuffle'></i> Before & After Phrasing Examples</div>
-                <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 30px;">
+                <div class="examples-container">
                     <!-- Example 1 -->
-                    <div style="background: #0f1923; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
-                        <div style="font-size: 0.88rem; font-weight: 700; color: #91DAEB; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 6px;">Example 1: Backend Developer (OJT / Project)</div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="example-card">
+                        <div class="example-title">Example 1: Backend Developer (OJT / Project)</div>
+                        <div class="example-grid">
                             <div>
-                                <div style="font-size: 0.72rem; text-transform: uppercase; color: #ff4757; font-weight: 700; margin-bottom: 4px;">❌ Weak (No metrics or tech stack detail)</div>
-                                <div style="font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.4;">"I helped make the app's databases faster for users."</div>
+                                <div class="example-header weak">❌ Weak (No metrics or tech stack detail)</div>
+                                <div class="example-body weak">"I helped make the app's databases faster for users."</div>
                             </div>
                             <div>
-                                <div style="font-size: 0.72rem; text-transform: uppercase; color: #2ed573; font-weight: 700; margin-bottom: 4px;">✅ Strong (XYZ Formatted)</div>
-                                <div style="font-size: 0.82rem; color: rgba(255,255,255,0.85); line-height: 1.4;">"Optimized database indices and query patterns (Z), reducing response times by 35% (Y) and resolving dashboard performance lags for 200+ active users (X)."</div>
+                                <div class="example-header strong">✅ Strong (XYZ Formatted)</div>
+                                <div class="example-body strong">"Optimized database indices and query patterns (Z), reducing response times by 35% (Y) and resolving dashboard performance lags for 200+ active users (X)."</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Example 2 -->
-                    <div style="background: #0f1923; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
-                        <div style="font-size: 0.88rem; font-weight: 700; color: #91DAEB; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 6px;">Example 2: Automating Tests</div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="example-card">
+                        <div class="example-title">Example 2: Automating Tests</div>
+                        <div class="example-grid">
                             <div>
-                                <div style="font-size: 0.72rem; text-transform: uppercase; color: #ff4757; font-weight: 700; margin-bottom: 4px;">❌ Weak (Passive phrasing)</div>
-                                <div style="font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.4;">"Responsible for writing test scripts in Python."</div>
+                                <div class="example-header weak">❌ Weak (Passive phrasing)</div>
+                                <div class="example-body weak">"Responsible for writing test scripts in Python."</div>
                             </div>
                             <div>
-                                <div style="font-size: 0.72rem; text-transform: uppercase; color: #2ed573; font-weight: 700; margin-bottom: 4px;">✅ Strong (Action-first phrasing)</div>
-                                <div style="font-size: 0.82rem; color: rgba(255,255,255,0.85); line-height: 1.4;">"Engineered and executed automated testing pipelines in Python (Z), expanding QA coverage from 40% to 92% (Y) and preventing critical release regressions."</div>
+                                <div class="example-header strong">✅ Strong (Action-first phrasing)</div>
+                                <div class="example-body strong">"Engineered and executed automated testing pipelines in Python (Z), expanding QA coverage from 40% to 92% (Y) and preventing critical release regressions."</div>
                             </div>
                         </div>
                     </div>
@@ -582,60 +576,60 @@
                 <!-- Action Verbs Section -->
                 <div class="resource-section-title"><i class='bx bx-book-content'></i> Essential Action Verbs Dictionary</div>
                 
-                <h3 style="font-size: 0.95rem; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;"><i class='bx bx-code-alt' style="color:#91DAEB;"></i> Development & Creation</h3>
-                <div class="resources-grid" style="margin-bottom: 24px;">
-                    <div class="res-card" style="cursor: default;">
-                        <div class="res-card-name" style="color: #91DAEB;">Engineered</div>
+                <h3 class="verbs-category-title"><i class='bx bx-code-alt verbs-icon'></i> Development & Creation</h3>
+                <div class="resources-grid verbs-grid">
+                    <div class="res-card cursor-default">
+                        <div class="res-card-name verbs-name">Engineered</div>
                         <div class="res-card-desc">Ideal for backend, logic structures, and core software solutions.</div>
-                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Engineered custom API middleware..."</div>
+                        <div class="res-card-hint">e.g., "Engineered custom API middleware..."</div>
                     </div>
-                    <div class="res-card" style="cursor: default;">
-                        <div class="res-card-name" style="color: #91DAEB;">Architected</div>
+                    <div class="res-card cursor-default">
+                        <div class="res-card-name verbs-name">Architected</div>
                         <div class="res-card-desc">Use when you designed the schema, folder structure, or system setup.</div>
-                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Architected a scalable relational database schema..."</div>
+                        <div class="res-card-hint">e.g., "Architected a scalable relational database schema..."</div>
                     </div>
-                    <div class="res-card" style="cursor: default;">
-                        <div class="res-card-name" style="color: #91DAEB;">Implemented</div>
+                    <div class="res-card cursor-default">
+                        <div class="res-card-name verbs-name">Implemented</div>
                         <div class="res-card-desc">Perfect for describing the execution of features, designs, or endpoints.</div>
-                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Implemented JWT authorization gates..."</div>
+                        <div class="res-card-hint">e.g., "Implemented JWT authorization gates..."</div>
                     </div>
                 </div>
 
-                <h3 style="font-size: 0.95rem; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;"><i class='bx bx-trending-up' style="color:#91DAEB;"></i> Optimization & Scale</h3>
-                <div class="resources-grid" style="margin-bottom: 24px;">
-                    <div class="res-card" style="cursor: default;">
-                        <div class="res-card-name" style="color: #91DAEB;">Optimized</div>
+                <h3 class="verbs-category-title"><i class='bx bx-trending-up verbs-icon'></i> Optimization & Scale</h3>
+                <div class="resources-grid verbs-grid">
+                    <div class="res-card cursor-default">
+                        <div class="res-card-name verbs-name">Optimized</div>
                         <div class="res-card-desc">Use when you made something run faster, use less memory, or write less code.</div>
-                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Optimized lazy loaded routing patterns..."</div>
+                        <div class="res-card-hint">e.g., "Optimized lazy loaded routing patterns..."</div>
                     </div>
-                    <div class="res-card" style="cursor: default;">
-                        <div class="res-card-name" style="color: #91DAEB;">Streamlined</div>
+                    <div class="res-card cursor-default">
+                        <div class="res-card-name verbs-name">Streamlined</div>
                         <div class="res-card-desc">Perfect for simplifying a complicated process or removing redundant code blocks.</div>
-                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Streamlined user authentication pipelines..."</div>
+                        <div class="res-card-hint">e.g., "Streamlined user authentication pipelines..."</div>
                     </div>
-                    <div class="res-card" style="cursor: default;">
-                        <div class="res-card-name" style="color: #91DAEB;">Accelerated</div>
+                    <div class="res-card cursor-default">
+                        <div class="res-card-name verbs-name">Accelerated</div>
                         <div class="res-card-desc">Use when you directly boosted execution speeds or system throughput.</div>
-                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Accelerated backend image assets processing..."</div>
+                        <div class="res-card-hint">e.g., "Accelerated backend image assets processing..."</div>
                     </div>
                 </div>
 
-                <h3 style="font-size: 0.95rem; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;"><i class='bx bx-check-double' style="color:#91DAEB;"></i> Automation & Reliability</h3>
-                <div class="resources-grid" style="margin-bottom: 24px;">
-                    <div class="res-card" style="cursor: default;">
-                        <div class="res-card-name" style="color: #91DAEB;">Automated</div>
+                <h3 class="verbs-category-title"><i class='bx bx-check-double verbs-icon'></i> Automation & Reliability</h3>
+                <div class="resources-grid verbs-grid">
+                    <div class="res-card cursor-default">
+                        <div class="res-card-name verbs-name">Automated</div>
                         <div class="res-card-desc">Use when you replaced a manual process (e.g. testing, deploying, backing up) with scripts.</div>
-                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Automated script deployments using GitHub Actions..."</div>
+                        <div class="res-card-hint">e.g., "Automated script deployments using GitHub Actions..."</div>
                     </div>
-                    <div class="res-card" style="cursor: default;">
-                        <div class="res-card-name" style="color: #91DAEB;">Migrated</div>
+                    <div class="res-card cursor-default">
+                        <div class="res-card-name verbs-name">Migrated</div>
                         <div class="res-card-desc">Perfect for moving systems, databases, or libraries without causing downtime.</div>
-                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Migrated old MongoDB connections to Mongoose..."</div>
+                        <div class="res-card-hint">e.g., "Migrated old MongoDB connections to Mongoose..."</div>
                     </div>
-                    <div class="res-card" style="cursor: default;">
-                        <div class="res-card-name" style="color: #91DAEB;">Refactored</div>
+                    <div class="res-card cursor-default">
+                        <div class="res-card-name verbs-name">Refactored</div>
                         <div class="res-card-desc">Use when you restructured legacy code to improve readability and future maintenance.</div>
-                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Refactored UI helper methods to functional modules..."</div>
+                        <div class="res-card-hint">e.g., "Refactored UI helper methods to functional modules..."</div>
                     </div>
                 </div>
 
@@ -660,7 +654,7 @@
                 <div class="resources-grid">
                     <a href="https://www.youtube.com/watch?v=Tt08KmFfIYQ" target="_blank" class="res-card">
                         <div class="res-card-top">
-                            <div class="res-card-icon" style="background:rgba(231,76,60,0.12); color:#e74c3c;"><i class='bx bx-play-circle'></i></div>
+                            <div class="res-card-icon video"><i class='bx bx-play-circle'></i></div>
                             <span class="res-type-badge type-video">Video</span>
                         </div>
                         <div class="res-card-name">How to Write a Resume With No Experience</div>
@@ -669,7 +663,7 @@
                     </a>
                     <a href="https://www.youtube.com/watch?v=y8YH0QlD4Rc" target="_blank" class="res-card">
                         <div class="res-card-top">
-                            <div class="res-card-icon" style="background:rgba(231,76,60,0.12); color:#e74c3c;"><i class='bx bx-play-circle'></i></div>
+                            <div class="res-card-icon video"><i class='bx bx-play-circle'></i></div>
                             <span class="res-type-badge type-video">Video</span>
                         </div>
                         <div class="res-card-name">Software Engineer Resume Tips (Google Recruiter)</div>
@@ -678,7 +672,7 @@
                     </a>
                     <a href="https://www.youtube.com/watch?v=BYUy1yvjHxE" target="_blank" class="res-card">
                         <div class="res-card-top">
-                            <div class="res-card-icon" style="background:rgba(231,76,60,0.12); color:#e74c3c;"><i class='bx bx-play-circle'></i></div>
+                            <div class="res-card-icon video"><i class='bx bx-play-circle'></i></div>
                             <span class="res-type-badge type-video">Video</span>
                         </div>
                         <div class="res-card-name">Resume Workshop for CS Students</div>
@@ -691,7 +685,7 @@
                 <div class="resources-grid">
                     <a href="https://www.techinterviewhandbook.org/resume/" target="_blank" class="res-card">
                         <div class="res-card-top">
-                            <div class="res-card-icon" style="background:rgba(52,152,219,0.12); color:#3498db;"><i class='bx bx-link-external'></i></div>
+                            <div class="res-card-icon guide"><i class='bx bx-link-external'></i></div>
                             <span class="res-type-badge type-guide">Guide</span>
                         </div>
                         <div class="res-card-name">Tech Interview Handbook — Resume Guide</div>
@@ -700,7 +694,7 @@
                     </a>
                     <a href="https://novoresume.com/career-blog/how-to-write-a-resume" target="_blank" class="res-card">
                         <div class="res-card-top">
-                            <div class="res-card-icon" style="background:rgba(52,152,219,0.12); color:#3498db;"><i class='bx bx-book'></i></div>
+                            <div class="res-card-icon guide"><i class='bx bx-book'></i></div>
                             <span class="res-type-badge type-article">Article</span>
                         </div>
                         <div class="res-card-name">How to Write a Resume — Complete Guide</div>
@@ -709,7 +703,7 @@
                     </a>
                     <a href="https://www.reddit.com/r/cscareerquestions/wiki/resume/" target="_blank" class="res-card">
                         <div class="res-card-top">
-                            <div class="res-card-icon" style="background:rgba(255,87,34,0.12); color:#ff5722;"><i class='bx bxl-reddit'></i></div>
+                            <div class="res-card-icon reddit"><i class='bx bxl-reddit'></i></div>
                             <span class="res-type-badge type-article">Article</span>
                         </div>
                         <div class="res-card-name">r/cscareerquestions Resume Wiki</div>
@@ -722,7 +716,7 @@
                 <div class="resources-grid">
                     <a href="https://www.jobscan.co/" target="_blank" class="res-card">
                         <div class="res-card-top">
-                            <div class="res-card-icon" style="background:rgba(76,209,55,0.12); color:#4cd137;"><i class='bx bx-scan'></i></div>
+                            <div class="res-card-icon tool"><i class='bx bx-scan'></i></div>
                             <span class="res-type-badge type-tool">Tool</span>
                         </div>
                         <div class="res-card-name">Jobscan — ATS Resume Checker</div>
@@ -731,7 +725,7 @@
                     </a>
                     <a href="https://resumeworded.com/" target="_blank" class="res-card">
                         <div class="res-card-top">
-                            <div class="res-card-icon" style="background:rgba(76,209,55,0.12); color:#4cd137;"><i class='bx bx-analyse'></i></div>
+                            <div class="res-card-icon tool"><i class='bx bx-analyse'></i></div>
                             <span class="res-type-badge type-tool">Tool</span>
                         </div>
                         <div class="res-card-name">Resume Worded — AI Resume Scorer</div>
@@ -740,7 +734,7 @@
                     </a>
                     <a href="https://app.grammarly.com/" target="_blank" class="res-card">
                         <div class="res-card-top">
-                            <div class="res-card-icon" style="background:rgba(76,209,55,0.12); color:#4cd137;"><i class='bx bx-check-shield'></i></div>
+                            <div class="res-card-icon tool"><i class='bx bx-check-shield'></i></div>
                             <span class="res-type-badge type-tool">Tool</span>
                         </div>
                         <div class="res-card-name">Grammarly</div>
