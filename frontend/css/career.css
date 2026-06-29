@@ -2624,5 +2624,380 @@
     gap: 8px;
   }
 }
+/* ── Resume Builder Styles Cleaned from Inline Styles ── */
+#print-target {
+  display: none;
+}
+
+.step-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.step-subtitle {
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 0;
+}
+
+.tpl-classic-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tpl-skills-preview-list {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.tpl-skill-bar {
+  background: #e8e8e8;
+  border-radius: 2px;
+  height: 7px;
+}
+.tpl-skill-bar.bar-1 {
+  width: 28px;
+}
+.tpl-skill-bar.bar-2 {
+  width: 22px;
+}
+.tpl-skill-bar.bar-3 {
+  width: 32px;
+}
+
+.tpl-avatar-name {
+  font-size: 7px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+.tpl-sidebar-line.width-80 {
+  width: 80%;
+}
+.tpl-sidebar-line.width-70 {
+  width: 70%;
+}
+
+.tpl-skill-tag.width-24 {
+  width: 24px;
+}
+
+.tpl-main-header-title {
+  height: 8px;
+  background: #0f2027;
+  border-radius: 1px;
+  width: 60%;
+  margin-bottom: 4px;
+}
+
+.tpl-main-header-subtitle {
+  height: 5px;
+  background: #e8e8e8;
+  border-radius: 1px;
+  width: 80%;
+  margin-bottom: 8px;
+}
+
+.tpl-main-section-title {
+  font-size: 6px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #333;
+  border-left: 2px solid #0f2027;
+  padding-left: 4px;
+  margin-bottom: 5px;
+}
+.tpl-main-section-title.margin-top-7 {
+  margin: 7px 0 5px;
+}
+
+.tpl-line.width-70 {
+  width: 70%;
+}
+
+.theme-preset-btn[data-accent="#222222"] {
+  background: #222222;
+}
+.theme-preset-btn[data-accent="#1b365d"] {
+  background: #1b365d;
+}
+.theme-preset-btn[data-accent="#1e3a8a"] {
+  background: #1e3a8a;
+}
+.theme-preset-btn[data-accent="#0d9488"] {
+  background: #0d9488;
+}
+.theme-preset-btn[data-accent="#991b1b"] {
+  background: #991b1b;
+}
+
+#text-color-swatch-display {
+  background: #222222;
+}
+
+#header-text-swatch-display {
+  background: #ffffff;
+}
+
+.strength-box {
+  margin-bottom: 24px;
+  border-left: 3px solid #ff9f43;
+  background: rgba(255, 159, 67, 0.03);
+  border-color: rgba(255, 159, 67, 0.25);
+}
+
+.strength-box-title {
+  color: #ff9f43;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.strength-box-title #strength-badge {
+  background: rgba(255, 159, 67, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+#strength-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 8px;
+}
+#strength-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.5;
+}
+#strength-checklist li i {
+  color: #ff4757;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.phone-input-row {
+  display: flex;
+  gap: 6px;
+}
+.phone-input-row #f-phone-code {
+  width: 80px;
+  flex-shrink: 0;
+  background: #0f1923;
+  color: #91DAEB;
+  border: 1px solid #91DAEB;
+}
+
+.validation-error {
+  color: red;
+  font-size: 11px;
+  display: none;
+}
+
+.label-optional-text {
+  opacity: 0.4;
+}
+
+.photo-upload-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.photo-upload-row .display-none {
+  display: none;
+}
+.photo-upload-row #btn-upload-photo {
+  padding: 8px 16px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.photo-upload-row #btn-remove-photo {
+  display: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: #e84118;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  gap: 6px;
+}
+.photo-upload-row #photo-status {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.margin-top-14 {
+  margin-top: 14px;
+}
+
+.margin-right-4 {
+  margin-right: 4px;
+}
+
+.padding-4-10 {
+  padding: 4px 10px;
+}
+
+.step-3-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.btn-back-editing {
+  margin-top: 4px;
+  opacity: 0.6;
+}
+
+.margin-bottom-24 {
+  margin-bottom: 24px;
+}
+
+.font-size-1-05 {
+  font-size: 1.05rem;
+}
+
+.tips-box-p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.formula-box {
+  background: rgba(145, 218, 235, 0.08);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #fff;
+}
+.formula-box .formula-var {
+  color: #91DAEB;
+}
+
+.margin-top-8 {
+  margin-top: 8px;
+}
+
+.examples-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.example-card {
+  background: #0f1923;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.example-card .example-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #91DAEB;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 6px;
+}
+.example-card .example-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.example-card .example-grid .example-header {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.example-card .example-grid .example-header.weak {
+  color: #ff4757;
+}
+.example-card .example-grid .example-header.strong {
+  color: #2ed573;
+}
+.example-card .example-grid .example-body {
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+.example-card .example-grid .example-body.weak {
+  color: rgba(255, 255, 255, 0.5);
+}
+.example-card .example-grid .example-body.strong {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.verbs-category-title {
+  font-size: 0.95rem;
+  color: #fff;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.verbs-category-title .verbs-icon {
+  color: #91DAEB;
+}
+
+.verbs-grid {
+  margin-bottom: 24px;
+}
+
+.res-card.cursor-default {
+  cursor: default;
+}
+.res-card.cursor-default:hover {
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+.verbs-name {
+  color: #91DAEB;
+}
+
+.res-card-hint {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 8px;
+}
+
+.res-card-icon.video {
+  background: rgba(231, 76, 60, 0.12);
+  color: #e74c3c;
+}
+.res-card-icon.guide {
+  background: rgba(52, 152, 219, 0.12);
+  color: #3498db;
+}
+.res-card-icon.reddit {
+  background: rgba(255, 87, 34, 0.12);
+  color: #ff5722;
+}
+.res-card-icon.tool {
+  background: rgba(76, 209, 55, 0.12);
+  color: #4cd137;
+}
 
 /*# sourceMappingURL=career.css.map */
