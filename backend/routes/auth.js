@@ -525,15 +525,19 @@ router.post("/resume/save", requireAuth, async (req, res) => {
     req.user.resume = {
       templateId:   resumeData.templateId   || "",
       accentColor:  resumeData.accentColor  || "#91DAEB",
+      textColor:    resumeData.textColor    || "#222222",
+      headerTextColor: resumeData.headerTextColor || "#ffffff",
       font:         resumeData.font         || "poppins",
       pageSize:     resumeData.pageSize     || "A4",
+      spacing:      resumeData.spacing      || "normal",
       personalInfo: {
         name:      resumeData.personalInfo?.name      || "",
         email:     resumeData.personalInfo?.email     || "",
         phone:     resumeData.personalInfo?.phone     || "",
         linkedin:  resumeData.personalInfo?.linkedin  || "",
         github:    resumeData.personalInfo?.github    || "",
-        portfolio: resumeData.personalInfo?.portfolio || ""
+        portfolio: resumeData.personalInfo?.portfolio || "",
+        photo:     resumeData.personalInfo?.photo     || ""
       },
       summary:        resumeData.summary        || "",
       education:      Array.isArray(resumeData.education)      ? resumeData.education      : [],

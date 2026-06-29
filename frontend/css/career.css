@@ -1206,13 +1206,74 @@
 /* ── Step 2: Form + Preview ─────────────────────────────── */
 .builder-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  grid-template-columns: var(--form-width, 1fr) 24px var(--preview-width, 1fr);
+  gap: 0;
   align-items: start;
 }
 @media (max-width: 960px) {
   .builder-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    gap: 28px;
+  }
+}
+
+.resize-handle {
+  width: 24px;
+  height: 100%;
+  min-height: 600px;
+  cursor: col-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+  align-self: stretch;
+  background: transparent;
+  z-index: 10;
+  transition: background-color 0.2s;
+}
+.resize-handle::after {
+  content: "";
+  width: 1px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  transition: background-color 0.2s;
+}
+.resize-handle .resize-grabber {
+  width: 22px;
+  height: 64px;
+  background: #1a1b20;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease-in-out;
+  z-index: 2;
+  cursor: col-resize;
+}
+.resize-handle:hover, .resize-handle.dragging {
+  background: rgba(255, 255, 255, 0.02);
+}
+.resize-handle:hover::after, .resize-handle.dragging::after {
+  background: rgba(145, 218, 235, 0.35);
+}
+.resize-handle:hover .resize-grabber, .resize-handle.dragging .resize-grabber {
+  border-color: rgb(145, 218, 235);
+  color: rgb(145, 218, 235);
+  box-shadow: 0 4px 16px rgba(145, 218, 235, 0.25);
+  transform: scale(1.08);
+}
+@media (max-width: 960px) {
+  .resize-handle {
+    display: none !important;
   }
 }
 
@@ -1493,6 +1554,28 @@
   gap: 8px;
 }
 
+.theme-presets {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.theme-preset-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+.theme-preset-btn.active, .theme-preset-btn:hover {
+  border-color: #fff;
+  transform: scale(1.18);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
 .custom-label {
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.45);
@@ -1561,6 +1644,18 @@
   letter-spacing: 0.5px;
 }
 
+.preview-tip-badge {
+  font-size: 0.7rem;
+  color: rgba(145, 218, 235, 0.6);
+  background: rgba(145, 218, 235, 0.05);
+  border: 1px solid rgba(145, 218, 235, 0.12);
+  padding: 3px 8px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .preview-actions {
   display: flex;
   gap: 8px;
@@ -1588,22 +1683,29 @@
   border-radius: 8px;
   padding: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
 }
 
 .resume-page-frame {
   background: #fff;
-  width: 100%;
-  aspect-ratio: 210/297;
+  width: 794px; /* default A4 — overridden by JS per page size */
+  height: 1123px;
   overflow: hidden;
   position: relative;
   border-radius: 2px;
+  flex-shrink: 0;
+  transform-origin: top center;
+  will-change: transform;
 }
 
 /* ── Resume Templates (rendered output) ─────────────────── */
 /* CLASSIC TEMPLATE */
 #resume-classic {
   font-family: "Inter", sans-serif;
-  color: #222;
+  color: var(--resume-text, #222);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -1615,8 +1717,23 @@
 
 .rc-header {
   background: var(--resume-accent, #1a1a2e);
-  color: #fff;
+  color: var(--resume-header-text, #fff);
   padding: 1.4em 1.8em 1.2em;
+}
+
+.rc-header-photo-wrap {
+  width: 4.5em;
+  height: 4.5em;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--resume-header-text, #fff);
+  flex-shrink: 0;
+}
+
+.rc-header-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .rc-name {
@@ -1669,7 +1786,7 @@
 
 .rc-summary {
   font-size: 0.72em;
-  color: #444;
+  opacity: 0.8;
   line-height: 1.5;
 }
 
@@ -1688,23 +1805,22 @@
 .rc-item-title {
   font-size: 0.78em;
   font-weight: 600;
-  color: #222;
 }
 
 .rc-item-date {
   font-size: 0.65em;
-  color: #777;
+  opacity: 0.55;
 }
 
 .rc-item-sub {
   font-size: 0.68em;
-  color: #555;
+  opacity: 0.75;
   margin-top: 0.1em;
 }
 
 .rc-item-desc {
   font-size: 0.65em;
-  color: #555;
+  opacity: 0.75;
   margin-top: 0.2em;
   line-height: 1.4;
 }
@@ -1720,19 +1836,19 @@
   border-radius: 3px;
   padding: 0.15em 0.5em;
   font-size: 0.65em;
-  color: #333;
+  opacity: 0.9;
 }
 
 .rc-cert-item {
   font-size: 0.68em;
-  color: #444;
+  opacity: 0.8;
   margin-bottom: 0.2em;
 }
 
 /* TECH TEMPLATE */
 #resume-tech {
   font-family: "Inter", sans-serif;
-  color: #222;
+  color: var(--resume-text, #222);
   height: 100%;
   display: flex;
   font-size: clamp(5px, 1.2vw, 10px);
@@ -1744,24 +1860,40 @@
 .rt-sidebar {
   width: 36%;
   background: var(--resume-accent, #0f2027);
-  color: #fff;
+  color: var(--resume-header-text, #fff);
   padding: 1.4em 1em 1em;
   flex-shrink: 0;
   overflow: hidden;
   min-width: 0;
 }
 
+.rt-sidebar-photo-wrap {
+  width: 4.8em;
+  height: 4.8em;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--resume-header-text, #fff);
+  margin-bottom: 0.8em;
+  display: block;
+}
+
+.rt-sidebar-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .rt-sidebar-name {
   font-size: 1.1em;
   font-weight: 700;
-  color: #fff;
+  color: var(--resume-header-text, #fff);
   margin-bottom: 0.15em;
   line-height: 1.2;
 }
 
 .rt-sidebar-role {
   font-size: 0.65em;
-  color: rgba(255, 255, 255, 0.55);
+  opacity: 0.55;
   margin-bottom: 1em;
 }
 
@@ -1777,7 +1909,7 @@
 
 .rt-sidebar-line {
   font-size: 0.65em;
-  color: rgba(255, 255, 255, 0.65);
+  opacity: 0.65;
   margin-bottom: 0.18em;
   word-break: break-all;
 }
@@ -1814,7 +1946,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: #333;
+  color: var(--resume-text, #333);
   border-left: 3px solid var(--resume-accent, #0f2027);
   padding-left: 0.5em;
   margin-bottom: 0.5em;
@@ -1835,30 +1967,29 @@
 .rt-item-title {
   font-size: 0.75em;
   font-weight: 600;
-  color: #222;
 }
 
 .rt-item-date {
   font-size: 0.62em;
-  color: #999;
+  opacity: 0.55;
 }
 
 .rt-item-sub {
   font-size: 0.65em;
-  color: #666;
+  opacity: 0.75;
   margin-top: 0.1em;
 }
 
 .rt-item-desc {
   font-size: 0.62em;
-  color: #555;
+  opacity: 0.75;
   margin-top: 0.2em;
   line-height: 1.4;
 }
 
 .rt-summary {
   font-size: 0.7em;
-  color: #444;
+  opacity: 0.8;
   line-height: 1.5;
 }
 
@@ -2251,17 +2382,168 @@
 
 /* Print styles */
 @media print {
+  @page {
+    size: auto;
+    margin: 0;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
   body > *:not(#print-target) {
     display: none !important;
   }
   #print-target {
     display: block !important;
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm;
+    height: 297mm;
     background: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }
+.btn-preview-toggle {
+  gap: 6px;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  background: rgba(145, 218, 235, 0.08);
+  border: 1px solid rgba(145, 218, 235, 0.25);
+  color: rgb(145, 218, 235);
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+.btn-preview-toggle:hover {
+  background: rgba(145, 218, 235, 0.16);
+  color: #fff;
+  border-color: rgb(145, 218, 235);
+  box-shadow: 0 0 10px rgba(145, 218, 235, 0.15);
+}
+
+/* When preview is snapped-collapsed: form fills, thin edge on right so user can drag back */
+.builder-layout.preview-collapsed {
+  grid-template-columns: 1fr 20px !important;
+}
+.builder-layout.preview-collapsed .preview-panel {
+  display: none !important;
+}
+.builder-layout.preview-collapsed .resize-handle {
+  width: 20px;
+  background: rgba(145, 218, 235, 0.05);
+  border-left: 1px solid rgba(145, 218, 235, 0.15);
+  border-radius: 0 6px 6px 0;
+}
+.builder-layout.preview-collapsed .resize-handle::after {
+  background: rgba(145, 218, 235, 0.3);
+}
+.builder-layout.preview-collapsed .resize-handle .resize-grabber {
+  border-color: rgba(145, 218, 235, 0.35);
+  color: rgb(145, 218, 235);
+}
+.builder-layout.preview-collapsed .resize-handle .resize-grabber i::before {
+  content: "\eb90"; /* bx-chevron-right */
+}
+.builder-layout.preview-collapsed .resize-handle:hover {
+  background: rgba(145, 218, 235, 0.1);
+}
+
+/* When inputs are snapped-collapsed: preview fills, thin edge on left so user can drag back */
+.builder-layout.inputs-collapsed {
+  grid-template-columns: 20px 1fr !important;
+}
+.builder-layout.inputs-collapsed .form-panel {
+  display: none !important;
+}
+.builder-layout.inputs-collapsed .preview-panel {
+  display: block !important;
+  width: 100% !important;
+}
+.builder-layout.inputs-collapsed .resize-handle {
+  width: 20px;
+  background: rgba(145, 218, 235, 0.05);
+  border-right: 1px solid rgba(145, 218, 235, 0.15);
+  border-radius: 6px 0 0 6px;
+}
+.builder-layout.inputs-collapsed .resize-handle::after {
+  background: rgba(145, 218, 235, 0.3);
+}
+.builder-layout.inputs-collapsed .resize-handle .resize-grabber {
+  border-color: rgba(145, 218, 235, 0.35);
+  color: rgb(145, 218, 235);
+}
+.builder-layout.inputs-collapsed .resize-handle .resize-grabber i::before {
+  content: "\eb8d"; /* bx-chevron-left */
+}
+.builder-layout.inputs-collapsed .resize-handle:hover {
+  background: rgba(145, 218, 235, 0.1);
+}
+
+/* ── Mobile FAB Preview Toggle ─────────────────────────── */
+.fab-preview-toggle {
+  display: none; /* hidden on desktop */
+}
+
+/* ── Mobile Preview Bottom Sheet ──────────────────────── */
+.mobile-preview-sheet {
+  display: none; /* hidden on desktop, shown via JS on mobile */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #16181f;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.6);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: 88vh;
+  overflow: hidden;
+  flex-direction: column;
+}
+.mobile-preview-sheet.open {
+  transform: translateY(0);
+}
+
+.mobile-preview-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+.mobile-preview-sheet-header::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.mobile-preview-sheet-body {
+  overflow: auto;
+  padding: 16px 12px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+}
+
 /* ── Mobile & Tablet Responsiveness ──────────────────────── */
 @media (max-width: 960px) {
   .preview-panel {
@@ -2269,9 +2551,49 @@
     margin-top: 24px;
   }
 }
+@media (max-width: 768px) {
+  /* On tablets and phones: hide the side preview panel entirely,
+     show the FAB and bottom sheet instead */
+  .builder-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .preview-panel {
+    display: none !important;
+  }
+  /* Show mobile FAB */
+  .fab-preview-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    z-index: 900;
+    background: rgb(145, 218, 235);
+    color: #0f1117;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(145, 218, 235, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .fab-preview-toggle i {
+    font-size: 1.1rem;
+  }
+  .fab-preview-toggle:active {
+    transform: scale(0.95);
+  }
+  /* Show bottom sheet (display set by JS) */
+  .mobile-preview-sheet {
+    display: flex;
+  }
+}
 @media (max-width: 600px) {
   .resume-page {
-    padding: 110px 16px 40px;
+    padding: 110px 16px 100px; /* extra bottom padding for FAB */
   }
   .form-row, .form-row.triple {
     grid-template-columns: 1fr !important;
@@ -2279,6 +2601,12 @@
   .customization-bar {
     padding: 12px 14px;
     gap: 12px;
+    flex-wrap: wrap;
+  }
+  .custom-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
   }
 }
 @media (max-width: 480px) {
@@ -2291,6 +2619,9 @@
   }
   .step-line {
     margin: 0 4px;
+  }
+  .customization-bar {
+    gap: 8px;
   }
 }
 
