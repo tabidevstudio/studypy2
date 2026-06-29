@@ -2546,17 +2546,18 @@
 
 /* ── Mobile & Tablet Responsiveness ──────────────────────── */
 @media (max-width: 960px) {
-  .preview-panel {
-    position: static !important;
-    margin-top: 24px;
-  }
-}
-@media (max-width: 768px) {
-  /* On tablets and phones: hide the side preview panel entirely,
-     show the FAB and bottom sheet instead */
   .builder-layout {
     grid-template-columns: 1fr !important;
   }
+  .preview-panel {
+    position: static !important;
+    margin-top: 24px;
+    display: block !important;
+  }
+}
+@media (max-width: 600px) {
+  /* On mobile phones: hide the inline preview panel entirely,
+     show the FAB and bottom sheet instead */
   .preview-panel {
     display: none !important;
   }
@@ -2590,8 +2591,6 @@
   .mobile-preview-sheet {
     display: flex;
   }
-}
-@media (max-width: 600px) {
   .resume-page {
     padding: 110px 16px 100px; /* extra bottom padding for FAB */
   }
@@ -2599,11 +2598,21 @@
     grid-template-columns: 1fr !important;
   }
   .customization-bar {
-    padding: 12px 14px;
-    gap: 12px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px !important;
+    padding: 10px 14px !important;
+  }
+  .customization-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .customization-bar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
   .custom-group {
+    flex-shrink: 0;
     flex-direction: row;
     align-items: center;
     gap: 8px;
@@ -2620,10 +2629,38 @@
   .step-line {
     margin: 0 4px;
   }
-  .customization-bar {
-    gap: 8px;
-  }
 }
+.mobile-preview-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.mobile-preview-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+#btn-mobile-zoom {
+  background: rgba(145, 218, 235, 0.1);
+  border: 1px solid rgba(145, 218, 235, 0.25);
+  color: rgb(145, 218, 235);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+#btn-mobile-zoom:hover {
+  background: rgba(145, 218, 235, 0.2);
+  color: #fff;
+}
+
 /* ── Resume Builder Styles Cleaned from Inline Styles ── */
 #print-target {
   display: none;
