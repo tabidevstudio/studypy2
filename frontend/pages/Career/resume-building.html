@@ -1,221 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Resume Builder | StudyPy</title>
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/career.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="StudyPY" />
-    <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
-</head>
-<body>
-    <div id="navbar-placeholder"></div>
-    <div class="resume-toast" id="resume-toast"></div>
-    <div id="print-target" style="display:none;"></div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Resume Builder | StudyPy</title>
+        <link rel="stylesheet" href="../../css/main.css">
+        <link rel="stylesheet" href="../../css/career.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+        <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
+        <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="StudyPY" />
+        <link rel="manifest" href="../../assets/favicon/site.webmanifest" />
+    </head>
+    <body>
+        <div id="navbar-placeholder"></div>
+        <div class="resume-toast" id="resume-toast"></div>
+        <div id="print-target" style="display:none;"></div>
 
-    <main class="main">
-        <div class="resume-page">
+        <main class="main">
+            <div class="resume-page">
 
-            <!-- Page Header -->
-            <div class="career-badge"><i class='bx bx-file'></i> Career Tools</div>
-            <h1 class="career-title">Resume Builder</h1>
-            <p class="career-subtitle">Build a clean, ATS-friendly resume in minutes. Pick a template, fill in your details, and download — your progress saves to your profile.</p>
+                <!-- Page Header -->
+                <div class="career-badge"><i class='bx bx-file'></i> Career Tools</div>
+                <h1 class="career-title">Resume Builder</h1>
+                <p class="career-subtitle">Build a clean, ATS-friendly resume in minutes. Pick a template, fill in your details, and download — your progress saves to your profile.</p>
 
-            <!-- Page Tabs -->
-            <div class="page-tab-bar">
-                <button class="page-tab-btn active" data-tab="builder">
-                    <i class='bx bx-edit'></i> Builder
-                </button>
-                <button class="page-tab-btn" data-tab="resources">
-                    <i class='bx bx-book-open'></i> Resume Resources
-                </button>
-            </div>
-
-            <!-- ── BUILDER TAB ── -->
-            <div class="page-tab-content active" id="tab-builder">
-
-                <!-- Step Indicator -->
-                <div class="step-indicator">
-                    <div class="step-wrap">
-                        <div class="step-dot active" id="sdot-1">1</div>
-                        <div class="step-label active" id="slabel-1">Template</div>
-                    </div>
-                    <div class="step-line" id="sline-1"></div>
-                    <div class="step-wrap">
-                        <div class="step-dot" id="sdot-2">2</div>
-                        <div class="step-label" id="slabel-2">Fill Details</div>
-                    </div>
-                    <div class="step-line" id="sline-2"></div>
-                    <div class="step-wrap">
-                        <div class="step-dot" id="sdot-3">3</div>
-                        <div class="step-label" id="slabel-3">Save & Download</div>
-                    </div>
+                <!-- Page Tabs -->
+                <div class="page-tab-bar">
+                    <button class="page-tab-btn active" data-tab="builder">
+                        <i class='bx bx-edit'></i> Builder
+                    </button>
+                    <button class="page-tab-btn" data-tab="tips">
+                        <i class='bx bx-bulb'></i> Writing Tips & Action Verbs
+                    </button>
+                    <button class="page-tab-btn" data-tab="resources">
+                        <i class='bx bx-book-open'></i> Resume Resources
+                    </button>
                 </div>
 
-                <!-- ── STEP 1: Pick Template ── -->
-                <div class="builder-step active" id="step-1">
-                    <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:6px;">Choose your template</h2>
-                    <p style="font-size:0.84rem; color:rgba(255,255,255,0.45); margin-bottom:0;">Both templates are ATS-safe — no columns that confuse applicant tracking systems.</p>
+                <!-- ── BUILDER TAB ── -->
+                <div class="page-tab-content active" id="tab-builder">
 
-                    <div class="template-grid">
-                        <!-- Classic -->
-                        <div class="template-card" data-template="classic">
-                            <div class="template-preview">
-                                <div style="width:100%; display:flex; flex-direction:column;">
-                                    <div class="tpl-classic">
-                                        <div class="tpl-header">
-                                            <div class="tpl-header-name">Your Name</div>
-                                            <div class="tpl-header-title">Software Developer</div>
-                                            <div class="tpl-contact-row">
-                                                <span class="tpl-contact-item">email@mail.com</span>
-                                                <span class="tpl-contact-item">github.com/you</span>
+                    <!-- Step Indicator -->
+                    <div class="step-indicator">
+                        <div class="step-wrap">
+                            <div class="step-dot active" id="sdot-1">1</div>
+                            <div class="step-label active" id="slabel-1">Template</div>
+                        </div>
+                        <div class="step-line" id="sline-1"></div>
+                        <div class="step-wrap">
+                            <div class="step-dot" id="sdot-2">2</div>
+                            <div class="step-label" id="slabel-2">Fill Details</div>
+                        </div>
+                        <div class="step-line" id="sline-2"></div>
+                        <div class="step-wrap">
+                            <div class="step-dot" id="sdot-3">3</div>
+                            <div class="step-label" id="slabel-3">Save & Download</div>
+                        </div>
+                    </div>
+
+                    <!-- ── STEP 1: Pick Template ── -->
+                    <div class="builder-step active" id="step-1">
+                        <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:6px;">Choose your template</h2>
+                        <p style="font-size:0.84rem; color:rgba(255,255,255,0.45); margin-bottom:0;">Both templates are ATS-safe — no columns that confuse applicant tracking systems.</p>
+
+                        <div class="template-grid">
+                            <!-- Classic -->
+                            <div class="template-card" data-template="classic">
+                                <div class="template-preview">
+                                    <div style="width:100%; display:flex; flex-direction:column;">
+                                        <div class="tpl-classic">
+                                            <div class="tpl-header">
+                                                <div class="tpl-header-name">Your Name</div>
+                                                <div class="tpl-header-title">Software Developer</div>
+                                                <div class="tpl-contact-row">
+                                                    <span class="tpl-contact-item">email@mail.com</span>
+                                                    <span class="tpl-contact-item">github.com/you</span>
+                                                </div>
+                                            </div>
+                                            <div class="tpl-body">
+                                                <div class="tpl-section-label">Summary</div>
+                                                <div class="tpl-line med"></div>
+                                                <div class="tpl-line short"></div>
+                                                <div class="tpl-section-label">Education</div>
+                                                <div class="tpl-line accent"></div>
+                                                <div class="tpl-line short"></div>
+                                                <div class="tpl-section-label">Skills</div>
+                                                <div style="display:flex; gap:4px; flex-wrap:wrap;">
+                                                    <div style="background:#e8e8e8; border-radius:2px; width:28px; height:7px;"></div>
+                                                    <div style="background:#e8e8e8; border-radius:2px; width:22px; height:7px;"></div>
+                                                    <div style="background:#e8e8e8; border-radius:2px; width:32px; height:7px;"></div>
+                                                </div>
+                                                <div class="tpl-section-label">Projects</div>
+                                                <div class="tpl-line med"></div>
+                                                <div class="tpl-line short"></div>
                                             </div>
                                         </div>
-                                        <div class="tpl-body">
-                                            <div class="tpl-section-label">Summary</div>
-                                            <div class="tpl-line med"></div>
-                                            <div class="tpl-line short"></div>
-                                            <div class="tpl-section-label">Education</div>
-                                            <div class="tpl-line accent"></div>
-                                            <div class="tpl-line short"></div>
-                                            <div class="tpl-section-label">Skills</div>
-                                            <div style="display:flex; gap:4px; flex-wrap:wrap;">
-                                                <div style="background:#e8e8e8; border-radius:2px; width:28px; height:7px;"></div>
-                                                <div style="background:#e8e8e8; border-radius:2px; width:22px; height:7px;"></div>
-                                                <div style="background:#e8e8e8; border-radius:2px; width:32px; height:7px;"></div>
+                                    </div>
+                                </div>
+                                <div class="template-info">
+                                    <div class="template-name">Classic</div>
+                                    <div class="template-desc">Clean single-column layout. Best for most corporate jobs and companies using ATS software.</div>
+                                    <span class="template-tag tag-ats">✓ ATS Friendly</span>
+                                </div>
+                            </div>
+
+                            <!-- Tech -->
+                            <div class="template-card" data-template="tech">
+                                <div class="template-preview">
+                                    <div class="tpl-tech-wrap">
+                                        <div class="tpl-tech-sidebar">
+                                            <div class="tpl-avatar"></div>
+                                            <div style="font-size:7px; font-weight:700; color:#fff; text-align:center;">Your Name</div>
+                                            <div class="tpl-sidebar-label">Contact</div>
+                                            <div class="tpl-sidebar-line"></div>
+                                            <div class="tpl-sidebar-line" style="width:80%;"></div>
+                                            <div class="tpl-sidebar-label">Skills</div>
+                                            <div class="tpl-skill-tags">
+                                                <div class="tpl-skill-tag"></div>
+                                                <div class="tpl-skill-tag"></div>
+                                                <div class="tpl-skill-tag"></div>
+                                                <div class="tpl-skill-tag" style="width:24px;"></div>
                                             </div>
-                                            <div class="tpl-section-label">Projects</div>
+                                            <div class="tpl-sidebar-label">Education</div>
+                                            <div class="tpl-sidebar-line"></div>
+                                            <div class="tpl-sidebar-line" style="width:70%;"></div>
+                                        </div>
+                                        <div class="tpl-tech-main">
+                                            <div style="height:8px; background:#0f2027; border-radius:1px; width:60%; margin-bottom:4px;"></div>
+                                            <div style="height:5px; background:#e8e8e8; border-radius:1px; width:80%; margin-bottom:8px;"></div>
+                                            <div style="font-size:6px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#333; border-left:2px solid #0f2027; padding-left:4px; margin-bottom:5px;">Experience</div>
                                             <div class="tpl-line med"></div>
                                             <div class="tpl-line short"></div>
+                                            <div style="font-size:6px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#333; border-left:2px solid #0f2027; padding-left:4px; margin:7px 0 5px;">Projects</div>
+                                            <div class="tpl-line med"></div>
+                                            <div class="tpl-line short"></div>
+                                            <div class="tpl-line" style="width:70%;"></div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="template-info">
-                                <div class="template-name">Classic</div>
-                                <div class="template-desc">Clean single-column layout. Best for most corporate jobs and companies using ATS software.</div>
-                                <span class="template-tag tag-ats">✓ ATS Friendly</span>
-                            </div>
-                        </div>
-
-                        <!-- Tech -->
-                        <div class="template-card" data-template="tech">
-                            <div class="template-preview">
-                                <div class="tpl-tech-wrap">
-                                    <div class="tpl-tech-sidebar">
-                                        <div class="tpl-avatar"></div>
-                                        <div style="font-size:7px; font-weight:700; color:#fff; text-align:center;">Your Name</div>
-                                        <div class="tpl-sidebar-label">Contact</div>
-                                        <div class="tpl-sidebar-line"></div>
-                                        <div class="tpl-sidebar-line" style="width:80%;"></div>
-                                        <div class="tpl-sidebar-label">Skills</div>
-                                        <div class="tpl-skill-tags">
-                                            <div class="tpl-skill-tag"></div>
-                                            <div class="tpl-skill-tag"></div>
-                                            <div class="tpl-skill-tag"></div>
-                                            <div class="tpl-skill-tag" style="width:24px;"></div>
-                                        </div>
-                                        <div class="tpl-sidebar-label">Education</div>
-                                        <div class="tpl-sidebar-line"></div>
-                                        <div class="tpl-sidebar-line" style="width:70%;"></div>
-                                    </div>
-                                    <div class="tpl-tech-main">
-                                        <div style="height:8px; background:#0f2027; border-radius:1px; width:60%; margin-bottom:4px;"></div>
-                                        <div style="height:5px; background:#e8e8e8; border-radius:1px; width:80%; margin-bottom:8px;"></div>
-                                        <div style="font-size:6px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#333; border-left:2px solid #0f2027; padding-left:4px; margin-bottom:5px;">Experience</div>
-                                        <div class="tpl-line med"></div>
-                                        <div class="tpl-line short"></div>
-                                        <div style="font-size:6px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#333; border-left:2px solid #0f2027; padding-left:4px; margin:7px 0 5px;">Projects</div>
-                                        <div class="tpl-line med"></div>
-                                        <div class="tpl-line short"></div>
-                                        <div class="tpl-line" style="width:70%;"></div>
-                                    </div>
+                                <div class="template-info">
+                                    <div class="template-name">Tech / Developer</div>
+                                    <div class="template-desc">Skills-forward layout with a sidebar. Ideal for dev roles at startups and tech companies.</div>
+                                    <span class="template-tag tag-dev">⚡ Dev Optimized</span>
                                 </div>
                             </div>
-                            <div class="template-info">
-                                <div class="template-name">Tech / Developer</div>
-                                <div class="template-desc">Skills-forward layout with a sidebar. Ideal for dev roles at startups and tech companies.</div>
-                                <span class="template-tag tag-dev">⚡ Dev Optimized</span>
-                            </div>
+                        </div>
+
+                        <div class="step-nav">
+                            <div></div>
+                            <button class="btn-step btn-step-next" id="btn-step1-next" disabled>
+                                Use this template <i class='bx bx-right-arrow-alt'></i>
+                            </button>
                         </div>
                     </div>
 
-                    <div class="step-nav">
-                        <div></div>
-                        <button class="btn-step btn-step-next" id="btn-step1-next" disabled>
-                            Use this template <i class='bx bx-right-arrow-alt'></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- ── STEP 2: Fill Details ── -->
-                <div class="builder-step" id="step-2">
-                    <!-- Customization Bar -->
-                    <div class="customization-bar">
-                        <div class="custom-group">
-                            <span class="custom-label">Accent color</span>
-                            <div class="color-picker-wrap" id="color-swatch-wrap">
-                                <div class="color-swatch" id="color-swatch-display"></div>
-                                <input type="color" id="accent-color-picker" value="#91DAEB">
-                            </div>
-                        </div>
-                        <div class="custom-group">
-                            <span class="custom-label">Font</span>
-                            <select class="font-select" id="font-select">
-                                <option value="poppins">Poppins</option>
-                                <option value="inter">Inter</option>
-                                <option value="georgia">Georgia (Serif)</option>
-                            </select>
-                        </div>
-                        <div class="custom-group">
-                            <span class="custom-label">Page size</span>
-                            <select class="size-select" id="size-select">
-                                <option value="A4">A4</option>
-                                <option value="Letter">Letter (US)</option>
-                            </select>
-                        </div>
-                        <div style="margin-left:auto; font-size:0.72rem; color:rgba(255,255,255,0.25);">
-                            <i class='bx bx-info-circle'></i> Changes appear live in the preview
-                        </div>
-                    </div>
-
-                    <div class="builder-layout">
-                        <!-- Left: Form -->
-                        <div class="form-panel">
-
-                            <!-- Personal Info -->
-                            <div class="form-section open" id="section-personal">
-                                <div class="form-section-header" onclick="toggleSection('section-personal')">
-                                    <div class="form-section-title">
-                                        <i class='bx bx-user'></i> Personal Info
-                                        <span class="form-section-badge badge-required">Required</span>
-                                    </div>
-                                    <i class='bx bx-chevron-down form-section-arrow'></i>
+                    <!-- ── STEP 2: Fill Details ── -->
+                    <div class="builder-step" id="step-2">
+                        <!-- Customization Bar -->
+                        <div class="customization-bar">
+                            <div class="custom-group">
+                                <span class="custom-label">Tech Themes</span>
+                                <div class="theme-presets">
+                                    <button type="button" class="theme-preset-btn active" data-accent="#222222" data-text="#2d3748" data-header="#1a202c" title="Mono / Minimalist" style="background: #222222;"></button>
+                                    <button type="button" class="theme-preset-btn" data-accent="#1b365d" data-text="#2d3748" data-header="#11223f" title="Developer Navy" style="background: #1b365d;"></button>
+                                    <button type="button" class="theme-preset-btn" data-accent="#1e3a8a" data-text="#1f2937" data-header="#111827" title="Cyber Cobalt" style="background: #1e3a8a;"></button>
+                                    <button type="button" class="theme-preset-btn" data-accent="#0d9488" data-text="#374151" data-header="#111827" title="Modern Teal" style="background: #0d9488;"></button>
+                                    <button type="button" class="theme-preset-btn" data-accent="#991b1b" data-text="#1f2937" data-header="#111827" title="Academic Crimson" style="background: #991b1b;"></button>
                                 </div>
-                                <div class="form-section-body">
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label class="form-label">Full Name</label>
-                                            <input type="text" class="form-input" id="f-name" placeholder="e.g. Juan Dela Cruz">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Email</label>
-                                            <input type="email" class="form-input" id="f-email" placeholder="you@email.com">
-                                        </div>
+                            </div>
+                            <div class="custom-group">
+                                <span class="custom-label">Accent</span>
+                                <div class="color-picker-wrap" id="color-swatch-wrap">
+                                    <div class="color-swatch" id="color-swatch-display"></div>
+                                    <input type="color" id="accent-color-picker" value="#91DAEB">
+                                </div>
+                            </div>
+                            <div class="custom-group">
+                                <span class="custom-label">Text</span>
+                                <div class="color-picker-wrap" id="text-color-swatch-wrap">
+                                    <div class="color-swatch" id="text-color-swatch-display" style="background:#222222;"></div>
+                                    <input type="color" id="text-color-picker" value="#222222">
+                                </div>
+                            </div>
+                            <div class="custom-group">
+                                <span class="custom-label">Header Text</span>
+                                <div class="color-picker-wrap" id="header-text-swatch-wrap">
+                                    <div class="color-swatch" id="header-text-swatch-display" style="background:#ffffff;"></div>
+                                    <input type="color" id="header-text-picker" value="#ffffff">
+                                </div>
+                            </div>
+                            <div class="custom-group">
+                                <span class="custom-label">Font</span>
+                                <select class="font-select" id="font-select">
+                                    <option value="poppins">Poppins</option>
+                                    <option value="inter">Inter</option>
+                                    <option value="georgia">Georgia (Serif)</option>
+                                </select>
+                            </div>
+                            <div class="custom-group">
+                                <span class="custom-label">Page size</span>
+                                <select class="size-select" id="size-select">
+                                    <option value="A4">A4</option>
+                                    <option value="Letter">Letter (US)</option>
+                                </select>
+                            </div>
+                            <div class="custom-group">
+                                <span class="custom-label">Spacing</span>
+                                <select class="size-select" id="spacing-select">
+                                    <option value="compact">Compact</option>
+                                    <option value="normal" selected>Normal</option>
+                                    <option value="spacious">Spacious</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="builder-layout">
+                            <!-- Left: Form -->
+                            <div class="form-panel">
+
+                                <!-- Resume Strength Checklist Card -->
+                                <div class="tips-box" style="margin-bottom: 24px; border-left: 3px solid #ff9f43; background: rgba(255, 159, 67, 0.03); border-color: rgba(255, 159, 67, 0.25);">
+                                    <div class="tips-box-title" style="color: #ff9f43; font-size: 0.85rem; display: flex; align-items: center; justify-content: space-between;">
+                                        <span><i class='bx bx-check-shield'></i> Resume Strength Checklist</span>
+                                        <span id="strength-badge" style="background: rgba(255, 159, 67, 0.15); padding: 2px 6px; border-radius: 4px; font-size: 0.68rem; font-weight: 700;">Weak (0/4)</span>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label class="form-label">Phone</label>
-                                            <input type="text" class="form-input" id="f-phone" placeholder="+63 912 345 6789">
+                                    <ul id="strength-checklist" style="display: flex; flex-direction: column; gap: 8px; list-style: none; padding-left: 0; margin-top: 8px;">
+                                        <li id="chk-summary" style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;"><i class='bx bx-x' style="color: #ff4757; font-size: 1.1rem; flex-shrink: 0;"></i> About me / Summary filled (>= 80 chars)</li>
+                                        <li id="chk-skills" style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;"><i class='bx bx-x' style="color: #ff4757; font-size: 1.1rem; flex-shrink: 0;"></i> Added at least 3 skills</li>
+                                        <li id="chk-experience" style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;"><i class='bx bx-x' style="color: #ff4757; font-size: 1.1rem; flex-shrink: 0;"></i> Added at least 1 Work Experience</li>
+                                        <li id="chk-projects" style="display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;"><i class='bx bx-x' style="color: #ff4757; font-size: 1.1rem; flex-shrink: 0;"></i> Added at least 1 Project</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Personal Info -->
+                                <div class="form-section open" id="section-personal">
+                                    <div class="form-section-header" onclick="toggleSection('section-personal')">
+                                        <div class="form-section-title">
+                                            <i class='bx bx-user'></i> Personal Info
+                                            <span class="form-section-badge badge-required">Required</span>
+                                        </div>
+                                        <i class='bx bx-chevron-down form-section-arrow'></i>
+                                    </div>
+                                    <div class="form-section-body">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label class="form-label">Full Name</label>
+                                                <input type="text" class="form-input" id="f-name" placeholder="e.g. Juan Dela Cruz">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" class="form-input" id="f-email" placeholder="you@email.com">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <!-- ── UPDATED: phone field with country code select ── -->
+                                            <div class="form-group">
+                                                <label class="form-label">Phone</label>
+                                                <div style="display:flex; gap:6px;">
+                                                    <select class="form-input" id="f-phone-code" style="
+                                                                   width: 80px;
+                                                                   flex-shrink: 0;
+                                                                   background: #0f1923;
+                                                                   color: #91DAEB;
+                                                                   border: 1px solid #91DAEB;
+                                                                   ">
+                                                    <option value="+63">🇵🇭 +63</option>
+                                                    <option value="+1">🇺🇸 +1</option>
+                                                    <option value="+65">🇸🇬 +65</option>
+                                                </select>
+                                                <input type="tel" class="form-input" id="f-phone" placeholder="9171234567" maxlength="15">
+                                            </div>
+                                            <span id="phone-error" style="color:red; font-size:11px; display:none;">Invalid phone number</span>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">LinkedIn URL</label>
@@ -230,6 +291,21 @@
                                         <div class="form-group">
                                             <label class="form-label">Portfolio URL <span style="opacity:0.4;">(optional)</span></label>
                                             <input type="text" class="form-input" id="f-portfolio" placeholder="yourportfolio.com">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">Profile Photo <span style="opacity:0.4;">(optional)</span></label>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <input type="file" id="f-photo" accept="image/*" style="display: none;">
+                                                <button type="button" class="btn-primary" id="btn-upload-photo" onclick="document.getElementById('f-photo').click()" style="padding: 8px 16px; border-radius: 4px; display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                                                    <i class='bx bx-camera'></i> Upload
+                                                </button>
+                                                <button type="button" class="btn-danger" id="btn-remove-photo" style="display: none; padding: 8px 16px; border-radius: 4px; background: #e84118; color: #fff; border: none; cursor: pointer; align-items: center; gap: 6px;">
+                                                    <i class='bx bx-trash'></i> Remove
+                                                </button>
+                                                <span id="photo-status" style="font-size: 12px; opacity: 0.6;">No file selected</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -255,6 +331,7 @@
                             </div>
 
                             <!-- Education -->
+                            <!-- NOTE: School Year field is injected here dynamically by resume-building.js -->
                             <div class="form-section open" id="section-education">
                                 <div class="form-section-header" onclick="toggleSection('section-education')">
                                     <div class="form-section-title">
@@ -344,24 +421,47 @@
 
                         </div>
 
+                        <!-- Draggable Resize Handle -->
+                        <div class="resize-handle" id="resize-handle">
+                            <div class="resize-grabber">
+                                <i class='bx bx-chevrons-left-right'></i>
+                            </div>
+                        </div>
+
                         <!-- Right: Live Preview -->
-                        <div class="preview-panel">
+                        <div class="preview-panel" id="preview-panel">
                             <div class="preview-panel-header">
                                 <span class="preview-label"><i class='bx bx-show' style="margin-right:4px;"></i> Live Preview</span>
-                                <div class="preview-actions">
-                                    <button class="btn-preview-action" onclick="downloadPDF()">
-                                        <i class='bx bx-download'></i> PDF
-                                    </button>
-                                </div>
+                                <span class="preview-tip-badge"><i class='bx bx-info-circle'></i> Drag handle or double-click to resize</span>
                             </div>
                             <div class="overflow-warning" id="overflow-warning">
                                 <i class='bx bx-error'></i> Content may overflow one page — try shortening descriptions.
                             </div>
-                            <div class="resume-frame-wrap">
+                            <div class="resume-frame-wrap" id="resume-frame-wrap">
                                 <div class="resume-page-frame" id="resume-frame">
                                     <!-- Rendered by JS -->
                                 </div>
                             </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Mobile: floating preview toggle FAB -->
+                    <button class="fab-preview-toggle" id="fab-preview-toggle" onclick="toggleMobilePreview()" aria-label="Toggle preview">
+                        <i class='bx bx-show' id="fab-preview-icon"></i>
+                        <span>Preview</span>
+                    </button>
+
+                    <!-- Mobile: preview bottom sheet -->
+                    <div class="mobile-preview-sheet" id="mobile-preview-sheet">
+                        <div class="mobile-preview-sheet-header">
+                            <span style="font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.6);">Live Preview</span>
+                            <button class="btn-preview-action" onclick="toggleMobilePreview()" style="padding:4px 10px;">
+                                <i class='bx bx-x'></i> Close
+                            </button>
+                        </div>
+                        <div class="mobile-preview-sheet-body" id="mobile-preview-body">
+                            <!-- Preview mirrored here on mobile -->
                         </div>
                     </div>
 
@@ -421,6 +521,121 @@
                                 <i class='bx bx-edit'></i> Back to editing
                             </button>
                         </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── TIPS & TRICKS TAB ── -->
+            <div class="page-tab-content" id="tab-tips">
+                
+                <!-- Google XYZ Section -->
+                <div class="tips-box" style="margin-bottom: 24px;">
+                    <div class="tips-box-title" style="font-size: 1.05rem;"><i class='bx bx-party'></i> Google's Formula for High-Impact Bullet Points</div>
+                    <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 12px;">
+                        Tech recruiters scan resumes for impact, not just responsibilities. Use Google's official formula to structure your experience descriptions:
+                    </p>
+                    <div style="background: rgba(145,218,235,0.08); border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-weight: 600; text-align: center; font-size: 0.95rem; color: #fff;">
+                        Accomplished <span style="color: #91DAEB;">[X]</span>, as measured by <span style="color: #91DAEB;">[Y]</span>, by doing <span style="color: #91DAEB;">[Z]</span>
+                    </div>
+                    <ul class="tips-list" style="margin-top: 8px;">
+                        <li><strong>[X] (The Goal)</strong>: What you achieved (e.g. reduced database response times, automated testing).</li>
+                        <li><strong>[Y] (The Metric)</strong>: How you quantified it (e.g. by 40%, saved 5 hours/week).</li>
+                        <li><strong>[Z] (The Action)</strong>: How you did it (e.g. optimized SQL query indices, wrote Python automation scripts).</li>
+                    </ul>
+                </div>
+
+                <!-- Comparison Examples -->
+                <div class="resource-section-title"><i class='bx bx-shuffle'></i> Before & After Phrasing Examples</div>
+                <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 30px;">
+                    <!-- Example 1 -->
+                    <div style="background: #0f1923; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+                        <div style="font-size: 0.88rem; font-weight: 700; color: #91DAEB; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 6px;">Example 1: Backend Developer (OJT / Project)</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <div style="font-size: 0.72rem; text-transform: uppercase; color: #ff4757; font-weight: 700; margin-bottom: 4px;">❌ Weak (No metrics or tech stack detail)</div>
+                                <div style="font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.4;">"I helped make the app's databases faster for users."</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.72rem; text-transform: uppercase; color: #2ed573; font-weight: 700; margin-bottom: 4px;">✅ Strong (XYZ Formatted)</div>
+                                <div style="font-size: 0.82rem; color: rgba(255,255,255,0.85); line-height: 1.4;">"Optimized database indices and query patterns (Z), reducing response times by 35% (Y) and resolving dashboard performance lags for 200+ active users (X)."</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Example 2 -->
+                    <div style="background: #0f1923; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+                        <div style="font-size: 0.88rem; font-weight: 700; color: #91DAEB; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 6px;">Example 2: Automating Tests</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <div style="font-size: 0.72rem; text-transform: uppercase; color: #ff4757; font-weight: 700; margin-bottom: 4px;">❌ Weak (Passive phrasing)</div>
+                                <div style="font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.4;">"Responsible for writing test scripts in Python."</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.72rem; text-transform: uppercase; color: #2ed573; font-weight: 700; margin-bottom: 4px;">✅ Strong (Action-first phrasing)</div>
+                                <div style="font-size: 0.82rem; color: rgba(255,255,255,0.85); line-height: 1.4;">"Engineered and executed automated testing pipelines in Python (Z), expanding QA coverage from 40% to 92% (Y) and preventing critical release regressions."</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Verbs Section -->
+                <div class="resource-section-title"><i class='bx bx-book-content'></i> Essential Action Verbs Dictionary</div>
+                
+                <h3 style="font-size: 0.95rem; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;"><i class='bx bx-code-alt' style="color:#91DAEB;"></i> Development & Creation</h3>
+                <div class="resources-grid" style="margin-bottom: 24px;">
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Engineered</div>
+                        <div class="res-card-desc">Ideal for backend, logic structures, and core software solutions.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Engineered custom API middleware..."</div>
+                    </div>
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Architected</div>
+                        <div class="res-card-desc">Use when you designed the schema, folder structure, or system setup.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Architected a scalable relational database schema..."</div>
+                    </div>
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Implemented</div>
+                        <div class="res-card-desc">Perfect for describing the execution of features, designs, or endpoints.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Implemented JWT authorization gates..."</div>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 0.95rem; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;"><i class='bx bx-trending-up' style="color:#91DAEB;"></i> Optimization & Scale</h3>
+                <div class="resources-grid" style="margin-bottom: 24px;">
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Optimized</div>
+                        <div class="res-card-desc">Use when you made something run faster, use less memory, or write less code.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Optimized lazy loaded routing patterns..."</div>
+                    </div>
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Streamlined</div>
+                        <div class="res-card-desc">Perfect for simplifying a complicated process or removing redundant code blocks.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Streamlined user authentication pipelines..."</div>
+                    </div>
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Accelerated</div>
+                        <div class="res-card-desc">Use when you directly boosted execution speeds or system throughput.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Accelerated backend image assets processing..."</div>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 0.95rem; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;"><i class='bx bx-check-double' style="color:#91DAEB;"></i> Automation & Reliability</h3>
+                <div class="resources-grid" style="margin-bottom: 24px;">
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Automated</div>
+                        <div class="res-card-desc">Use when you replaced a manual process (e.g. testing, deploying, backing up) with scripts.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Automated script deployments using GitHub Actions..."</div>
+                    </div>
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Migrated</div>
+                        <div class="res-card-desc">Perfect for moving systems, databases, or libraries without causing downtime.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Migrated old MongoDB connections to Mongoose..."</div>
+                    </div>
+                    <div class="res-card" style="cursor: default;">
+                        <div class="res-card-name" style="color: #91DAEB;">Refactored</div>
+                        <div class="res-card-desc">Use when you restructured legacy code to improve readability and future maintenance.</div>
+                        <div style="font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 8px;">e.g., "Refactored UI helper methods to functional modules..."</div>
                     </div>
                 </div>
 
@@ -530,14 +745,14 @@
                         </div>
                         <div class="res-card-name">Grammarly</div>
                         <div class="res-card-desc">Run your resume descriptions through Grammarly to catch grammar issues and improve clarity.</div>
-                        <div class="res-card-source"><i class='bx bx-globe'></i> grammarly.com</div>
                     </a>
                 </div>
-
             </div>
         </div>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script type="module" src="../../js/script.js"></script>
     <script type="module" src="../../js/resume-building.js"></script>
 </body>
