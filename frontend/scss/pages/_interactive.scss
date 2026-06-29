@@ -98,8 +98,15 @@
   gap: 1.8rem;
   align-items: start;
 
-  @media (max-width: 900px) {
+  @media (max-width: 650px) {
     grid-template-columns: 1fr;
+    
+    .sandbox-controls {
+      order: 2;
+    }
+    .sandbox-preview {
+      order: 1;
+    }
   }
 }
 
@@ -454,10 +461,20 @@
 
 
 .git-simulator-layout {
+  display: grid;
   grid-template-columns: 380px 1fr;
+  gap: 1.8rem;
+  align-items: start;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    
+    .git-console-panel {
+      order: 2;
+    }
+    .git-canvas-panel {
+      order: 1;
+    }
   }
 }
 
@@ -1056,10 +1073,20 @@
 }
 
 .dsa-visualizer-layout {
+  display: grid;
   grid-template-columns: 320px 1fr;
+  gap: 1.8rem;
+  align-items: start;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    
+    .sandbox-controls {
+      order: 2;
+    }
+    .sandbox-preview {
+      order: 1;
+    }
   }
 }
 
@@ -1279,3 +1306,109 @@
     opacity: 0;
   }
 }
+
+/* ── Interactive Pages Responsiveness & Styling Helpers ── */
+
+// SVG canvas fix to prevent fluid width squeezing on mobile
+.git-svg-canvas {
+  max-width: none !important;
+}
+
+// Table horizontal overflow styling in SQL Joins
+.table-container-mini {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  
+  table {
+    min-width: 320px;
+  }
+}
+.table-container-results {
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+// DSA Visualizer canvas container scroll behavior
+.dsa-canvas-container {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+  }
+}
+
+// Sorting bars styling enhancements
+.sorting-bar {
+  min-width: 8px !important;
+}
+
+// Migrated styling classes (cleaned from HTML)
+.speed-slider {
+  transform: rotate(180deg);
+}
+
+.speed-hint {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: right;
+  margin-top: -2px;
+  display: block;
+}
+
+.margin-bottom-8 {
+  margin-bottom: 8px;
+}
+
+.linear-input {
+  background: #20232a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: #fff;
+  padding: 8px 12px;
+  outline: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.drag-hint {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.4;
+  margin-top: 1rem;
+}
+
+// Mobile specific overrides
+@media (max-width: 600px) {
+  .dsa-canvas-container {
+    justify-content: flex-start !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .git-terminal {
+    height: 180px !important;
+  }
+  .clipping-canvas-wrapper {
+    padding: 16px !important;
+  }
+  .clipping-canvas {
+    width: 280px !important;
+    height: 280px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .clipping-canvas {
+    width: 240px !important;
+    height: 240px !important;
+  }
+}
+

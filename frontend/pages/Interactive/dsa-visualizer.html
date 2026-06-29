@@ -59,8 +59,8 @@
 
                             <div class="control-item">
                                 <label>Animation Speed</label>
-                                <input type="range" id="sort-speed" min="10" max="600" value="100" style="transform: rotate(180deg);">
-                                <span style="font-size: 0.72rem; color: rgba(255,255,255,0.4); text-align: right; margin-top:-2px;">Slide left for faster speed</span>
+                                <input type="range" id="sort-speed" class="speed-slider" min="10" max="600" value="100">
+                                <span class="speed-hint">Slide left for faster speed</span>
                             </div>
 
                             <div class="control-item item-actions">
@@ -93,7 +93,7 @@
                         <!-- Control Sidebar -->
                         <div class="sandbox-controls">
                             <h3>Structure Selection</h3>
-                            <div class="control-toggle-group" style="margin-bottom: 8px;">
+                            <div class="control-toggle-group margin-bottom-8">
                                 <button class="toggle-btn active" id="linear-mode-stack">Stack (LIFO)</button>
                                 <button class="toggle-btn" id="linear-mode-queue">Queue (FIFO)</button>
                             </div>
@@ -101,7 +101,7 @@
                             <div class="controls-subset" id="controls-linear-ops">
                                 <div class="control-item">
                                     <label>Element Value</label>
-                                    <input type="text" id="linear-value-input" placeholder="e.g. 42" maxlength="4" style="background:#20232a; border: 1px solid rgba(255,255,255,0.12); border-radius:6px; color:#fff; padding:8px 12px; outline:none; font-family:'JetBrains Mono', monospace; font-size:0.9rem;">
+                                    <input type="text" id="linear-value-input" class="linear-input" placeholder="e.g. 42" maxlength="4">
                                 </div>
                                 
                                 <div class="control-item item-actions">
