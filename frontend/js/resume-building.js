@@ -1483,6 +1483,28 @@ window.toggleInputsPanel = function () {
 
 // ── Mobile Preview Bottom Sheet ───────────────────────────
 let mobilePreviewOpen = false;
+let mobilePreviewZoomed = false;
+
+window.toggleMobileZoom = function () {
+    const wrapper = document.querySelector("#mobile-preview-body > div");
+    const zoomBtn = document.getElementById("btn-mobile-zoom");
+    const sheetBody = document.getElementById("mobile-preview-body");
+    if (!wrapper || !zoomBtn || !sheetBody) return;
+
+    mobilePreviewZoomed = !mobilePreviewZoomed;
+
+    if (mobilePreviewZoomed) {
+        wrapper.style.transform = "scale(0.95)";
+        zoomBtn.innerHTML = "<i class='bx bx-zoom-out'></i> Zoom Out";
+        sheetBody.style.alignItems = "flex-start";
+    } else {
+        const availableWidth = sheetBody.clientWidth - 24;
+        const fitScale = Math.min(0.45, availableWidth / 794);
+        wrapper.style.transform = `scale(${fitScale})`;
+        zoomBtn.innerHTML = "<i class='bx bx-zoom-in'></i> Zoom In";
+        sheetBody.style.alignItems = "center";
+    }
+};
 
 window.toggleMobilePreview = function () {
     const sheet   = document.getElementById("mobile-preview-sheet");
@@ -1492,12 +1514,21 @@ window.toggleMobilePreview = function () {
     mobilePreviewOpen = !mobilePreviewOpen;
 
     if (mobilePreviewOpen) {
+        mobilePreviewZoomed = false; // Reset zoom state when opened
+        const zoomBtn = document.getElementById("btn-mobile-zoom");
+        if (zoomBtn) {
+            zoomBtn.innerHTML = "<i class='bx bx-zoom-in'></i> Zoom In";
+        }
+        
         // Clone current rendered resume into the sheet
         const frame = document.getElementById("resume-frame");
         if (frame) {
+            const availableWidth = body.clientWidth - 24;
+            const fitScale = Math.min(0.45, availableWidth / 794);
+            
             // Create a scaled-down wrapper so the full page fits on screen
             body.innerHTML = `
-                <div style="transform-origin: top center; transform: scale(0.45); width: 794px; margin: 0 auto;">
+                <div style="transform-origin: top center; transform: scale(${fitScale}); width: 794px; margin: 0 auto; transition: transform 0.25s ease-in-out;">
                     ${frame.innerHTML}
                 </div>`;
             // Set CSS vars on the cloned content wrapper
@@ -1511,6 +1542,7 @@ window.toggleMobilePreview = function () {
         sheet.classList.add("open");
         fabIcon.className = "bx bx-x";
         document.body.style.overflow = "hidden";
+        body.style.alignItems = "center";
     } else {
         sheet.classList.remove("open");
         fabIcon.className = "bx bx-show";

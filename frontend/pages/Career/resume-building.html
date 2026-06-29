@@ -449,10 +449,15 @@
                     <!-- Mobile: preview bottom sheet -->
                     <div class="mobile-preview-sheet" id="mobile-preview-sheet">
                         <div class="mobile-preview-sheet-header">
-                            <span style="font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.6);">Live Preview</span>
-                            <button class="btn-preview-action padding-4-10" onclick="toggleMobilePreview()">
-                                <i class='bx bx-x'></i> Close
-                            </button>
+                            <span class="mobile-preview-title">Live Preview</span>
+                            <div class="mobile-preview-actions">
+                                <button class="btn-preview-action" id="btn-mobile-zoom" onclick="toggleMobileZoom()">
+                                    <i class='bx bx-zoom-in'></i> Zoom In
+                                </button>
+                                <button class="btn-preview-action padding-4-10" onclick="toggleMobilePreview()">
+                                    <i class='bx bx-x'></i> Close
+                                </button>
+                            </div>
                         </div>
                         <div class="mobile-preview-sheet-body" id="mobile-preview-body">
                             <!-- Preview mirrored here on mobile -->
