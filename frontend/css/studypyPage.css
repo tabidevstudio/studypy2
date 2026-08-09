@@ -269,7 +269,7 @@ a {
 /* ── Member Positions (desktop) ───────────────────── */
 #Carl {
   position: absolute;
-  transform: translate(100px, -520px);
+  transform: translate(0px, -550px);
 }
 #Carl img {
   object-position: 0 -55px;
@@ -277,7 +277,7 @@ a {
 
 #Zarr {
   position: absolute;
-  transform: translate(-550px, -430px);
+  transform: translate(-650px, -230px);
 }
 #Zarr img {
   object-position: 0 -120px;
@@ -293,7 +293,7 @@ a {
 
 #Brian {
   position: absolute;
-  transform: translate(200px, 220px);
+  transform: translate(130px, 270px);
 }
 #Brian img {
   object-position: 0 -30px;
@@ -301,19 +301,10 @@ a {
 
 #Norielle {
   position: absolute;
-  transform: translate(-650px, -50px);
+  transform: translate(-500px, 190px);
 }
 #Norielle img {
   object-position: 0 -20px;
-}
-
-
-#Marc {
-  position: absolute;
-  transform: translate(-400px, 300px);
-}
-#Marc img {
-  object-position: 0 -100px;
 }
 
 #TabiDev {
@@ -511,8 +502,7 @@ a {
   #Zarr,
   #Lance,
   #Brian,
-  #Norielle,
-  #Marc {
+  #Norielle {
     border-radius: var(--radius-md);
     position: relative;
     transform: none !important;
