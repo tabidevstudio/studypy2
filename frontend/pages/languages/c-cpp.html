@@ -92,9 +92,7 @@
         </main>
     </div>
 
-    <script type="module" src="../../js/compiler.js"></script>
     <script type="module" src="../../js/script.js"></script>
-    <script type="module" src="../../js/examples.js"></script>
     <script type="module">
         import { initCompiler } from '../../js/compiler.js';
         import { initExamples } from '../../js/examples.js';
@@ -105,7 +103,7 @@
         placeholder: '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello from StudyPY!" << endl;\n    return 0;\n}',
         });
 
-        initExamples('examples-panel', 'cpp');
+        initExamples('examples-panel', 'cpp', 'compiler-cpp');
     </script>
 </body>
 </html>

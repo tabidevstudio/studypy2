@@ -85,9 +85,7 @@
         </main>
     </div>
     
-    <script type="module" src="../../js/compiler.js"></script>
     <script type="module" src="../../js/script.js"></script>
-    <script type="module" src="../../js/examples.js"></script>
     <script type="module">
         import { initCompiler } from '../../js/compiler.js';
         import { initExamples } from '../../js/examples.js';
@@ -98,7 +96,7 @@
             placeholder: '<?php\n$name = "Student";\necho "Hello, $name! Welcome to StudyPY.\\n";\n?>',
         });
 
-        initExamples('examples-panel', 'php');
+        initExamples('examples-panel', 'php', 'compiler-php');
     </script>
 
 </body>

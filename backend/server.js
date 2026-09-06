@@ -9,6 +9,9 @@ const { exec, spawn } = require("child_process");
 const fs           = require("fs");
 const path         = require("path");
 const os           = require("os");
+const { rateLimit } = require("express-rate-limit");
+const helmet       = require("helmet");
+const compression  = require("compression");
 require("dotenv").config();
 
 // ── Models ───────────────────────────────────────────────────────────────────
@@ -23,17 +26,38 @@ const communitiesRouter = require("./routes/Community");
 const Job = require("./models/Job.js");
 const app = express();
 
+const isProduction = process.env.NODE_ENV === "production";
+
+// ── Rate Limiters ─────────────────────────────────────────────────────────────
+const runLimiter = rateLimit({
+  windowMs: 60 * 1000,       // 1 minute
+  max: 10,                   // 10 code executions per IP per minute
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many code execution requests. Please wait a moment before trying again." },
+});
+
+const authLimiter = rateLimit({
+  windowMs: 60 * 1000,       // 1 minute
+  max: 20,                   // 20 auth requests per IP per minute
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many authentication requests. Please try again later." },
+});
+
 app.use(cors({
   origin: function(origin, callback) {
-    const allowedOrigins = [
-      process.env.FRONTEND_URL,
+    const devOrigins = isProduction ? [] : [
       "http://localhost:5500",
       "http://127.0.0.1:5500",
-      "http://localhost:3000"
+      "http://localhost:3000",
+    ];
+    const allowedOrigins = [
+      process.env.FRONTEND_URL,
+      ...devOrigins,
     ].filter(Boolean).map(o => o.replace(/\/$/, ""));
 
-    // Allow requests with no origin (like mobile apps, postman, curl)
-    // or origins that match allowed origins
+    // Allow requests with no origin (mobile apps, Postman, curl)
     if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
       callback(null, true);
     } else {
@@ -45,19 +69,30 @@ app.use(cors({
 
 app.use(cookieParser());
 app.use(express.json());
+// HTTP security headers (helmet) — applied after CORS so preflight is unaffected
+app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
+// Gzip compress all responses
+app.use(compression());
 
-// Mount authentication router
-app.use("/api/auth", authRouter);
+/* ─────────────────────────────────────────────────────────────────────────────
+   GET /health  —  Uptime / health check for Render and monitoring services.
+───────────────────────────────────────────────────────────────────────────── */
+app.get("/health", (req, res) => {
+  res.json({ status: "ok", uptime: process.uptime(), timestamp: Date.now() });
+});
+
+// Mount authentication router (rate limited)
+app.use("/api/auth", authLimiter, authRouter);
 // Mount forum router
 app.use("/api/forum", forumRouter);
 // Mount communities router
 app.use("/api/communities", communitiesRouter);
 
-/* ─────────────────────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────────────────────
    POST /run  —  Compiler proxy: forwards code to external OnlineCompiler API.
-   The API key never reaches the frontend.
-───────────────────────────────────────────────────────────────────────────── */
-app.post("/run", async (req, res) => {
+   The API key never reaches the frontend. Rate limited to 10 req/min per IP.
+─────────────────────────────────────────────────────────────────────────────── */
+app.post("/run", runLimiter, async (req, res) => {
   const { language, code, input } = req.body;
 
   if (!language || !code) {
@@ -210,8 +245,10 @@ app.get("/search", async (req, res) => {
    GET /api/jobs  —  Returns jobs filtered by tech, mode, location, type.
 ───────────────────────────────────────────────────────────────────────────── */
 app.get("/api/jobs", async (req, res) => {
-    const { tech, mode, location, type } = req.query;
+    const { tech, mode, location, type, page = 1, limit = 20 } = req.query;
     const filter = {};
+    const pageNum  = Math.max(1, parseInt(page)  || 1);
+    const limitNum = Math.min(50, Math.max(1, parseInt(limit) || 20));
 
     if (tech) {
         filter.techTags = { $in: [new RegExp(tech, "i")] };
@@ -233,8 +270,15 @@ app.get("/api/jobs", async (req, res) => {
     }
 
     try {
-        const jobs = await Job.find(filter).sort({ postedAt: -1 }).limit(50);
-        res.json({ jobs });
+        const total = await Job.countDocuments(filter);
+        const jobs  = await Job.find(filter)
+            .sort({ postedAt: -1 })
+            .skip((pageNum - 1) * limitNum)
+            .limit(limitNum);
+        res.json({
+          jobs,
+          pagination: { page: pageNum, limit: limitNum, total, pages: Math.ceil(total / limitNum) }
+        });
     } catch (err) {
         console.error("Error querying jobs from MongoDB:", err.message);
         res.status(500).json({ error: "Failed to fetch job postings." });

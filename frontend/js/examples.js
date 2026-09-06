@@ -750,7 +750,7 @@ echo $s1 . "\\n";
   ],
 };
 
-function initExamples(containerId, language) {
+function initExamples(containerId, language, compilerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
@@ -783,8 +783,10 @@ function initExamples(containerId, language) {
       const example = examples[index];
       if (!example) return;
 
-      // Find the CodeMirror editor or textarea
-      const compilerEl = document.querySelector('.sp-compiler');
+      // Find the target compiler by its explicit ID (scoped, not a global querySelector)
+      const compilerEl = compilerId
+        ? document.getElementById(compilerId)
+        : document.querySelector('.sp-compiler');
       if (!compilerEl) return;
 
       // Try CodeMirror first
