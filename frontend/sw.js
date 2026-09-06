@@ -1,9 +1,9 @@
-const CACHE_NAME = "studypy-cache-v5";
+const CACHE_NAME = "studypy-cache-v6";
 const ASSETS_TO_CACHE = [
     "/",
     "/css/main.css",
     "/js/script.js",
-    "/js/search.js",
+    "/js/search-global.js",
     "/js/links.js",
     "/assets/favicon/favicon.ico",
     "/assets/favicon/site.webmanifest"

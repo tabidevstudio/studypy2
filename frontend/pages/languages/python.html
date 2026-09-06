@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Learn Python interactively on StudyPY. Write, run, and test Python 3 code directly in your browser with examples and a built-in compiler." />
     <title>Python | Studypy</title>
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/languages.css">
@@ -33,7 +34,7 @@
                     width="560" 
                     height="315" 
                     src="https://www.youtube.com/embed/ix9cRaBkVe0" 
-                    title="YouTube Video" 
+                    title="Python Programming Tutorial for Beginners" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     allowfullscreen>
@@ -85,8 +86,6 @@
     </div>
     
     <script type="module" src="../../js/script.js"></script>
-    <script type="module" src="../../js/compiler.js"></script>
-    <script type="module" src="../../js/examples.js"></script>
     <script type="module">
         import { initCompiler } from '../../js/compiler.js';
         import { initExamples } from '../../js/examples.js';
@@ -97,7 +96,7 @@
             placeholder: '# Try it out!\nname = input("Enter your name: ")\nprint(f"Hello, {name}! Welcome to StudyPY.")',
         });
 
-        initExamples('examples-panel', 'python');
+        initExamples('examples-panel', 'python', 'compiler-python');
     </script>
 </body>
 </html>

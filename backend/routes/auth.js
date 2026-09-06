@@ -8,8 +8,12 @@ const filter = require("leo-profanity");
 
 const router = express.Router();
 
-// Fallbacks for environment variables in development
-const JWT_SECRET = process.env.JWT_SECRET || "studypy_super_secret_session_key_98765";
+// JWT Secret — hard fail if missing, never fall back to a default in any environment
+if (!process.env.JWT_SECRET) {
+  console.error("❌ FATAL: JWT_SECRET environment variable is not set. Server cannot start safely.");
+  process.exit(1);
+}
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Helper to resolve URLs dynamically based on request context
 function getUrls(req) {
@@ -72,6 +76,9 @@ router.get("/google", (req, res) => {
   const { backendUrl } = getUrls(req);
   
   if (!googleClientId) {
+    if (process.env.NODE_ENV === "production") {
+      return res.status(503).json({ error: "Google OAuth is not configured on this server." });
+    }
     console.warn("⚠️ GOOGLE_CLIENT_ID not set. Redirecting to Mock Google Auth callback for development.");
     return res.redirect(`${backendUrl}/api/auth/google/callback?code=mock_google_code`);
   }
@@ -197,6 +204,9 @@ router.get("/github", (req, res) => {
   const { backendUrl } = getUrls(req);
 
   if (!githubClientId) {
+    if (process.env.NODE_ENV === "production") {
+      return res.status(503).json({ error: "GitHub OAuth is not configured on this server." });
+    }
     console.warn("⚠️ GITHUB_CLIENT_ID not set. Redirecting to Mock GitHub Auth callback for development.");
     return res.redirect(`${backendUrl}/api/auth/github/callback?code=mock_github_code`);
   }

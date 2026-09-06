@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Learn Java interactively on StudyPY. Write, run, and test Java code directly in your browser with examples and a built-in compiler." />
     <title>Java | Studypy</title>
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/languages.css">
@@ -34,7 +35,7 @@
                 width="560" 
                 height="315" 
                 src="https://www.youtube.com/embed/xTtL8E4LzTQ"
-                title="YouTube Video" 
+                title="Java Programming Tutorial for Beginners" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 allowfullscreen>
@@ -84,9 +85,7 @@
             </section>
         </main>
     </div>
-    <script type="module" src="../../js/compiler.js"></script>
     <script type="module" src="../../js/script.js"></script>
-    <script type="module" src="../../js/examples.js"></script>
     <script type="module">
         import { initCompiler } from '../../js/compiler.js';
         import { initExamples } from '../../js/examples.js';
@@ -97,7 +96,7 @@
             placeholder: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello from StudyPY!");\n    }\n}',
         });
 
-        initExamples('examples-panel', 'java');
+        initExamples('examples-panel', 'java', 'compiler-java');
     </script>
 </body>
 </html>
