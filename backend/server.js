@@ -400,12 +400,12 @@ const PORT = process.env.PORT || 3000;
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("✅ Connected to MongoDB Atlas");
+    console.log("Connected to MongoDB Atlas");
     app.listen(PORT, () => {
-      console.log(`🚀 Backend running on port ${PORT}`);
+      console.log(`Backend running on port ${PORT}`);
     });
   })
   .catch((err) => {
-    console.error("❌ MongoDB connection failed:", err.message);
+    console.error("MongoDB connection failed:", err.message);
     process.exit(1);   // Hard exit — do not start Express without a DB
   });
