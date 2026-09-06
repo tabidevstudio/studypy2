@@ -167,6 +167,7 @@ function initCompiler(config) {
     const startState = EditorState.create({
       doc: placeholder || '',
       extensions: [
+        EditorView.editable.of(true),
         lineNumbers(),
         highlightActiveLine(),
         drawSelection(),
@@ -206,9 +207,11 @@ function initCompiler(config) {
     // Expose in the module registry so examples.js can load code into this editor
     cmViews[containerId] = editorView;
 
-    // Focus editor when clicking anywhere on the editor wrapper
-    editorWrap.addEventListener('click', () => {
-      if (editorView) editorView.focus();
+    // Focus editor when clicking on the wrapper padding (outside the cm-editor itself)
+    editorWrap.addEventListener('click', (e) => {
+      if (editorView && !e.target.closest('.cm-editor')) {
+        editorView.focus();
+      }
     });
 
   }).catch((err) => {
