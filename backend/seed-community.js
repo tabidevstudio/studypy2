@@ -15,19 +15,19 @@ const COMMUNITIES = require(path.join(__dirname, "./data/communities.json"));
 
 async function seed() {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log("✅ Connected to MongoDB Atlas");
+    console.log("Connected to MongoDB Atlas");
 
     await Community.deleteMany({});
-    console.log("🗑️  Cleared communities collection");
+    console.log("Cleared communities collection");
 
     await Community.insertMany(COMMUNITIES);
-    console.log(`🌱 Seeded ${COMMUNITIES.length} communities`);
+    console.log(`Seeded ${COMMUNITIES.length} communities`);
 
     await mongoose.disconnect();
-    console.log("👋 Done");
+    console.log("Done");
 }
 
 seed().catch(err => {
-    console.error("❌ Seed failed:", err.message);
+    console.error("Seed failed:", err.message);
     process.exit(1);
 });
