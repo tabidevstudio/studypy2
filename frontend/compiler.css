@@ -145,6 +145,11 @@
   line-height: 1.7;
 }
 
+.sp-compiler__editor-wrap .cm-content {
+  min-height: 200px;
+  cursor: text;
+}
+
 /* Loading state while CodeMirror initializes */
 .sp-compiler__editor-wrap .cm-editor-loading {
   padding: 1rem 1.25rem;

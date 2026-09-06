@@ -6,19 +6,18 @@ const BACKEND_URL = isLocal
 const cmViews = {};
 
 // CodeMirror 6 CDN modules
-const CM_VERSION = '6.0.1';
 const CM_MODULES = {
-  codemirror:        'https://esm.sh/@codemirror/codemirror@6.0.1',
-  view:              'https://esm.sh/@codemirror/view@6.36.3',
-  state:             'https://esm.sh/@codemirror/state@6.5.2',
-  commands:          'https://esm.sh/@codemirror/commands@6.8.1',
-  language:          'https://esm.sh/@codemirror/language@6.11.0',
-  langPython:        'https://esm.sh/@codemirror/lang-python@6.1.8',
-  langJava:          'https://esm.sh/@codemirror/lang-java@6.0.1',
-  langCpp:           'https://esm.sh/@codemirror/lang-cpp@6.0.2',
-  langJs:            'https://esm.sh/@codemirror/lang-javascript@6.2.2',
-  langPhp:           'https://esm.sh/@codemirror/lang-php@6.0.1',
-  oneDark:           'https://esm.sh/@codemirror/theme-one-dark@6.1.2',
+  view:              'https://esm.sh/@codemirror/view',
+  state:             'https://esm.sh/@codemirror/state',
+  commands:          'https://esm.sh/@codemirror/commands',
+  language:          'https://esm.sh/@codemirror/language',
+  autocomplete:      'https://esm.sh/@codemirror/autocomplete',
+  langPython:        'https://esm.sh/@codemirror/lang-python',
+  langJava:          'https://esm.sh/@codemirror/lang-java',
+  langCpp:           'https://esm.sh/@codemirror/lang-cpp',
+  langJs:            'https://esm.sh/@codemirror/lang-javascript',
+  langPhp:           'https://esm.sh/@codemirror/lang-php',
+  oneDark:           'https://esm.sh/@codemirror/theme-one-dark',
 };
 
 // Map compiler language id → CodeMirror language loader
@@ -30,7 +29,6 @@ const LANG_MAP = {
   'typescript-deno':'langJs',
   'php-8.5':        'langPhp',
 };
-
 async function loadCodeMirror(language) {
   const [
     { EditorView, keymap, lineNumbers, highlightActiveLine, drawSelection },
@@ -40,12 +38,12 @@ async function loadCodeMirror(language) {
     { closeBrackets, closeBracketsKeymap },
     { oneDark },
   ] = await Promise.all([
-    import('https://esm.sh/@codemirror/view@6.36.3'),
-    import('https://esm.sh/@codemirror/state@6.5.2'),
-    import('https://esm.sh/@codemirror/commands@6.8.1'),
-    import('https://esm.sh/@codemirror/language@6.11.0'),
-    import('https://esm.sh/@codemirror/autocomplete@6.16.3'),
-    import('https://esm.sh/@codemirror/theme-one-dark@6.1.2'),
+    import('https://esm.sh/@codemirror/view'),
+    import('https://esm.sh/@codemirror/state'),
+    import('https://esm.sh/@codemirror/commands'),
+    import('https://esm.sh/@codemirror/language'),
+    import('https://esm.sh/@codemirror/autocomplete'),
+    import('https://esm.sh/@codemirror/theme-one-dark'),
   ]);
 
   // Load language support
@@ -54,19 +52,19 @@ async function loadCodeMirror(language) {
   if (langKey) {
     try {
       if (langKey === 'langPython') {
-        const { python } = await import('https://esm.sh/@codemirror/lang-python@6.1.6');
+        const { python } = await import('https://esm.sh/@codemirror/lang-python');
         langExtension = [python()];
       } else if (langKey === 'langJava') {
-        const { java } = await import('https://esm.sh/@codemirror/lang-java@6.0.1');
+        const { java } = await import('https://esm.sh/@codemirror/lang-java');
         langExtension = [java()];
       } else if (langKey === 'langCpp') {
-        const { cpp } = await import('https://esm.sh/@codemirror/lang-cpp@6.0.2');
+        const { cpp } = await import('https://esm.sh/@codemirror/lang-cpp');
         langExtension = [cpp()];
       } else if (langKey === 'langJs') {
-        const { javascript } = await import('https://esm.sh/@codemirror/lang-javascript@6.2.2');
+        const { javascript } = await import('https://esm.sh/@codemirror/lang-javascript');
         langExtension = [javascript()];
       } else if (langKey === 'langPhp') {
-        const { php } = await import('https://esm.sh/@codemirror/lang-php@6.0.1');
+        const { php } = await import('https://esm.sh/@codemirror/lang-php');
         langExtension = [php()];
       }
     } catch (e) {
@@ -207,6 +205,11 @@ function initCompiler(config) {
 
     // Expose in the module registry so examples.js can load code into this editor
     cmViews[containerId] = editorView;
+
+    // Focus editor when clicking anywhere on the editor wrapper
+    editorWrap.addEventListener('click', () => {
+      if (editorView) editorView.focus();
+    });
 
   }).catch((err) => {
     // Fallback to plain textarea if CodeMirror fails

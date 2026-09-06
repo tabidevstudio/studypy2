@@ -5,7 +5,7 @@ const fetch        = require("node-fetch");
 const cors         = require("cors");
 const cookieParser = require("cookie-parser");
 const mongoose     = require("mongoose");
-const { exec }     = require("child_process");
+const { exec, spawn } = require("child_process");
 const fs           = require("fs");
 const path         = require("path");
 const os           = require("os");
@@ -83,30 +83,60 @@ app.post("/run", async (req, res) => {
     }
   }
 
-  // Local fallback for python3
-  if (language === "python3") {
+  // Local fallback for python
+  if (language === "python3" || language.startsWith("python")) {
     const tempDir = os.tmpdir();
     const tempFile = path.join(tempDir, `studypy_run_${Date.now()}_${Math.random().toString(36).substr(2, 5)}.py`);
 
     try {
       fs.writeFileSync(tempFile, code, "utf8");
+      const pyCmd = process.platform === "win32" ? "py" : "python3";
+      const pyProc = spawn(pyCmd, [tempFile]);
 
-      exec(`python "${tempFile}"`, { timeout: 5000 }, (error, stdout, stderr) => {
+      let stdout = "";
+      let stderr = "";
+      let killed = false;
+
+      const timer = setTimeout(() => {
+        killed = true;
+        pyProc.kill();
+      }, 5000);
+
+      if (input) {
+        pyProc.stdin.write(input);
+      }
+      pyProc.stdin.end();
+
+      pyProc.stdout.on("data", (chunk) => {
+        stdout += chunk.toString();
+      });
+
+      pyProc.stderr.on("data", (chunk) => {
+        stderr += chunk.toString();
+      });
+
+      pyProc.on("close", () => {
+        clearTimeout(timer);
         try {
           fs.unlinkSync(tempFile);
         } catch (e) {}
 
-        if (error && error.killed) {
+        if (killed) {
           return res.json({ errors: "Execution timed out (5s limit)." });
         }
 
-        const errors = stderr ? stderr.toString() : "";
-        const output = stdout ? stdout.toString() : "";
-
         res.json({
-          output: output,
-          errors: errors || (error ? error.message : "")
+          output: stdout,
+          errors: stderr
         });
+      });
+
+      pyProc.on("error", (err) => {
+        clearTimeout(timer);
+        try {
+          fs.unlinkSync(tempFile);
+        } catch (e) {}
+        res.status(500).json({ error: `Local python execution failed: ${err.message}` });
       });
     } catch (err) {
       try {
@@ -115,7 +145,7 @@ app.post("/run", async (req, res) => {
       res.status(500).json({ error: `Local python execution failed: ${err.message}` });
     }
   } else {
-    res.status(400).json({ error: "API_KEY not configured for onlinecompiler.io and local execution is only supported for python3." });
+    res.status(400).json({ error: `API_KEY not configured for onlinecompiler.io and local execution is not supported for ${language}.` });
   }
 });
 
