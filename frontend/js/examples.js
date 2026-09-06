@@ -795,6 +795,8 @@ function initExamples(containerId, language) {
           view.dispatch({
             changes: { from: 0, to: view.state.doc.length, insert: example.code }
           });
+          // Focus editor so user can immediately edit the loaded example
+          view.focus();
         }
       } else {
         // Fallback: plain textarea
